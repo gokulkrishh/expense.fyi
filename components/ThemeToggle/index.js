@@ -71,7 +71,8 @@ export default function ThemeToggle() {
         <LightModeIcon className={styles.DarkModeIcon} />
       ) : (
         <DarkModeIcon className={styles.LightModeIcon} />
-      )}
+      )}{' '}
+      {theme}
     </button>
   );
 }

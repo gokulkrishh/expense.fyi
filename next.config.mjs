@@ -14,12 +14,12 @@ const nextConfig = {
 const ContentSecurityPolicy = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline';
-    child-src *.youtube.com *.google.com;
-    style-src 'self' 'unsafe-inline';
+    child-src 'self';
+    style-src 'self' 'unsafe-inline' fonts.googleapis.com;
     img-src * blob: data:;
     media-src 'self';
     connect-src *;
-    font-src 'self';
+    font-src 'self' fonts.gstatic.com;
 `;
 
 const securityHeaders = [

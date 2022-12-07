@@ -9,11 +9,18 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
   line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: var(--font-weight-bold);
 }
 
 a {
@@ -26,17 +33,17 @@ a {
   height: 100%;
   display: flex;
 
-  & .Layout__header,
+  & .Layout__sidebar,
   & .Layout__content {
     height: 100%;
   }
 
-  & .Layout__header {
-    width: var(--header-width);
+  & .Layout__sidebar {
+    width: var(--sidebar-width);
   }
 
   & .Layout__content {
-    width: calc(100% - var(--header-width));
+    width: calc(100% - var(--sidebar-width));
     padding: 20px;
   }
 }

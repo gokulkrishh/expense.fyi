@@ -1,6 +1,28 @@
 :root {
+  /* Colors */
   --color-black: #000;
+  --color-slightly-black: #191919;
   --color-white: #fff;
+  --color-orange: #ff5722;
+  --color-grey: #ccc;
+  --color-light-grey: #ddd;
 
-  --header-width: 260px;
+  /* Fonts */
+  --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --font-family-roboto-mono: 'Roboto Mono', monospace;
+
+  /* Font Weight */
+  --font-weight: 400;
+  --font-weight-semibold: 500;
+  --font-weight-bold: 600;
+
+  /* Widths */
+  --sidebar-width: 280px;
+
+  /* Borders */
+  --border-radius: 8px;
+
+  /* Transitions & Animations */
+  --transition: all 0.2s linear;
 }

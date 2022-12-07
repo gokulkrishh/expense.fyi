@@ -3,22 +3,25 @@
   appearance: none;
   background: none;
   border: none;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
 
   & svg {
     cursor: pointer;
     width: 16px;
     height: 16px;
+    fill: var(--color-white);
+    margin-right: 10px;
   }
 
   & .DarkModeIcon {
-    fill: var(--color-black);
   }
 }
 
 [data-theme='dark'] {
   & .ThemeToggle {
     & .LightModeIcon {
-      fill: var(--color-white);
     }
   }
 }
