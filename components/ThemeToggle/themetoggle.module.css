@@ -1,0 +1,30 @@
+.ThemeToggle {
+  margin-left: 20px;
+  appearance: none;
+  background: none;
+  border: none;
+
+  & svg {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+  }
+
+  & .DarkModeIcon {
+    fill: var(--color-black);
+  }
+}
+
+[data-theme='dark'] {
+  & .ThemeToggle {
+    & .LightModeIcon {
+      fill: var(--color-white);
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .ThemeToggle {
+    margin-left: 5px;
+  }
+}

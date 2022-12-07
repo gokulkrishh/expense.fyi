@@ -1,4 +1,5 @@
 @import './reset.css';
+@import './variables.css';
 
 * {
   box-sizing: border-box;
@@ -18,4 +19,24 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.Layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  & .Layout__header,
+  & .Layout__content {
+    height: 100%;
+  }
+
+  & .Layout__header {
+    width: var(--header-width);
+  }
+
+  & .Layout__content {
+    width: calc(100% - var(--header-width));
+    padding: 20px;
+  }
 }

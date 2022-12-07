@@ -1,0 +1,31 @@
+.Navbar {
+  border-right: 1px solid #ddd;
+  height: inherit;
+
+  & .NavbarLogoLink {
+    display: inline-block;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+
+  & .NavbarLinks {
+    display: grid;
+    gap: 12px;
+
+    & span {
+      display: block;
+      padding-left: 20px;
+    }
+  }
+
+  & .ThemeToggle {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+  }
+
+  & .NavbarLinkActive {
+    background: #ccc;
+    padding: 6px 0;
+  }
+}
