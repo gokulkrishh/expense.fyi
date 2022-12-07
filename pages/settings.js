@@ -1,16 +1,16 @@
 import Head from 'next/head';
 
-export default function Spent() {
+export default function Savings() {
   return (
     <div>
       <Head>
-        <title>Spent - Expense Tracker</title>
-        <meta name="description" content="Spent page" />
+        <title>Settings - Expense Tracker</title>
+        <meta name="description" content="Settings page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1>Spent</h1>
+        <h1>Settings</h1>
       </main>
 
       <footer></footer>

@@ -20,7 +20,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-extra-bold);
 }
 
 a {
@@ -44,6 +44,6 @@ a {
 
   & .Layout__content {
     width: calc(100% - var(--sidebar-width));
-    padding: 20px;
+    padding: 30px;
   }
 }

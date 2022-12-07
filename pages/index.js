@@ -1,15 +1,22 @@
 import Head from 'next/head';
 
-export default function Home() {
+import AddExpense from 'components/AddExpense';
+
+export default function Home({ title }) {
   return (
     <div>
       <Head>
-        <title>Expense Tracker</title>
-        <meta name="description" content="Expense Tracker" />
+        <title>Overview - Expense Tracker</title>
+        <meta name="description" content="Overview page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>Hello</main>
+      <main>
+        <div className="Overview__header">
+          <h1>Overview</h1>
+          <AddExpense />
+        </div>
+      </main>
 
       <footer></footer>
     </div>

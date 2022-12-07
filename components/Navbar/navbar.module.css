@@ -4,6 +4,10 @@
   background-color: var(--color-black);
   color: var(--color-white);
 
+  & h1 {
+    letter-spacing: 1px;
+  }
+
   & .NavbarLogoLink {
     display: block;
     padding: 20px 26px;
@@ -19,7 +23,7 @@
     & a {
       transition: var(--transition);
       display: flex;
-      padding: 6px 16px;
+      padding: 8px 16px;
       align-items: center;
     }
 

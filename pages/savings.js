@@ -5,11 +5,13 @@ export default function Savings() {
     <div>
       <Head>
         <title>Savings - Expense Tracker</title>
-        <meta name="description" content="Expense Tracker" />
+        <meta name="description" content="Savings page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>Savings</main>
+      <main>
+        <h1>Savings</h1>
+      </main>
 
       <footer></footer>
     </div>
