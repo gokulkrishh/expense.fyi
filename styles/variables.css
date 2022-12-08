@@ -2,10 +2,14 @@
   /* Colors */
   --color-black: #000;
   --color-slightly-black: #191919;
+  --color-transparent-black: rgba(0, 0, 0, 0.2);
   --color-white: #fff;
   --color-orange: #ff5722;
   --color-grey: #ccc;
   --color-light-grey: #ddd;
+
+  /* Box Shadow */
+  --box-shadow: rgb(0 0 0 / 17%) 0px 0px 8px;
 
   /* Fonts */
   --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -26,4 +30,5 @@
 
   /* Transitions & Animations */
   --transition: all 0.2s linear;
+  --transition-cubic-transform: transform 0.33s cubic-bezier(0, 0, 0.3, 1) 0s;
 }

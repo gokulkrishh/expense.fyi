@@ -1,0 +1,31 @@
+.AddExpenseModal {
+  background: var(--color-white);
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 15px;
+  transition: var(--transition-cubic-transform);
+  max-width: 600px;
+  margin: auto;
+  box-shadow: var(--box-shadow);
+  will-change: transform;
+  z-index: 2;
+  user-select: none;
+  transform: translateY(0px);
+}
+
+.AddExpenseModalShadow {
+  position: fixed;
+  inset: 0px;
+  background-color: var(--color-transparent-black);
+  z-index: 1;
+  display: block;
+}
+
+.AddExpenseModalContent {
+  display: grid;
+  gap: 20px;
+}
