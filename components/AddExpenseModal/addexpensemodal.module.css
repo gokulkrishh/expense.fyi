@@ -3,10 +3,10 @@
   position: fixed;
   left: 0px;
   right: 0px;
-  top: 0px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  padding: 15px;
+  bottom: 0px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 20px 25px 30px;
   transition: var(--transition-cubic-transform);
   max-width: 600px;
   margin: auto;
@@ -14,7 +14,7 @@
   will-change: transform;
   z-index: 2;
   user-select: none;
-  transform: translateY(0px);
+  transform: translateY(102%);
 }
 
 .AddExpenseModalShadow {
@@ -27,5 +27,26 @@
 
 .AddExpenseModalContent {
   display: grid;
-  gap: 20px;
+  gap: 8px;
+
+  & input,
+  & select {
+    /* margin-left: 10px; */
+  }
+
+  & label {
+    display: block;
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+.AddExpenseAction {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+
+  & button {
+    width: 46%;
+    height: 35px;
+  }
 }

@@ -33,10 +33,34 @@ select {
   border-radius: 4px;
   border: 2px solid rgb(238, 238, 238);
   outline: none;
-  padding: 0 6px;
+  padding: 0 10px;
   font-size: 15px;
+  height: 38px;
+  border: 1px solid #ccc;
+
+  &:focus {
+    border: 1px solid;
+  }
+}
+
+button {
+  appearance: none;
+  -webkit-box-align: center;
+  align-items: center;
+  border-radius: 4px;
+  border: 0px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
   height: 40px;
-  line-height: 40px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  outline: none;
+  text-transform: uppercase;
+  width: 100%;
+  background-color: rgb(41, 116, 255);
 }
 
 .Layout {

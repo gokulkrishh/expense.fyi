@@ -63,7 +63,7 @@ export default function Navbar() {
       </Link>
 
       <div className={styles.NavbarLinks}>
-        <Link
+        {/* <Link
           href="/"
           className={router.pathname === '/' ? styles.NavbarLinkActive : ''}
         >
@@ -96,7 +96,7 @@ export default function Navbar() {
         >
           <SavingsIcon />
           <span>Savings</span>
-        </Link>
+        </Link> */}
         <Link
           href="/subscriptions"
           className={
