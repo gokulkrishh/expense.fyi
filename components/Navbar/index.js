@@ -63,14 +63,14 @@ export default function Navbar() {
       </Link>
 
       <div className={styles.NavbarLinks}>
-        {/* <Link
+        <Link
           href="/"
           className={router.pathname === '/' ? styles.NavbarLinkActive : ''}
         >
           <OverviewIcon />
           <span>Overview</span>
         </Link>
-        <Link
+        {/* <Link
           href="/spent"
           className={
             router.pathname === '/spent' ? styles.NavbarLinkActive : ''
@@ -117,7 +117,9 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <div className={styles.ThemeToggle}>{<ThemeToggle />}</div>
+      {/* <div className={styles.ThemeToggle}>{<ThemeToggle />}</div> */}
+
+      {/* <div className={styles.Account}>Gokul</div> */}
     </nav>
   );
 }

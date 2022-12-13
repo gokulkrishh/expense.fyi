@@ -5,7 +5,8 @@
   color: var(--color-white);
 
   & h1 {
-    letter-spacing: 1px;
+    font-family: var(--font-family-roboto-mono);
+    font-weight: bold;
   }
 
   & .NavbarLogoLink {
@@ -53,4 +54,10 @@
     bottom: 20px;
     left: 0;
   }
+}
+
+.Account {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
 }

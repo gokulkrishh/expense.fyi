@@ -10,6 +10,7 @@
 
   /* Box Shadow */
   --box-shadow: rgb(0 0 0 / 17%) 0px 0px 8px;
+  --box-shadow-button: 0px 1px 4px 0 rgb(0 0 0 / 50%);
 
   /* Fonts */
   --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -27,6 +28,8 @@
 
   /* Borders */
   --border-radius: 8px;
+  --border-radius-semi-circle: 40px;
+  --border-radius-round: 50%;
 
   /* Transitions & Animations */
   --transition: all 0.2s linear;

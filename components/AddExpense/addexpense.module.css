@@ -1,4 +1,15 @@
 .AddExpense {
-  border-radius: var(--border-radius);
-  padding: 4px 10px;
+  border-radius: var(--border-radius-semi-circle);
+  padding: 10px 14px;
+  width: fit-content;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--box-shadow-button);
+  text-transform: capitalize;
+
+  & svg {
+    fill: var(--color-white);
+    margin-right: 3px;
+  }
 }

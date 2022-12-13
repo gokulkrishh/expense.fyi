@@ -1,6 +1,17 @@
+import { useEffect } from 'react';
 import styles from './addexpensemodal.module.css';
 
 const AddExpenseModal = ({ hideModal }) => {
+  useEffect(() => {
+    const close = (e) => {
+      if (e.keyCode === 27) {
+        hideModal();
+      }
+    };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [hideModal]);
+
   return (
     <>
       <div onClick={hideModal} className={styles.AddExpenseModalShadow}></div>
@@ -11,26 +22,23 @@ const AddExpenseModal = ({ hideModal }) => {
         <div className={styles.AddExpenseModalContent}>
           <h2>Add Subscription</h2>
           <label htmlFor="name">Name</label>
-          <input type="text" id="name" />
+          <input type="text" id="name" placeholder="Netflix" />
+
           <label htmlFor="amount">Amount</label>
-          <input type="number" id="amount" />
-          <label htmlFor="type">Category</label>
-          <select id="type">
-            <option value="">Select a service</option>
-            <option value="netflix">Netflix</option>
-            <option value="spotify">Spotify</option>
-          </select>
-          <label htmlFor="payment-mode">Payment mode</label>
-          <select id="payment-mode">
-            <option value="">Select a mode</option>
-            <option value="creditcard">Credit Card</option>
-            <option value="debitcard">Debit Card</option>
-            <option value="netbanking">Netbanking</option>
-            <option value="upi">UPI</option>
-          </select>
+          <input
+            type="number"
+            id="amount"
+            placeholder="600"
+            min={0}
+            max={9999}
+          />
+
+          <label htmlFor="note">Notes (optional)</label>
+          <input type="text" id="note" />
+
           <div className={styles.AddExpenseAction}>
             <button onClick={hideModal}>Cancel</button>
-            <button onClick={hideModal}>Submit</button>
+            <button onClick={hideModal}>Add</button>
           </div>
         </div>
       </div>

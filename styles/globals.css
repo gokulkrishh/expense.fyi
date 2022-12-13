@@ -21,6 +21,11 @@ h3,
 h4,
 h5 {
   font-weight: var(--font-weight-extra-bold);
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 1.4em;
 }
 
 a {
@@ -35,7 +40,7 @@ select {
   outline: none;
   padding: 0 10px;
   font-size: 15px;
-  height: 38px;
+  height: 40px;
   border: 1px solid #ccc;
 
   &:focus {
@@ -79,6 +84,12 @@ button {
 
   & .Layout__content {
     width: calc(100% - var(--sidebar-width));
-    padding: 30px;
+    padding: 20px 35px;
   }
+}
+
+.Overview__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

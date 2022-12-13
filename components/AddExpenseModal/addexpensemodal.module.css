@@ -1,14 +1,15 @@
 .AddExpenseModal {
   background: var(--color-white);
   position: fixed;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  padding: 20px 25px 30px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  border-radius: 8px;
+  padding: 18px 25px;
   transition: var(--transition-cubic-transform);
-  max-width: 600px;
+  max-width: 550px;
+  height: 380px;
   margin: auto;
   box-shadow: var(--box-shadow);
   will-change: transform;
@@ -42,11 +43,20 @@
 
 .AddExpenseAction {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: 10px;
 
   & button {
-    width: 46%;
-    height: 35px;
+    width: 100px;
+
+    &:active {
+      opacity: 0.8;
+    }
+
+    &:first-child {
+      margin-right: 10px;
+      background-color: transparent;
+      color: var(--color-black);
+    }
   }
 }
