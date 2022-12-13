@@ -1,5 +1,5 @@
 .AddExpense {
-  border-radius: var(--border-radius-semi-circle);
+  border-radius: var(--border-radius-button);
   padding: 10px 14px;
   width: fit-content;
   height: 38px;

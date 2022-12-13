@@ -7,6 +7,8 @@
   --color-orange: #ff5722;
   --color-grey: #ccc;
   --color-light-grey: #ddd;
+  --color-slightly-grey: #efefef;
+  --color-blue: #2974ff;
 
   /* Box Shadow */
   --box-shadow: rgb(0 0 0 / 17%) 0px 0px 8px;
@@ -28,7 +30,8 @@
 
   /* Borders */
   --border-radius: 8px;
-  --border-radius-semi-circle: 40px;
+  --border-radius-input: 4px;
+  --border-radius-button: 12px;
   --border-radius-round: 50%;
 
   /* Transitions & Animations */

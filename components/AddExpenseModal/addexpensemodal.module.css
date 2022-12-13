@@ -8,8 +8,8 @@
   border-radius: 8px;
   padding: 18px 25px;
   transition: var(--transition-cubic-transform);
-  max-width: 550px;
-  height: 380px;
+  max-width: 500px;
+  height: 415px;
   margin: auto;
   box-shadow: var(--box-shadow);
   will-change: transform;
@@ -37,7 +37,20 @@
 
   & label {
     display: block;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  & > div > label {
+    margin-bottom: 8px;
+  }
+
+  & > div > input {
+    width: 69%;
+  }
+
+  & > div > select {
+    width: 30%;
+    margin-left: 1%;
   }
 }
 

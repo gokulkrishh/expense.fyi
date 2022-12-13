@@ -22,23 +22,29 @@ const AddExpenseModal = ({ hideModal }) => {
         <div className={styles.AddExpenseModalContent}>
           <h2>Add Subscription</h2>
           <label htmlFor="name">Name</label>
-          <input type="text" id="name" placeholder="Netflix" />
+          <input type="text" id="name" placeholder="Eg. Netflix" />
 
-          <label htmlFor="amount">Amount</label>
-          <input
-            type="number"
-            id="amount"
-            placeholder="600"
-            min={0}
-            max={9999}
-          />
+          <div>
+            <label htmlFor="amount">Amount</label>
+            <input
+              type="number"
+              id="amount"
+              placeholder="600"
+              min={0}
+              max={9999}
+            />
+            <select name="per" id="payment">
+              <option value="montly">/ month</option>
+              <option value="yearly">/ year</option>
+            </select>
+          </div>
 
-          <label htmlFor="note">Notes (optional)</label>
-          <input type="text" id="note" />
+          <label htmlFor="note">Description (optional)</label>
+          <textarea value="" />
 
           <div className={styles.AddExpenseAction}>
             <button onClick={hideModal}>Cancel</button>
-            <button onClick={hideModal}>Add</button>
+            <button onClick={hideModal}>Submit</button>
           </div>
         </div>
       </div>
