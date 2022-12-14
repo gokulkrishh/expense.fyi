@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
@@ -20,9 +21,11 @@ model User {
 model Subscription {
   id     Int     @id @default(autoincrement())
   name   String
-  amount Int
+  amount String
   paid   String
   notes  String?
   userId Int
   user   User?   @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }

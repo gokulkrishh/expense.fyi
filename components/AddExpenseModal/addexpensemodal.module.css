@@ -9,7 +9,7 @@
   padding: 18px 25px;
   transition: var(--transition-cubic-transform);
   max-width: 500px;
-  height: 415px;
+  height: 425px;
   margin: auto;
   box-shadow: var(--box-shadow);
   will-change: transform;

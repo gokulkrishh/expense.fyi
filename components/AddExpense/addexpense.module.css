@@ -6,7 +6,6 @@
   display: flex;
   align-items: center;
   box-shadow: var(--box-shadow-button);
-  text-transform: capitalize;
 
   & svg {
     fill: var(--color-white);

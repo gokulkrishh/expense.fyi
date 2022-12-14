@@ -9,10 +9,25 @@ const AddIcon = () => (
 );
 
 const AddExpense = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
 
   const hideModal = () => {
     setShowModal(false);
+  };
+
+  const submit = async (data) => {
+    try {
+      await fetch(`/api/subscription/add`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      await Router.push('/drafts');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setShowModal(false);
+    }
   };
 
   return (
@@ -26,7 +41,9 @@ const AddExpense = () => {
       >
         {AddIcon()} Add
       </button>
-      {showModal ? <AddExpenseModal hideModal={hideModal} /> : null}
+      {showModal ? (
+        <AddExpenseModal hideModal={hideModal} submit={submit} />
+      ) : null}
     </>
   );
 };
