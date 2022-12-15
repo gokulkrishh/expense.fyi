@@ -35,11 +35,6 @@
     /* margin-left: 10px; */
   }
 
-  & label {
-    display: block;
-    font-weight: var(--font-weight-semibold);
-  }
-
   & > div > label {
     margin-bottom: 8px;
   }

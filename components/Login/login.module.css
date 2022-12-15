@@ -1,0 +1,35 @@
+.Login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 100vw;
+  min-height: 90vh;
+
+  & h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+  }
+
+  & h3 {
+    margin-bottom: 10px;
+  }
+}
+
+.LoginCard {
+  width: 340px;
+  height: 210px;
+  background: var(--color-transparent-grey);
+  border-radius: var(--border-radius);
+  padding: 15px 20px;
+  box-shadow: var(--box-shadow);
+
+  & label {
+    margin-bottom: 8px;
+  }
+
+  & input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}

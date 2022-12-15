@@ -26,7 +26,15 @@ h5 {
 }
 
 h1 {
+  font-size: 1.6em;
+}
+
+h2 {
   font-size: 1.4em;
+}
+
+h3 {
+  font-size: 1.3em;
 }
 
 a {
@@ -89,15 +97,25 @@ button {
     background-color: var(--color-light-grey);
     color: var(--color-transparent-black);
   }
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+label {
+  display: block;
+  font-weight: var(--font-weight-semibold);
 }
 
 .Layout {
   width: 100%;
   height: 100%;
-  display: flex;
 
   & .Layout__sidebar,
-  & .Layout__content {
+  & .Layout__content,
+  & .Layout__body,
+  & main {
     height: 100%;
   }
 
@@ -106,8 +124,8 @@ button {
   }
 
   & .Layout__content {
-    width: calc(100% - var(--sidebar-width));
-    padding: 20px 35px;
+    /* width: calc(100% - var(--sidebar-width)); */
+    /* padding: 20px 35px; */
   }
 
   & .Layout__header {

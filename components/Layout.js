@@ -7,6 +7,20 @@ import Footer from './Footer';
 export default function Layout({ children }) {
   const { data: session } = useSession();
 
+  if (!session) {
+    return (
+      <>
+        <div className="Layout">
+          <div className="Layout__content">
+            <div className="Layout__body">
+              <main>{children}</main>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <div className="Layout">
