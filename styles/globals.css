@@ -13,6 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
   line-height: 1.6;
+  font-size: var(--font-size-base);
 }
 
 h1,
@@ -76,7 +77,6 @@ button {
   color: var(--color-white);
   cursor: pointer;
   display: flex;
-  font-size: 14px;
   font-weight: var(--font-weight-semibold);
   height: 40px;
   justify-content: center;
@@ -108,6 +108,18 @@ button {
   & .Layout__content {
     width: calc(100% - var(--sidebar-width));
     padding: 20px 35px;
+  }
+
+  & .Layout__header {
+    float: right;
+
+    & img {
+      border-radius: var(--border-radius-round);
+    }
+  }
+
+  & .Layout__body {
+    clear: both;
   }
 }
 

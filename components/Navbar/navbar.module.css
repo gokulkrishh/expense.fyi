@@ -3,6 +3,7 @@
   height: inherit;
   background-color: var(--color-black);
   color: var(--color-white);
+  position: relative;
 
   & h1 {
     font-family: var(--font-family-roboto-mono);
@@ -59,5 +60,27 @@
 .Account {
   position: absolute;
   bottom: 20px;
-  left: 0;
+  width: 100%;
+  font-family: var(--font-family-roboto-mono);
+
+  & button {
+    background-color: transparent;
+    width: 130px;
+    margin: 0 16px;
+    cursor: pointer;
+    text-transform: initial;
+
+    &:hover {
+      color: var(--color-orange);
+
+      & svg {
+        fill: var(--color-orange);
+      }
+    }
+  }
+
+  & svg {
+    fill: var(--color-white);
+    margin-right: 12px;
+  }
 }

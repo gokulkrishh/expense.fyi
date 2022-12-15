@@ -24,6 +24,7 @@ model Subscription {
   amount    String
   paid      String
   notes     String?
+  renewalAt DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   notify Boolean? @default(false)

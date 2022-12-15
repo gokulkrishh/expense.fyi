@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 import ThemeToggle from '../ThemeToggle';
 
@@ -48,10 +49,17 @@ const InfoIcon = () => (
   </svg>
 );
 
+const LogoutIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
+    <path d="M12.625 13.667q-.25-.25-.25-.615 0-.364.25-.614l1.563-1.563H8.396q-.354 0-.615-.26-.26-.261-.26-.615t.26-.615q.261-.26.615-.26h5.729l-1.521-1.542q-.229-.25-.229-.604t.25-.604q.25-.25.615-.25.364 0 .614.25l3.021 3.021q.146.146.208.302.063.156.063.323t-.063.323q-.062.156-.208.302l-3.042 3.042q-.25.25-.593.25-.344 0-.615-.271ZM4.25 17.5q-.729 0-1.24-.51-.51-.511-.51-1.24V4.25q0-.729.51-1.24.511-.51 1.24-.51h4.854q.354 0 .615.26.26.261.26.615t-.26.615q-.261.26-.615.26H4.25v11.5h4.854q.354 0 .615.26.26.261.26.615t-.26.615q-.261.26-.615.26Z" />
+  </svg>
+);
+
 // TODO: Add logo & Add icons for each links and Should i keep switch toggle?
 
 export default function Navbar() {
   const router = useRouter();
+  const { data: session } = useSession();
 
   return (
     <nav className={styles.Navbar}>
@@ -63,10 +71,7 @@ export default function Navbar() {
       </Link>
 
       <div className={styles.NavbarLinks}>
-        <Link
-          href="/"
-          className={router.pathname === '/' ? styles.NavbarLinkActive : ''}
-        >
+        <Link href="/" className={router.pathname === '/' ? styles.NavbarLinkActive : ''}>
           <OverviewIcon />
           <span>Overview</span>
         </Link>
@@ -97,21 +102,11 @@ export default function Navbar() {
           <SavingsIcon />
           <span>Savings</span>
         </Link> */}
-        <Link
-          href="/subscriptions"
-          className={
-            router.pathname === '/subscriptions' ? styles.NavbarLinkActive : ''
-          }
-        >
+        <Link href="/subscriptions" className={router.pathname === '/subscriptions' ? styles.NavbarLinkActive : ''}>
           <SubscriptionsIcon />
           <span>Subscriptions</span>
         </Link>
-        <Link
-          href="/settings"
-          className={
-            router.pathname === '/settings' ? styles.NavbarLinkActive : ''
-          }
-        >
+        <Link href="/settings" className={router.pathname === '/settings' ? styles.NavbarLinkActive : ''}>
           <SettingsIcon />
           <span>Settings</span>
         </Link>
@@ -119,7 +114,13 @@ export default function Navbar() {
 
       {/* <div className={styles.ThemeToggle}>{<ThemeToggle />}</div> */}
 
-      {/* <div className={styles.Account}>Gokul</div> */}
+      <div className={styles.Account}>
+        {session ? (
+          <>
+            <button onClick={() => signOut()}>{<LogoutIcon />} Logout</button>
+          </>
+        ) : null}
+      </div>
     </nav>
   );
 }
