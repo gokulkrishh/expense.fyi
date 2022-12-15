@@ -9,7 +9,7 @@ const AddIcon = () => (
 );
 
 const AddExpense = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const hideModal = () => {
     setShowModal(false);
@@ -41,9 +41,7 @@ const AddExpense = () => {
       >
         {AddIcon()} Add
       </button>
-      {showModal ? (
-        <AddExpenseModal hideModal={hideModal} submit={submit} />
-      ) : null}
+      {showModal ? <AddExpenseModal hideModal={hideModal} submit={submit} /> : null}
     </>
   );
 };

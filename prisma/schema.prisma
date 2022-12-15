@@ -12,20 +12,24 @@ datasource db {
 }
 
 model User {
-  id            Int            @id @default(autoincrement())
+  id            String         @id @default(uuid())
   email         String         @unique
   name          String
   subscriptions Subscription[]
 }
 
 model Subscription {
-  id     Int     @id @default(autoincrement())
-  name   String
-  amount String
-  paid   String
-  notes  String?
-  userId Int
-  user   User?   @relation(fields: [userId], references: [id])
+  id        Int      @id @default(autoincrement())
+  name      String
+  amount    String
+  paid      String
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  notify Boolean? @default(false)
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
 
   @@index([userId])
 }
