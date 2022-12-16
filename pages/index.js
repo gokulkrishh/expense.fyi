@@ -16,7 +16,6 @@ export default function Home({}) {
         <meta name="description" content="Login/Signup for Expense Tracker" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Login />
     </>
   );
 }

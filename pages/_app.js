@@ -1,19 +1,16 @@
 import { ThemeProvider } from 'next-themes';
-import { SessionProvider } from 'next-auth/react';
 
 import Layout from 'components/Layout';
 
 import 'styles/globals.css';
 
-function MyApp({ Component, pageProps, ...otherProps }) {
+function MyApp({ Component, pageProps }) {
   return (
-    <SessionProvider session={pageProps.session}>
-      <ThemeProvider>
-        <Layout>
-          <Component {...pageProps} {...otherProps} />
-        </Layout>
-      </ThemeProvider>
-    </SessionProvider>
+    <ThemeProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ThemeProvider>
   );
 }
 

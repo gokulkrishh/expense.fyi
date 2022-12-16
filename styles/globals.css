@@ -123,9 +123,12 @@ label {
     width: var(--sidebar-width);
   }
 
+  & .Layout__sidebar + .Layout__content {
+    width: calc(100% - var(--sidebar-width));
+  }
+
   & .Layout__content {
-    /* width: calc(100% - var(--sidebar-width)); */
-    /* padding: 20px 35px; */
+    padding: 20px 35px;
   }
 
   & .Layout__header {
