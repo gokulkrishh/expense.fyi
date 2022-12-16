@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import fetcher from 'lib/fetcher';
 import AddExpense from 'components/AddExpense';
 import SubscriptionData from 'components/SubscriptionData';
+import enforceAuthenticated from '/components/enforceAuthenticated';
 
 export default function Overview({}) {
   const { data } = useSWR('/api/subscription/all', fetcher);
@@ -23,3 +24,5 @@ export default function Overview({}) {
     </div>
   );
 }
+
+// export const getServerSideProps = enforceAuthenticated();

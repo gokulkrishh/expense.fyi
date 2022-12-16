@@ -1,12 +1,14 @@
 import Head from 'next/head';
 import useSWR from 'swr';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 import fetcher from 'lib/fetcher';
 import AddExpense from 'components/AddExpense';
 import Login from 'components/Login';
 import SubscriptionData from 'components/SubscriptionData';
+import enforceAuthenticated from '/components/enforceAuthenticated';
 
-export default function Home({}) {
+export default function Home({ user }) {
   const { data } = useSWR('/api/subscription/all', fetcher);
 
   return (
@@ -19,3 +21,5 @@ export default function Home({}) {
     </>
   );
 }
+
+export const getServerSideProps = enforceAuthenticated();

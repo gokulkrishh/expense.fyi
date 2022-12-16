@@ -1,5 +1,7 @@
 import Head from 'next/head';
 
+import enforceAuthenticated from '/components/enforceAuthenticated';
+
 export default function Spent() {
   return (
     <div>
@@ -17,3 +19,5 @@ export default function Spent() {
     </div>
   );
 }
+
+export const getServerSideProps = enforceAuthenticated();

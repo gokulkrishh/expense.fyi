@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 const title = '404 Page Not Found – Expense Tracker';
 const metaDescription = '';

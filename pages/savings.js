@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import enforceAuthenticated from '/components/enforceAuthenticated';
 
 export default function Savings() {
   return (
@@ -17,3 +18,5 @@ export default function Savings() {
     </div>
   );
 }
+
+export const getServerSideProps = enforceAuthenticated();

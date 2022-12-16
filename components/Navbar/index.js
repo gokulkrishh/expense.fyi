@@ -3,9 +3,18 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import styles from './navbar.module.css';
+import { supabase } from '/lib/supabase';
 
 export default function Navbar() {
   const router = useRouter();
+
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      alert('Logout error occurred');
+    }
+    window.location = '/signup';
+  }
 
   return (
     <nav className={styles.Navbar}>
@@ -61,7 +70,7 @@ export default function Navbar() {
       {/* <div className={styles.ThemeToggle}>{<ThemeToggle />}</div> */}
 
       <div className={styles.Account}>
-        <button onClick={() => {}}>{<LogoutIcon />} Logout</button>
+        <button onClick={signOut}>{<LogoutIcon />} Logout</button>
       </div>
     </nav>
   );

@@ -1,5 +1,7 @@
 import Head from 'next/head';
 
+import enforceAuthenticated from '/components/enforceAuthenticated';
+
 export default function Subscriptions() {
   return (
     <div>
@@ -17,3 +19,5 @@ export default function Subscriptions() {
     </div>
   );
 }
+
+export const getServerSideProps = enforceAuthenticated();

@@ -1,11 +1,13 @@
+import { useUser } from '@supabase/auth-helpers-react';
+
 import Navbar from './Navbar';
 import Footer from './Footer';
 
-export default function Layout({ children, initialSession = true }) {
-  console.log('initialSession --->', initialSession);
+export default function Layout({ children }) {
+  const user = useUser();
   return (
     <div className="Layout">
-      {initialSession ? (
+      {user ? (
         <div className="Layout__sidebar">
           <Navbar />
         </div>
