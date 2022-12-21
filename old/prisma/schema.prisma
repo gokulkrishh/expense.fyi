@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
+  provider     = "postgres"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
@@ -14,22 +14,22 @@ datasource db {
 model User {
   id            String         @id @default(uuid())
   email         String         @unique
-  name          String
+  name          String?
   subscriptions Subscription[]
 }
 
 model Subscription {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   name      String
   amount    String
   paid      String
   notes     String?
-  renewalAt DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  notify Boolean? @default(false)
+  renewalAt DateTime? @default(now())
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+  notify    Boolean?  @default(false)
 
-  User   User?   @relation(fields: [userId], references: [id])
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String?
 
   @@index([userId])

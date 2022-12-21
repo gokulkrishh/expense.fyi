@@ -1,3 +1,4 @@
+import { Router } from 'next/router';
 import { useState } from 'react';
 import AddExpenseModal from '../AddExpenseModal';
 import styles from './addexpense.module.css';
@@ -8,7 +9,7 @@ const AddIcon = () => (
   </svg>
 );
 
-const AddExpense = () => {
+const AddExpense = ({ user }) => {
   const [showModal, setShowModal] = useState(false);
 
   const hideModal = () => {
@@ -20,7 +21,7 @@ const AddExpense = () => {
       await fetch(`/api/subscription/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, userId: user.id }),
       });
       await Router.push('/drafts');
     } catch (error) {

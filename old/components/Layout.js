@@ -6,13 +6,13 @@ import Footer from './Footer';
 export default function Layout({ children }) {
   const user = useUser();
   return (
-    <div className="Layout">
+    <div className={`Layout ${!user ? 'Layout__signup' : ''}`}>
       {user ? (
-        <div className="Layout__sidebar">
+        <div className='Layout__sidebar'>
           <Navbar />
         </div>
       ) : null}
-      <div className="Layout__content">{children}</div>
+      <div className='Layout__content'>{children}</div>
     </div>
   );
 }

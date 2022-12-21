@@ -7,22 +7,34 @@
   min-height: 90vh;
 
   & h1 {
-    margin-bottom: 20px;
     font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  & h2 {
+    margin-bottom: 20px;
+    font-size: 1.6em;
   }
 
   & h3 {
     margin-bottom: 10px;
+  }
+
+  & p {
+    padding-top: 10px;
+    color: var(--color-green);
+    font-weight: var(--font-weight-semibold);
   }
 }
 
 .LoginCard {
   width: 340px;
   height: 210px;
-  background: var(--color-transparent-grey);
+  background: var(--color-slightly-black);
   border-radius: var(--border-radius);
-  padding: 15px 20px;
+  padding: 16px;
   box-shadow: var(--box-shadow);
+  color: var(--color-white);
 
   & label {
     margin-bottom: 8px;
@@ -31,5 +43,9 @@
   & input {
     width: 100%;
     margin-bottom: 15px;
+  }
+
+  & button svg {
+    margin-right: 10px;
   }
 }

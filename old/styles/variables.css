@@ -10,14 +10,16 @@
   --color-light-grey: #ddd;
   --color-slightly-grey: #efefef;
   --color-blue: #2974ff;
+  --color-green: #388e3c;
+  --color-red: red;
 
   /* Box Shadow */
   --box-shadow: rgb(0 0 0 / 17%) 0px 0px 8px;
   --box-shadow-button: 0px 1px 4px 0 rgb(0 0 0 / 50%);
 
   /* Fonts */
-  --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+  --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   --font-family-roboto-mono: 'Roboto Mono', monospace;
 
   /* Fonts Size */

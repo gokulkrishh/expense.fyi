@@ -1,32 +1,29 @@
 {
-  "name": "expense-tracker",
-  "version": "0.1.0",
-  "private": true,
-  "author": "gokulkrishh",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "prisma-dbpush": "prisma db push",
-    "prisma-generate": "prisma generate",
-    "prisma-format": "prisma format"
-  },
-  "dependencies": {
-    "@prisma/client": "^4.7.1",
-    "@supabase/auth-helpers-nextjs": "^0.5.2",
-    "@supabase/auth-helpers-react": "^0.3.1",
-    "@supabase/auth-ui-react": "^0.2.6",
-    "@supabase/supabase-js": "^2.2.0",
-    "autoprefixer": "^10.4.13",
-    "eslint": "8.29.0",
-    "eslint-config-next": "13.0.7",
-    "next": "13.0.7",
-    "next-themes": "^0.2.1",
-    "postcss-nesting": "^10.2.0",
-    "prisma": "^4.7.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "swr": "^2.0.0"
-  }
+	"name": "expense-tracker",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@next/font": "13.0.7",
+		"eslint": "8.30.0",
+		"eslint-config-next": "13.0.7",
+		"next": "13.0.7",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10.4.13",
+		"concurrently": "^7.6.0",
+		"cssnano": "^5.1.14",
+		"postcss": "^8.4.20",
+		"postcss-nesting": "^10.2.0",
+		"prettier": "^2.8.1",
+		"prettier-plugin-tailwindcss": "^0.2.1",
+		"tailwindcss": "^3.2.4"
+	}
 }

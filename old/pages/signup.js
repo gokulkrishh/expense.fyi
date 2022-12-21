@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 import Login from '/components/Login';
+import { supabase } from '/lib/supabase';
 
 export default function Signup() {
   return (
@@ -11,8 +12,6 @@ export default function Signup() {
         <meta name="description" content="Signup for Expense Tracker" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <h1>Track your subscription at ease</h1>
 
       <Login />
     </div>
