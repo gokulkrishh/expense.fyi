@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import useSWR from 'swr';
-
 import fetcher from 'lib/fetcher';
 import AddExpense from 'components/AddExpense';
 import SubscriptionData from 'components/SubscriptionData';

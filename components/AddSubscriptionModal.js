@@ -2,6 +2,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Dropdown from './Dropdown';
+import Loader from './Loader';
 
 const options = [
 	{ id: 'monthly', name: 'Monthly' },
@@ -18,21 +19,19 @@ const checkUrl = (string) => {
 	return url.protocol === 'http:' || url.protocol === 'https:';
 };
 
-export default function AddSubscriptionModal({ hideModel }) {
+export default function AddSubscriptionModal({ onHide, onSubmit, isLoading }) {
 	const [state, setState] = useState({
-		serviceName: '',
-		serviceUrl: '',
-		servicePaid: {},
-		serviceAmount: '',
-		serviceNotes: '',
+		name: 'Netflix',
+		url: 'https://netflix.com',
+		paid: 'yearly',
+		amount: 10,
+		notes: 'Free subscription via Airtel fibre.',
 	});
 	const [hasValidUrl, setHasValidUrl] = useState(false);
 
 	useEffect(() => {
-		setHasValidUrl(checkUrl(state.serviceUrl));
-	}, [state.serviceUrl]);
-
-	console.log('hasValidUrl --->', hasValidUrl);
+		setHasValidUrl(checkUrl(state.url));
+	}, [state.url]);
 
 	return (
 		<div
@@ -51,13 +50,16 @@ export default function AddSubscriptionModal({ hideModel }) {
 							<XMarkIcon
 								aria-label='close'
 								className='absolute top-4 right-4 h-7 w-7 cursor-pointer text-slate-700 hover:text-slate-500'
-								onClick={hideModel}
+								onClick={onHide}
 							/>
 
 							<div className='sm:flex sm:items-start'>
 								<form
 									className='grid w-[420px] grid-cols-1 items-center gap-4 pb-2'
-									onSubmit={(event) => {}}
+									onSubmit={(event) => {
+										event.preventDefault();
+										onSubmit(state);
+									}}
 								>
 									<label className='block'>
 										<span className='text-md block font-semibold leading-6 text-gray-900'>
@@ -70,9 +72,9 @@ export default function AddSubscriptionModal({ hideModel }) {
 											required
 											autoFocus
 											onChange={(event) =>
-												setState({ ...state, serviceName: event.target.value })
+												setState({ ...state, name: event.target.value })
 											}
-											value={state.serviceName}
+											value={state.name}
 										/>
 									</label>
 									<label className='block'>
@@ -80,7 +82,7 @@ export default function AddSubscriptionModal({ hideModel }) {
 											Website
 											{hasValidUrl ? (
 												<Image
-													src={`http://www.google.com/s2/favicons?domain=${state.serviceUrl}&sz=125`}
+													src={`http://www.google.com/s2/favicons?domain=${state.url}&sz=125`}
 													width={15}
 													height={15}
 													alt=''
@@ -94,9 +96,9 @@ export default function AddSubscriptionModal({ hideModel }) {
 											placeholder='https://netflix.com'
 											required
 											onChange={(event) =>
-												setState({ ...state, serviceUrl: event.target.value })
+												setState({ ...state, url: event.target.value })
 											}
-											value={state.serviceUrl}
+											value={state.url}
 										/>
 									</label>
 									<div className='flex'>
@@ -113,12 +115,9 @@ export default function AddSubscriptionModal({ hideModel }) {
 													min='0'
 													max='9999'
 													onChange={(event) =>
-														setState({
-															...state,
-															serviceAmount: event.target.value,
-														})
+														setState({ ...state, amount: event.target.value })
 													}
-													value={state.serviceAmount}
+													value={state.amount}
 												/>
 											</div>
 										</label>
@@ -128,10 +127,10 @@ export default function AddSubscriptionModal({ hideModel }) {
 											</span>
 											<Dropdown
 												options={options}
-												onSelect={(servicePaid) => {
-													setState({ ...state, servicePaid });
+												onSelect={(paid) => {
+													setState({ ...state, paid: paid.name });
 												}}
-												selected={state.servicePaid}
+												selected={state.paid}
 												className={'w-[140px]'}
 											/>
 										</label>
@@ -150,10 +149,10 @@ export default function AddSubscriptionModal({ hideModel }) {
 											onChange={(event) =>
 												setState({
 													...state,
-													serviceNotes: event.target.value,
+													notes: event.target.value,
 												})
 											}
-											value={state.serviceNotes}
+											value={state.notes}
 										/>
 									</label>
 
@@ -161,7 +160,14 @@ export default function AddSubscriptionModal({ hideModel }) {
 										type='submit'
 										className='mt-2 flex items-center justify-center rounded-lg bg-slate-800 py-2.5 px-4 font-normal text-white hover:bg-slate-700'
 									>
-										Submit
+										{isLoading ? (
+											<>
+												{' '}
+												<Loader /> Submitting...
+											</>
+										) : (
+											'Submit'
+										)}
 									</button>
 								</form>
 							</div>
