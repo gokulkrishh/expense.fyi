@@ -11,18 +11,21 @@ export default function Signup() {
 	const [loading, setLoading] = useState(false);
 	const [email, setEmail] = useState('');
 	const [emailSent, setEmailSent] = useState(false);
+	const [error, setError] = useState('');
 
 	const handleLogin = async () => {
 		setLoading(true);
+		setEmailSent(false);
+		setError('');
 		try {
 			const { error } = await supabase.auth.signInWithOtp({ email });
 			if (error) {
 				throw error;
-			} else {
-				setEmailSent(true);
 			}
 		} catch (error) {
+			setError(error.message);
 		} finally {
+			setEmailSent(true);
 			setLoading(false);
 			setTimeout(() => {
 				setEmailSent(false);
@@ -40,7 +43,7 @@ export default function Signup() {
 			</Head>
 			<main className='container mx-auto flex h-full flex-col items-center justify-center'>
 				<div className='relative flex w-full max-w-sm flex-1 flex-col items-center justify-center pt-12 pb-16'>
-					<h1 className='mb-10 flex items-center text-3xl text-slate-700'>
+					<h1 className='mb-10 flex w-full items-center text-3xl text-slate-700'>
 						<ClockIcon className='mr-2 h-8 w-8 text-slate-700' />
 						Expense Tracker
 					</h1>
@@ -51,12 +54,13 @@ export default function Signup() {
 							handleLogin();
 						}}
 					>
-						<label className='block'>
+						<label className='mb-1 block'>
 							<span className='text-md block font-semibold leading-6 text-gray-900'>
 								Email address
 							</span>
 							<input
-								className='mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500  sm:text-sm'
+								autoFocus={true}
+								className='mt-2 block h-11 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600  sm:text-sm'
 								type='email'
 								placeholder='john@gmail.com'
 								required
@@ -79,13 +83,17 @@ export default function Signup() {
 							)}
 						</button>
 
-						<p className='mb-6 text-center text-sm font-semibold text-green-600'>
-							{emailSent ? (
-								<span>
+						<p className='mb-6 h-[50px] text-center text-sm font-semibold'>
+							{emailSent && !error ? (
+								<span className='text-green-600'>
 									We just sent an email to you at{' '}
 									<span className='underline '> {email}</span>, check your
 									inbox.
 								</span>
+							) : null}
+
+							{emailSent && error ? (
+								<span className='text-red-500'>{error}</span>
 							) : null}
 						</p>
 					</form>
@@ -103,7 +111,7 @@ export const getServerSideProps = async (ctx) => {
 
 	if (session) {
 		return {
-			redirect: { destination: '/', permanent: false },
+			redirect: { destination: '/', permanent: true },
 		};
 	}
 

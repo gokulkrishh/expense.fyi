@@ -24,6 +24,7 @@ export default function Sidebar({ className }) {
 					<ClockIcon className='mr-2 h-5 w-5 text-slate-100' /> Expense Tracker
 				</h1>
 			</Link>
+			<div className='mt-2 flex w-full flex-col items-center border-t border-zinc-800'></div>
 			<Link
 				href='/'
 				className={`mt-5 mb-2 flex items-center rounded-lg p-2 text-base font-normal hover:bg-zinc-800 dark:text-white dark:hover:bg-zinc-800 dark:hover:text-orange-500 ${
