@@ -117,7 +117,7 @@ export const getServerSideProps = async (ctx) => {
 
 	if (session) {
 		return {
-			redirect: { destination: '/', permanent: false },
+			redirect: { destination: '/', permanent: true },
 		};
 	}
 

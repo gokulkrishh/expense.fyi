@@ -1,0 +1,28 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("NEXT_DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Subscriptions {
+  id     String   @id @default(uuid())
+  name   String
+  notes  String?
+  url    String
+  amount String
+  paid   String
+  notify Boolean? @default(false)
+  user   User?    @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model User {
+  id            String          @id @default(uuid())
+  email         String          @unique
+  name          String?
+  img           String?
+  subscriptions Subscriptions[]
+}
