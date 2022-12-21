@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	h1 {
+		@apply text-2xl;
+		@apply font-bold;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+#__next {
+	height: 100%;
+}

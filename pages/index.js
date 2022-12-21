@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import enforceAuth from '/components/enforceAuth';
 
 export default function Home() {
 	return (
@@ -10,7 +11,9 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<h1 className='text-3xl font-bold underline '>Hello world!</h1>
+			<h1 className='text-3xl font-bold underline'>Hello world!</h1>
 		</>
 	);
 }
+
+export const getServerSideProps = enforceAuth();
