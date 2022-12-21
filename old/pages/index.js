@@ -13,10 +13,10 @@ export default function Overview(props) {
     <div>
       <Head>
         <title>Overview - Expense Tracker</title>
-        <meta name="description" content="Overview page" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name='description' content='Overview page' />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className="Overview__header">
+      <div className='Overview__header'>
         <h1>Overview</h1>
         <AddExpense user={props.user} />
       </div>

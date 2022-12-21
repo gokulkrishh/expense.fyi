@@ -1,5 +1,6 @@
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import { supabase } from '/lib/supabase';
+import Layout from '/components/Layout';
 
 import '../styles/globals.css';
 
@@ -9,7 +10,9 @@ export default function App({ Component, pageProps }) {
 			supabaseClient={supabase}
 			initialSession={pageProps.initialSession}
 		>
-			<Component {...pageProps} />
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
 		</SessionContextProvider>
 	);
 }

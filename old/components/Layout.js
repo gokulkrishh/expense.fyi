@@ -1,9 +1,9 @@
 import { useUser } from '@supabase/auth-helpers-react';
-
-import Navbar from './Navbar';
-import Footer from './Footer';
+import { useRouter } from 'next/router';
 
 export default function Layout({ children }) {
+  const router = useRouter();
+
   const user = useUser();
   return (
     <div className={`Layout ${!user ? 'Layout__signup' : ''}`}>
