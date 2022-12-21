@@ -34,11 +34,7 @@ export default function Dropdown({
 				}}
 			>
 				<span className='flex items-center'>
-					<span
-						className={`block truncate  ${
-							selected.id ? 'text-slate-800' : 'text-slate-400'
-						}`}
-					>
+					<span className={`block truncate  text-slate-800`}>
 						{selected.id ? selected.name : state[0].name}
 					</span>
 				</span>

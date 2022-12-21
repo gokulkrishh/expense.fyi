@@ -1,5 +1,6 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import { useState } from 'react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import Dropdown from './Dropdown';
 
 const options = [
@@ -7,13 +8,31 @@ const options = [
 	{ id: 'yearly', name: 'Yearly' },
 ];
 
+const checkUrl = (string) => {
+	let url;
+	try {
+		url = new URL(string);
+	} catch (_) {
+		return false;
+	}
+	return url.protocol === 'http:' || url.protocol === 'https:';
+};
+
 export default function AddSubscriptionModal({ hideModel }) {
 	const [state, setState] = useState({
-		serverName: '',
-		paid: {},
-		amount: '',
-		notes: '',
+		serviceName: '',
+		serviceUrl: '',
+		servicePaid: {},
+		serviceAmount: '',
+		serviceNotes: '',
 	});
+	const [hasValidUrl, setHasValidUrl] = useState(false);
+
+	useEffect(() => {
+		setHasValidUrl(checkUrl(state.serviceUrl));
+	}, [state.serviceUrl]);
+
+	console.log('hasValidUrl --->', hasValidUrl);
 
 	return (
 		<div
@@ -26,7 +45,7 @@ export default function AddSubscriptionModal({ hideModel }) {
 				<div className='fixed inset-0 z-10 overflow-y-auto'>
 					<div className='relative m-auto mt-24 max-w-md transform overflow-hidden rounded-lg bg-white shadow-xl transition-all'>
 						<div className='bg-white p-4'>
-							<h2 className='mb-4 flex w-full items-center text-xl font-bold text-slate-700'>
+							<h2 className='mb-4 flex w-full items-center text-2xl font-semibold text-slate-700'>
 								Add Subscription
 							</h2>
 							<XMarkIcon
@@ -49,8 +68,35 @@ export default function AddSubscriptionModal({ hideModel }) {
 											type='text'
 											placeholder='Netflix'
 											required
-											onChange={(event) => {}}
 											autoFocus
+											onChange={(event) =>
+												setState({ ...state, serviceName: event.target.value })
+											}
+											value={state.serviceName}
+										/>
+									</label>
+									<label className='block'>
+										<span className='text-md flex grow-0 items-center font-semibold leading-6 text-gray-900'>
+											Website
+											{hasValidUrl ? (
+												<Image
+													src={`http://www.google.com/s2/favicons?domain=${state.serviceUrl}&sz=125`}
+													width={15}
+													height={15}
+													alt=''
+													className='ml-2'
+												/>
+											) : null}
+										</span>
+										<input
+											className='mt-1 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
+											type='url'
+											placeholder='https://netflix.com'
+											required
+											onChange={(event) =>
+												setState({ ...state, serviceUrl: event.target.value })
+											}
+											value={state.serviceUrl}
 										/>
 									</label>
 									<div className='flex'>
@@ -64,9 +110,15 @@ export default function AddSubscriptionModal({ hideModel }) {
 													type='number'
 													placeholder='$10'
 													required
-													onChange={(event) => {}}
 													min='0'
 													max='9999'
+													onChange={(event) =>
+														setState({
+															...state,
+															serviceAmount: event.target.value,
+														})
+													}
+													value={state.serviceAmount}
 												/>
 											</div>
 										</label>
@@ -76,10 +128,10 @@ export default function AddSubscriptionModal({ hideModel }) {
 											</span>
 											<Dropdown
 												options={options}
-												onSelect={(paid) => {
-													setState({ ...state, paid });
+												onSelect={(servicePaid) => {
+													setState({ ...state, servicePaid });
 												}}
-												selected={state.paid}
+												selected={state.servicePaid}
 												className={'w-[140px]'}
 											/>
 										</label>
@@ -95,8 +147,13 @@ export default function AddSubscriptionModal({ hideModel }) {
 											className='mt-2 block h-20 w-full appearance-none rounded-md bg-white px-3 py-2 text-slate-800 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
 											type='text'
 											placeholder=''
-											required
-											onChange={(event) => {}}
+											onChange={(event) =>
+												setState({
+													...state,
+													serviceNotes: event.target.value,
+												})
+											}
+											value={state.serviceNotes}
 										/>
 									</label>
 

@@ -3,59 +3,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { supabase } from '/lib/supabase';
 
-export default function Sidebar({ className }) {
-	const router = useRouter();
-
-	async function signOut() {
-		const { error } = await supabase.auth.signOut();
-		if (error) {
-			alert('Logout error occurred');
-		}
-		window.location = '/signup';
-	}
-
-	return (
-		<nav className={`${className} bg-zinc-900 p-2`}>
-			<Link
-				href='/'
-				className='mt-1 flex items-center rounded-lg p-3 text-base font-normal text-gray-900'
-			>
-				<h1 className='flex items-center text-xl text-slate-100 hover:opacity-80'>
-					<ClockIcon className='mr-2 h-5 w-5 text-slate-100' /> Expense Tracker
-				</h1>
-			</Link>
-			<div className='mt-2 flex w-full flex-col items-center border-t border-zinc-800'></div>
-			<Link
-				href='/'
-				className={`mt-5 mb-2 flex items-center rounded-lg p-2 text-base font-normal hover:bg-zinc-800 dark:text-white dark:hover:bg-zinc-800 dark:hover:text-orange-500 ${
-					router.pathname === '/' ? 'bg-zinc-800 dark:text-orange-500' : ''
-				}`}
-			>
-				<span className='flex items-center'>
-					<OverviewIcon />
-					Overview
-				</span>
-			</Link>
-			<Link
-				href='/subscriptions'
-				className={`mb-2 flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-zinc-800 dark:text-white dark:hover:bg-zinc-800 dark:hover:text-orange-500`}
-			>
-				<span className='flex items-center'>
-					{' '}
-					<SubscriptionsIcon /> Subscriptions
-				</span>
-			</Link>
-
-			<button
-				className='absolute bottom-5 flex w-[235px] items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-zinc-800 dark:text-white dark:hover:bg-zinc-800 dark:hover:text-orange-500'
-				onClick={signOut}
-			>
-				<LogoutIcon /> Sign out
-			</button>
-		</nav>
-	);
-}
-
 const OverviewIcon = (props) => (
 	<svg
 		className='mr-2'
@@ -159,3 +106,55 @@ const LogoutIcon = (props) => (
 		<path d='M12.625 13.667q-.25-.25-.25-.615 0-.364.25-.614l1.563-1.563H8.396q-.354 0-.615-.26-.26-.261-.26-.615t.26-.615q.261-.26.615-.26h5.729l-1.521-1.542q-.229-.25-.229-.604t.25-.604q.25-.25.615-.25.364 0 .614.25l3.021 3.021q.146.146.208.302.063.156.063.323t-.063.323q-.062.156-.208.302l-3.042 3.042q-.25.25-.593.25-.344 0-.615-.271ZM4.25 17.5q-.729 0-1.24-.51-.51-.511-.51-1.24V4.25q0-.729.51-1.24.511-.51 1.24-.51h4.854q.354 0 .615.26.26.261.26.615t-.26.615q-.261.26-.615.26H4.25v11.5h4.854q.354 0 .615.26.26.261.26.615t-.26.615q-.261.26-.615.26Z' />
 	</svg>
 );
+
+const Links = [
+	{ link: '/', name: 'Overview', Icon: OverviewIcon },
+	{ link: '/subscriptions', name: 'Subscriptions', Icon: SubscriptionsIcon },
+];
+
+export default function Sidebar({ className }) {
+	const router = useRouter();
+
+	async function signOut() {
+		const { error } = await supabase.auth.signOut();
+		if (error) {
+			alert('Logout error occurred');
+		}
+		window.location = '/signup';
+	}
+
+	return (
+		<nav className={`${className} bg-zinc-900 p-2`}>
+			<Link
+				href='/'
+				className='mt-1 flex items-center rounded-lg p-3 text-base font-normal text-gray-900'
+			>
+				<h1 className='flex items-center text-xl text-slate-100 hover:opacity-80'>
+					<ClockIcon className='mr-2 h-5 w-5 text-slate-100' /> Expense Tracker
+				</h1>
+			</Link>
+			<div className='mt-2 mb-2 flex w-full flex-col items-center border-t border-zinc-800'></div>
+			{Links.map((linkItem) => (
+				<Link
+					key={linkItem.name}
+					href={linkItem.link}
+					className={`mt-2 flex items-center rounded-lg p-2 text-base font-normal hover:bg-zinc-800 dark:text-white dark:hover:bg-zinc-800 ${
+						router.pathname === linkItem.link ? 'bg-zinc-800' : ''
+					}`}
+				>
+					<span className='flex items-center'>
+						<linkItem.Icon />
+						{linkItem.name}
+					</span>
+				</Link>
+			))}
+
+			<button
+				className='absolute bottom-5 flex w-[235px] items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-zinc-800 dark:text-white dark:hover:bg-zinc-800'
+				onClick={signOut}
+			>
+				<LogoutIcon /> Sign out
+			</button>
+		</nav>
+	);
+}

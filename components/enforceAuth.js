@@ -11,7 +11,7 @@ export default function enforceAuth() {
 			return {
 				redirect: {
 					destination: '/signup',
-					permanent: true,
+					permanent: false,
 				},
 			};
 		}

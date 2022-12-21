@@ -27,6 +27,7 @@ export default function Subscriptions() {
 			</Head>
 
 			<div className='container mx-auto h-full'>
+				<h1 className='mb-8 text-2xl text-slate-700'>Subscriptions</h1>
 				<button onClick={() => setShow(true)}>Add</button>
 				{show ? (
 					<AddSubscriptionModal hideModel={() => setShow(false)} />
