@@ -44,7 +44,7 @@ export default function AddSubscriptionModal({ onHide, onSubmit, isLoading }) {
 				<div className='fixed inset-0 z-10 overflow-y-auto'>
 					<div className='relative m-auto mt-24 max-w-md transform overflow-hidden rounded-lg bg-white shadow-xl transition-all'>
 						<div className='bg-white p-4'>
-							<h2 className='mb-4 flex w-full items-center text-2xl font-semibold text-slate-700'>
+							<h2 className='mb-4 flex w-full items-center text-2xl text-slate-700'>
 								Add Subscription
 							</h2>
 							<XMarkIcon

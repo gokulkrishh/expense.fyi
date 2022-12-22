@@ -55,12 +55,8 @@ export default function Signup() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className='container flex h-full w-full'>
-				<div className='flex w-1/2 flex-1 flex-col justify-center bg-orange-200 p-10'>
-					<h1 className='flex items-center text-3xl text-slate-700'>
-						<ClockIcon className='mr-2 h-8 w-8 text-slate-700' />
-						Expense Tracker
-					</h1>
-					<ul className='list-disc pl-10 pt-5'>
+				<div className='flex w-1/2 flex-1 flex-col bg-[url("/expense.jpg")] bg-cover p-10'>
+					{/* <ul className='list-disc pl-10 pt-5'>
 						<li className='pt-3'>
 							Track your expense overall based on the categories.
 						</li>
@@ -71,12 +67,14 @@ export default function Signup() {
 						<li className='pt-3'>
 							Get notified via email when a subscription is about to renewed.
 						</li>
-					</ul>
+					</ul> */}
 				</div>
 				<div className='flex max-w-md flex-1 flex-col justify-center p-10 lg:w-1/2'>
-					<h2 className='mb-6 flex w-full items-center pt-20 text-3xl font-bold text-slate-700'>
-						Sign up
-					</h2>
+					<h1 className='mb-6 flex w-full items-center text-2xl font-bold text-slate-700'>
+						<ClockIcon className='mr-2 h-8 w-8  text-slate-700' />
+						Expense Tracker
+					</h1>
+
 					<form
 						className='grid w-full grid-cols-1 items-center gap-4'
 						onSubmit={(event) => {
