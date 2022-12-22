@@ -24,7 +24,7 @@ export default function AddSubscriptionModal({ onHide, onSubmit, isLoading }) {
 		name: 'Netflix',
 		url: 'https://netflix.com',
 		paid: 'yearly',
-		amount: 10,
+		price: 10,
 		notes: 'Free subscription via Airtel fibre.',
 	});
 	const [hasValidUrl, setHasValidUrl] = useState(false);
@@ -63,7 +63,7 @@ export default function AddSubscriptionModal({ onHide, onSubmit, isLoading }) {
 								>
 									<label className='block'>
 										<span className='text-md block font-semibold leading-6 text-gray-900'>
-											Service Name
+											Name
 										</span>
 										<input
 											className='mt-1 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
@@ -79,7 +79,7 @@ export default function AddSubscriptionModal({ onHide, onSubmit, isLoading }) {
 									</label>
 									<label className='block'>
 										<span className='text-md flex grow-0 items-center font-semibold leading-6 text-gray-900'>
-											Website
+											URL
 											{hasValidUrl ? (
 												<Image
 													src={`http://www.google.com/s2/favicons?domain=${state.url}&sz=125`}
@@ -104,7 +104,7 @@ export default function AddSubscriptionModal({ onHide, onSubmit, isLoading }) {
 									<div className='flex'>
 										<label className='block w-[420px]'>
 											<span className='text-md block font-semibold leading-6 text-gray-900'>
-												Amount
+												Price
 											</span>
 											<div className='flex items-center justify-between'>
 												<input
@@ -115,9 +115,9 @@ export default function AddSubscriptionModal({ onHide, onSubmit, isLoading }) {
 													min='0'
 													max='9999'
 													onChange={(event) =>
-														setState({ ...state, amount: event.target.value })
+														setState({ ...state, price: event.target.value })
 													}
-													value={state.amount}
+													value={state.price}
 												/>
 											</div>
 										</label>

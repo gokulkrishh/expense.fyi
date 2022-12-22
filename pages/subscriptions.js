@@ -6,11 +6,12 @@ import fetcher from 'lib/fetcher';
 import SubscriptionsTable from '/components/SubscriptionsTable';
 import AddSubscriptionModal from '/components/AddSubscriptionModal';
 import enforceAuth from '/components/enforceAuth';
+import { PlusIcon } from '@heroicons/react/24/solid';
 
 export default function Subscriptions({ user }) {
 	const [show, setShow] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-	const { data = [] } = useSWR(
+	const { data = { all: [] } } = useSWR(
 		`/api/subscriptions/all?userId=${user.id}`,
 		fetcher
 	);
@@ -51,8 +52,15 @@ export default function Subscriptions({ user }) {
 			</Head>
 
 			<div className='container mx-auto h-full'>
-				<h1 className='mb-8 text-2xl text-slate-700'>Subscriptions</h1>
-				<button onClick={() => setShow(true)}>Add</button>
+				<div className='mb-8 flex justify-between'>
+					<h1 className=' text-2xl text-slate-700'>Subscriptions</h1>
+					<button
+						className='flex items-center justify-between rounded-full bg-sky-500 p-2 font-normal text-white hover:bg-sky-700'
+						onClick={() => setShow(true)}
+					>
+						<PlusIcon className='h-5 w-5 text-white' />
+					</button>
+				</div>
 				{show ? (
 					<AddSubscriptionModal
 						onHide={() => setShow(false)}
@@ -61,7 +69,7 @@ export default function Subscriptions({ user }) {
 					/>
 				) : null}
 
-				{/* <SubscriptionsTable data={data || []} /> */}
+				<SubscriptionsTable data={data.all} />
 			</div>
 		</>
 	);

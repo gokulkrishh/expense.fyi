@@ -12,7 +12,7 @@ model subscriptions {
   name       String
   notes      String?
   url        String
-  amount     Int
+  price      Int      @default(0)
   paid       String
   notify     Boolean? @default(false)
   created_at DateTime @default(now())

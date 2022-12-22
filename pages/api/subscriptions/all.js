@@ -8,7 +8,7 @@ export default async function handle(req, res) {
 			where: { user_id: userId },
 		});
 
-		return res.status(200).json({ data });
+		return res.status(200).json({ all: data });
 	} catch (error) {
 		return res
 			.status(500)

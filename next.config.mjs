@@ -2,7 +2,7 @@ const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
 	images: {
-		domains: ['www.google.com'],
+		domains: ['img.icons8.com'],
 	},
 	async headers() {
 		return [

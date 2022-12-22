@@ -124,7 +124,7 @@ export default function Sidebar({ className }) {
 	}
 
 	return (
-		<nav className={`${className} bg-zinc-900 p-2`}>
+		<nav className={`${className} bg-zinc-900 pl-3 pr-3 pt-2 pb-2`}>
 			<Link
 				href='/'
 				className='mt-1 flex items-center rounded-lg p-3 text-base font-normal text-gray-900'

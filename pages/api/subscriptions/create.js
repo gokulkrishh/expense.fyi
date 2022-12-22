@@ -1,10 +1,10 @@
 import prisma from 'lib/prisma';
 
 export default async function handle(req, res) {
-	const { notes, name, amount, paid, userId, url } = req.body;
+	const { notes, name, price, paid, userId, url } = req.body;
 	try {
 		await prisma.subscriptions.create({
-			data: { notes, name, amount, paid, user_id: userId, url },
+			data: { notes, name, price, paid, user_id: userId, url },
 		});
 
 		return res.status(201).json({ message: 'Your subscription is added!' });
