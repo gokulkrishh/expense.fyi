@@ -19,19 +19,24 @@ const checkUrl = (string) => {
 	return url.protocol === 'http:' || url.protocol === 'https:';
 };
 
-export default function AddSubscriptionModal({ onHide, onSubmit, isLoading }) {
-	const [state, setState] = useState({
-		name: 'Netflix',
-		url: 'https://netflix.com',
-		paid: 'yearly',
-		price: 10,
-		notes: 'Free subscription via Airtel fibre.',
-	});
+const initialState = { name: '', url: '', paid: '', price: 0, notes: '' };
+
+export default function AddSubscriptionModal({
+	data = {},
+	onHide,
+	onSubmit,
+	isLoading,
+}) {
+	const [state, setState] = useState(initialState);
 	const [hasValidUrl, setHasValidUrl] = useState(false);
 
 	useEffect(() => {
 		setHasValidUrl(checkUrl(state.url));
 	}, [state.url]);
+
+	useEffect(() => {
+		setState(data);
+	}, [data]);
 
 	return (
 		<div
@@ -165,6 +170,8 @@ export default function AddSubscriptionModal({ onHide, onSubmit, isLoading }) {
 												{' '}
 												<Loader /> Submitting...
 											</>
+										) : state.id ? (
+											'Update'
 										) : (
 											'Submit'
 										)}

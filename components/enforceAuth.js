@@ -1,7 +1,7 @@
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 export default function enforceAuth() {
-	return async (context) => {
+	return async (context, props) => {
 		const supabase = createServerSupabaseClient(context);
 
 		const { data } = await supabase.auth.getSession();

@@ -35,7 +35,7 @@ export default function Dropdown({
 			>
 				<span className='flex items-center'>
 					<span className={`block truncate  text-slate-800`}>
-						{selected.id ? selected.name : state[0].name}
+						{selected && selected.id ? selected.name : state[0].name}
 					</span>
 				</span>
 			</button>

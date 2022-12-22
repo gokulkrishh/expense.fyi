@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import useSWR from 'swr';
 import fetcher from 'lib/fetcher';
 
@@ -11,35 +11,52 @@ import { PlusIcon } from '@heroicons/react/24/solid';
 export default function Subscriptions({ user }) {
 	const [show, setShow] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [selectedSub, setSelectedSub] = useState({});
 	const { data = { all: [] } } = useSWR(
 		`/api/subscriptions/all?userId=${user.id}`,
 		fetcher
 	);
 
+	const onHide = useCallback(() => {
+		setSelectedSub({});
+		setShow(false);
+	}, []);
+
 	useEffect(() => {
 		const close = (e) => {
 			if (e.keyCode === 27) {
-				setShow(false);
+				onHide();
 			}
 		};
 		window.addEventListener('keydown', close);
 		return () => window.removeEventListener('keydown', close);
-	}, [setShow]);
+	}, [onHide]);
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);
+		let url = '/api/subscriptions/create';
+		let method = 'POST';
+		if (selectedSub && selectedSub.id) {
+			url = '/api/subscriptions/update';
+			method = 'PATCH';
+		}
 		try {
-			await fetch(`/api/subscriptions/create`, {
-				method: 'POST',
+			await fetch(url, {
+				method,
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ ...data, userId: user.id }),
 			});
 		} catch (error) {
 			console.error(error);
 		} finally {
-			setShow(false);
+			onHide();
 			setIsLoading(false);
 		}
+	};
+
+	const onEdit = (selectedData) => {
+		setSelectedSub(selectedData);
+		setShow(true);
 	};
 
 	return (
@@ -66,10 +83,11 @@ export default function Subscriptions({ user }) {
 						onHide={() => setShow(false)}
 						onSubmit={onSubmit}
 						isLoading={isLoading}
+						data={selectedSub}
 					/>
 				) : null}
 
-				<SubscriptionsTable data={data.all} />
+				<SubscriptionsTable data={data.all} onEdit={onEdit} />
 			</div>
 		</>
 	);
