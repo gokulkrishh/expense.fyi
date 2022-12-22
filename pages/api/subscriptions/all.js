@@ -5,7 +5,7 @@ export default async function handle(req, res) {
 
 	try {
 		const data = await prisma.subscriptions.findMany({
-			where: { userId },
+			where: { user_id: userId },
 		});
 
 		return res.status(200).json({ data });

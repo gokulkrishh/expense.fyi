@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import Head from 'next/head';
 import { ClockIcon } from '@heroicons/react/24/solid';
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { useUser } from '@supabase/auth-helpers-react';
+import { useRouter } from 'next/router';
 
 import { supabase } from 'lib/supabase';
-
 import Loader from '/components/Loader';
 
 export default function Signup() {
@@ -13,10 +13,18 @@ export default function Signup() {
 	const [emailSent, setEmailSent] = useState(false);
 	const [error, setError] = useState('');
 	const inputElement = useRef(null);
+	const router = useRouter();
+	const user = useUser();
 
 	useEffect(() => {
 		inputElement.current?.focus();
 	}, []);
+
+	useEffect(() => {
+		if (user) {
+			router.replace('/');
+		}
+	}, [user, router]);
 
 	const handleLogin = async () => {
 		setLoading(true);
@@ -46,12 +54,29 @@ export default function Signup() {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-			<main className='container mx-auto flex h-full flex-col items-center justify-center'>
-				<div className='relative flex w-full max-w-sm flex-1 flex-col items-center justify-center pt-12 pb-16'>
-					<h1 className='mb-8 flex w-full items-center text-3xl text-slate-700'>
+			<main className='container flex h-full w-full'>
+				<div className='flex w-1/2 flex-1 flex-col justify-center bg-orange-200 p-10'>
+					<h1 className='flex items-center text-3xl text-slate-700'>
 						<ClockIcon className='mr-2 h-8 w-8 text-slate-700' />
 						Expense Tracker
 					</h1>
+					<ul className='list-disc pl-10 pt-5'>
+						<li className='pt-3'>
+							Track your expense overall based on the categories.
+						</li>
+						<li className='pt-3'>
+							Find out exactly where money is spend at a glance
+						</li>
+						<li className='pt-3'>Quick add expenses option.</li>
+						<li className='pt-3'>
+							Get notified via email when a subscription is about to renewed.
+						</li>
+					</ul>
+				</div>
+				<div className='flex max-w-md flex-1 flex-col justify-center p-10 lg:w-1/2'>
+					<h2 className='mb-6 flex w-full items-center pt-20 text-3xl font-bold text-slate-700'>
+						Sign up
+					</h2>
 					<form
 						className='grid w-full grid-cols-1 items-center gap-4'
 						onSubmit={(event) => {
@@ -108,18 +133,3 @@ export default function Signup() {
 		</>
 	);
 }
-
-export const getServerSideProps = async (ctx) => {
-	const supabase = createServerSupabaseClient(ctx);
-
-	const { data } = await supabase.auth.getSession();
-	const { session } = data;
-
-	if (session) {
-		return {
-			redirect: { destination: '/', permanent: true },
-		};
-	}
-
-	return { props: {} };
-};

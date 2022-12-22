@@ -10,7 +10,10 @@ import enforceAuth from '/components/enforceAuth';
 export default function Subscriptions({ user }) {
 	const [show, setShow] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-	const { data } = useSWR(`/api/subscriptions/all?userId=${user.id}`, fetcher);
+	const { data = [] } = useSWR(
+		`/api/subscriptions/all?userId=${user.id}`,
+		fetcher
+	);
 
 	useEffect(() => {
 		const close = (e) => {
@@ -58,7 +61,7 @@ export default function Subscriptions({ user }) {
 					/>
 				) : null}
 
-				<SubscriptionsTable data={data} />
+				{/* <SubscriptionsTable data={data || []} /> */}
 			</div>
 		</>
 	);

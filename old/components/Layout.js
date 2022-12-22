@@ -1,5 +1,6 @@
 import { useUser } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/router';
+import Navbar from './Navbar';
 
 export default function Layout({ children }) {
   const router = useRouter();

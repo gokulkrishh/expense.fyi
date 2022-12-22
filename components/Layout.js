@@ -10,7 +10,7 @@ export default function Layout({ children }) {
 			{user ? (
 				<Sidebar className='absolute left-0 flex h-full w-[260px] flex-col' />
 			) : null}
-			<div className={`${user ? 'ml-[260px]' : ''} h-screen p-6`}>
+			<div className={`${user ? 'ml-[260px] p-6' : ''} h-screen`}>
 				{children}
 			</div>
 		</main>
