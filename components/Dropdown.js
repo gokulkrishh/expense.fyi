@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function Dropdown({
-	options,
-	onSelect,
-	label = '',
-	selected,
-	className,
-}) {
+export default function Dropdown({ options, onSelect, label = '', selected, className }) {
 	const [state, setState] = useState([{}]);
 	const [open, setOpen] = useState(false);
 
@@ -17,11 +11,7 @@ export default function Dropdown({
 
 	return (
 		<div className={`relative ${className}`}>
-			{label ? (
-				<span className='text-md block font-semibold leading-6 text-gray-900'>
-					{label}
-				</span>
-			) : null}
+			{label ? <span className='text-md block font-semibold leading-6 text-gray-900'>{label}</span> : null}
 
 			<button
 				type='button'
@@ -43,18 +33,17 @@ export default function Dropdown({
 			{open ? (
 				<ul
 					className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'
-					tabIndex='-1'
 					role='listbox'
 					aria-labelledby='listbox-label'
 					aria-activedescendant='listbox-option-3'
 				>
-					{state.map((option) => (
+					{state.map((option, index) => (
 						<li
-							className={`relative cursor-default select-none py-2 pl-2 pr-9 text-gray-900 hover:bg-zinc-300 ${
-								selected.id === option.id ? 'bg-zinc-300' : ''
+							className={`ocus:outline-none relative cursor-default select-none py-2 pl-2 pr-9 text-gray-900 hover:bg-zinc-300 ${
+								selected && selected.id === option.id ? 'bg-zinc-300' : ''
 							}`}
-							id='listbox-option-0'
 							role='option'
+							tabIndex={0}
 							aria-selected={option.selected}
 							key={option.id}
 							onClick={() => {
@@ -62,9 +51,7 @@ export default function Dropdown({
 							}}
 						>
 							<div className='flex items-center'>
-								<span className='ml-3 block truncate font-normal'>
-									{option.name}
-								</span>
+								<span className='ml-3 block truncate font-normal'>{option.name}</span>
 							</div>
 						</li>
 					))}

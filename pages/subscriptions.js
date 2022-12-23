@@ -1,62 +1,68 @@
-import Head from 'next/head';
 import { useEffect, useState, useCallback } from 'react';
+import Head from 'next/head';
 import useSWR from 'swr';
-import fetcher from 'lib/fetcher';
-
-import SubscriptionsTable from '/components/SubscriptionsTable';
-import AddSubscriptionModal from '/components/AddSubscriptionModal';
-import enforceAuth from '/components/enforceAuth';
 import { PlusIcon } from '@heroicons/react/24/solid';
 
+import fetcher from 'lib/fetcher';
+import SubscriptionsTable from '/components/SubscriptionsTable';
+import AddSubscription from '/components/AddSubscription';
+import enforceAuth from '/components/enforceAuth';
+
+const initialState = { show: false, loading: false, selected: {}, error: '' };
+
 export default function Subscriptions({ user }) {
-	const [show, setShow] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
-	const [selectedSub, setSelectedSub] = useState({});
-	const { data = { all: [] } } = useSWR(
-		`/api/subscriptions/all?userId=${user.id}`,
-		fetcher
-	);
+	const [state, setState] = useState(initialState);
+	const { data, mutate } = useSWR(`/api/subscriptions/all?userId=${user.id}`, fetcher);
 
-	const onHide = useCallback(() => {
-		setSelectedSub({});
-		setShow(false);
-	}, []);
-
+	const refresh = useCallback(() => mutate(), [mutate]);
+	const onHide = () => setState({ ...state, show: false, selected: {} });
+	const onEdit = (selected) => setState({ ...state, selected, show: true });
 	useEffect(() => {
 		const close = (e) => {
 			if (e.keyCode === 27) {
-				onHide();
+				setState(initialState);
 			}
 		};
 		window.addEventListener('keydown', close);
 		return () => window.removeEventListener('keydown', close);
-	}, [onHide]);
+	}, []);
 
 	const onSubmit = async (data) => {
-		setIsLoading(true);
 		let url = '/api/subscriptions/create';
 		let method = 'POST';
-		if (selectedSub && selectedSub.id) {
+		let body = JSON.stringify({ ...data, user_id: user.id });
+
+		setState({ ...state, loading: true });
+
+		if (state.selected && state.selected.id) {
 			url = '/api/subscriptions/update';
 			method = 'PATCH';
 		}
+
 		try {
-			await fetch(url, {
-				method,
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ ...data, userId: user.id }),
-			});
+			await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body });
 		} catch (error) {
-			console.error(error);
+			setState({ ...state, error: error.message });
 		} finally {
-			onHide();
-			setIsLoading(false);
+			setState((prev) => ({ ...prev, loading: false, show: false, selected: {} }));
+			refresh();
 		}
 	};
 
-	const onEdit = (selectedData) => {
-		setSelectedSub(selectedData);
-		setShow(true);
+	const onDelete = async (id) => {
+		setState({ ...state, loading: true });
+		try {
+			await fetch('/api/subscriptions/delete', {
+				method: 'DELETE',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ id }),
+			});
+		} catch (error) {
+			setState({ ...state, error: error.message });
+		} finally {
+			setState((prev) => ({ ...prev, loading: false }));
+			refresh();
+		}
 	};
 
 	return (
@@ -72,22 +78,19 @@ export default function Subscriptions({ user }) {
 				<div className='mb-8 flex justify-between'>
 					<h1 className=' text-2xl text-slate-700'>Subscriptions</h1>
 					<button
-						className='flex items-center justify-between rounded-full bg-sky-500 p-2 font-normal text-white hover:bg-sky-700'
-						onClick={() => setShow(true)}
+						className='-mt-2 flex items-center justify-between rounded-full bg-sky-500 p-3 font-normal text-white hover:bg-sky-600'
+						onClick={() => {
+							setState({ ...state, show: true });
+						}}
 					>
-						<PlusIcon className='h-5 w-5 text-white' />
+						<PlusIcon className='h-6 w-6 text-white' />
 					</button>
 				</div>
-				{show ? (
-					<AddSubscriptionModal
-						onHide={() => setShow(false)}
-						onSubmit={onSubmit}
-						isLoading={isLoading}
-						data={selectedSub}
-					/>
+				{state.show ? (
+					<AddSubscription onHide={onHide} onSubmit={onSubmit} loading={state.loading} selected={state.selected} />
 				) : null}
 
-				<SubscriptionsTable data={data.all} onEdit={onEdit} />
+				<SubscriptionsTable data={data} onEdit={onEdit} onDelete={onDelete} />
 			</div>
 		</>
 	);

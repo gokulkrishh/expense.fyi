@@ -10,6 +10,17 @@
 	h5 {
 		@apply font-bold;
 	}
+
+	input[type='number']::-webkit-outer-spin-button,
+	input[type='number']::-webkit-inner-spin-button,
+	input[type='number'] {
+		-webkit-appearance: none;
+		-moz-appearance: textfield !important;
+	}
+
+	input {
+		border-color: var(--border-gray-300);
+	}
 }
 
 html,

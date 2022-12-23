@@ -15,6 +15,7 @@ model subscriptions {
   price      Int      @default(0)
   paid       String
   notify     Boolean? @default(false)
+  renewal    DateTime
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
   user       users?   @relation(fields: [user_id], references: [id])

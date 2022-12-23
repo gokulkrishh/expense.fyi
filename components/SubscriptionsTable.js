@@ -1,11 +1,10 @@
 import { BellIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/solid';
 
-const thClassNames =
-	'border-b p-4 pl-8 pt-4 pb-3 text-left font-semibold text-slate-700';
+const thClassNames = 'border-b p-4 pl-8 pt-4 pb-3 text-left font-semibold text-slate-700';
 const tdClassNames = 'border-b border-slate-100 p-4 pl-8 text-black';
-const thList = ['Name', 'Price', 'Paid', 'Notes', 'Actions'];
+const thList = ['Name', 'Price', 'Paid', 'Notes (optional)', 'Actions'];
 
-export default function SubscriptionTable({ data = [], onEdit }) {
+export default function SubscriptionTable({ data = [], onEdit, onDelete }) {
 	return (
 		<table className='relative w-full table-auto border-collapse overflow-hidden rounded-md bg-slate-100 text-sm shadow-sm'>
 			<thead className='p-10'>
@@ -41,7 +40,10 @@ export default function SubscriptionTable({ data = [], onEdit }) {
 									onEdit(datum);
 								}}
 							/>
-							<TrashIcon className='h-4 w-4 cursor-pointer text-slate-700 hover:text-slate-500' />
+							<TrashIcon
+								className='h-4 w-4 cursor-pointer text-slate-700 hover:text-slate-500'
+								onClick={() => onDelete(datum.id)}
+							/>
 						</td>
 					</tr>
 				))}
