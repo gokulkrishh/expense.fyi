@@ -1,13 +1,9 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import Dropdown from './Dropdown';
-import Loader from './Loader';
+import { format, formatISO } from 'date-fns';
 
-const options = [
-	{ id: 'monthly', name: 'monthly' },
-	{ id: 'yearly', name: 'yearly' },
-];
+import Loader from './Loader';
 
 const checkUrl = (string) => {
 	let url;
@@ -19,16 +15,15 @@ const checkUrl = (string) => {
 	return url.protocol === 'http:' || url.protocol === 'https:';
 };
 
-const datePattern =
-	'(?:((?:0[1-9]|1[0-9]|2[0-9])/(?:0[1-9]|1[0-2])|(?:30)/(?!02)(?:0[1-9]|1[0-2])|31/(?:0[13578]|1[02]))/(?:19|20)[0-9]{2})';
+const datePattern = 'd{2}-d{2}-d{4}';
 
 const initialState = {
 	name: '',
 	url: '',
-	paid: options[0].id,
+	paid: 'monthly',
 	price: 0,
 	notes: '',
-	renewal: '',
+	renewal: format(new Date(), 'yyyy-MM-dd'),
 };
 
 export default function AddSubscription({ selected, onHide, onSubmit, loading }) {
@@ -63,7 +58,7 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 									<label className='block'>
 										<span className='text-md block font-semibold leading-6 text-gray-900'>Name</span>
 										<input
-											className='mt-1 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-600 sm:text-sm'
+											className='mt-1 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
 											type='text'
 											placeholder='Netflix'
 											required
@@ -86,20 +81,12 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 											) : null}
 										</span>
 										<input
-											className='mt-1 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-600 sm:text-sm'
+											className='mt-1 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
 											type='url'
-											placeholder='http://netflix.com'
+											placeholder='https://netflix.com'
 											pattern='https://.*'
 											required
-											onChange={(event) =>
-												setState({
-													...state,
-													url: event.target.value
-														.replace('http://', '')
-														.replace('https://', '')
-														.replace('', 'https://'),
-												})
-											}
+											onChange={(event) => setState({ ...state, url: event.target.value })}
 											value={state.url}
 										/>
 									</label>
@@ -108,9 +95,9 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 											<span className='text-md block font-semibold leading-6 text-gray-900'>Price</span>
 											<div className='flex items-center justify-between'>
 												<input
-													className='mt-2 mr-4 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-600 sm:text-sm'
+													className='mt-2 mr-4 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
 													type='number'
-													placeholder='$10'
+													placeholder='10'
 													required
 													min='0'
 													max='9999'
@@ -123,26 +110,30 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 											<span className='text-md block font-semibold leading-6 text-gray-900'>Renewal</span>
 											<div className='flex items-center justify-between'>
 												<input
-													className='mt-2 mr-4 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-600 sm:text-sm'
+													className='mt-2 mr-4 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
 													type='date'
-													placeholder='dd-mm-yyyy'
 													required
 													pattern={datePattern}
-													onChange={(event) => setState({ ...state, renewal: event.target.value })}
+													onChange={(event) => {
+														setState({ ...state, renewal: event.target.value });
+													}}
 													value={state.renewal}
 												/>
 											</div>
 										</label>
 										<label className='block w-[120px]'>
 											<span className='text-md block font-semibold leading-6 text-gray-900'>Paid</span>
-											<Dropdown
-												options={options}
-												onSelect={(paid) => {
-													setState({ ...state, paid: paid.name });
+											<select
+												name='paid'
+												className='mt-2 block h-10 w-full appearance-none rounded-md bg-white py-2 px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
+												onChange={(event) => {
+													setState({ ...state, paid: event.target.value });
 												}}
-												selected={options.find((option) => option.id === state.paid) || {}}
-												className={''}
-											/>
+												value={state.paid}
+											>
+												<option value='monthly'>Montly</option>
+												<option value='yearly'>Yearly</option>
+											</select>
 										</label>
 									</div>
 									<label className='block'>
@@ -150,16 +141,11 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 											Notes <span className='mb-6 text-center text-sm font-normal text-gray-400'>(optional)</span>
 										</span>
 										<textarea
-											className='mt-2 block h-20 w-full appearance-none rounded-md bg-white px-3 py-2 text-slate-800 shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-600 sm:text-sm'
+											className='mt-2 block h-20 w-full appearance-none rounded-md bg-white px-3 py-2 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
 											type='text'
 											placeholder=''
-											onChange={(event) =>
-												setState({
-													...state,
-													notes: event.target.value,
-												})
-											}
-											value={state.notes}
+											onChange={(event) => setState({ ...state, notes: event.target.value })}
+											value={state.notes || ''}
 										/>
 									</label>
 

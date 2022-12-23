@@ -41,10 +41,11 @@ export default function Subscriptions({ user }) {
 
 		try {
 			await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body });
+			setState((prev) => ({ ...prev, show: false }));
 		} catch (error) {
 			setState({ ...state, error: error.message });
 		} finally {
-			setState((prev) => ({ ...prev, loading: false, show: false, selected: {} }));
+			setState((prev) => ({ ...prev, loading: false, selected: {} }));
 			refresh();
 		}
 	};
