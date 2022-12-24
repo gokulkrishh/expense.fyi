@@ -75,7 +75,7 @@ export default function Subscriptions({ user }) {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<div className='container mx-auto h-full'>
+			<div className='h-ful container mx-auto mb-20'>
 				<div className='mb-8 flex justify-between'>
 					<h1 className=' text-2xl text-slate-700'>Subscriptions</h1>
 					<button

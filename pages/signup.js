@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 
 import { supabase } from 'lib/supabase';
 import Loader from '/components/Loader';
+import Footer from '/components/Footer';
 
 const initialState = { loading: false, email: '', error: '', success: false };
 
@@ -34,7 +35,7 @@ export default function Signup() {
 			if (error) {
 				throw error;
 			}
-			setState((prev) => ({ ...prev, success: true, loading: false }));
+			setState((prev) => ({ ...prev, success: true, loading: false, email: '' }));
 		} catch (error) {
 			setState((prev) => ({ ...prev, error: error.message, loading: false }));
 		}
@@ -91,17 +92,13 @@ export default function Signup() {
 
 						<p className='mb-6 h-[50px] text-center text-sm font-semibold'>
 							{state.success && !state.error ? (
-								<span className='text-green-600'>
-									We just sent an email to you at <span className='underline'>{state.email}</span>, check your inbox.
-								</span>
+								<span className='text-green-600'>We just sent an email to you, check your inbox.</span>
 							) : null}
 
 							{!state.success && state.error ? <span className='text-red-500'>{state.error}</span> : null}
 						</p>
 					</form>
-					<footer className='absolute bottom-5 left-0 right-0 m-auto text-center text-sm font-semibold'>
-						&copy; Expense Tracker {new Date().getFullYear()}
-					</footer>
+					<Footer className='absolute' />
 				</div>
 			</main>
 		</>

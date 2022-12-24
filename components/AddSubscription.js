@@ -63,7 +63,9 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 											placeholder='Netflix'
 											required
 											autoFocus
-											onChange={(event) => setState({ ...state, name: event.target.value })}
+											onChange={(event) => {
+												setState({ ...state, name: event.target.value });
+											}}
 											value={state.name}
 										/>
 									</label>
@@ -80,15 +82,17 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 												/>
 											) : null}
 										</span>
-										<input
-											className='mt-1 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
-											type='url'
-											placeholder='https://netflix.com'
-											pattern='https://.*'
-											required
-											onChange={(event) => setState({ ...state, url: event.target.value })}
-											value={state.url}
-										/>
+										<div className='relative'>
+											<input
+												className='mt-1 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
+												type='url'
+												placeholder='https://netflix.com'
+												pattern='https://.*'
+												required
+												onChange={(event) => setState({ ...state, url: event.target.value })}
+												value={state.url}
+											/>
+										</div>
 									</label>
 									<div className='flex'>
 										<label className='block w-[170px]'>
@@ -122,7 +126,7 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 											</div>
 										</label>
 										<label className='block w-[120px]'>
-											<span className='text-md block font-semibold leading-6 text-gray-900'>Paid</span>
+											<span className='text-md block font-semibold leading-6 text-gray-900'>Paying</span>
 											<select
 												name='paid'
 												className='mt-2 block h-10 w-full appearance-none rounded-md bg-white py-2 px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
