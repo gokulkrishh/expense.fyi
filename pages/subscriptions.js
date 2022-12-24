@@ -12,7 +12,7 @@ const initialState = { show: false, loading: false, selected: {}, error: '' };
 
 export default function Subscriptions({ user }) {
 	const [state, setState] = useState(initialState);
-	const { data, mutate } = useSWR(`/api/subscriptions/all?userId=${user.id}`, fetcher);
+	const { data = [], mutate } = useSWR(`/api/subscriptions/all?userId=${user.id}`, fetcher);
 
 	const refresh = useCallback(() => mutate(), [mutate]);
 	const onHide = () => setState({ ...state, show: false, selected: {} });
