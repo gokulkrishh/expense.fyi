@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const numberStyle = { style: 'currency', currency: 'INR' };
 const thClassNames = 'border p-4 pl-8 pt-4 pb-3 text-left font-semibold border-gray-100 text-slate-700';
-const tdClassNames = 'border-b first:border-l last:border-r border-gray-100 p-4 pl-8 text-black';
+const tdClassNames = 'border-b relative first:border-l last:border-r border-gray-100 p-4 pl-8 text-black';
 const thList = ['Name', 'Price', 'Paying', 'Renewal Date', 'Notes', 'Actions'];
 
 export default function SubscriptionTable({ data = [], onEdit, onDelete }) {
@@ -24,14 +24,18 @@ export default function SubscriptionTable({ data = [], onEdit, onDelete }) {
 					.map((datum) => (
 						<tr key={datum.id}>
 							<td className={tdClassNames}>
-								<Image
-									className='relative -left-5 inline-block'
-									src={`https://www.google.com/s2/favicons?domain=${datum.url}`}
-									width={16}
-									height={16}
-									alt={datum.name}
-								/>
-								{datum.name}
+								<div className='flex items-center'>
+									<Image
+										className='absolute left-2 inline-block'
+										src={`https://www.google.com/s2/favicons?domain=${datum.url}`}
+										width={16}
+										height={16}
+										alt={datum.name}
+									/>
+									<a target='_blank' className='underline' href={datum.url} rel='noreferrer'>
+										{datum.name}
+									</a>
+								</div>
 							</td>
 							<td className={tdClassNames}>{new Intl.NumberFormat('en-IN', numberStyle).format(datum.price)}</td>
 							<td className={tdClassNames}>{datum.paid}</td>

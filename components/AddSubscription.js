@@ -155,7 +155,7 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 
 									<button
 										type='submit'
-										className='mt-2 flex items-center justify-center rounded-md bg-slate-800 py-2.5 px-4 font-semibold text-white hover:bg-slate-700'
+										className='mt-2 flex items-center justify-center rounded-md bg-slate-800 py-2.5 px-4 text-white hover:bg-slate-700'
 									>
 										{loading ? (
 											<>
