@@ -24,6 +24,7 @@ const initialState = {
 	price: 0,
 	notes: '',
 	renewal: format(new Date(), 'yyyy-MM-dd'),
+	isAppBased: false,
 };
 
 export default function AddSubscription({ selected, onHide, onSubmit, loading }) {
@@ -84,7 +85,7 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 										</span>
 										<div className='relative'>
 											<input
-												className='mt-1 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'
+												className='mt-1 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500 sm:text-sm'
 												type='url'
 												placeholder='https://netflix.com'
 												pattern='https://.*'
@@ -92,6 +93,20 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 												onChange={(event) => setState({ ...state, url: event.target.value })}
 												value={state.url}
 											/>
+											{/* <div className='flex items-center'>
+												<input
+													class='mr-2 h-4 w-4 rounded text-sky-500 focus:ring-slate-500'
+													type='checkbox'
+													onChange={(event) => {
+														setState({ ...state, isAppBased: event.target.checked });
+													}}
+													checked={state.isAppBased}
+													id='AppBased'
+												/>
+												<label class='form-check-label inline-block text-gray-800' for='AppBased'>
+													App based subscription
+												</label>
+											</div> */}
 										</div>
 									</label>
 									<div className='flex'>

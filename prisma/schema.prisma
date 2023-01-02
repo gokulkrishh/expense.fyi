@@ -16,6 +16,7 @@ model subscriptions {
   paid       String
   notify     Boolean? @default(false)
   renewal    String
+  app_based  Boolean? @default(false)
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
   user       users?   @relation(fields: [user_id], references: [id])

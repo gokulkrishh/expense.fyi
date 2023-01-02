@@ -10,7 +10,7 @@ export default function enforceAuth() {
 		if (!session) {
 			return {
 				redirect: {
-					destination: '/signup',
+					destination: '/signin',
 					permanent: true,
 				},
 			};

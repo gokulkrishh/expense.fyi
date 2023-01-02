@@ -11,7 +11,7 @@ export async function middleware(req) {
 	} = await supabase.auth.getSession();
 
 	if (!session) {
-		return NextResponse.redirect(new URL('/api/unauthorized', req.url));
+		return NextResponse.json({ message: 'Unauthorized' });
 	}
 
 	return res;

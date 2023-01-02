@@ -64,7 +64,7 @@ export default function Sidebar({ className }) {
 		if (error) {
 			alert('Logout error occurred');
 		}
-		window.location = '/signup';
+		window.location = '/signin';
 	}
 
 	return (

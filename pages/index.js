@@ -11,7 +11,7 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<div className='container mx-auto flex h-full'>
+			<div className='container h-full'>
 				<h1 className='mb-8 text-2xl text-slate-700'>Overview</h1>
 			</div>
 		</>

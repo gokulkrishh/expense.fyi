@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Head from 'next/head';
 import { ClockIcon } from '@heroicons/react/24/solid';
-import { useUser } from '@supabase/auth-helpers-react';
-import { useRouter } from 'next/router';
 
 import { supabase } from 'lib/supabase';
 import Loader from '/components/Loader';
@@ -13,21 +11,13 @@ const initialState = { loading: false, email: '', error: '', success: false };
 export default function Signup() {
 	const [state, setState] = useState(initialState);
 	const inputElement = useRef(null);
-	const router = useRouter();
-	const user = useUser();
 
 	useEffect(() => {
 		inputElement.current?.focus();
 	}, []);
 
-	useEffect(() => {
-		if (user) {
-			router.replace('/');
-		}
-	}, [user, router]);
-
 	const handleLogin = async () => {
-		setState((prev) => ({ ...prev, loading: true, error: '', succes: false }));
+		setState((prev) => ({ ...prev, loading: true, error: '', success: false }));
 		try {
 			const { error } = await supabase.auth.signInWithOtp({
 				email: state.email,
@@ -90,7 +80,7 @@ export default function Signup() {
 							)}
 						</button>
 
-						<p className='mb-6 h-[50px] text-center text-sm font-semibold'>
+						<p className='mb-6 h-[50px] text-center text-sm font-medium'>
 							{state.success && !state.error ? (
 								<span className='text-green-600'>We just sent an email to you, check your inbox.</span>
 							) : null}
