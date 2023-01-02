@@ -76,7 +76,7 @@ export default function Subscriptions({ user }) {
 			</Head>
 
 			<div className='h-ful container mx-auto mb-20'>
-				<div className='mb-8 flex justify-between'>
+				<div className='mb-6 flex justify-between'>
 					<h1 className=' text-2xl text-slate-700'>Subscriptions</h1>
 					<button
 						className='-mt-2 flex items-center justify-between rounded-full bg-sky-500 p-3 font-normal text-white hover:bg-sky-600'

@@ -66,6 +66,7 @@ export default function Form() {
 			<button
 				type='submit'
 				className='flex items-center justify-center rounded-lg bg-slate-800 py-2.5 px-4 font-normal text-white hover:bg-slate-700'
+				disabled={!state.email.length}
 			>
 				{state.loading ? (
 					<>
@@ -78,7 +79,7 @@ export default function Form() {
 
 			<p className='mb-6 h-[50px] text-center text-sm font-medium'>
 				{state.success && !state.error ? (
-					<span className='text-green-600'>We just sent an email to you, check your inbox.</span>
+					<span className='text-green-600'>We just sent an email to you with magic link, check your inbox.</span>
 				) : null}
 
 				{!state.success && state.error ? <span className='text-red-500'>{state.error}</span> : null}
