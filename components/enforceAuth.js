@@ -16,10 +16,14 @@ export default function enforceAuth() {
 			};
 		}
 
+		const hostname = 'http://localhost:3000';
+		const res = await fetch(`${hostname}/api/user/get?user_id=${session.user.id}`);
+		const userData = await res.json();
+
 		return {
 			props: {
 				initialSession: session,
-				user: session.user,
+				user: { ...session.user, currency: userData.currency },
 			},
 		};
 	};

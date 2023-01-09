@@ -54,6 +54,7 @@ const LogoutIcon = (props) => (
 const Links = [
 	{ link: '/', name: 'Overview', Icon: OverviewIcon },
 	{ link: '/subscriptions', name: 'Subscriptions', Icon: SubscriptionsIcon },
+	{ link: '/settings', name: 'Settings', Icon: SettingsIcon },
 ];
 
 export default function Sidebar({ className }) {
@@ -62,7 +63,7 @@ export default function Sidebar({ className }) {
 	async function signOut() {
 		const { error } = await supabase.auth.signOut();
 		if (error) {
-			alert('Logout error occurred');
+			console.log('Logout error occurred');
 		}
 		window.location = '/signin';
 	}

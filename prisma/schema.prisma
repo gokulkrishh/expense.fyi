@@ -29,4 +29,6 @@ model users {
   name          String?
   img           String?
   subscriptions subscriptions[]
+  currency      String          @default("INR")
+  updated_at    DateTime        @default(now())
 }

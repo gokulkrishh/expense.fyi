@@ -1,7 +1,7 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { format, formatISO } from 'date-fns';
+import { format } from 'date-fns';
 
 import Loader from './Loader';
 
@@ -27,7 +27,7 @@ const initialState = {
 	isAppBased: false,
 };
 
-export default function AddSubscription({ selected, onHide, onSubmit, loading }) {
+export default function AddSubscription({ selected, onHide, onSubmit, loading, currency }) {
 	const [state, setState] = useState(initialState);
 	const [hasValidUrl, setHasValidUrl] = useState(false);
 
@@ -111,7 +111,18 @@ export default function AddSubscription({ selected, onHide, onSubmit, loading })
 									</label>
 									<div className='flex'>
 										<label className='block w-[170px]'>
-											<span className='text-md block font-semibold leading-6 text-gray-900'>Price</span>
+											<span className='text-md block font-semibold leading-6 text-gray-900'>
+												Price
+												<span className='ml-2 text-xs'>
+													(
+													{
+														new Intl.NumberFormat(undefined, { style: 'currency', currency })
+															.formatToParts(1)
+															.find((x) => x.type === 'currency').value
+													}
+													)
+												</span>
+											</span>
 											<div className='flex items-center justify-between'>
 												<input
 													className='mt-2 mr-4 block h-10 w-full appearance-none rounded-md bg-white px-3 text-slate-800 shadow-sm ring-1 ring-slate-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-600 sm:text-sm'

@@ -4,9 +4,9 @@ import useSWR from 'swr';
 import { PlusIcon } from '@heroicons/react/24/solid';
 
 import fetcher from 'lib/fetcher';
-import SubscriptionsTable from '/components/SubscriptionsTable';
-import AddSubscription from '/components/AddSubscription';
-import enforceAuth from '/components/enforceAuth';
+import SubscriptionsTable from 'components/SubscriptionsTable';
+import AddSubscription from 'components/AddSubscription';
+import enforceAuth from 'components/enforceAuth';
 
 const initialState = { show: false, loading: false, selected: {}, error: '' };
 
@@ -88,10 +88,16 @@ export default function Subscriptions({ user }) {
 					</button>
 				</div>
 				{state.show ? (
-					<AddSubscription onHide={onHide} onSubmit={onSubmit} loading={state.loading} selected={state.selected} />
+					<AddSubscription
+						onHide={onHide}
+						onSubmit={onSubmit}
+						loading={state.loading}
+						selected={state.selected}
+						currency={user.currency}
+					/>
 				) : null}
 
-				<SubscriptionsTable data={data} onEdit={onEdit} onDelete={onDelete} />
+				<SubscriptionsTable data={data} onEdit={onEdit} onDelete={onDelete} currency={user.currency} />
 			</div>
 		</>
 	);

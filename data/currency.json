@@ -1,0 +1,1088 @@
+{
+	"AED": {
+		"name": "United Arab Emirates dirham",
+		"code": "AED",
+		"decimal_units": "2",
+		"countries": ["United Arab Emirates"]
+	},
+	"AFN": {
+		"name": "Afghan afghani",
+		"code": "AFN",
+		"decimal_units": "2",
+		"countries": ["Afghanistan"]
+	},
+	"ALL": {
+		"name": "Albanian lek",
+		"code": "ALL",
+		"decimal_units": "2",
+		"countries": ["Albania"]
+	},
+	"AMD": {
+		"name": "Armenian dram",
+		"code": "AMD",
+		"decimal_units": "2",
+		"countries": ["Armenia"]
+	},
+	"ANG": {
+		"name": "Netherlands Antillean guilder",
+		"code": "ANG",
+		"decimal_units": "2",
+		"countries": ["Cura\u00e7ao (CW)", "Sint Maarten (SX)"]
+	},
+	"AOA": {
+		"name": "Angolan kwanza",
+		"code": "AOA",
+		"decimal_units": "2",
+		"countries": ["Angola"]
+	},
+	"ARS": {
+		"name": "Argentine peso",
+		"code": "ARS",
+		"decimal_units": "2",
+		"countries": ["Argentina"]
+	},
+	"AUD": {
+		"name": "Australian dollar",
+		"code": "AUD",
+		"decimal_units": "2",
+		"countries": [
+			"Australia",
+			"Christmas Island (CX)",
+			"Cocos (Keeling) Islands (CC)",
+			"Heard Island and McDonald Islands (HM)",
+			"Kiribati (KI)",
+			"Nauru (NR)",
+			"Norfolk Island (NF)",
+			"Tuvalu (TV)"
+		]
+	},
+	"AWG": { "name": "Aruban florin", "code": "AWG", "decimal_units": "2", "countries": ["Aruba"] },
+	"AZN": {
+		"name": "Azerbaijani manat",
+		"code": "AZN",
+		"decimal_units": "2",
+		"countries": ["Azerbaijan"]
+	},
+	"BAM": {
+		"name": "Bosnia and Herzegovina convertible mark",
+		"code": "BAM",
+		"decimal_units": "2",
+		"countries": ["Bosnia and Herzegovina"]
+	},
+	"BBD": {
+		"name": "Barbados dollar",
+		"code": "BBD",
+		"decimal_units": "2",
+		"countries": ["Barbados"]
+	},
+	"BDT": {
+		"name": "Bangladeshi taka",
+		"code": "BDT",
+		"decimal_units": "2",
+		"countries": ["Bangladesh"]
+	},
+	"BGN": {
+		"name": "Bulgarian lev",
+		"code": "BGN",
+		"decimal_units": "2",
+		"countries": ["Bulgaria"]
+	},
+	"BHD": {
+		"name": "Bahraini dinar",
+		"code": "BHD",
+		"decimal_units": "3",
+		"countries": ["Bahrain"]
+	},
+	"BIF": {
+		"name": "Burundian franc",
+		"code": "BIF",
+		"decimal_units": "0",
+		"countries": ["Burundi"]
+	},
+	"BMD": {
+		"name": "Bermudian dollar",
+		"code": "BMD",
+		"decimal_units": "2",
+		"countries": ["Bermuda"]
+	},
+	"BND": {
+		"name": "Brunei dollar",
+		"code": "BND",
+		"decimal_units": "2",
+		"countries": ["Brunei"]
+	},
+	"BOB": { "name": "Boliviano", "code": "BOB", "decimal_units": "2", "countries": ["Bolivia"] },
+	"BOV": {
+		"name": "Bolivian Mvdol (funds code)",
+		"code": "BOV",
+		"decimal_units": "2",
+		"countries": ["Bolivia"]
+	},
+	"BRL": {
+		"name": "Brazilian real",
+		"code": "BRL",
+		"decimal_units": "2",
+		"countries": ["Brazil"]
+	},
+	"BSD": {
+		"name": "Bahamian dollar",
+		"code": "BSD",
+		"decimal_units": "2",
+		"countries": ["Bahamas"]
+	},
+	"BTN": {
+		"name": "Bhutanese ngultrum",
+		"code": "BTN",
+		"decimal_units": "2",
+		"countries": ["Bhutan"]
+	},
+	"BWP": {
+		"name": "Botswana pula",
+		"code": "BWP",
+		"decimal_units": "2",
+		"countries": ["Botswana"]
+	},
+	"BYN": {
+		"name": "Belarusian ruble",
+		"code": "BYN",
+		"decimal_units": "2",
+		"countries": ["Belarus"]
+	},
+	"BZD": {
+		"name": "Belize dollar",
+		"code": "BZD",
+		"decimal_units": "2",
+		"countries": ["Belize"]
+	},
+	"CAD": {
+		"name": "Canadian dollar",
+		"code": "CAD",
+		"decimal_units": "2",
+		"countries": ["Canada"]
+	},
+	"CDF": {
+		"name": "Congolese franc",
+		"code": "CDF",
+		"decimal_units": "2",
+		"countries": ["Democratic Republic of the Congo"]
+	},
+	"CHE": {
+		"name": "WIR Euro (complementary currency)",
+		"code": "CHE",
+		"decimal_units": "2",
+		"countries": ["Switzerland"]
+	},
+	"CHF": {
+		"name": "Swiss franc",
+		"code": "CHF",
+		"decimal_units": "2",
+		"countries": ["Switzerland", "Liechtenstein (LI)"]
+	},
+	"CHW": {
+		"name": "WIR Franc (complementary currency)",
+		"code": "CHW",
+		"decimal_units": "2",
+		"countries": ["Switzerland"]
+	},
+	"CLF": {
+		"name": "Unidad de Fomento (funds code)",
+		"code": "CLF",
+		"decimal_units": "4",
+		"countries": ["Chile"]
+	},
+	"CLP": { "name": "Chilean peso", "code": "CLP", "decimal_units": "0", "countries": ["Chile"] },
+	"CNY": {
+		"name": "Renminbi (Chinese) yuan",
+		"code": "CNY",
+		"decimal_units": "2",
+		"countries": ["China"]
+	},
+	"COP": {
+		"name": "Colombian peso",
+		"code": "COP",
+		"decimal_units": "2",
+		"countries": ["Colombia"]
+	},
+	"COU": {
+		"name": "Unidad de Valor Real (UVR) (funds code)",
+		"code": "COU",
+		"decimal_units": "2",
+		"countries": ["Colombia"]
+	},
+	"CRC": {
+		"name": "Costa Rican colon",
+		"code": "CRC",
+		"decimal_units": "2",
+		"countries": ["Costa Rica"]
+	},
+	"CUC": {
+		"name": "Cuban convertible peso",
+		"code": "CUC",
+		"decimal_units": "2",
+		"countries": ["Cuba"]
+	},
+	"CUP": { "name": "Cuban peso", "code": "CUP", "decimal_units": "2", "countries": ["Cuba"] },
+	"CVE": {
+		"name": "Cape Verdean escudo",
+		"code": "CVE",
+		"decimal_units": "2",
+		"countries": ["Cabo Verde"]
+	},
+	"CZK": {
+		"name": "Czech koruna",
+		"code": "CZK",
+		"decimal_units": "2",
+		"countries": ["Czechia [9]"]
+	},
+	"DJF": {
+		"name": "Djiboutian franc",
+		"code": "DJF",
+		"decimal_units": "0",
+		"countries": ["Djibouti"]
+	},
+	"DKK": {
+		"name": "Danish krone",
+		"code": "DKK",
+		"decimal_units": "2",
+		"countries": ["Denmark", "Faroe Islands (FO)", "Greenland (GL)"]
+	},
+	"DOP": {
+		"name": "Dominican peso",
+		"code": "DOP",
+		"decimal_units": "2",
+		"countries": ["Dominican Republic"]
+	},
+	"DZD": {
+		"name": "Algerian dinar",
+		"code": "DZD",
+		"decimal_units": "2",
+		"countries": ["Algeria"]
+	},
+	"EGP": {
+		"name": "Egyptian pound",
+		"code": "EGP",
+		"decimal_units": "2",
+		"countries": ["Egypt"]
+	},
+	"ERN": {
+		"name": "Eritrean nakfa",
+		"code": "ERN",
+		"decimal_units": "2",
+		"countries": ["Eritrea"]
+	},
+	"ETB": {
+		"name": "Ethiopian birr",
+		"code": "ETB",
+		"decimal_units": "2",
+		"countries": ["Ethiopia"]
+	},
+	"EUR": {
+		"name": "Euro",
+		"code": "EUR",
+		"decimal_units": "2",
+		"countries": [
+			"\u00c5land Islands (AX)",
+			"European Union (EU)",
+			"Andorra (AD)",
+			"Austria (AT)",
+			"Belgium (BE)",
+			"Cyprus (CY)",
+			"Estonia (EE)",
+			"Finland (FI)",
+			"France (FR)",
+			"French Southern and Antarctic Lands (TF)",
+			"Germany (DE)",
+			"Greece (GR)",
+			"Guadeloupe (GP)",
+			"Ireland (IE)",
+			"Italy (IT)",
+			"Kosovo (XK)",
+			"Latvia (LV)",
+			"Lithuania (LT)",
+			"Luxembourg (LU)",
+			"Malta (MT)",
+			"French Guiana (GF)",
+			"Martinique (MQ)",
+			"Mayotte (YT)",
+			"Monaco (MC)",
+			"Montenegro (ME)",
+			"Netherlands (NL)",
+			"Portugal (PT)",
+			"R\u00e9union (RE)",
+			"Saint Barth\u00e9lemy (BL)",
+			"Saint Martin (MF)",
+			"Saint Pierre and Miquelon (PM)",
+			"San Marino (SM)",
+			"Slovakia (SK)",
+			"Slovenia (SI)",
+			"Spain (ES)",
+			"Holy See (VA)"
+		]
+	},
+	"FJD": { "name": "Fiji dollar", "code": "FJD", "decimal_units": "2", "countries": ["Fiji"] },
+	"FKP": {
+		"name": "Falkland Islands pound",
+		"code": "FKP",
+		"decimal_units": "2",
+		"countries": ["Falkland Islands (pegged to GBP 1:1)"]
+	},
+	"GBP": {
+		"name": "Pound sterling",
+		"code": "GBP",
+		"decimal_units": "2",
+		"countries": [
+			"United Kingdom",
+			"British Indian Ocean Territory (IO) (also uses USD)",
+			"the  Isle of Man (IM",
+			"see Manx pound)",
+			"Jersey (JE",
+			"see Jersey pound)",
+			"and  Guernsey (GG",
+			"see Guernsey pound)"
+		]
+	},
+	"GEL": {
+		"name": "Georgian lari",
+		"code": "GEL",
+		"decimal_units": "2",
+		"countries": ["Georgia"]
+	},
+	"GHS": { "name": "Ghanaian cedi", "code": "GHS", "decimal_units": "2", "countries": ["Ghana"] },
+	"GIP": {
+		"name": "Gibraltar pound",
+		"code": "GIP",
+		"decimal_units": "2",
+		"countries": ["Gibraltar (pegged to GBP 1:1)"]
+	},
+	"GMD": {
+		"name": "Gambian dalasi",
+		"code": "GMD",
+		"decimal_units": "2",
+		"countries": ["Gambia"]
+	},
+	"GNF": {
+		"name": "Guinean franc",
+		"code": "GNF",
+		"decimal_units": "0",
+		"countries": ["Guinea"]
+	},
+	"GTQ": {
+		"name": "Guatemalan quetzal",
+		"code": "GTQ",
+		"decimal_units": "2",
+		"countries": ["Guatemala"]
+	},
+	"GYD": {
+		"name": "Guyanese dollar",
+		"code": "GYD",
+		"decimal_units": "2",
+		"countries": ["Guyana"]
+	},
+	"HKD": {
+		"name": "Hong Kong dollar",
+		"code": "HKD",
+		"decimal_units": "2",
+		"countries": ["Hong Kong"]
+	},
+	"HNL": {
+		"name": "Honduran lempira",
+		"code": "HNL",
+		"decimal_units": "2",
+		"countries": ["Honduras"]
+	},
+	"HRK": {
+		"name": "Croatian kuna",
+		"code": "HRK",
+		"decimal_units": "2",
+		"countries": ["Croatia"]
+	},
+	"HTG": {
+		"name": "Haitian gourde",
+		"code": "HTG",
+		"decimal_units": "2",
+		"countries": ["Haiti"]
+	},
+	"HUF": {
+		"name": "Hungarian forint",
+		"code": "HUF",
+		"decimal_units": "2",
+		"countries": ["Hungary"]
+	},
+	"IDR": {
+		"name": "Indonesian rupiah",
+		"code": "IDR",
+		"decimal_units": "2",
+		"countries": ["Indonesia"]
+	},
+	"ILS": {
+		"name": "Israeli new shekel",
+		"code": "ILS",
+		"decimal_units": "2",
+		"countries": ["Israel", "Palestinian Authority[10]"]
+	},
+	"INR": {
+		"name": "Indian rupee",
+		"code": "INR",
+		"decimal_units": "2",
+		"countries": ["India", "Bhutan"]
+	},
+	"IQD": { "name": "Iraqi dinar", "code": "IQD", "decimal_units": "3", "countries": ["Iraq"] },
+	"IRR": { "name": "Iranian rial", "code": "IRR", "decimal_units": "2", "countries": ["Iran"] },
+	"ISK": {
+		"name": "Icelandic kr\u00f3na",
+		"code": "ISK",
+		"decimal_units": "0",
+		"countries": ["Iceland"]
+	},
+	"JMD": {
+		"name": "Jamaican dollar",
+		"code": "JMD",
+		"decimal_units": "2",
+		"countries": ["Jamaica"]
+	},
+	"JOD": {
+		"name": "Jordanian dinar",
+		"code": "JOD",
+		"decimal_units": "3",
+		"countries": ["Jordan"]
+	},
+	"JPY": { "name": "Japanese yen", "code": "JPY", "decimal_units": "0", "countries": ["Japan"] },
+	"KES": {
+		"name": "Kenyan shilling",
+		"code": "KES",
+		"decimal_units": "2",
+		"countries": ["Kenya"]
+	},
+	"KGS": {
+		"name": "Kyrgyzstani som",
+		"code": "KGS",
+		"decimal_units": "2",
+		"countries": ["Kyrgyzstan"]
+	},
+	"KHR": {
+		"name": "Cambodian riel",
+		"code": "KHR",
+		"decimal_units": "2",
+		"countries": ["Cambodia"]
+	},
+	"KMF": {
+		"name": "Comoro franc",
+		"code": "KMF",
+		"decimal_units": "0",
+		"countries": ["Comoros"]
+	},
+	"KPW": {
+		"name": "North Korean won",
+		"code": "KPW",
+		"decimal_units": "2",
+		"countries": ["North Korea"]
+	},
+	"KRW": {
+		"name": "South Korean won",
+		"code": "KRW",
+		"decimal_units": "0",
+		"countries": ["South Korea"]
+	},
+	"KWD": {
+		"name": "Kuwaiti dinar",
+		"code": "KWD",
+		"decimal_units": "3",
+		"countries": ["Kuwait"]
+	},
+	"KYD": {
+		"name": "Cayman Islands dollar",
+		"code": "KYD",
+		"decimal_units": "2",
+		"countries": ["Cayman Islands"]
+	},
+	"KZT": {
+		"name": "Kazakhstani tenge",
+		"code": "KZT",
+		"decimal_units": "2",
+		"countries": ["Kazakhstan"]
+	},
+	"LAK": { "name": "Lao kip", "code": "LAK", "decimal_units": "2", "countries": ["Laos"] },
+	"LBP": {
+		"name": "Lebanese pound",
+		"code": "LBP",
+		"decimal_units": "2",
+		"countries": ["Lebanon"]
+	},
+	"LKR": {
+		"name": "Sri Lankan rupee",
+		"code": "LKR",
+		"decimal_units": "2",
+		"countries": ["Sri Lanka"]
+	},
+	"LRD": {
+		"name": "Liberian dollar",
+		"code": "LRD",
+		"decimal_units": "2",
+		"countries": ["Liberia"]
+	},
+	"LSL": {
+		"name": "Lesotho loti",
+		"code": "LSL",
+		"decimal_units": "2",
+		"countries": ["Lesotho"]
+	},
+	"LYD": { "name": "Libyan dinar", "code": "LYD", "decimal_units": "3", "countries": ["Libya"] },
+	"MAD": {
+		"name": "Moroccan dirham",
+		"code": "MAD",
+		"decimal_units": "2",
+		"countries": ["Morocco", "Western Sahara"]
+	},
+	"MDL": {
+		"name": "Moldovan leu",
+		"code": "MDL",
+		"decimal_units": "2",
+		"countries": ["Moldova"]
+	},
+	"MGA": {
+		"name": "Malagasy ariary",
+		"code": "MGA",
+		"decimal_units": "2",
+		"countries": ["Madagascar"]
+	},
+	"MKD": {
+		"name": "Macedonian denar",
+		"code": "MKD",
+		"decimal_units": "2",
+		"countries": ["North Macedonia"]
+	},
+	"MMK": {
+		"name": "Myanmar kyat",
+		"code": "MMK",
+		"decimal_units": "2",
+		"countries": ["Myanmar"]
+	},
+	"MNT": {
+		"name": "Mongolian t\u00f6gr\u00f6g",
+		"code": "MNT",
+		"decimal_units": "2",
+		"countries": ["Mongolia"]
+	},
+	"MOP": {
+		"name": "Macanese pataca",
+		"code": "MOP",
+		"decimal_units": "2",
+		"countries": ["Macau"]
+	},
+	"MRU": {
+		"name": "Mauritanian ouguiya",
+		"code": "MRU",
+		"decimal_units": "2",
+		"countries": ["Mauritania"]
+	},
+	"MUR": {
+		"name": "Mauritian rupee",
+		"code": "MUR",
+		"decimal_units": "2",
+		"countries": ["Mauritius"]
+	},
+	"MVR": {
+		"name": "Maldivian rufiyaa",
+		"code": "MVR",
+		"decimal_units": "2",
+		"countries": ["Maldives"]
+	},
+	"MWK": {
+		"name": "Malawian kwacha",
+		"code": "MWK",
+		"decimal_units": "2",
+		"countries": ["Malawi"]
+	},
+	"MXN": { "name": "Mexican peso", "code": "MXN", "decimal_units": "2", "countries": ["Mexico"] },
+	"MXV": {
+		"name": "Mexican Unidad de Inversion (UDI) (funds code)",
+		"code": "MXV",
+		"decimal_units": "2",
+		"countries": ["Mexico"]
+	},
+	"MYR": {
+		"name": "Malaysian ringgit",
+		"code": "MYR",
+		"decimal_units": "2",
+		"countries": ["Malaysia"]
+	},
+	"MZN": {
+		"name": "Mozambican metical",
+		"code": "MZN",
+		"decimal_units": "2",
+		"countries": ["Mozambique"]
+	},
+	"NAD": {
+		"name": "Namibian dollar",
+		"code": "NAD",
+		"decimal_units": "2",
+		"countries": ["Namibia"]
+	},
+	"NGN": {
+		"name": "Nigerian naira",
+		"code": "NGN",
+		"decimal_units": "2",
+		"countries": ["Nigeria"]
+	},
+	"NIO": {
+		"name": "Nicaraguan c\u00f3rdoba",
+		"code": "NIO",
+		"decimal_units": "2",
+		"countries": ["Nicaragua"]
+	},
+	"NOK": {
+		"name": "Norwegian krone",
+		"code": "NOK",
+		"decimal_units": "2",
+		"countries": ["Norway", "Svalbard and  Jan Mayen (SJ)", "Bouvet Island (BV)"]
+	},
+	"NPR": {
+		"name": "Nepalese rupee",
+		"code": "NPR",
+		"decimal_units": "2",
+		"countries": ["Nepal"]
+	},
+	"NZD": {
+		"name": "New Zealand dollar",
+		"code": "NZD",
+		"decimal_units": "2",
+		"countries": [
+			"New Zealand",
+			"Cook Islands (CK)",
+			"Niue (NU)",
+			"Pitcairn Islands (PN; see also Pitcairn Islands dollar)",
+			"Tokelau (TK)"
+		]
+	},
+	"OMR": { "name": "Omani rial", "code": "OMR", "decimal_units": "3", "countries": ["Oman"] },
+	"PAB": {
+		"name": "Panamanian balboa",
+		"code": "PAB",
+		"decimal_units": "2",
+		"countries": ["Panama"]
+	},
+	"PEN": { "name": "Peruvian sol", "code": "PEN", "decimal_units": "2", "countries": ["Peru"] },
+	"PGK": {
+		"name": "Papua New Guinean kina",
+		"code": "PGK",
+		"decimal_units": "2",
+		"countries": ["Papua New Guinea"]
+	},
+	"PHP": {
+		"name": "Philippine peso[13]",
+		"code": "PHP",
+		"decimal_units": "2",
+		"countries": ["Philippines"]
+	},
+	"PKR": {
+		"name": "Pakistani rupee",
+		"code": "PKR",
+		"decimal_units": "2",
+		"countries": ["Pakistan"]
+	},
+	"PLN": {
+		"name": "Polish z\u0142oty",
+		"code": "PLN",
+		"decimal_units": "2",
+		"countries": ["Poland"]
+	},
+	"PYG": {
+		"name": "Paraguayan guaran\u00ed",
+		"code": "PYG",
+		"decimal_units": "0",
+		"countries": ["Paraguay"]
+	},
+	"QAR": { "name": "Qatari riyal", "code": "QAR", "decimal_units": "2", "countries": ["Qatar"] },
+	"RON": {
+		"name": "Romanian leu",
+		"code": "RON",
+		"decimal_units": "2",
+		"countries": ["Romania"]
+	},
+	"RSD": {
+		"name": "Serbian dinar",
+		"code": "RSD",
+		"decimal_units": "2",
+		"countries": ["Serbia"]
+	},
+	"RUB": {
+		"name": "Russian ruble",
+		"code": "RUB",
+		"decimal_units": "2",
+		"countries": ["Russia"]
+	},
+	"RWF": {
+		"name": "Rwandan franc",
+		"code": "RWF",
+		"decimal_units": "0",
+		"countries": ["Rwanda"]
+	},
+	"SAR": {
+		"name": "Saudi riyal",
+		"code": "SAR",
+		"decimal_units": "2",
+		"countries": ["Saudi Arabia"]
+	},
+	"SBD": {
+		"name": "Solomon Islands dollar",
+		"code": "SBD",
+		"decimal_units": "2",
+		"countries": ["Solomon Islands"]
+	},
+	"SCR": {
+		"name": "Seychelles rupee",
+		"code": "SCR",
+		"decimal_units": "2",
+		"countries": ["Seychelles"]
+	},
+	"SDG": {
+		"name": "Sudanese pound",
+		"code": "SDG",
+		"decimal_units": "2",
+		"countries": ["Sudan"]
+	},
+	"SEK": {
+		"name": "Swedish krona/kronor",
+		"code": "SEK",
+		"decimal_units": "2",
+		"countries": ["Sweden"]
+	},
+	"SGD": {
+		"name": "Singapore dollar",
+		"code": "SGD",
+		"decimal_units": "2",
+		"countries": ["Singapore"]
+	},
+	"SHP": {
+		"name": "Saint Helena pound",
+		"code": "SHP",
+		"decimal_units": "2",
+		"countries": ["Saint Helena (SH-SH)", "Ascension Island (SH-AC)", "Tristan da Cunha"]
+	},
+	"SLL": {
+		"name": "Sierra Leonean leone",
+		"code": "SLL",
+		"decimal_units": "2",
+		"countries": ["Sierra Leone"]
+	},
+	"SOS": {
+		"name": "Somali shilling",
+		"code": "SOS",
+		"decimal_units": "2",
+		"countries": ["Somalia"]
+	},
+	"SRD": {
+		"name": "Surinamese dollar",
+		"code": "SRD",
+		"decimal_units": "2",
+		"countries": ["Suriname"]
+	},
+	"SSP": {
+		"name": "South Sudanese pound",
+		"code": "SSP",
+		"decimal_units": "2",
+		"countries": ["South Sudan"]
+	},
+	"STN": {
+		"name": "S\u00e3o Tom\u00e9 and Pr\u00edncipe dobra",
+		"code": "STN",
+		"decimal_units": "2",
+		"countries": ["S\u00e3o Tom\u00e9 and Pr\u00edncipe"]
+	},
+	"SVC": {
+		"name": "Salvadoran col\u00f3n",
+		"code": "SVC",
+		"decimal_units": "2",
+		"countries": ["El Salvador"]
+	},
+	"SYP": { "name": "Syrian pound", "code": "SYP", "decimal_units": "2", "countries": ["Syria"] },
+	"SZL": {
+		"name": "Swazi lilangeni",
+		"code": "SZL",
+		"decimal_units": "2",
+		"countries": ["Eswatini[13]"]
+	},
+	"THB": { "name": "Thai baht", "code": "THB", "decimal_units": "2", "countries": ["Thailand"] },
+	"TJS": {
+		"name": "Tajikistani somoni",
+		"code": "TJS",
+		"decimal_units": "2",
+		"countries": ["Tajikistan"]
+	},
+	"TMT": {
+		"name": "Turkmenistan manat",
+		"code": "TMT",
+		"decimal_units": "2",
+		"countries": ["Turkmenistan"]
+	},
+	"TND": {
+		"name": "Tunisian dinar",
+		"code": "TND",
+		"decimal_units": "3",
+		"countries": ["Tunisia"]
+	},
+	"TOP": {
+		"name": "Tongan pa\u02bbanga",
+		"code": "TOP",
+		"decimal_units": "2",
+		"countries": ["Tonga"]
+	},
+	"TRY": {
+		"name": "Turkish lira",
+		"code": "TRY",
+		"decimal_units": "2",
+		"countries": ["Turkey", "Northern Cyprus"]
+	},
+	"TTD": {
+		"name": "Trinidad and Tobago dollar",
+		"code": "TTD",
+		"decimal_units": "2",
+		"countries": ["Trinidad and Tobago"]
+	},
+	"TWD": {
+		"name": "New Taiwan dollar",
+		"code": "TWD",
+		"decimal_units": "2",
+		"countries": ["Taiwan"]
+	},
+	"TZS": {
+		"name": "Tanzanian shilling",
+		"code": "TZS",
+		"decimal_units": "2",
+		"countries": ["Tanzania"]
+	},
+	"UAH": {
+		"name": "Ukrainian hryvnia",
+		"code": "UAH",
+		"decimal_units": "2",
+		"countries": ["Ukraine"]
+	},
+	"UGX": {
+		"name": "Ugandan shilling",
+		"code": "UGX",
+		"decimal_units": "0",
+		"countries": ["Uganda"]
+	},
+	"USD": {
+		"name": "United States dollar",
+		"code": "USD",
+		"decimal_units": "2",
+		"countries": [
+			"United States",
+			"American Samoa (AS)",
+			"Barbados (BB) (as well as Barbados Dollar)",
+			"Bermuda (BM) (as well as Bermudian Dollar)",
+			"British Indian Ocean Territory (IO) (also uses GBP)",
+			"British Virgin Islands (VG)",
+			"Caribbean Netherlands (BQ \u2013 Bonaire",
+			"Sint Eustatius and Saba)",
+			"Ecuador (EC)",
+			"El Salvador (SV)",
+			"Guam (GU)",
+			"Haiti (HT)",
+			"Marshall Islands (MH)",
+			"Federated States of Micronesia (FM)",
+			"Northern Mariana Islands (MP)",
+			"Palau (PW)",
+			"Panama (PA) (as well as Panamanian Balboa)",
+			"Puerto Rico (PR)",
+			"Timor-Leste (TL)",
+			"Turks and Caicos Islands (TC)",
+			"U.S. Virgin Islands (VI)",
+			"United States Minor Outlying Islands (UM)  Cambodia also uses the USD officially."
+		]
+	},
+	"USN": {
+		"name": "United States dollar (next day) (funds code)",
+		"code": "USN",
+		"decimal_units": "2",
+		"countries": ["United States"]
+	},
+	"UYI": {
+		"name": "Uruguay Peso en Unidades Indexadas (URUIURUI) (funds code)",
+		"code": "UYI",
+		"decimal_units": "0",
+		"countries": ["Uruguay"]
+	},
+	"UYU": {
+		"name": "Uruguayan peso",
+		"code": "UYU",
+		"decimal_units": "2",
+		"countries": ["Uruguay"]
+	},
+	"UYW": {
+		"name": "Unidad previsional[15]",
+		"code": "UYW",
+		"decimal_units": "4",
+		"countries": ["Uruguay"]
+	},
+	"UZS": {
+		"name": "Uzbekistan som",
+		"code": "UZS",
+		"decimal_units": "2",
+		"countries": ["Uzbekistan"]
+	},
+	"VES": {
+		"name": "Venezuelan bol\u00edvar soberano[13]",
+		"code": "VES",
+		"decimal_units": "2",
+		"countries": ["Venezuela"]
+	},
+	"VND": {
+		"name": "Vietnamese \u0111\u1ed3ng",
+		"code": "VND",
+		"decimal_units": "0",
+		"countries": ["Vietnam"]
+	},
+	"VUV": {
+		"name": "Vanuatu vatu",
+		"code": "VUV",
+		"decimal_units": "0",
+		"countries": ["Vanuatu"]
+	},
+	"WST": { "name": "Samoan tala", "code": "WST", "decimal_units": "2", "countries": ["Samoa"] },
+	"XAF": {
+		"name": "CFA franc BEAC",
+		"code": "XAF",
+		"decimal_units": "0",
+		"countries": [
+			"Cameroon (CM)",
+			"Central African Republic (CF)",
+			"Republic of the Congo (CG)",
+			"Chad (TD)",
+			"Equatorial Guinea (GQ)",
+			"Gabon (GA)"
+		]
+	},
+	"XAG": {
+		"name": "Silver (one troy ounce)",
+		"code": "XAG",
+		"decimal_units": ".",
+		"countries": [""]
+	},
+	"XAU": {
+		"name": "Gold (one troy ounce)",
+		"code": "XAU",
+		"decimal_units": ".",
+		"countries": [""]
+	},
+	"XBA": {
+		"name": "European Composite Unit (EURCO) (bond market unit)",
+		"code": "XBA",
+		"decimal_units": ".",
+		"countries": [""]
+	},
+	"XBB": {
+		"name": "European Monetary Unit (E.M.U.-6) (bond market unit)",
+		"code": "XBB",
+		"decimal_units": ".",
+		"countries": [""]
+	},
+	"XBC": {
+		"name": "European Unit of Account 9 (E.U.A.-9) (bond market unit)",
+		"code": "XBC",
+		"decimal_units": ".",
+		"countries": [""]
+	},
+	"XBD": {
+		"name": "European Unit of Account 17 (E.U.A.-17) (bond market unit)",
+		"code": "XBD",
+		"decimal_units": ".",
+		"countries": [""]
+	},
+	"XCD": {
+		"name": "East Caribbean dollar",
+		"code": "XCD",
+		"decimal_units": "2",
+		"countries": [
+			"Anguilla (AI)",
+			"Antigua and Barbuda (AG)",
+			"Dominica (DM)",
+			"Grenada (GD)",
+			"Montserrat (MS)",
+			"Saint Kitts and Nevis (KN)",
+			"Saint Lucia (LC)",
+			"Saint Vincent and the Grenadines (VC)"
+		]
+	},
+	"XDR": {
+		"name": "Special drawing rights",
+		"code": "XDR",
+		"decimal_units": ".",
+		"countries": ["International Monetary Fund"]
+	},
+	"XOF": {
+		"name": "CFA franc BCEAO",
+		"code": "XOF",
+		"decimal_units": "0",
+		"countries": [
+			"Benin (BJ)",
+			"Burkina Faso (BF)",
+			"C\u00f4te d'Ivoire (CI)",
+			"Guinea-Bissau (GW)",
+			"Mali (ML)",
+			"Niger (NE)",
+			"Senegal (SN)",
+			"Togo (TG)"
+		]
+	},
+	"XPD": {
+		"name": "Palladium (one troy ounce)",
+		"code": "XPD",
+		"decimal_units": ".",
+		"countries": [""]
+	},
+	"XPF": {
+		"name": "CFP franc (franc Pacifique)",
+		"code": "XPF",
+		"decimal_units": "0",
+		"countries": [
+			"French territories of the Pacific Ocean:  French Polynesia (PF)",
+			"New Caledonia (NC)",
+			"Wallis and Futuna (WF)"
+		]
+	},
+	"XPT": {
+		"name": "Platinum (one troy ounce)",
+		"code": "XPT",
+		"decimal_units": ".",
+		"countries": [""]
+	},
+	"XSU": {
+		"name": "SUCRE",
+		"code": "XSU",
+		"decimal_units": ".",
+		"countries": ["Unified System for Regional Compensation (SUCRE)[16]"]
+	},
+	"XTS": {
+		"name": "Code reserved for testing",
+		"code": "XTS",
+		"decimal_units": ".",
+		"countries": [""]
+	},
+	"XUA": {
+		"name": "ADB Unit of Account",
+		"code": "XUA",
+		"decimal_units": ".",
+		"countries": ["African Development Bank[17]"]
+	},
+	"YER": { "name": "Yemeni rial", "code": "YER", "decimal_units": "2", "countries": ["Yemen"] },
+	"ZAR": {
+		"name": "South African rand",
+		"code": "ZAR",
+		"decimal_units": "2",
+		"countries": ["Lesotho", "Namibia", "South Africa"]
+	},
+	"ZMW": {
+		"name": "Zambian kwacha",
+		"code": "ZMW",
+		"decimal_units": "2",
+		"countries": ["Zambia"]
+	},
+	"ZWL": {
+		"name": "Zimbabwean dollar",
+		"code": "ZWL",
+		"decimal_units": "2",
+		"countries": ["Zimbabwe"]
+	}
+}
