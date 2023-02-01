@@ -35,17 +35,28 @@ export default function SignIn() {
 	const handleSignIn = async () => {
 		setState((prev) => ({ ...prev, loading: true, error: '', success: false }));
 		try {
-			const res = await fetch('/api/auth/signin', {
-				method: 'POST',
-				body: JSON.stringify({ email: state.email }),
+			// TODO: remove this before production.
+			const userRes = await fetch(`/api/user/get?email=${state.email}`, {
+				method: 'GET',
 				headers: { 'Content-Type': 'application/json' },
 			});
+			const userData = await userRes.json();
 
-			if (!res.ok) {
-				const error = await res.json();
-				throw new Error(error.message);
+			if (userData && userData.allow) {
+				const res = await fetch('/api/auth/signin', {
+					method: 'POST',
+					body: JSON.stringify({ email: state.email }),
+					headers: { 'Content-Type': 'application/json' },
+				});
+
+				if (!res.ok) {
+					const error = await res.json();
+					throw new Error(error.message);
+				}
+				setState((prev) => ({ ...prev, success: true, loading: false, email: '' }));
+			} else {
+				throw new Error('New Signup are closed at the moment.');
 			}
-			setState((prev) => ({ ...prev, success: true, loading: false, email: '' }));
 		} catch (error) {
 			setState((prev) => ({ ...prev, error: error.message, loading: false }));
 		}
