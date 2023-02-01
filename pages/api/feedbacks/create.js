@@ -14,7 +14,7 @@ export default withUserAuth(async (req, res, user) => {
 
 			try {
 				await resend.sendEmail({
-					from: 'Support from Expense.fyi <support@expense.fyi>',
+					from: sentFromEmailId,
 					subject: '🎉 New Feedback Received',
 					to: 'hello@expense.fyi',
 					reply_to: user.email,
