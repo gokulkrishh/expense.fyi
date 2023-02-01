@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("SUPABASE_DB_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model subscriptions {
+  id         String   @id @default(uuid())
+  name       String /// @encrypted
+  notes      String? /// @encrypted
+  url        String
+  price      String   @default("0") /// @encrypted
+  paid       String
+  notify     Boolean  @default(false)
+  date       String
+  created_at DateTime @default(now())
+  deleted    Boolean  @default(false)
+  updated_at DateTime @default(now())
+  user_id    String   @db.Uuid
+  active     Boolean? @default(true)
+  user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model expenses {
+  id         String   @id @default(uuid())
+  name       String /// @encrypted
+  notes      String? /// @encrypted
+  price      String   @default("0") /// @encrypted
+  category   String
+  date       String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  deleted    Boolean  @default(false)
+  user_id    String   @db.Uuid
+  user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model income {
+  id         String   @id @default(uuid())
+  name       String /// @encrypted
+  notes      String? /// @encrypted
+  price      String   @default("0") /// @encrypted
+  category   String
+  date       String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  deleted    Boolean  @default(false)
+  user_id    String   @db.Uuid
+  user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model investments {
+  id         String   @id @default(uuid())
+  name       String /// @encrypted
+  notes      String? /// @encrypted
+  price      String   @default("0") /// @encrypted
+  units      String   @default("0") /// @encrypted
+  category   String
+  date       String
+  created_at DateTime @default(now())
+  deleted    Boolean  @default(false)
+  updated_at DateTime @default(now())
+  user_id    String   @db.Uuid
+  user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model users {
+  id                         String          @id @db.Uuid
+  email                      String
+  created_at                 DateTime        @default(now())
+  updated_at                 DateTime        @default(now())
+  currency                   String          @default("INR")
+  locale                     String          @default("en")
+  payment_id                 String?
+  order_id                   String?
+  plan_status                String          @default("basic")
+  billing_start_date         String?
+  trial_start_date           DateTime        @default(now())
+  payment_signature          String?
+  usage                      Int             @default(0)
+  new_signup_email           Boolean         @default(false)
+  basic_usage_limit_email    Boolean         @default(false)
+  premium_usage_limit_email  Boolean         @default(false)
+  premium_plan_expired_email Boolean         @default(false)
+  expenses                   expenses[]
+  income                     income[]
+  investments                investments[]
+  subscriptions              subscriptions[]
+}
+
+model feedbacks {
+  id         Int      @id @default(autoincrement())
+  message    String
+  user_id    String   @db.Uuid
+  created_at DateTime @default(now())
+  os         String
+  device     String
+  client     String
+}
+
+model contact {
+  id         Int      @id @default(autoincrement())
+  message    String
+  subject    String
+  created_at DateTime @default(now())
+  email      String
+}
