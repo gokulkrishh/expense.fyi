@@ -27,11 +27,11 @@ const features = [
 				<path d="M10 18q-.625 0-1.062-.438Q8.5 17.125 8.5 16.5h3q0 .625-.438 1.062Q10.625 18 10 18Zm-3-2.5V14h6v1.5ZM6.688 13q-1.292-.792-1.99-2.135Q4 9.521 4 8q0-2.5 1.75-4.25T10 2q2.5 0 4.25 1.75T16 8q0 1.521-.698 2.865-.698 1.343-1.99 2.135Zm.479-1.5h5.666q.792-.646 1.229-1.562Q14.5 9.021 14.5 8q0-1.875-1.312-3.188Q11.875 3.5 10 3.5q-1.875 0-3.188 1.312Q5.5 6.125 5.5 8q0 1.021.438 1.938.437.916 1.229 1.562Zm2.833 0Z" />
 			</svg>
 		),
-		description: 'Use your email to securely login into the application without requiring to enter their password.',
+		description: 'Use your email to securely log in into the application, no password is required.',
 		screenshotUrl: '/static/demo/signin.jpg',
 	},
 	{
-		name: 'Privacy & Data Encryption',
+		name: 'Privacy',
 		description: 'Your private data, such as name, price and notes etc, is securely encrypted in our database.',
 		Icon: () => (
 			<svg
@@ -47,9 +47,9 @@ const features = [
 		screenshotUrl: '/static/screenshots/expenses.jpg',
 	},
 	{
-		name: 'Reports & Analytics',
+		name: 'Reports',
 		description:
-			'Get detailed reports and analytics on the expenses, allowing you to better understand your spending habits and make informed financial decisions.',
+			'Get detailed reports on your expenses, which allows you to understand your spending habits and make informed financial decisions.',
 		Icon: () => (
 			<svg
 				className="mr-2 ml-[-6px] mt-[1px]"
@@ -65,7 +65,7 @@ const features = [
 	},
 	{
 		name: 'Subscriptions',
-		description: 'Know what subscriptions you have, and their cost, renewal dates etc,.',
+		description: 'Track subscriptions with ease, no need to remember renewal dates or maintain a messy spreadsheet.',
 		Icon: () => (
 			<svg
 				className="mr-2 ml-[-6px] mt-[1px]"
@@ -100,7 +100,7 @@ const features = [
 	},
 	{
 		name: 'Export Data',
-		description: 'Export your data a a CSV file format as as it is widely supported by most.',
+		description: 'Export your data a a CSV file format as it is widely supported.',
 		Icon: () => (
 			<svg
 				className="mr-2 ml-[-6px] mt-[1px] h-5 w-5"

@@ -6,7 +6,7 @@ import Table from 'components/Table';
 
 import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 
-const tdClassNames = 'relative p-4 pl-8 text-zinc-800 text-sm font-normal';
+const tdClassNames = 'relative p-4 pl-8 text-zinc-800 text-sm font-normal whitespace-nowrap';
 const thList = ['Name', 'Price', 'Renewal Date ↓', 'Added Date', 'Notes', 'Status', 'Actions'];
 
 export default function SubscriptionTable({ isLoading, data = [], onEdit, onDelete, onActive, user }) {
@@ -15,7 +15,7 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 	if (!isLoading && !data.length) {
 		return (
 			<>
-				<div className="flex flex-col items-center justify-center ">
+				<div className="flex flex-col items-center justify-center">
 					<p className="mt-2 font-medium text-black sm:mt-10">You don{"'"}t have any subcriptions yet!</p>
 					<Image
 						className="mt-2"
@@ -65,7 +65,7 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 								{!datum.active ? '-' : isToday ? 'Today' : formatDate(renewalDateObj, locale)}
 							</td>
 							<td className={`${tdClassNames}`}>{formatDate(datum.date, locale)}</td>
-							<td className={`${tdClassNames} max-w-[200px] break-words`}>{datum.notes}</td>
+							<td className={`${tdClassNames}  break-words`}>{datum.notes}</td>
 							<td className={`${tdClassNames}`}>
 								<span
 									className={`inset-0 rounded-full px-2 py-1 text-xs font-medium ${

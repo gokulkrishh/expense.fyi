@@ -130,6 +130,7 @@ export default function SignIn() {
 						<button
 							type="submit"
 							className="flex h-[44px] items-center justify-center rounded-lg bg-zinc-900 py-2.5 px-4 font-medium text-white hover:bg-zinc-700"
+							disabled={state.loading}
 						>
 							{state.loading ? (
 								<>

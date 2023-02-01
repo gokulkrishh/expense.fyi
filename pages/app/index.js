@@ -10,7 +10,7 @@ import enforceAuth from 'components/Auth/enforceAuth';
 import Card from 'components/Card';
 import Summary from 'components/Card/Summary';
 import Feedback from 'components/Feedback';
-import ChartLoading from 'components/Loader/ChartCard';
+import LoaderChart from 'components/Loader/LoaderChart';
 import RecentActivityTable from 'components/Table/RecentActivityTable';
 
 import {
@@ -70,7 +70,7 @@ export default function Home({ user }) {
 
 			<div className="2xl:container h-full w-full">
 				<div className="mb-4 flex flex-col justify-between sm:flex-row ">
-					<h1 className="mr-2 mb-2 text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Overview</h1>
+					<h1 className="mr-3 mb-2 text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Overview</h1>
 					<div className="flex items-center font-medium">
 						<div className="ranger-picker mr-2 flex w-[calc(100%-51px)] items-center sm:mr-4">
 							<span className="mr-2 hidden text-xs font-semibold uppercase sm:inline-block">Showing:</span>
@@ -117,7 +117,7 @@ export default function Home({ user }) {
 							<h3 className="text-md font-semibold text-black">Expenses</h3>
 							<p className="mt-1 pb-2 text-sm font-normal text-zinc-500">Showing based on selected date range.</p>
 							{isExpensesLoading ? (
-								<ChartLoading className="h-[340px]" />
+								<LoaderChart className="h-[340px]" />
 							) : (
 								<BarChart
 									data={chartdata}
@@ -147,7 +147,7 @@ export default function Home({ user }) {
 								Showing based on selected date range for the upcoming renewal dates.
 							</p>
 							{isSubscriptionsLoading ? (
-								<ChartLoading className="h-[340px]" />
+								<LoaderChart className="h-[340px]" />
 							) : (
 								<>
 									<Legend categories={subscriptionDataForLegend} marginTop="mt-3" />
@@ -176,7 +176,7 @@ export default function Home({ user }) {
 							<Card className="h-full w-full">
 								<h3 className="text-md font-semibold text-black">Recent Activity</h3>
 								{isExpensesLoading ? (
-									<ChartLoading className="h-[264px]" />
+									<LoaderChart className="h-[264px]" />
 								) : (
 									<RecentActivityTable currency={user.currency} locale={user.locale} data={recentActivityData} />
 								)}
@@ -187,7 +187,7 @@ export default function Home({ user }) {
 								<h3 className="text-md font-semibold text-black">Top Spent Expenses</h3>
 
 								{isExpensesLoading ? (
-									<ChartLoading className="h-[264px]" />
+									<LoaderChart className="h-[264px]" />
 								) : (
 									<>
 										<div className="mt-2 flex justify-between">

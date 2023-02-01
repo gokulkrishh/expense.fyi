@@ -48,7 +48,7 @@ export default function InvestmentTable({ isLoading, data = [], onEdit, onDelete
 						<td className={`${tdClassNames}`}>{datum.units}</td>
 						<td className={tdClassNames}>{isToday ? 'Today' : formatDate(datum.date, locale)}</td>
 						<td className={`${tdClassNames} capitalize`}>{investmentCategory[datum.category]}</td>
-						<td className={`${tdClassNames} max-w-[200px] break-words`}>{datum.notes}</td>
+						<td className={`${tdClassNames}  break-words`}>{datum.notes}</td>
 						<td className={`${tdClassNames}`}>
 							<div className="flex w-12 items-center justify-between">
 								<button onClick={() => onEdit(datum)} title="Edit">

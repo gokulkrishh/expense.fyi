@@ -1,13 +1,18 @@
 // Source: https://stackoverflow.com/a/56370447/2195730
 
-export const exportTableToCsv = (filename, separator = ',') => {
+const separator = ',';
+
+// Note: Doing to avoid actions columns being exported (assumption last column would be action)
+const excludeLastColumnIndex = 1;
+
+export const exportTableToCsv = (filename) => {
 	const rows = document.querySelectorAll('table tr');
 	const csv = [];
 
 	for (var i = 0; i < rows.length; i++) {
 		var row = [];
 		var cols = rows[i].querySelectorAll('td, th');
-		for (var j = 0; j < cols.length; j++) {
+		for (var j = 0; j < cols.length - excludeLastColumnIndex; j++) {
 			var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ');
 			data = data.replace(/"/g, '""');
 			row.push('"' + data + '"');

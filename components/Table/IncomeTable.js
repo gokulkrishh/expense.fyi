@@ -40,7 +40,7 @@ export default function IncomeTable({ isLoading, data = [], onEdit, onDelete, us
 						<td className={tdClassNames}>{formatCurrency(datum.price, currency, locale)}</td>
 						<td className={tdClassNames}>{isToday ? 'Today' : formatDate(datum.date, locale)}</td>
 						<td className={`${tdClassNames} capitalize`}>{datum.category}</td>
-						<td className={`${tdClassNames} max-w-[200px] break-words`}>{datum.notes}</td>
+						<td className={`${tdClassNames}  break-words`}>{datum.notes}</td>
 						<td className={`${tdClassNames}`}>
 							<div className="flex w-14 items-center justify-between">
 								<button onClick={() => onEdit(datum)} title="Edit">

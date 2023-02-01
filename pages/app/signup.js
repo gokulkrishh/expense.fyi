@@ -61,7 +61,7 @@ export default function Signup() {
 				}
 				setState((prev) => ({ ...prev, success: true, loading: false, email: '' }));
 			} else {
-				throw new Error('Signup are closed at the moment.');
+				throw new Error('Signups are closed at the moment.');
 			}
 		} catch (error) {
 			setState((prev) => ({ ...prev, error: error.message, loading: false }));
@@ -132,6 +132,7 @@ export default function Signup() {
 						<button
 							type="submit"
 							className="flex h-[44px] items-center justify-center rounded-lg bg-zinc-900 py-2.5 px-4 font-medium text-white hover:bg-zinc-700"
+							disabled={state.loading}
 						>
 							{state.loading ? (
 								<>

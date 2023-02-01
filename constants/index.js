@@ -79,7 +79,7 @@ export const tierNames = {
 	premium: {
 		key: 'premium',
 		name: 'Premium',
-		usageLimit: 5000,
+		usageLimit: 2500,
 	},
 	expired: {
 		key: 'expired',
@@ -92,6 +92,6 @@ export const siteName = 'Expense.fyi';
 export const logo = `https://${siteUrls.home}/static/icons/logo.png`;
 
 export const basicPlanUsageLimit = 100;
-export const premiumPlanUsageLimit = 5000;
+export const premiumPlanUsageLimit = 2500;
 
 export const sentFromEmailId = 'Gokul from Expense.fyi <hello@expense.fyi>';

@@ -34,3 +34,5 @@ export const sortByKey = (arr, key) => {
 export const sortDate = (arr, key) => {
 	return arr.sort((a, b) => new Date(arr[key]) - new Date(arr[key]));
 };
+
+export const range = (start, stop) => Array.from({ length: stop - start + 1 }, (_, i) => start + i);

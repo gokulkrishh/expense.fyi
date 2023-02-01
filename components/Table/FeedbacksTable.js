@@ -18,7 +18,7 @@ export default function FeedbacksTable({ isLoading, data = [], locale }) {
 					return (
 						<tr key={datum.id} className="border-b border-gray-200 last:border-0 hover:bg-gray-50">
 							<td className={tdClassNames}>{index + 1}</td>
-							<td className={`${tdClassNames} max-w-[200px] break-words`}>{datum.message}</td>
+							<td className={`${tdClassNames}  break-words`}>{datum.message}</td>
 							<td className={tdClassNames}>
 								{isItToday(new Date(datum.created_at), new Date())
 									? `Today ${formatDateToRelative(new Date(datum.created_at), locale)}`

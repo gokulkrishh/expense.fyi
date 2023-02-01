@@ -7,7 +7,7 @@ export default function Usage({ user, usageLimit }) {
 	const { usage, locale, isBasicPlan, isPremiumPlan, isPremiumPlanEnded } = user;
 	return (
 		<div className="mt-4 w-full max-w-2xl rounded-lg border-[1px] border-zinc-200 bg-white text-left shadow-gray-200 md:mt-0">
-			<h3 className="p-3 py-3 pb-0 text-xl font-bold text-black">Usage</h3>
+			<h3 className="p-3 py-3 pb-0 text-xl font-bold text-black">Current Usage</h3>
 			<div>
 				{isBasicPlan ? (
 					<p className=" px-3 py-3 pt-1 text-sm text-zinc-600">

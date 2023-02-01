@@ -83,7 +83,7 @@ const Feedback = ({ className }) => {
 		<div ref={ref} className={`relative inline-block text-left ${className}`}>
 			<div className="ml-2 mt-0 flex">
 				<button
-					className="font-xs shadow-xs inline-flex items-center rounded-md border border-zinc-200 bg-white px-[8px] py-[8px] text-sm font-medium leading-[16px] text-gray-700 text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+					className="font-xs shadow-xs inline-flex items-center rounded-md border border-zinc-200 bg-white px-[12px] py-[10px] text-sm font-medium leading-[16px] text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-[8px]"
 					onClick={() => setState({ ...state, show: !state.show })}
 				>
 					<ChatBubbleBottomCenterTextIcon className="relative top-[1px] h-4 w-4" />{' '}
@@ -109,12 +109,6 @@ const Feedback = ({ className }) => {
 						{!state.sent ? (
 							<>
 								<span className="text-md mb-2 mt-[2px] flex w-full items-center text-zinc-800">Feedback</span>
-								<button
-									onClick={onHide}
-									className="group absolute top-[-9px] right-[-5px] m-3 rounded-full p-2 text-gray-500 transition-all duration-75 hover:bg-gray-100 focus:outline-none active:bg-gray-200 sm:block"
-								>
-									<XMarkIcon aria-label="close" className="h-5 w-5 cursor-pointer text-zinc-700 hover:text-zinc-500" />
-								</button>
 								<form
 									onSubmit={(event) => {
 										event.preventDefault();
