@@ -1,13 +1,13 @@
 import { range } from 'utils/array';
 
-export default function LoaderTable({ tr = 4, td = 5 }) {
+export default function LoaderTable({ tr = 2, td = 5 }) {
 	return (
 		<>
 			{range(1, tr).map((num, index) => (
-				<tr className="animate-pulse border-b border-gray-200 last:border-0 hover:bg-gray-50" key={`${num}-${index}`}>
+				<tr className="animate-pulse border-b border-gray-200 last:border-0" key={`${num}-${index}`}>
 					{range(1, td).map((tdNum, tdIndex) => (
-						<td key={`${tdNum}-${tdIndex}`} className="mt-1 h-[53px] pl-7">
-							<span className="block w-[50%] rounded-md bg-gray-200 p-[6px]" />
+						<td key={`${tdNum}-${tdIndex}`} className="mt-1 h-[53px]">
+							<span className="block h-[20px] w-[80%] rounded-md bg-gray-200 px-2" />
 						</td>
 					))}
 				</tr>
