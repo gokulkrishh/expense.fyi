@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 
 const baseUrl = 'https://expense.fyi';
 
-export default function Feedback({ message = 'Messasdasdasdasdas', senderEmail = '' }) {
+export default function Feedback({ message = '', email = '' }) {
 	return (
 		<Html>
 			<Head />
@@ -23,7 +23,7 @@ export default function Feedback({ message = 'Messasdasdasdasdas', senderEmail =
 						<Img src={`${baseUrl}/static/icons/logo.png`} width="44" height="44" alt="Logo" style={logo} />
 					</Section>
 					<Text style={h1}>New Feedback</Text>
-					<Text style={{ ...text, marginTop: '10px', marginBottom: '5px' }}>From: {senderEmail}</Text>
+					<Text style={{ ...text, marginTop: '10px', marginBottom: '5px' }}>From: {email}</Text>
 					<Text style={{ ...text, marginTop: '0px' }}>{message}</Text>
 					<Footer />
 				</Container>

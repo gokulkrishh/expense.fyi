@@ -14,10 +14,11 @@ export default withUserAuth(async (req, res, user) => {
 
 			try {
 				await resend.sendEmail({
-					from: sentFromEmailId,
-					subject: 'New Feedback Received',
+					from: 'Support from Expense.fyi <support@expense.fyi>',
+					subject: '🎉 New Feedback Received',
 					to: 'hello@expense.fyi',
-					react: <Feedback message={message} senderEmail={user.email} />,
+					reply_to: user.email,
+					react: <Feedback message={message} email={user.email} />,
 				});
 				res.status(201).json({ message: 'Feedback received.' });
 			} catch (err) {
