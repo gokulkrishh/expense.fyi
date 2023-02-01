@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 
 const baseUrl = 'https://expense.fyi';
 
-export default function Feedback({ message = '', email = '' }) {
+export default function FeedbackEmail({ message = '', email = '' }) {
 	return (
 		<Html>
 			<Head />

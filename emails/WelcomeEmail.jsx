@@ -14,35 +14,53 @@ import Footer from './components/Footer';
 import Footnote from './components/Footnote';
 
 const baseUrl = 'https://expense.fyi';
+const appUrl = 'https://app.expense.fyi';
+const githubUrl = 'https://github.com/gokulkrishh/expense.fyi';
+const twitterUrl = 'https://twitter.com/gokul_i';
 
-export default function SignIn({ magicLink = '', btnText = 'Sign in' }) {
+export default function WelcomeEmail() {
 	return (
 		<Html>
 			<Head />
-			<Preview>Sign in Link for Expense.fyi</Preview>
+			<Preview>Welcome to Expense.fyi</Preview>
 			<Section style={main}>
 				<Container style={container}>
 					<Section style={{ marginTop: '20px' }}>
 						<Img src={`${baseUrl}/static/icons/logo.png`} width="44" height="44" alt="Logo" style={logo} />
 					</Section>
-					<Text style={h1}>Magic Link</Text>
-					<Text style={text}>Hello!</Text>
+					<Text style={h1}>Welcome to Expense.fyi</Text>
 					<Text style={text}>
-						Please click the below link to {btnText} to your account. This link will expire in 10 minutes.
+						I{"'"}m Gokul, creator of the Expense.fyi, an open-source app to deliver financial clarity through spending
+						analysis. We are excited to have you on board.
 					</Text>
-
-					<Section style={{ textAlign: 'left' }}>
-						<ButtonLink href={magicLink} btnText={btnText} />
-					</Section>
-					<Text style={text}>
-						or if you are on mobile, copy and paste this URL into your browser:{' '}
-						<Link style={{ ...link, display: 'block', marginTop: '15px', color: '#cc35e5' }} rel="nofollow">
-							{magicLink.replace(/^https?:\/\//, '')}
+					<Text style={text}>Here is how you can get started:</Text>
+					<Text style={{ ...text, margin: '8px' }}>
+						1. Get financial insights instantly by adding income, expenses, investments, and subscriptions to{' '}
+						<Link href={appUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
+							Expense.fyi
 						</Link>
+						.
 					</Text>
-					<Text style={{ ...text, color: '#666666' }}>
-						If you didn{"'"}t try to {btnText}, you can safely ignore this email.
+					<Text style={{ ...text, margin: '8px' }}>
+						2. Star our{' '}
+						<Link href={githubUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
+							Github
+						</Link>{' '}
+						repository.
 					</Text>
+					<Text style={{ ...text, margin: '8px' }}>
+						3. Follow us on{' '}
+						<Link href={twitterUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
+							Twitter
+						</Link>
+						.
+					</Text>
+					<Text style={{ ...text, margin: '8px' }}>4. Finally, spread some word about us.</Text>
+
+					<Section style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>
+						<ButtonLink href={appUrl} btnText="Get started" />
+					</Section>
+
 					<Footnote />
 					<Footer />
 				</Container>

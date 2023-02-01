@@ -1,9 +1,7 @@
 import * as React from 'react';
 
-import { Button } from '@react-email/button';
 import { Container } from '@react-email/container';
 import { Head } from '@react-email/head';
-import { Hr } from '@react-email/hr';
 import { Html } from '@react-email/html';
 import { Img } from '@react-email/img';
 import { Link } from '@react-email/link';
@@ -11,38 +9,40 @@ import { Preview } from '@react-email/preview';
 import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
+import ButtonLink from './components/ButtonLink';
 import Footer from './components/Footer';
 import Footnote from './components/Footnote';
 
 const baseUrl = 'https://expense.fyi';
-const settingUrl = 'https://app.expense.fyi/settings';
 
-export default function UsageExceeded({ plan = 'Basic Plan', usage = 0, maxUsageLimit = 100, isExpired = false }) {
+export default function SignInEmail({ magicLink = '', btnText = 'Sign in' }) {
 	return (
 		<Html>
 			<Head />
-			<Preview>{`${plan} usage exceeded!`}</Preview>
+			<Preview>Sign in Link for Expense.fyi</Preview>
 			<Section style={main}>
 				<Container style={container}>
 					<Section style={{ marginTop: '20px' }}>
 						<Img src={`${baseUrl}/static/icons/logo.png`} width="44" height="44" alt="Logo" style={logo} />
 					</Section>
-					<Text style={h1}>Usage Limit Reached</Text>
-					<Text style={{ ...text, marginTop: '30px', marginBottom: '10px' }}>Hi!</Text>
-					<Text style={{ ...text, marginTop: '0px', marginBottom: '0px' }}>
-						Your account has <b>exceeded</b> the usage limit of <b>{maxUsageLimit} entries</b> for <b>{plan}</b>.
-					</Text>
-					<Text style={{ ...text, marginTop: '10px' }}>
-						No worries, all data still there. Upgrade to <b>Premium Plan</b> to get Premium features and to increase the
-						entry limit.
+					<Text style={h1}>Magic Link</Text>
+					<Text style={text}>Hello!</Text>
+					<Text style={text}>
+						Please click the below link to {btnText} to your account. This link will expire in 10 minutes.
 					</Text>
 
-					<Section style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>
-						<Button pX={16} pY={10} style={btn} href={settingUrl}>
-							Upgrade now
-						</Button>
+					<Section style={{ textAlign: 'left' }}>
+						<ButtonLink href={magicLink} btnText={btnText} />
 					</Section>
-
+					<Text style={text}>
+						or if you are on mobile, copy and paste this URL into your browser:{' '}
+						<Link style={{ ...link, display: 'block', marginTop: '15px', color: '#cc35e5' }} rel="nofollow">
+							{magicLink.replace(/^https?:\/\//, '')}
+						</Link>
+					</Text>
+					<Text style={{ ...text, color: '#666666' }}>
+						If you didn{"'"}t try to {btnText}, you can safely ignore this email.
+					</Text>
 					<Footnote />
 					<Footer />
 				</Container>
@@ -79,23 +79,15 @@ const h1 = {
 	padding: '0',
 };
 
+const link = {
+	color: '#067df7',
+	textDecoration: 'none',
+};
+
 const text = {
 	color: '#000',
 	fontFamily:
 		"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
 	fontSize: '14px',
 	lineHeight: '24px',
-};
-
-const btn = {
-	backgroundColor: '#000',
-	borderRadius: '5px',
-	color: '#fff',
-	fontFamily:
-		"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-	fontSize: '14px',
-	fontWeight: 500,
-	lineHeight: '50px',
-	textDecoration: 'none',
-	textAlign: 'center',
 };

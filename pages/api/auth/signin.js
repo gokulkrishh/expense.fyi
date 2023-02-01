@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import SignInEmail from 'emails/SignIn';
+import SignInEmail from 'emails/SignInEmail';
 
 import resend from 'lib/email';
 

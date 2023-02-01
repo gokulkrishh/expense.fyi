@@ -1,7 +1,9 @@
 import * as React from 'react';
 
+import { Button } from '@react-email/button';
 import { Container } from '@react-email/container';
 import { Head } from '@react-email/head';
+import { Hr } from '@react-email/hr';
 import { Html } from '@react-email/html';
 import { Img } from '@react-email/img';
 import { Link } from '@react-email/link';
@@ -9,56 +11,36 @@ import { Preview } from '@react-email/preview';
 import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
-import ButtonLink from './components/ButtonLink';
 import Footer from './components/Footer';
 import Footnote from './components/Footnote';
 
 const baseUrl = 'https://expense.fyi';
-const appUrl = 'https://app.expense.fyi';
-const githubUrl = 'https://github.com/gokulkrishh/expense.fyi';
-const twitterUrl = 'https://twitter.com/gokul_i';
+const settingUrl = 'https://app.expense.fyi/settings';
 
-export default function Welcome() {
+export default function PlanExpiredEmail({ plan = 'Premium Plan' }) {
 	return (
 		<Html>
 			<Head />
-			<Preview>Welcome to Expense.fyi</Preview>
+			<Preview>{`${plan} Expired!`}</Preview>
 			<Section style={main}>
 				<Container style={container}>
 					<Section style={{ marginTop: '20px' }}>
 						<Img src={`${baseUrl}/static/icons/logo.png`} width="44" height="44" alt="Logo" style={logo} />
 					</Section>
-					<Text style={h1}>Welcome to Expense.fyi</Text>
-					<Text style={text}>
-						I{"'"}m Gokul, creator of the Expense.fyi, an open-source app to deliver financial clarity through spending
-						analysis. We are excited to have you on board.
+					<Text style={h1}>{plan} Expired</Text>
+					<Text style={{ ...text, marginTop: '30px', marginBottom: '10px' }}>Hi!</Text>
+					<Text style={{ ...text, marginTop: '0px', marginBottom: '0px' }}>
+						Your account{"'"}s <b>{plan}</b> has expired.
 					</Text>
-					<Text style={text}>Here is how you can get started:</Text>
-					<Text style={{ ...text, margin: '8px' }}>
-						1. Get financial insights instantly by adding income, expenses, investments, and subscriptions to{' '}
-						<Link href={appUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
-							Expense.fyi
-						</Link>
-						.
+					<Text style={{ ...text, marginTop: '10px' }}>
+						No worries, all data still there. Renew <b>Premium Plan</b> to continue enjoying premium features on
+						Expense.fyi.
 					</Text>
-					<Text style={{ ...text, margin: '8px' }}>
-						2. Star our{' '}
-						<Link href={githubUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
-							Github
-						</Link>{' '}
-						repository.
-					</Text>
-					<Text style={{ ...text, margin: '8px' }}>
-						3. Follow us on{' '}
-						<Link href={twitterUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
-							Twitter
-						</Link>
-						.
-					</Text>
-					<Text style={{ ...text, margin: '8px' }}>4. Finally, spread some word about us.</Text>
 
 					<Section style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>
-						<ButtonLink href={appUrl} btnText="Get started" />
+						<Button pX={16} pY={10} style={btn} href={settingUrl}>
+							Renew now
+						</Button>
 					</Section>
 
 					<Footnote />
@@ -97,15 +79,23 @@ const h1 = {
 	padding: '0',
 };
 
-const link = {
-	color: '#067df7',
-	textDecoration: 'none',
-};
-
 const text = {
 	color: '#000',
 	fontFamily:
 		"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
 	fontSize: '14px',
 	lineHeight: '24px',
+};
+
+const btn = {
+	backgroundColor: '#000',
+	borderRadius: '5px',
+	color: '#fff',
+	fontFamily:
+		"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+	fontSize: '14px',
+	fontWeight: 500,
+	lineHeight: '50px',
+	textDecoration: 'none',
+	textAlign: 'center',
 };
