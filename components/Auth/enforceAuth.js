@@ -1,5 +1,5 @@
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
-import WelcomeEmail from 'emails/Welcome';
+import WelcomeEmail from 'emails/WelcomeEmail';
 
 import resend from 'lib/email';
 import prisma from 'lib/prisma';

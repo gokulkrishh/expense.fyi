@@ -1,4 +1,4 @@
-import Feedback from 'emails/Feedback';
+import FeedbackEmail from 'emails/FeedbackEmail';
 
 import { withUserAuth } from 'lib/auth';
 import resend from 'lib/email';
@@ -18,7 +18,7 @@ export default withUserAuth(async (req, res, user) => {
 					subject: '🎉 New Feedback Received',
 					to: 'hello@expense.fyi',
 					reply_to: user.email,
-					react: <Feedback message={message} email={user.email} />,
+					react: <FeedbackEmail message={message} email={user.email} />,
 				});
 				res.status(201).json({ message: 'Feedback received.' });
 			} catch (err) {
