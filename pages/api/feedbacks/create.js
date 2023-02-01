@@ -17,7 +17,7 @@ export default withUserAuth(async (req, res, user) => {
 					from: sentFromEmailId,
 					subject: '🎉 New Feedback Received',
 					to: 'hello@expense.fyi',
-					reply_to: user.email,
+					replyTo: user.email,
 					react: <FeedbackEmail message={message} email={user.email} />,
 				});
 				res.status(201).json({ message: 'Feedback received.' });
