@@ -116,8 +116,11 @@ html,
 	top: -5px !important;
 }
 
-.tremor-base button svg {
+.tremor-base button.input-elem > svg {
 	color: var(--text-black) !important;
+	width: 1.05rem;
+	heigth: 1.05rem;
+	margin-top: -1px;
 }
 
 .ranger-picker .tremor-base > div > button:last-child.input-elem.tr-inline-flex {

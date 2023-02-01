@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 
-import { CheckCircleIcon } from '@heroicons/react/24/outline';
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import { Transition } from '@headlessui/react';
+import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import DeviceDetector from 'device-detector-js';
 
 import Loader from 'components/Loader';
@@ -17,7 +18,7 @@ const Feedback = ({ className }) => {
 
 	useEffect(() => {
 		inputElement.current?.focus();
-	}, [inputElement, state.show]);
+	}, [inputElement]);
 
 	const onHide = useCallback(() => {
 		setState({ ...state, show: false, message: '' });
@@ -78,14 +79,6 @@ const Feedback = ({ className }) => {
 		}
 	};
 
-	const FeedbackIcon = ({ className = '' }) => {
-		return (
-			<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="20" width="20" className={className}>
-				<path d="m10 12.604 1.312-2.958 2.959-1.313-2.959-1.312L10 4.062 8.688 7.021 5.729 8.333l2.959 1.313Zm-8.333 5.729V3.417q0-.729.51-1.24.511-.51 1.24-.51h13.166q.729 0 1.24.51.51.511.51 1.24v9.833q0 .729-.51 1.24-.511.51-1.24.51H5Zm1.75-4.229.854-.854h12.312V3.417H3.417Zm0-10.687v10.687Z" />
-			</svg>
-		);
-	};
-
 	return (
 		<div ref={ref} className={`relative inline-block text-left ${className}`}>
 			<div className="ml-2 mt-0 flex">
@@ -93,11 +86,21 @@ const Feedback = ({ className }) => {
 					className="font-xs shadow-xs inline-flex items-center rounded-md border border-zinc-200 bg-white px-[8px] py-[8px] text-sm font-medium leading-[16px] text-gray-700 text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
 					onClick={() => setState({ ...state, show: !state.show })}
 				>
-					<FeedbackIcon className="relative top-[1px]" /> <span className="ml-2 hidden sm:block">Feedback</span>
+					<ChatBubbleBottomCenterTextIcon className="relative top-[1px] h-4 w-4" />{' '}
+					<span className="ml-2 hidden sm:block">Feedback</span>
 				</button>
 			</div>
 
-			{state.show ? (
+			<Transition
+				as={Fragment}
+				show={state.show}
+				enter="transition ease-out duration-200"
+				enterFrom="opacity-0 translate-y-1"
+				enterTo="opacity-100 translate-y-0"
+				leave="transition ease-in duration-150"
+				leaveFrom="opacity-100 translate-y-0"
+				leaveTo="opacity-0 translate-y-1"
+			>
 				<div
 					className="absolute right-0 z-10 mt-2 h-[197px] w-[290px] origin-top-right rounded-md bg-white px-4 py-2 shadow-md shadow-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
 					tabIndex="-1"
@@ -121,12 +124,13 @@ const Feedback = ({ className }) => {
 									}}
 								>
 									<textarea
-										className="mt-3 mb-3 block h-[100px] w-full appearance-none rounded-md bg-white px-3 py-2 text-sm text-zinc-800 ring-1 ring-gray-300 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
+										className="mt-3 mb-3 block h-[100px] w-full appearance-none rounded-md bg-white px-3 py-2 text-sm text-zinc-800 ring-1 ring-gray-300 placeholder:text-zinc-400 focus:outline-none"
 										placeholder="Share your feedback"
 										onChange={(event) => setState({ ...state, message: event.target.value })}
 										value={state.message}
 										style={{ resize: 'none' }}
 										required
+										autoFocus
 										ref={inputElement}
 										maxLength="150"
 									/>
@@ -150,14 +154,14 @@ const Feedback = ({ className }) => {
 							</>
 						) : (
 							<div className="flex h-[204px] flex-col items-center justify-center">
-								<CheckCircleIcon className="mb-2 h-8 w-8 text-blue-500" />
+								<CheckCircleIcon className="mb-2 h-10 w-10 text-green-500" />
 								<span className="mb-2 block text-sm font-medium text-zinc-800">Your feedback is received.</span>
-								<span className="mb-3 block text-sm font-medium text-zinc-800">Thanks for your help!</span>
+								<span className="mb-3 block text-sm font-medium text-zinc-800">Will get in touch with you soon!</span>
 							</div>
 						)}
 					</div>
 				</div>
-			) : null}
+			</Transition>
 		</div>
 	);
 };

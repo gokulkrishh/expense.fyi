@@ -34,7 +34,7 @@ export const showToast = (message, duration = defaultDuration) => {
 						leaveFrom="opacity-100 rotate-0 scale-100"
 						leaveTo="opacity-0 scale-95"
 					>
-						<InformationCircleIcon className="mr-1 h-5 w-5 text-blue-600" />
+						<InformationCircleIcon className="mr-1 h-5 w-5 text-blue-500" />
 					</Transition>
 					<span className="text-zinc-900">{message}</span>
 				</div>
