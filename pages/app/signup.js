@@ -32,18 +32,23 @@ export default function Signup() {
 		inputElement.current?.focus();
 	}, []);
 
+	const checkAccountExists = async (email) => {
+		const res = await fetch('/api/auth/account-exists', {
+			method: 'POST',
+			body: JSON.stringify({ email }),
+			headers: { 'Content-Type': 'application/json' },
+		});
+		return await res.json();
+	};
+
 	const handleSignup = async () => {
 		setState((prev) => ({ ...prev, loading: true, error: '', success: false }));
 
 		try {
-			// TODO: remove this before production.
-			const userRes = await fetch(`/api/user/get?email=${state.email}`, {
-				method: 'GET',
-				headers: { 'Content-Type': 'application/json' },
-			});
-			const userData = await userRes.json();
+			// TODO: remove this before prod to allow new signup
+			const { exists = false } = await checkAccountExists(state.email);
 
-			if (userData && userData.allow) {
+			if (exists) {
 				const res = await fetch('/api/auth/signup', {
 					method: 'POST',
 					body: JSON.stringify({ email: state.email }),
@@ -56,7 +61,7 @@ export default function Signup() {
 				}
 				setState((prev) => ({ ...prev, success: true, loading: false, email: '' }));
 			} else {
-				throw new Error('New Signup are closed at the moment.');
+				throw new Error('Signup are closed at the moment.');
 			}
 		} catch (error) {
 			setState((prev) => ({ ...prev, error: error.message, loading: false }));

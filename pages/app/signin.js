@@ -32,17 +32,21 @@ export default function SignIn() {
 		inputElement.current?.focus();
 	}, []);
 
+	const checkAccountExists = async (email) => {
+		const res = await fetch('/api/auth/account-exists', {
+			method: 'POST',
+			body: JSON.stringify({ email }),
+			headers: { 'Content-Type': 'application/json' },
+		});
+		return await res.json();
+	};
+
 	const handleSignIn = async () => {
 		setState((prev) => ({ ...prev, loading: true, error: '', success: false }));
 		try {
-			// TODO: remove this before production.
-			const userRes = await fetch(`/api/user/get?email=${state.email}`, {
-				method: 'GET',
-				headers: { 'Content-Type': 'application/json' },
-			});
-			const userData = await userRes.json();
+			const { exists = false } = await checkAccountExists(state.email);
 
-			if (userData && userData.allow) {
+			if (exists) {
 				const res = await fetch('/api/auth/signin', {
 					method: 'POST',
 					body: JSON.stringify({ email: state.email }),
@@ -55,7 +59,7 @@ export default function SignIn() {
 				}
 				setState((prev) => ({ ...prev, success: true, loading: false, email: '' }));
 			} else {
-				throw new Error('New Signup are closed at the moment.');
+				throw new Error('No such account, Sign up instead.');
 			}
 		} catch (error) {
 			setState((prev) => ({ ...prev, error: error.message, loading: false }));
