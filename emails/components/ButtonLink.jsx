@@ -9,7 +9,7 @@ export default function ButtonLink({ href, btnText }) {
 }
 
 const btn = {
-	backgroundColor: '#000',
+	backgroundColor: '#171717',
 	borderRadius: '5px',
 	color: '#fff',
 	fontFamily:
