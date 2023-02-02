@@ -128,8 +128,8 @@ export default function Home({ user }) {
 									}}
 									layout="horizontal"
 									showTooltip={true}
-									startEndOnly={false}
 									showLegend={true}
+									stack={false}
 									showAnimation={true}
 									minValue={0}
 									maxValue={maxValueForXAxisBarChart?.value}

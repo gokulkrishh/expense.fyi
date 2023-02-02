@@ -3,14 +3,19 @@ import { addYears } from 'date-fns';
 
 import { formatDate } from 'utils/formatter';
 
-export default function Usage({ user, usageLimit }) {
+import { tierNames } from 'constants/index';
+
+const { premium, basic } = tierNames;
+
+export default function Usage({ user }) {
 	const { usage, locale, isBasicPlan, isPremiumPlan, isPremiumPlanEnded } = user;
+	const usageLimit = user.isPremiumPlan ? premium.usageLimit : basic.usageLimit;
 	return (
-		<div className="mt-4 w-full max-w-2xl rounded-lg border-[1px] border-zinc-200 bg-white text-left shadow-gray-200 md:mt-0">
+		<div className="mt-4 w-full max-w-2xl rounded-lg border-[1px] border-zinc-200 bg-white p-1 text-left shadow-gray-200 md:mt-0">
 			<h3 className="p-3 py-3 pb-0 text-xl font-bold text-black">Current Usage</h3>
 			<div>
 				{isBasicPlan ? (
-					<p className=" px-3 py-3 pt-1 text-sm text-zinc-600">
+					<p className="mt-2 px-3 py-3 pt-2 text-sm text-zinc-600">
 						You are currently on <span className="font-semibold text-orange-600">Basic Plan</span> started at{' '}
 						<span className="font-semibold text-orange-600">{formatDate(new Date(user.trial_start_date), locale)}</span>
 						.

@@ -6,17 +6,30 @@ import { formatDate } from './formatter';
 const recentIndex = 4;
 
 export const extractExpensesData = (data, locale) => {
-	return sortByKey(data, 'date')
-		.map((datum) => ({
-			date: formatDate(datum.date, locale, { day: '2-digit', year: '2-digit', month: 'short' }),
-			[datum.category]: Number(datum.price),
-			value: Number(datum.price),
-		}))
-		.reverse();
+	const groupByDate = sortByKey(data, 'date').reduce((acc, datum) => {
+		const date = formatDate(datum.date, locale, { day: '2-digit', year: '2-digit', month: 'short' });
+		acc[date] = acc[date]
+			? {
+					...acc[date],
+					[datum.category]: acc[date][datum.category]
+						? acc[date][datum.category] + Number(datum.price)
+						: Number(datum.price),
+			  }
+			: { date, [datum.category]: Number(datum.price) };
+
+		return acc;
+	}, {});
+
+	return Object.values(groupByDate).reverse();
 };
 
 export const extractExpensesCategories = (data) => {
-	return data.map((datum) => datum.category);
+	return Object.keys(
+		data.reduce((acc, datum) => {
+			acc[datum.category] = true;
+			return acc;
+		}, {})
+	);
 };
 
 export const extractMaxXAxisValue = (data) => data.sort((a, b) => b - a);
