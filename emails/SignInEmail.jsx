@@ -23,9 +23,9 @@ export default function SignInEmail({ magicLink = '', btnText = 'Sign in' }) {
 			<Section style={main}>
 				<Container style={container}>
 					<Section style={{ marginTop: '20px' }}>
-						<Img src={`${baseUrl}/static/icons/logo.png`} width="44" height="44" alt="Logo" style={logo} />
+						<Img src={`${baseUrl}/static/icons/logo.png`} width="54" height="54" alt="Logo" style={logo} />
 					</Section>
-					<Text style={h1}>Magic Link</Text>
+					<Text style={{ ...h1, marginTop: '20px' }}>Magic Link</Text>
 					<Text style={text}>Hello!</Text>
 					<Text style={text}>
 						Please click the below link to {btnText} to your account. This link will expire in 10 minutes.

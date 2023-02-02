@@ -44,7 +44,7 @@ const features = [
 				<path d="M5.083 18.333q-.729 0-1.239-.521-.511-.52-.511-1.25V8.417q0-.729.511-1.24.51-.51 1.239-.51h.709V5.042q0-1.771 1.218-2.99Q8.229.833 10 .833q1.771 0 2.99 1.219 1.218 1.219 1.218 2.99v1.625h.709q.729 0 1.239.51.511.511.511 1.24v8.145q0 .73-.511 1.25-.51.521-1.239.521ZM7.542 6.667h4.916V5.042q0-1.021-.718-1.74-.719-.719-1.74-.719t-1.74.719q-.718.719-.718 1.74Zm-2.459 9.916h9.834V8.417H5.083v8.166Zm0-8.166v8.166-8.166ZM10 15.812q.354 0 .615-.26.26-.26.26-.614v-1.584h1.583q.354 0 .615-.26.26-.261.26-.615t-.26-.614q-.261-.261-.615-.261h-1.583v-1.583q0-.354-.26-.615-.261-.26-.615-.26t-.615.26q-.26.261-.26.615v1.583H7.542q-.354 0-.615.261-.26.26-.26.614t.26.615q.261.26.615.26h1.583v1.584q0 .354.26.614.261.26.615.26Z" />
 			</svg>
 		),
-		screenshotUrl: '/static/screenshots/expenses.jpg',
+		screenshotUrl: '/static/demo/expenses.jpg',
 	},
 	{
 		name: 'Reports',
@@ -61,7 +61,7 @@ const features = [
 				<path d="M10 13.5q1.458 0 2.479-1.021Q13.5 11.458 13.5 10q0-1.458-1.021-2.479Q11.458 6.5 10 6.5q-1.458 0-2.479 1.021Q6.5 8.542 6.5 10q0 1.458 1.021 2.479Q8.542 13.5 10 13.5Zm0-1.5q-.833 0-1.417-.583Q8 10.833 8 10q0-.833.583-1.417Q9.167 8 10 8q.833 0 1.417.583Q12 9.167 12 10q0 .833-.583 1.417Q10.833 12 10 12Zm0 4q-2.979 0-5.417-1.635Q2.146 12.729 1 10q1.146-2.729 3.583-4.365Q7.021 4 10 4q2.979 0 5.417 1.635Q17.854 7.271 19 10q-1.146 2.729-3.583 4.365Q12.979 16 10 16Zm0-6Zm0 4.5q2.333 0 4.312-1.208 1.98-1.209 3.042-3.292-1.062-2.083-3.042-3.292Q12.333 5.5 10 5.5T5.688 6.708Q3.708 7.917 2.646 10q1.062 2.083 3.042 3.292Q7.667 14.5 10 14.5Z" />
 			</svg>
 		),
-		screenshotUrl: '/static/screenshots/overview.jpg',
+		screenshotUrl: '/static/demo/overview.jpg',
 	},
 	{
 		name: 'Subscriptions',
@@ -96,7 +96,7 @@ const features = [
 				<path d="M5.5 19q-.625 0-1.062-.438Q4 18.125 4 17.5v-15q0-.625.438-1.062Q4.875 1 5.5 1h9q.625 0 1.062.438Q16 1.875 16 2.5v15q0 .625-.438 1.062Q15.125 19 14.5 19Zm0-2.5v1h9v-1Zm0-1.5h9V5h-9Zm0-11.5h9v-1h-9Zm0 0v-1 1Zm0 13v1Z" />
 			</svg>
 		),
-		screenshotUrl: '/static/screenshots/responsive.jpg',
+		screenshotUrl: '/static/demo/responsive.jpg',
 	},
 	{
 		name: 'Export Data',
@@ -119,7 +119,8 @@ const features = [
 				></path>
 			</svg>
 		),
-		screenshotUrl: '/static/screenshots/export.jpg',
+		screenshotUrl: '/static/demo/export.jpg',
+		demoUrl: '/static/demo/export.mp4',
 	},
 ];
 
@@ -247,7 +248,6 @@ export default function Home() {
 						</ul>
 					</div>
 				</div>
-
 				<div className="mx-auto mt-16 mb-16 max-w-2xl px-3 ">
 					<h3 className="mt-8 mb-12 text-center text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl">
 						Simple yet,{' '}
@@ -297,14 +297,21 @@ export default function Home() {
 							})}
 						</div>
 						<div className="relative max-w-xl overflow-hidden whitespace-nowrap rounded-md border-[1px] bg-white shadow-lg lg:mt-[30px] lg:h-[360px] lg:w-[900px]">
-							<video autoPlay muted loop width={1200} height={400} poster={features[selectedFeature].screenshotUrl}>
+							<video
+								playsInline
+								autoPlay
+								muted
+								loop
+								width="1200"
+								height="400"
+								poster={features[selectedFeature].screenshotUrl}
+							>
 								<source src={features[selectedFeature].demoUrl} type="video/mp4" />
 								Your browser does not support the video tag.
 							</video>
 						</div>
 					</div>
 				</div>
-
 				<div className="mx-auto mt-16 mb-16 grid max-w-md justify-center px-3 text-center sm:px-0 md:max-w-[600px]">
 					<h3 className="mt-0 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl">
 						Our{' '}
@@ -346,7 +353,6 @@ export default function Home() {
 						<Premium />
 					</div>
 				</div>
-
 				<div className="mx-auto mt-16 mb-16 max-w-md px-3 text-center sm:max-w-lg sm:px-0">
 					<h3 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl sm:leading-[3.5rem]">
 						Proudly{' '}
@@ -375,6 +381,10 @@ export default function Home() {
 					</Link>
 				</div>
 				<Footer />
+				{/* preload videos */}
+				{features.map((feature) => (
+					<>{feature.demoUrl ? <link key={feature.name} rel="preload" as="video" href={feature.demoUrl} /> : null}</>
+				))}
 			</div>
 		</>
 	);

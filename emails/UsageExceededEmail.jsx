@@ -23,9 +23,9 @@ export default function UsageExceededEmail({ plan = 'Basic Plan', usage = 0, max
 			<Section style={main}>
 				<Container style={container}>
 					<Section style={{ marginTop: '20px' }}>
-						<Img src={`${baseUrl}/static/icons/logo.png`} width="44" height="44" alt="Logo" style={logo} />
+						<Img src={`${baseUrl}/static/icons/logo.png`} width="54" height="54" alt="Logo" style={logo} />
 					</Section>
-					<Text style={h1}>Usage Limit Reached</Text>
+					<Text style={{ ...h1, marginTop: '20px' }}>Usage Limit Reached</Text>
 					<Text style={{ ...text, marginTop: '30px', marginBottom: '10px' }}>Hi!</Text>
 					<Text style={{ ...text, marginTop: '0px', marginBottom: '0px' }}>
 						Your account has <b>exceeded</b> the usage limit of <b>{maxUsageLimit} entries</b> for <b>{plan}</b>.

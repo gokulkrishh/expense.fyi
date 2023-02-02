@@ -27,9 +27,9 @@ export default function WelcomeEmail() {
 			<Section style={main}>
 				<Container style={container}>
 					<Section style={{ marginTop: '20px' }}>
-						<Img src={`${baseUrl}/static/icons/logo.png`} width="44" height="44" alt="Logo" style={logo} />
+						<Img src={`${baseUrl}/static/icons/logo.png`} width="54" height="54" alt="Logo" style={logo} />
 					</Section>
-					<Text style={h1}>Welcome to Expense.fyi</Text>
+					<Text style={{ ...h1, marginTop: '20px' }}>Welcome to Expense.fyi</Text>
 					<Text style={text}>
 						I{"'"}m Gokul, creator of the Expense.fyi, an open-source app to deliver financial clarity through spending
 						analysis. We are excited to have you on board.
@@ -38,7 +38,7 @@ export default function WelcomeEmail() {
 					<Text style={{ ...text, margin: '8px' }}>
 						1. Watch this{' '}
 						<Link href={demoVideoUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
-							demo video
+							demo
 						</Link>{' '}
 						to know how its done in Expense.fyi.
 					</Text>

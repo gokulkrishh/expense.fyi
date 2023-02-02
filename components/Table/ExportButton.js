@@ -14,7 +14,7 @@ const ExportButton = ({ className = '', filename }) => {
 			}}
 		>
 			<svg
-				className="mr-1 mt-[-1px] h-4 w-4 text-black"
+				className="mr-1 mt-[0px] h-4 w-4 text-black"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
