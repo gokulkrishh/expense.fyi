@@ -43,7 +43,7 @@ export default function SignInEmail({ magicLink = '', btnText = 'Sign in' }) {
 					<Text style={{ ...text, color: '#666666' }}>
 						If you didn{"'"}t try to {btnText}, you can safely ignore this email.
 					</Text>
-					<Footnote />
+					<Footnote hideNote={true} />
 					<Footer />
 				</Container>
 			</Section>

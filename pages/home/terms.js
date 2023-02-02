@@ -13,7 +13,7 @@ export default function Terms() {
 			</Head>
 
 			<div
-				className={`font-default relative min-h-screen bg-gradient-to-br from-sky-100 via-white to-sky-50 pl-1 pr-1 leading-relaxed text-zinc-800`}
+				className={`font-default relative min-h-screen bg-gradient-to-br from-sky-100 via-white to-sky-50 pl-2 pr-2 leading-relaxed text-zinc-800`}
 			>
 				<div className="relative m-auto h-[40px] max-w-4xl pt-3">
 					<header className="absolute left-0 right-0 top-3 z-20 flex items-center justify-between">

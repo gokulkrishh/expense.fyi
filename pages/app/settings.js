@@ -9,7 +9,7 @@ import Loader from 'components/Loader';
 import { BasicFeatureList } from 'components/Plans/Basic';
 import { PremiumFeatureList } from 'components/Plans/Premium';
 import Usage from 'components/Plans/Usage';
-import { showErrorToast, showSuccessToast, toastMessages } from 'components/Toast';
+import { showErrorToast, showSuccessToast, showToast } from 'components/Toast';
 
 import { makePayment } from 'lib/razorpay';
 
@@ -226,11 +226,12 @@ export default function Settings({ user }) {
 										<button
 											onClick={() => {
 												if (user.isBasicPlan || user.isPremiumPlanEnded) {
-													setLoading(true);
-													makePayment({ ...payment, email: user.email, plan_status: user.plan_status });
-													setTimeout(() => {
-														setLoading(false);
-													}, 4000);
+													// setLoading(true);
+													// makePayment({ ...payment, email: user.email, plan_status: user.plan_status });
+													// setTimeout(() => {
+													// 	setLoading(false);
+													// }, 4000);
+													showToast(`Payments are coming soon.`);
 												}
 											}}
 											disabled={(user.isPremiumPlan && !user.isPremiumPlanEnded) || loading}

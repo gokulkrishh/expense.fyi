@@ -17,6 +17,7 @@ const baseUrl = 'https://expense.fyi';
 const appUrl = 'https://app.expense.fyi';
 const githubUrl = 'https://github.com/gokulkrishh/expense.fyi';
 const twitterUrl = 'https://twitter.com/gokul_i';
+const demoVideoUrl = `${baseUrl}/static/demo.mp4`;
 
 export default function WelcomeEmail() {
 	return (
@@ -35,11 +36,11 @@ export default function WelcomeEmail() {
 					</Text>
 					<Text style={text}>Here is how you can get started:</Text>
 					<Text style={{ ...text, margin: '8px' }}>
-						1. Get financial insights instantly by adding income, expenses, investments, and subscriptions to{' '}
-						<Link href={appUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
-							Expense.fyi
-						</Link>
-						.
+						1. Watch this{' '}
+						<Link href={demoVideoUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
+							demo video
+						</Link>{' '}
+						to know how its done in Expense.fyi.
 					</Text>
 					<Text style={{ ...text, margin: '8px' }}>
 						2. Star our{' '}

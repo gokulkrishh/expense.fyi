@@ -126,7 +126,9 @@ export default function Home({ user }) {
 									valueFormatter={(number) => {
 										return formatCurrency(number, user.currency, user.locale);
 									}}
+									layout="horizontal"
 									showTooltip={true}
+									startEndOnly={false}
 									showLegend={true}
 									showAnimation={true}
 									minValue={0}
@@ -134,7 +136,7 @@ export default function Home({ user }) {
 									showGridLines={true}
 									marginTop="mt-4"
 									height="h-80"
-									yAxisWidth="w-18"
+									yAxisWidth="w-20"
 								/>
 							)}
 						</Card>
@@ -144,7 +146,7 @@ export default function Home({ user }) {
 						<Card className="h-full w-full">
 							<h3 className="text-md font-semibold text-black">Subscriptions</h3>
 							<p className="mt-1 pb-2 text-sm font-normal text-zinc-500">
-								Showing based on selected date range for the upcoming renewal dates.
+								Upcoming renewal dates based on date selection.
 							</p>
 							{isSubscriptionsLoading ? (
 								<LoaderChart className="h-[340px]" />

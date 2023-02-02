@@ -126,7 +126,7 @@ const Feedback = ({ className }) => {
 										required
 										autoFocus
 										ref={inputElement}
-										maxLength="150"
+										maxLength="250"
 									/>
 									<div className="flex h-[30px] w-full justify-end">
 										<button

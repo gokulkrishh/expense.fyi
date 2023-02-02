@@ -139,12 +139,12 @@ export default function Home() {
 			</Head>
 
 			<div
-				className={`font-default relative bg-gradient-to-br from-sky-100 via-white to-sky-50 pl-1 pr-1 text-zinc-800`}
+				className={`font-default relative bg-gradient-to-br from-sky-100 via-white to-sky-50 pl-2 pr-2 text-zinc-800`}
 			>
 				<div className="relative m-auto h-[56px] max-w-4xl pt-3">
 					<header className="absolute left-0 right-0 top-3 z-20 flex items-center justify-between">
 						<Link href="/" className="flex max-w-[180px] items-center p-3 text-2xl text-black">
-							<Logo className="mr-[5px] h-7 w-7 flex-shrink-0" />
+							<Logo w="30" h="30" />
 						</Link>
 
 						<Link
