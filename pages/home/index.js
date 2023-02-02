@@ -15,7 +15,7 @@ import { siteUrls, tiers } from 'constants/index';
 
 const features = [
 	{
-		name: 'Secure Login',
+		name: 'Secure Sign in',
 		Icon: () => (
 			<svg
 				className="mr-2 ml-[-6px] mt-[1px]"
@@ -27,12 +27,13 @@ const features = [
 				<path d="M10 18q-.625 0-1.062-.438Q8.5 17.125 8.5 16.5h3q0 .625-.438 1.062Q10.625 18 10 18Zm-3-2.5V14h6v1.5ZM6.688 13q-1.292-.792-1.99-2.135Q4 9.521 4 8q0-2.5 1.75-4.25T10 2q2.5 0 4.25 1.75T16 8q0 1.521-.698 2.865-.698 1.343-1.99 2.135Zm.479-1.5h5.666q.792-.646 1.229-1.562Q14.5 9.021 14.5 8q0-1.875-1.312-3.188Q11.875 3.5 10 3.5q-1.875 0-3.188 1.312Q5.5 6.125 5.5 8q0 1.021.438 1.938.437.916 1.229 1.562Zm2.833 0Z" />
 			</svg>
 		),
-		description: 'Use your email to securely log in into the application, no password is required.',
+		description: 'Use your email to securely log in to the application; no password is required.',
 		screenshotUrl: '/static/demo/signin.jpg',
+		demoUrl: '/static/demo/signin.mp4',
 	},
 	{
 		name: 'Privacy',
-		description: 'Your private data, such as name, price and notes etc, is securely encrypted in our database.',
+		description: 'Your private data, such as name, price, and notes, etc., is securely encrypted in the database.',
 		Icon: () => (
 			<svg
 				className="mr-2 ml-[-6px] mt-[-1px]"
@@ -48,8 +49,7 @@ const features = [
 	},
 	{
 		name: 'Reports',
-		description:
-			'Get detailed reports on your expenses, which allows you to understand your spending habits and make informed financial decisions.',
+		description: 'You can understand your spending habits by viewing detailed reports on the overview page. ',
 		Icon: () => (
 			<svg
 				className="mr-2 ml-[-6px] mt-[1px]"
@@ -64,8 +64,8 @@ const features = [
 		screenshotUrl: '/static/demo/overview.jpg',
 	},
 	{
-		name: 'Subscriptions',
-		description: 'Track subscriptions with ease, no need to remember renewal dates or maintain a messy spreadsheet.',
+		name: 'Recurring Subscriptions',
+		description: 'Easily track subscriptions; no need to remember renewal dates or maintain a messy spreadsheet.',
 		Icon: () => (
 			<svg
 				className="mr-2 ml-[-6px] mt-[1px]"
@@ -84,7 +84,7 @@ const features = [
 	{
 		name: 'Multi-device & Cross-platform',
 		description:
-			'Access from multiple devices, including smartphones and laptops, making it easy to track expenses on-the-go from any device.',
+			'Access from multiple devices, including smartphones and laptops, makes it easy to track expenses on-the-go from any device.',
 		Icon: () => (
 			<svg
 				className="mr-2 ml-[-6px] mt-[1px]"
@@ -100,7 +100,7 @@ const features = [
 	},
 	{
 		name: 'Export Data',
-		description: 'Export your data a a CSV file format as it is widely supported.',
+		description: 'Export your data in the CSV file format, which is widely supported.',
 		Icon: () => (
 			<svg
 				className="mr-2 ml-[-6px] mt-[1px] h-5 w-5"
@@ -135,7 +135,7 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Expense.fyi – Track you expenses at ease</title>
+				<title>Expense.fyi – Track your expenses with ease</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 			</Head>
 
@@ -191,7 +191,7 @@ export default function Home() {
 							your financials.
 						</p>
 						<p className="font-default mt-2 hidden text-base leading-7 sm:text-lg">
-							Sign up today and taking control of your finances with ease!
+							Sign up today and take control of your finances with ease!
 						</p>
 						<div className="mt-12 flex justify-center">
 							<Link
@@ -228,22 +228,20 @@ export default function Home() {
 						</h3>
 						<ul className="mt-6 list-decimal px-4 text-left leading-6 [counter-reset:section] sm:px-2">
 							<li className="before::h-2 font-default mt-4 text-base  sm:text-lg">
-								<b className="font-sans font-bold text-black">Easy to use:</b> You can easily log your expenses and
-								categorize them, and track them on the go, whether you{"'"}re at home or on the move.
+								<b className="font-sans font-bold text-black">Easy to use:</b> Track expenses on-the-go with
+								categorization and logging.
 							</li>
 							<li className="before::h-2 font-default mt-4 text-base  sm:text-lg">
-								<b className="font-sans font-bold text-black">Identifying areas of unnecessary spending:</b> You can
-								identify areas where you may be spending more money than necessary and make adjustments to your budget
-								accordingly.
+								<b className="font-sans font-bold text-black">Data-driven insights:</b> Expense tracker can provide
+								valuable insights into your spending habits, allowing you to make more informed decisions.
 							</li>
 							<li className="before::h-2 font-default mt-4 text-base  sm:text-lg">
-								<b className="font-sans font-bold text-black">Saving money:</b> You can see where your money is going
-								and make decisions on how to save money.
+								<b className="font-sans font-bold text-black">Identify overspending:</b> Take control of your finances
+								by identifying and reducing overspending with an expense tracker.
 							</li>
 							<li className="before::h-2 font-default mt-4 text-base  sm:text-lg">
-								<b className="font-sans font-bold text-black">Increased financial visibility:</b> This can give you a
-								clear picture of your financial spending at a glance, helping you make informed decisions about your
-								money and achieve your financial goals.
+								<b className="font-sans font-bold text-black">Real-time visibility:</b> Monitor your expenses in
+								real-time, whether you are at home or on-the-go, with a user-friendly interface
 							</li>
 						</ul>
 					</div>
@@ -261,7 +259,7 @@ export default function Home() {
 							{features.map((feature, index) => {
 								const isSelected = index === selectedFeature;
 								return (
-									<div key={feature.name}>
+									<div key={`${feature.name}-${index}`}>
 										<button
 											className={
 												'flex w-full justify-between rounded-lg bg-orange-100 px-4 py-3 text-left text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-75'
@@ -304,9 +302,13 @@ export default function Home() {
 								loop
 								width="1200"
 								height="400"
+								src={
+									features[selectedFeature].demoUrl
+										? features[selectedFeature].demoUrl
+										: features[selectedFeature].screenshotUrl
+								}
 								poster={features[selectedFeature].screenshotUrl}
 							>
-								<source src={features[selectedFeature].demoUrl} type="video/mp4" />
 								Your browser does not support the video tag.
 							</video>
 						</div>
@@ -382,9 +384,9 @@ export default function Home() {
 				</div>
 				<Footer />
 				{/* preload videos */}
-				{features.map((feature) => (
-					<>{feature.demoUrl ? <link key={feature.name} rel="preload" as="video" href={feature.demoUrl} /> : null}</>
-				))}
+				{features.map(({ name, demoUrl }) =>
+					demoUrl ? <link key={name} rel="preload" as="video" href={demoUrl} /> : null
+				)}
 			</div>
 		</>
 	);
