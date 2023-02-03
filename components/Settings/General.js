@@ -48,7 +48,7 @@ export default function General({ user }) {
 				<div className="flex flex-col sm:flex-row">
 					<select
 						name="currency"
-						className="mt-2 block h-10 w-full appearance-none rounded-md bg-white py-2 px-3 pr-8 text-sm text-black shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900 sm:max-w-xs"
+						className="mt-2 block h-10 w-full appearance-none rounded-md bg-white py-2 px-3 pr-8 text-sm text-black shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
 						onChange={(event) => {
 							onUpdate({ currency: event.target.value });
 						}}
@@ -64,13 +64,13 @@ export default function General({ user }) {
 							);
 						})}
 					</select>
-					<span className="ml-0 mt-3 text-sm sm:mt-4 sm:ml-6">
-						Eg:{' '}
-						<span className="font-medium text-orange-600">
-							{formatCurrency(100, currencyData.currency, currencyData.locale)}
-						</span>
-					</span>
 				</div>
+				<span className="ml-0 mt-2 inline-block text-sm">
+					Eg:{' '}
+					<span className="font-medium text-orange-600">
+						{formatCurrency(100, currencyData.currency, currencyData.locale)}
+					</span>
+				</span>
 			</label>
 		</div>
 	);
