@@ -8,11 +8,13 @@ export default function SettingsLayout({ tabs, selected, onChange, children }) {
 					<button
 						key={`${tab.name}-${index}`}
 						onClick={() => onChange(tab)}
-						className={`relative mr-6 rounded-md px-2 py-1.5 text-black hover:bg-gray-200`}
+						className={`relative mr-6 rounded-md px-2 py-1.5 text-black hover:bg-gray-200 ${
+							selected.id === tab.id ? 'font-medium' : ''
+						}`}
 					>
 						{tab.name}
 						<span
-							className={`absolute bottom-[-7px] left-0 right-0 inline-block w-full border-b-2 ${
+							className={`absolute bottom-[-7px] left-0 right-0 inline-block w-full break-words  border-b-2 ${
 								selected.id === tab.id ? 'border-zinc-900' : 'border-b-0 border-gray-300'
 							}`}
 						/>

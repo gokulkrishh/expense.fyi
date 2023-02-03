@@ -31,13 +31,24 @@ export default function General({ user }) {
 	};
 
 	return (
-		<div className="mt-4 flex">
+		<div className="mt-4 grid gap-5">
 			<label className="block">
-				<span className="block text-sm font-normal text-zinc-600">Choose your currency</span>
+				<span className="block text-sm font-medium text-zinc-600">Your email</span>
+				<div className="flex flex-col sm:flex-row">
+					<input
+						className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-sm text-black shadow-sm ring-1 ring-gray-300 focus:outline-none  disabled:cursor-not-allowed disabled:bg-slate-50 disabled:shadow-none"
+						type="email"
+						defaultValue={user.email}
+						disabled
+					/>
+				</div>
+			</label>
+			<label className="block">
+				<span className="block text-sm font-medium text-zinc-600">Choose your currency</span>
 				<div className="flex flex-col sm:flex-row">
 					<select
-						name="Currency and Locale"
-						className="mt-2 block h-9 w-full max-w-xs appearance-none rounded-md bg-white py-2 px-3 pr-8 text-sm text-black shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
+						name="currency"
+						className="mt-2 block h-10 w-full appearance-none rounded-md bg-white py-2 px-3 pr-8 text-sm text-black shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900 sm:max-w-xs"
 						onChange={(event) => {
 							onUpdate({ currency: event.target.value });
 						}}

@@ -32,6 +32,7 @@ export default function enforceAuth(req, res) {
 						billing_start_date: true,
 						trial_start_date: true,
 						usage: true,
+						email: true,
 						plan_status: true,
 						new_signup_email: true,
 					},

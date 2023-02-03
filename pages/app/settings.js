@@ -52,7 +52,7 @@ export default function Settings({ user }) {
 				<SettingsLayout selected={selectedTab} tabs={tabs} onChange={(tab) => setSelectedTab(tab)}>
 					<div className="mt-0 mb-10 flex w-full flex-col md:flex-row">
 						<div className="mr-2 md:min-w-[300px]">
-							<h2 className="text-xl text-black">{selectedTab.name}</h2>
+							<h2 className="text-xl font-medium text-black">{selectedTab.name}</h2>
 							<p className="mt-1 mb-1 text-sm">{selectedTab.description}</p>
 						</div>
 						<selectedTab.component user={user} />
