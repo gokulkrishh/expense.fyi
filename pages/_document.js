@@ -41,7 +41,7 @@ export default function Document() {
 					rel="icon"
 					media="(prefers-color-scheme: dark)"
 				/>
-				<link href="/static/icons/favicon.ico" rel="shortcut icon" type="image/x-icon"></link>
+				<link href="/static/icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 				<link rel="manifest" href="/static/manifest.json" />
 			</Head>
 			<body className="font-default flex h-full flex-col text-gray-600 antialiased">
