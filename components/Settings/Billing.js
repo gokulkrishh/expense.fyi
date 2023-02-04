@@ -21,8 +21,8 @@ export default function Billing({ user }) {
 	const [loading, setLoading] = useState(false);
 	return (
 		<div className="mt-0 mb-2 flex w-full flex-col md:flex-row">
-			<div className="mt-4 grid w-full max-w-3xl grid-cols-1 gap-3 sm:gap-10 md:mt-0 lg:grid-cols-2">
-				<div className={`rounded-lg border-[1px] bg-white p-4 text-left ${user.isBasicPlan ? 'border-blue-700' : ''}`}>
+			<div className="mt-4 grid w-full max-w-2xl grid-cols-1 gap-3 sm:gap-10 md:mt-0 lg:grid-cols-2">
+				<div className={`rounded-lg bg-white p-4 text-left shadow ${user.isBasicPlan ? 'border-blue-700' : ''}`}>
 					<div className="relative flex items-center justify-between">
 						<h3 className="mb-1 flex items-center text-2xl font-extrabold leading-6 text-black ">
 							Basic{' '}
@@ -50,9 +50,7 @@ export default function Billing({ user }) {
 					</div>
 				</div>
 
-				<div
-					className={`rounded-lg border-[1px] bg-white p-4 text-left ${user.isPremiumPlan ? 'border-blue-700' : ''}`}
-				>
+				<div className={`rounded-lg bg-white p-4 text-left shadow ${user.isPremiumPlan ? 'border-blue-700' : ''}`}>
 					<div className="relative flex items-center justify-between">
 						<h3 className="mb-1 flex items-center text-2xl font-extrabold leading-6 text-black">
 							Premium{' '}

@@ -11,7 +11,7 @@ export default function Usage({ user }) {
 	const { usage, locale, isBasicPlan, isPremiumPlan, isPremiumPlanEnded } = user;
 	const usageLimit = user.isPremiumPlan ? premium.usageLimit : basic.usageLimit;
 	return (
-		<div className="mt-4 w-full max-w-2xl rounded-lg border-[1px] border-zinc-200 bg-white p-1 text-left shadow-gray-200 md:mt-0">
+		<div className="mt-4 w-full max-w-2xl rounded-lg bg-white p-2 text-left shadow shadow-gray-200 md:mt-0">
 			<h3 className="p-3 py-3 pb-0 text-xl font-bold text-black">Current Usage</h3>
 			<div>
 				{isBasicPlan ? (
