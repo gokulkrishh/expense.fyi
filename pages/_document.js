@@ -16,6 +16,17 @@ export default function Document() {
 				<meta name="msapplication-TileImage" content="/static/icons/mstile-150x150.png" />
 				<meta name="msapplication-navbutton-color" content="#e2f3fe" />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
+				<meta property="og:title" content="expense.fyi" />
+				<meta property="og:type" content="website" />
+				<meta property="og:description" content="Effortlessly Track and Manage Expenses." />
+				<meta property="og:url" content="https://expense.fyi" />
+				<meta property="og:image" content="https://expense.fyi/static/og.jpg" />
+				<meta property="og:video" content="https://expense.fyi/static/demo.mp4" />
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta name="twitter:title" content="Expense.fyi" />
+				<meta name="twitter:image" content="https://expense.fyi/static/og.jpg" />
+				<meta name="twitter:site" content="@gokul_i" />
+				<meta name="twitter:description" content="Effortlessly Track and Manage Expenses." />
 				<link rel="mask-icon" href="/static/icons/safari-pinned-tab.svg" color="#e2f3fe" />
 				<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png" />
 				<link
