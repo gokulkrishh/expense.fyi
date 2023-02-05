@@ -31,8 +31,8 @@ export default function UsageExceededEmail({ plan = 'Basic Plan', usage = 0, max
 						Your account has <b>exceeded</b> the usage limit of <b>{maxUsageLimit} entries</b> for <b>{plan}</b>.
 					</Text>
 					<Text style={{ ...text, marginTop: '10px' }}>
-						No worries, all data still there. Upgrade to <b>Premium Plan</b> to get Premium features and to increase the
-						entry limit.
+						No worries, all data still there. Upgrade to <b>Premium Plan</b> to increase the entry limit and get all the
+						Premium features.
 					</Text>
 
 					<Section style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>
