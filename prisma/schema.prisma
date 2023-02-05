@@ -27,7 +27,7 @@ model subscriptions {
   notify     Boolean  @default(false)
   date       String
   created_at DateTime @default(now()) @db.Timestamptz(6)
-  updated_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(6)
   user_id    String   @db.Uuid
   active     Boolean? @default(true)
   deleted    Boolean  @default(false)
@@ -46,7 +46,7 @@ model expenses {
   category   String
   date       String
   created_at DateTime @default(now()) @db.Timestamptz(6)
-  updated_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(6)
   user_id    String   @db.Uuid
   deleted    Boolean  @default(false)
   nameHash   String?
@@ -64,7 +64,7 @@ model income {
   category   String
   date       String
   created_at DateTime @default(now()) @db.Timestamptz(6)
-  updated_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(6)
   user_id    String   @db.Uuid
   deleted    Boolean  @default(false)
   nameHash   String?
@@ -84,7 +84,7 @@ model investments {
   category   String
   date       String
   created_at DateTime @default(now()) @db.Timestamptz(6)
-  updated_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(6)
   user_id    String   @db.Uuid
   deleted    Boolean  @default(false)
   nameHash   String?
@@ -95,7 +95,7 @@ model users {
   id                         String          @id @db.Uuid
   email                      String
   created_at                 DateTime        @default(now()) @db.Timestamptz(6)
-  updated_at                 DateTime        @default(now()) @db.Timestamptz(6)
+  updated_at                 DateTime        @default(now()) @updatedAt @db.Timestamptz(6)
   currency                   String          @default("INR")
   locale                     String          @default("en")
   payment_id                 String?
