@@ -36,10 +36,11 @@
 		"@react-email/text": "^0.0.4",
 		"@supabase/auth-helpers-nextjs": "^0.5.4",
 		"@supabase/auth-helpers-react": "^0.3.1",
-		"@supabase/supabase-js": "^2.7.0",
+		"@supabase/supabase-js": "^2.7.1",
 		"@tremor/react": "^1.7.0",
 		"@vercel/analytics": "^0.1.8",
 		"date-fns": "^2.29.3",
+		"debounce": "^1.2.1",
 		"device-detector-js": "^3.0.3",
 		"eslint": "8.33.0",
 		"eslint-config-next": "^13.1.6",
@@ -53,7 +54,8 @@
 		"react-hot-toast": "^2.4.0",
 		"resend": "^0.10.0",
 		"shortid": "^2.2.16",
-		"swr": "^2.0.3"
+		"swr": "^2.0.3",
+		"text-filter": "^0.1.1"
 	},
 	"devDependencies": {
 		"@trivago/prettier-plugin-sort-imports": "^4.0.0",

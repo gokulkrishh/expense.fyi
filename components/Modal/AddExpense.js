@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { format } from 'date-fns';
+import debounce from 'debounce';
 import useAutoFocus from 'hooks/useAutoFocus';
 
 import Button from 'components/Button';
-import Loader from 'components/Loader';
+import Dropdown from 'components/Dropdown';
 
 import { getCurrencySymbol } from 'utils/formatter';
 
@@ -20,13 +21,46 @@ const initialState = {
 	notes: '',
 	price: '',
 	date: todayDate,
+	autocomplete: [],
 };
 
-export default function AddExpense({ show, selected, onHide, onSubmit, loading, currency, locale }) {
+const AutoComplete = ({ data, onClick }) => {
+	return (
+		<div className="absolute mt-1 w-full max-w-[150px] overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+			{data.map(({ name, id, category }) => (
+				<button
+					key={id}
+					onClick={() => onClick({ name, category })}
+					className="relative w-full cursor-default select-none p-2 text-left text-gray-900 hover:bg-gray-100"
+				>
+					{name}
+				</button>
+			))}
+		</div>
+	);
+};
+
+export default function AddExpense({ show, selected, lookup, onHide, onSubmit, loading, currency, locale }) {
 	const inputRef = useAutoFocus();
 	const [state, setState] = useState(initialState);
 
 	useEffect(() => setState(selected.id ? selected : initialState), [selected]);
+
+	const onLookup = useMemo(() => {
+		const callbackHandler = (value) => {
+			const data = lookup(value);
+
+			if (data.length) {
+				setState((prev) => ({ ...prev, autocomplete: data }));
+			}
+		};
+
+		return debounce(callbackHandler, 500);
+	}, [lookup]);
+
+	const onHideDropdown = () => {
+		setState({ ...state, autocomplete: [] });
+	};
 
 	return (
 		<Modal show={show} title={`${selected.id ? 'Edit' : 'Add'} Expense`} onHide={onHide}>
@@ -44,15 +78,29 @@ export default function AddExpense({ show, selected, onHide, onSubmit, loading, 
 						<input
 							className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-sm text-zinc-800 shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
 							type="text"
-							placeholder="Swiggy"
+							placeholder="Swiggy - Biriyani"
 							maxLength="30"
 							required
 							ref={inputRef}
 							autoFocus
-							onChange={(event) => {
-								setState({ ...state, name: event.target.value });
+							onChange={({ target }) => {
+								const { value } = target;
+								if (value.length) {
+									setState({ ...state, name: value });
+									if (value.length > 2) onLookup(value);
+								} else {
+									setState({ ...state, name: '', category: '', autocomplete: [] });
+								}
 							}}
 							value={state.name}
+						/>
+						<Dropdown
+							onHide={onHideDropdown}
+							data={state.autocomplete}
+							onClick={({ name, category }) => {
+								setState({ ...state, name, category, autocomplete: [] });
+							}}
+							show={Boolean(state.autocomplete?.length)}
 						/>
 					</label>
 
@@ -66,7 +114,7 @@ export default function AddExpense({ show, selected, onHide, onSubmit, loading, 
 								<input
 									className="mt-2 mr-4 block h-10 w-full appearance-none rounded-md bg-white px-3 text-sm text-zinc-800 shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
 									type="number"
-									placeholder="10"
+									placeholder="199"
 									required
 									min="0"
 									step=".01"

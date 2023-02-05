@@ -1,5 +1,11 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+generator fieldEncryptionMigrations {
+  provider = "prisma-field-encryption"
+  output   = "./migrations"
 }
 
 datasource db {
@@ -10,61 +16,78 @@ datasource db {
 
 model subscriptions {
   id         String   @id @default(uuid())
-  name       String /// @encrypted
-  notes      String? /// @encrypted
+  /// @encrypted
+  name       String
+  /// @encrypted
+  notes      String?
   url        String
-  price      String   @default("0") /// @encrypted
+  /// @encrypted
+  price      String   @default("0")
   paid       String
   notify     Boolean  @default(false)
   date       String
   created_at DateTime @default(now())
-  deleted    Boolean  @default(false)
   updated_at DateTime @default(now())
   user_id    String   @db.Uuid
   active     Boolean? @default(true)
+  deleted    Boolean  @default(false)
+  nameHash   String?
   user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model expenses {
   id         String   @id @default(uuid())
-  name       String /// @encrypted
-  notes      String? /// @encrypted
-  price      String   @default("0") /// @encrypted
+  /// @encrypted
+  name       String
+  /// @encrypted
+  notes      String?
+  /// @encrypted
+  price      String   @default("0")
   category   String
   date       String
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
-  deleted    Boolean  @default(false)
   user_id    String   @db.Uuid
+  deleted    Boolean  @default(false)
+  nameHash   String?
   user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model income {
   id         String   @id @default(uuid())
-  name       String /// @encrypted
-  notes      String? /// @encrypted
-  price      String   @default("0") /// @encrypted
+  /// @encrypted
+  name       String
+  /// @encrypted
+  notes      String?
+  /// @encrypted
+  price      String   @default("0")
   category   String
   date       String
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
-  deleted    Boolean  @default(false)
   user_id    String   @db.Uuid
+  deleted    Boolean  @default(false)
+  nameHash   String?
   user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model investments {
   id         String   @id @default(uuid())
-  name       String /// @encrypted
-  notes      String? /// @encrypted
-  price      String   @default("0") /// @encrypted
-  units      String   @default("0") /// @encrypted
+  /// @encrypted
+  name       String
+  /// @encrypted
+  notes      String?
+  /// @encrypted
+  price      String   @default("0")
+  /// @encrypted
+  units      String   @default("0")
   category   String
   date       String
   created_at DateTime @default(now())
-  deleted    Boolean  @default(false)
   updated_at DateTime @default(now())
   user_id    String   @db.Uuid
+  deleted    Boolean  @default(false)
+  nameHash   String?
   user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
@@ -77,15 +100,15 @@ model users {
   locale                     String          @default("en")
   payment_id                 String?
   order_id                   String?
-  plan_status                String          @default("basic")
-  billing_start_date         String?
-  trial_start_date           DateTime        @default(now())
   payment_signature          String?
+  billing_start_date         String?
+  plan_status                String          @default("basic")
+  trial_start_date           DateTime        @default(now())
   usage                      Int             @default(0)
-  new_signup_email           Boolean         @default(false)
   basic_usage_limit_email    Boolean         @default(false)
-  premium_usage_limit_email  Boolean         @default(false)
+  new_signup_email           Boolean         @default(false)
   premium_plan_expired_email Boolean         @default(false)
+  premium_usage_limit_email  Boolean         @default(false)
   expenses                   expenses[]
   income                     income[]
   investments                investments[]
@@ -95,17 +118,17 @@ model users {
 model feedbacks {
   id         Int      @id @default(autoincrement())
   message    String
-  user_id    String   @db.Uuid
   created_at DateTime @default(now())
   os         String
   device     String
   client     String
+  user_id    String   @db.Uuid
 }
 
 model contact {
   id         Int      @id @default(autoincrement())
   message    String
   subject    String
-  created_at DateTime @default(now())
   email      String
+  created_at DateTime @default(now())
 }

@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { format } from 'date-fns';
+import { debounce } from 'debounce';
 import useAutoFocus from 'hooks/useAutoFocus';
 
 import Button from 'components/Button';
-import Loader from 'components/Loader';
+import Dropdown from 'components/Dropdown';
 
 import { getCurrencySymbol } from 'utils/formatter';
 
@@ -20,12 +21,29 @@ const initialState = {
 	price: '',
 	units: '',
 	date: format(new Date(), dateFormatStr),
+	autocomplete: [],
 };
 
-export default function AddInvestment({ show, selected, onHide, onSubmit, loading, currency, locale }) {
+export default function AddInvestment({ show, lookup, selected, onHide, onSubmit, loading, currency, locale }) {
 	const inputRef = useAutoFocus();
 	const [state, setState] = useState(initialState);
 	useEffect(() => setState(selected.id ? selected : initialState), [selected]);
+
+	const onLookup = useMemo(() => {
+		const callbackHandler = (value) => {
+			const data = lookup(value);
+
+			if (data.length) {
+				setState((prev) => ({ ...prev, autocomplete: data }));
+			}
+		};
+
+		return debounce(callbackHandler, 500);
+	}, [lookup]);
+
+	const onHideDropdown = () => {
+		setState({ ...state, autocomplete: [] });
+	};
 
 	return (
 		<Modal show={show} title={`${selected.id ? 'Edit' : 'Add'} Investment`} onHide={onHide}>
@@ -48,10 +66,24 @@ export default function AddInvestment({ show, selected, onHide, onSubmit, loadin
 							maxLength="30"
 							autoFocus
 							ref={inputRef}
-							onChange={(event) => {
-								setState({ ...state, name: event.target.value });
+							onChange={({ target }) => {
+								const { value } = target;
+								if (value.length) {
+									setState({ ...state, name: value });
+									if (value.length > 2) onLookup(value);
+								} else {
+									setState({ ...state, name: '', category: '', autocomplete: [] });
+								}
 							}}
 							value={state.name}
+						/>
+						<Dropdown
+							onHide={onHideDropdown}
+							data={state.autocomplete}
+							onClick={({ name, category }) => {
+								setState({ ...state, name, category, autocomplete: [] });
+							}}
+							show={Boolean(state.autocomplete?.length)}
 						/>
 					</label>
 

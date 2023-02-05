@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useCallback, useState } from 'react';
 
 import useSWR from 'swr';
+import textFilter from 'text-filter';
 
 import enforceAuth from 'components/Auth/enforceAuth';
 import Card from 'components/Card';
@@ -84,6 +85,12 @@ export default function Expenses({ user }) {
 		}
 	};
 
+	const onLookup = (name) => {
+		const result = data.filter(textFilter({ query: name, fields: ['name'] }));
+		if (result.length) return [result[0]];
+		return result;
+	};
+
 	return (
 		<>
 			<Head>
@@ -122,6 +129,7 @@ export default function Expenses({ user }) {
 					currency={user.currency}
 					locale={user.locale}
 					show={show}
+					lookup={onLookup}
 				/>
 
 				<ExpensesTable isLoading={isLoading} data={data} onEdit={onEdit} onDelete={onDelete} user={user} />
