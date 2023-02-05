@@ -26,8 +26,8 @@ model subscriptions {
   paid       String
   notify     Boolean  @default(false)
   date       String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
   user_id    String   @db.Uuid
   active     Boolean? @default(true)
   deleted    Boolean  @default(false)
@@ -45,8 +45,8 @@ model expenses {
   price      String   @default("0")
   category   String
   date       String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
   user_id    String   @db.Uuid
   deleted    Boolean  @default(false)
   nameHash   String?
@@ -63,8 +63,8 @@ model income {
   price      String   @default("0")
   category   String
   date       String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
   user_id    String   @db.Uuid
   deleted    Boolean  @default(false)
   nameHash   String?
@@ -83,8 +83,8 @@ model investments {
   units      String   @default("0")
   category   String
   date       String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
   user_id    String   @db.Uuid
   deleted    Boolean  @default(false)
   nameHash   String?
@@ -94,8 +94,8 @@ model investments {
 model users {
   id                         String          @id @db.Uuid
   email                      String
-  created_at                 DateTime        @default(now())
-  updated_at                 DateTime        @default(now())
+  created_at                 DateTime        @default(now()) @db.Timestamptz(6)
+  updated_at                 DateTime        @default(now()) @db.Timestamptz(6)
   currency                   String          @default("INR")
   locale                     String          @default("en")
   payment_id                 String?
@@ -103,7 +103,7 @@ model users {
   payment_signature          String?
   billing_start_date         String?
   plan_status                String          @default("basic")
-  trial_start_date           DateTime        @default(now())
+  trial_start_date           DateTime        @default(now()) @db.Timestamptz(6)
   usage                      Int             @default(0)
   basic_usage_limit_email    Boolean         @default(false)
   new_signup_email           Boolean         @default(false)
@@ -118,7 +118,7 @@ model users {
 model feedbacks {
   id         Int      @id @default(autoincrement())
   message    String
-  created_at DateTime @default(now())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
   os         String
   device     String
   client     String
@@ -130,5 +130,5 @@ model contact {
   message    String
   subject    String
   email      String
-  created_at DateTime @default(now())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
 }
