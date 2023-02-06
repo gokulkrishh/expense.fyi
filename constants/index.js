@@ -8,6 +8,7 @@ export const expensesCategory = {
 	other: { name: 'Other', emoji: '🤷🏻‍♂️' },
 	emi: { name: 'EMI', emoji: '🤑' },
 	creditcard: { name: 'Credit Card', emoji: '💳' },
+	savings: { name: 'Savings', emoji: '💰' },
 	medical: { name: 'Medical', emoji: '🏥' },
 	rent: { name: 'Rent', emoji: '🏠' },
 	shopping: { name: 'Shopping', emoji: '🛍️' },
