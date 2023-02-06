@@ -17,7 +17,7 @@ const baseUrl = 'https://expense.fyi';
 const appUrl = 'https://app.expense.fyi';
 const githubUrl = 'https://github.com/gokulkrishh/expense.fyi';
 const twitterUrl = 'https://twitter.com/gokul_i';
-const demoVideoUrl = `${baseUrl}/static/demo.mp4`;
+const demoVideoUrl = `https://www.youtube.com/watch?v=faueh3BZXCo`;
 
 export default function WelcomeEmail() {
 	return (
