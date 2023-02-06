@@ -3,11 +3,11 @@ import prisma from 'lib/prisma';
 
 export default withUserAuth(async (req, res, user) => {
 	if (req.method === 'PATCH') {
-		const { currency } = req.body;
+		const { currency, locale } = req.body;
 
 		try {
-			await prisma.users.update({ data: { currency }, where: { id: user.id } });
-			res.status(200).json({ message: 'Your data is updated.' });
+			await prisma.users.update({ data: { currency, locale }, where: { id: user.id } });
+			res.status(200).json({ message: 'Updated' });
 		} catch (error) {
 			res.status(500).json({ error, message: 'Failed to updated, please try again.' });
 		}

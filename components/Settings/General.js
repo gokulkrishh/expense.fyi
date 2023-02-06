@@ -7,15 +7,15 @@ import { formatCurrency } from 'utils/formatter';
 import data from 'data/currency.json';
 
 export default function General({ user }) {
-	const [currencyData, setCurrencyData] = useState({ currency: user.currency });
+	const [currencyData, setCurrencyData] = useState({ currency: user.currency, locale: user.locale });
 
 	const onUpdate = async (data) => {
-		const { currency } = data;
+		const { currency, locale } = data;
 		try {
 			const res = await fetch('/api/user/update', {
 				method: 'PATCH',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ currency }),
+				body: JSON.stringify({ currency, locale }),
 			});
 
 			if (!res.ok) {
@@ -31,47 +31,52 @@ export default function General({ user }) {
 	};
 
 	return (
-		<div className="mt-4 grid gap-5">
-			<label className="block">
-				<span className="block text-sm font-medium text-zinc-600">Your email</span>
-				<div className="flex flex-col sm:flex-row">
-					<input
-						className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-sm text-black shadow-sm ring-1 ring-gray-300 focus:outline-none  disabled:cursor-not-allowed disabled:bg-slate-50 disabled:shadow-none"
-						type="email"
-						defaultValue={user.email}
-						disabled
-					/>
-				</div>
-			</label>
-			<label className="block">
-				<span className="block text-sm font-medium text-zinc-600">Choose your currency</span>
-				<div className="flex flex-col sm:flex-row">
-					<select
-						name="currency"
-						className="mt-2 block h-10 w-full appearance-none rounded-md bg-white py-2 px-3 pr-8 text-sm text-black shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
-						onChange={(event) => {
-							onUpdate({ currency: event.target.value });
-						}}
-						value={currencyData.currency}
-					>
-						{Object.keys(data).map((key) => {
-							const { currency } = data[key];
-							const [currencyCode] = currency;
-							return (
-								<option key={`${currencyCode}-${key}`} value={currencyCode}>
-									{data[key].name}
-								</option>
-							);
-						})}
-					</select>
-				</div>
-				<span className="ml-0 mt-2 inline-block text-sm">
-					Eg:{' '}
-					<span className="font-medium text-orange-600">
-						{formatCurrency(100, currencyData.currency, currencyData.locale)}
+		<div className="mt-4 mb-8 w-full max-w-2xl rounded-lg bg-white p-3 text-left shadow shadow-gray-200 md:mt-0">
+			<h3 className="p-3 py-3 text-xl font-extrabold leading-6 text-black">Account</h3>
+			<div className="grid gap-6 p-3 sm:grid-cols-2">
+				<label className="block">
+					<span className="block text-sm font-medium text-zinc-600">Email</span>
+					<div className="flex flex-col sm:flex-row">
+						<input
+							className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-sm text-black shadow-sm ring-1 ring-gray-300 focus:outline-none  disabled:cursor-not-allowed disabled:bg-slate-50 disabled:shadow-none"
+							type="email"
+							defaultValue={user.email}
+							disabled
+						/>
+					</div>
+				</label>
+				<label className="block">
+					<span className="block text-sm font-medium text-zinc-600">Currency</span>
+					<div className="flex flex-col sm:flex-row">
+						<select
+							name="currency"
+							className="mt-2 block h-10 w-full appearance-none rounded-md bg-white py-2 px-3 pr-8 text-sm text-black shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:shadow-none"
+							onChange={(event) => {
+								const [currency, locale] = event.target.value.split('-');
+								onUpdate({ currency, locale });
+							}}
+							value={`${currencyData.currency}-${currencyData.locale}`}
+						>
+							{Object.keys(data).map((key) => {
+								const { languages = [], currency } = data[key];
+								const [currencyCode] = currency;
+
+								return languages.map((language) => (
+									<option key={language} value={`${currencyCode}-${language}`}>
+										{data[key].name} - {language}
+									</option>
+								));
+							})}
+						</select>
+					</div>
+					<span className="mt-[8px] inline-block text-sm">
+						Eg:{' '}
+						<span className="font-medium text-orange-600">
+							{formatCurrency(100, currencyData.currency, currencyData.locale)}
+						</span>
 					</span>
-				</span>
-			</label>
+				</label>
+			</div>
 		</div>
 	);
 }

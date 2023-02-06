@@ -45,18 +45,11 @@ export default function Settings({ user }) {
 			<Script src="https://checkout.razorpay.com/v1/checkout.js" async />
 
 			<div className="h-ful mb-20">
-				<div className="mb-2 flex justify-between">
-					<h1 className="mr-3 mb-2 text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Settings</h1>
-				</div>
-
-				<SettingsLayout selected={selectedTab} tabs={tabs} onChange={(tab) => setSelectedTab(tab)}>
-					<div className="mt-0 mb-10 flex w-full flex-col md:flex-row">
-						<div className="mr-2 md:min-w-[300px]">
-							<h2 className="text-xl font-medium text-black">{selectedTab.name}</h2>
-							<p className="mt-1 mb-1 text-sm">{selectedTab.description}</p>
-						</div>
-						<selectedTab.component user={user} />
-					</div>
+				<h1 className="mb-4 w-full text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Settings</h1>
+				<SettingsLayout>
+					<General user={user} />
+					<Usage user={user} />
+					<Billing user={user} />
 				</SettingsLayout>
 			</div>
 		</>

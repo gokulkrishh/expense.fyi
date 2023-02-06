@@ -11,48 +11,27 @@ export default function Usage({ user }) {
 	const { usage, locale, isBasicPlan, isPremiumPlan, isPremiumPlanEnded } = user;
 	const usageLimit = user.isPremiumPlan ? premium.usageLimit : basic.usageLimit;
 	return (
-		<div className="mt-4 w-full max-w-2xl rounded-lg bg-white p-2 text-left shadow shadow-gray-200 md:mt-0">
-			<h3 className="p-3 py-3 pb-0 text-xl font-bold text-black">Current Usage</h3>
-			<div>
-				{isBasicPlan ? (
-					<p className="mt-2 px-3 py-3 pt-2 text-sm text-zinc-600">
-						You are currently on <span className="font-semibold text-orange-600">Basic Plan</span> started at{' '}
-						<span className="font-semibold text-orange-600">{formatDate(new Date(user.trial_start_date), locale)}</span>
-						.
-					</p>
-				) : null}
+		<div className="mt-4 w-full max-w-2xl rounded-lg bg-white p-3 text-left shadow shadow-gray-200 md:mt-0">
+			<h3 className="p-3 py-3 text-xl font-extrabold leading-6 text-black">Plan Usage</h3>
+			<div className="mx-2 border-b-[1px] border-zinc-200 px-3 py-1" />
+			<div className="p-3 py-3 text-sm text-black">
+				<div className="flex items-center justify-between">
+					<div className="mt-1 mb-2">
+						<p className="text-base font-medium text-slate-700">Entries added</p>
+						<p className="mt-2 inline-block text-sm">
+							{usage} of {usageLimit}
+						</p>
+					</div>
+					<p className="relative top-[15px] text-zinc-600">{usageLimit - usage} entries left</p>
+				</div>
+				<ProgressBar percentageValue={(usage / usageLimit) * 100} showAnimation={true} color="blue" marginTop="mt-1" />
+			</div>
+			<div className="p-3 py-0 pb-3 font-medium text-slate-700">
 				{isPremiumPlan && !isPremiumPlanEnded ? (
-					<p className=" px-3 py-3 pt-1 text-sm text-zinc-600">
-						You are currently on <span className="font-semibold text-orange-600">Premium Plan</span> started at{' '}
-						<span className="font-semibold text-orange-600">
-							{formatDate(new Date(user.billing_start_date), locale)}
-						</span>{' '}
-						and ends at{' '}
-						<span className="font-semibold text-orange-600">
-							{formatDate(addYears(new Date(user.billing_start_date), 1), locale)}
-						</span>
-						.
-					</p>
+					<p class="text-sm">Next billing at: {formatDate(addYears(new Date(user.billing_start_date), 1), locale)}</p>
 				) : null}
 
-				{isPremiumPlan && isPremiumPlanEnded ? (
-					<p className=" px-3 py-3 pt-1 text-sm text-zinc-600">
-						Your <span className="font-semibold text-orange-600">Premium Plan</span> ended at{' '}
-						<span className="font-semibold text-orange-600">
-							{formatDate(addYears(new Date(user.billing_start_date), 1), locale)}
-						</span>
-						. Renew to continue enjoy the premium features.
-					</p>
-				) : null}
-			</div>
-			<div className="border-b-[1px] border-zinc-200 py-[2px]" />
-			<div className="p-3 py-3 text-sm text-black">
-				<p className="mt-0 text-base font-medium text-black">Entries added</p>
-				<p className="mt-2 mb-2 inline-block text-sm">
-					{usage} / {usageLimit}
-				</p>
-				<ProgressBar percentageValue={(usage / usageLimit) * 100} showAnimation={true} color="blue" marginTop="mt-1" />
-				<p className="mt-2 mb-1 text-[13px] text-zinc-600">{usageLimit - usage} entries left</p>
+				{isPremiumPlanEnded ? <p class="text-sm">Premium plan ended, renew again.</p> : null}
 			</div>
 		</div>
 	);

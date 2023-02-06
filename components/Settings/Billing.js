@@ -20,11 +20,11 @@ const paymentData = {
 export default function Billing({ user }) {
 	const [loading, setLoading] = useState(false);
 	return (
-		<div className="mt-0 mb-2 flex w-full flex-col md:flex-row">
+		<div className="mt-8 mb-2 flex w-full flex-col justify-center md:flex-row">
 			<div className="mt-4 grid w-full max-w-2xl grid-cols-1 gap-3 sm:gap-10 md:mt-0 lg:grid-cols-2">
-				<div className={`rounded-lg bg-white p-4 text-left shadow ${user.isBasicPlan ? 'border-blue-700' : ''}`}>
+				<div className={`rounded-lg bg-white p-5 text-left shadow ${user.isBasicPlan ? 'border-blue-700' : ''}`}>
 					<div className="relative flex items-center justify-between">
-						<h3 className="mb-1 flex items-center text-2xl font-extrabold leading-6 text-black ">
+						<h3 className="mb-1 flex items-center text-xl font-extrabold leading-6 text-black ">
 							Basic{' '}
 							{user.isBasicPlan ? (
 								<Badge className="absolute right-[-10px] bg-blue-700 leading-[1.6] text-white" text={'Current'} />
@@ -43,16 +43,16 @@ export default function Billing({ user }) {
 						<button
 							disabled={true}
 							title={'Current plan'}
-							className={`mt-10 flex w-full justify-center rounded-md bg-zinc-500 py-2 text-center text-sm font-semibold text-white hover:bg-zinc-500`}
+							className={`mt-16 flex w-full justify-center rounded-md bg-zinc-500 py-2 text-center text-sm font-semibold text-white hover:bg-zinc-500`}
 						>
 							{user.isBasicPlan ? 'Current plan' : 'Expired'}
 						</button>
 					</div>
 				</div>
 
-				<div className={`rounded-lg bg-white p-4 text-left shadow ${user.isPremiumPlan ? 'border-blue-700' : ''}`}>
+				<div className={`rounded-lg bg-white p-5 text-left shadow ${user.isPremiumPlan ? 'border-blue-700' : ''}`}>
 					<div className="relative flex items-center justify-between">
-						<h3 className="mb-1 flex items-center text-2xl font-extrabold leading-6 text-black">
+						<h3 className="mb-1 flex items-center text-xl font-extrabold leading-6 text-black">
 							Premium{' '}
 							{user.isPremiumPlan ? (
 								<Badge
@@ -81,11 +81,11 @@ export default function Billing({ user }) {
 									// setTimeout(() => {
 									// 	setLoading(false);
 									// }, 4000);
-									showToast(`Payment portal is coming soon.`);
+									showToast(`Contact support for the upgrade.`);
 								}
 							}}
 							disabled={(user.isPremiumPlan && !user.isPremiumPlanEnded) || loading}
-							className={`mt-10 flex w-full justify-center rounded-md py-2 text-center text-sm font-semibold text-white ${
+							className={`mt-16 flex w-full justify-center rounded-md py-2 text-center text-sm font-semibold text-white ${
 								user.isPremiumPlan && !user.isPremiumPlanEnded
 									? 'bg-zinc-500 hover:bg-zinc-500'
 									: 'bg-zinc-900 hover:bg-zinc-800'
