@@ -149,7 +149,7 @@ export default function Home({ user }) {
 								Upcoming renewal dates based on date selection.
 							</p>
 							{isSubscriptionsLoading ? (
-								<LoaderChart className="h-[340px]" />
+								<LoaderChart className="h-[340px]" type="donut" />
 							) : (
 								<>
 									<Legend categories={subscriptionDataForLegend} marginTop="mt-3" />
@@ -177,11 +177,12 @@ export default function Home({ user }) {
 						<div className="flex w-full flex-col md:mb-6">
 							<Card className="h-full w-full">
 								<h3 className="text-md font-semibold text-black">Recent Activity</h3>
-								{isExpensesLoading ? (
-									<LoaderChart className="h-[264px]" />
-								) : (
-									<RecentActivityTable currency={user.currency} locale={user.locale} data={recentActivityData} />
-								)}
+								<RecentActivityTable
+									isLoading={isExpensesLoading}
+									currency={user.currency}
+									locale={user.locale}
+									data={recentActivityData}
+								/>
 							</Card>
 						</div>
 						<div className="mb-6 flex w-full flex-col">
@@ -189,7 +190,7 @@ export default function Home({ user }) {
 								<h3 className="text-md font-semibold text-black">Top Spent Expenses</h3>
 
 								{isExpensesLoading ? (
-									<LoaderChart className="h-[264px]" />
+									<LoaderChart type="barlist" className="h-[264px]" />
 								) : (
 									<>
 										<div className="mt-2 flex justify-between">
