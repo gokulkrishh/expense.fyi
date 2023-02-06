@@ -25,11 +25,11 @@ export default function LoaderChart({ className, type = 'bar' }) {
 				<div className="animate-pulse">
 					<p className="h-[20px] w-[200px] rounded-md bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
 				</div>
-				<p className="mt-[20px] mb-[10px] h-[36px] w-full animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
-				<p className="mb-[10px] h-[36px] w-[60%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
-				<p className="mb-[10px] h-[36px] w-[40%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
-				<p className="mb-[10px] h-[36px] w-[20%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
-				<p className="mb-[10px] h-[36px] w-[10%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
+				<p className="mt-[10px] mb-[10px] h-[34px] w-full animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
+				<p className="mb-[9px] h-[34px] w-[60%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
+				<p className="mb-[9px] h-[34px] w-[40%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
+				<p className="mb-[9px] h-[34px] w-[20%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
+				<p className="mb-[9px] h-[34px] w-[10%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
 			</div>
 		);
 	}
