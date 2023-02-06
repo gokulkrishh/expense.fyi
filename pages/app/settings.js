@@ -45,7 +45,7 @@ export default function Settings({ user }) {
 			<Script src="https://checkout.razorpay.com/v1/checkout.js" async />
 
 			<div className="h-ful mb-20">
-				<h1 className="mb-4 w-full text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Settings</h1>
+				<h1 className="mb-4 text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Settings</h1>
 				<SettingsLayout>
 					<General user={user} />
 					<Usage user={user} />
