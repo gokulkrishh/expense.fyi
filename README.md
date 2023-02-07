@@ -55,7 +55,7 @@ Expense.fyi is an open-source application to effortlessly track and manage your 
 Here's how you can contribute:
 
 - [Open an issue](https://github.com/gokulkrishh/expense.fyi/issues) if you believe you've encountered a bug.
-- Make a [pull request](https://github.com/gokulkrishh/expense.fyi/pull) to add new features/make quality-of-life improvements/fix bugs.
+- Make a [pull request](https://github.com/gokulkrishh/expense.fyi/pull) to add new features or make improvements/fix bugs.
 
 <a href="https://github.com/gokulkrishh/expense.fyi/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=gokulkrishh/expense.fyi" />
