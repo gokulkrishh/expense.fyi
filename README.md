@@ -67,4 +67,4 @@ Here's how you can contribute:
 
 ## License
 
-Expense.fyi is an open source under the GNU Affero General Public License Version 3 (AGPLv3) or any later version. You can [find it here](https://github.com/gokulkrishh/expense.fyi/blob/main/LICENSE.md).
+Expense.fyi is an open source under the GNU Affero General Public License Version 3 (AGPLv3) or any later version. You can [find it here](https://github.com/gokulkrishh/expense.fyi/blob/main/LICENSE).
