@@ -83,7 +83,7 @@ const Feedback = ({ className }) => {
 		<div ref={ref} className={`relative inline-block text-left ${className}`}>
 			<div className="ml-2 mt-0 flex">
 				<button
-					className="font-xs shadow-xs inline-flex items-center rounded-md border border-zinc-200 bg-white px-[12px] py-[10px] text-sm font-medium leading-[16px] text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-[8px]"
+					className="font-xs shadow-xs inline-flex items-center rounded-md border border-zinc-200 bg-white px-[12px] py-[10px] text-sm font-medium leading-[16px] text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:px-[8px]"
 					onClick={() => setState({ ...state, show: !state.show })}
 				>
 					<ChatBubbleBottomCenterTextIcon className="relative top-[1px] h-4 w-4" />{' '}

@@ -5,6 +5,7 @@ import {
 	differenceInYears,
 	endOfMonth,
 	format,
+	isThisMonth,
 	isToday,
 	startOfMonth,
 } from 'date-fns';
@@ -93,3 +94,5 @@ export const getFirstAndLastDateOfMonth = () => {
 
 	return { start, end };
 };
+
+export const thisMonth = (datum) => isThisMonth(new Date(datum.date));

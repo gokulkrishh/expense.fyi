@@ -15,6 +15,7 @@ import { showErrorToast, showSuccessToast, toastMessages } from 'components/Toas
 
 import { incrementUsageLimit } from 'lib/usageLimit';
 
+import { thisMonth } from 'utils/date';
 import { formatCurrency } from 'utils/formatter';
 
 export default function Investments({ user }) {
@@ -120,12 +121,15 @@ export default function Investments({ user }) {
 								user.locale
 							)}
 						/>
-
-						{/* <Card
-						title={`Top Investment Category`}
-						className="relative w-[220px]"
-						data={data.map((acc, datum) => datum.category === 'US Stock')}
-					/> */}
+						<Card
+							title="This Month"
+							className="relative"
+							data={formatCurrency(
+								data.filter(thisMonth).reduce((acc, datum) => Number(datum.price) * datum.units + acc, 0),
+								user.currency,
+								user.locale
+							)}
+						/>
 					</div>
 				)}
 

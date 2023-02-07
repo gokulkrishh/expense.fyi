@@ -15,6 +15,7 @@ import { showErrorToast, showSuccessToast, toastMessages } from 'components/Toas
 
 import { incrementUsageLimit } from 'lib/usageLimit';
 
+import { thisMonth } from 'utils/date';
 import { formatCurrency } from 'utils/formatter';
 
 export default function Expenses({ user }) {
@@ -110,10 +111,19 @@ export default function Expenses({ user }) {
 					<div className="mb-6 grid grid-cols-1 gap-6 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
 						<Card title="Total Expenses" className="relative" data={data.length} />
 						<Card
-							title="Total Price"
+							title="Total Amount"
 							className="relative"
 							data={formatCurrency(
 								data.reduce((acc, datum) => Number(datum.price) + acc, 0),
+								user.currency,
+								user.locale
+							)}
+						/>
+						<Card
+							title="This Month"
+							className="relative"
+							data={formatCurrency(
+								data.filter(thisMonth).reduce((acc, datum) => Number(datum.price) + acc, 0),
 								user.currency,
 								user.locale
 							)}
