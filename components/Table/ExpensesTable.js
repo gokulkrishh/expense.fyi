@@ -33,13 +33,7 @@ export default function ExpensesTable({ isLoading, data = [], onEdit, onDelete, 
 	}
 
 	return (
-		<Table
-			showFilter
-			title="Expenses"
-			thList={thList}
-			isLoading={isLoading}
-			isPremiumPlan={isPremiumPlan && !isPremiumPlanEnded}
-		>
+		<Table title="Expenses" thList={thList} isLoading={isLoading} isPremiumPlan={isPremiumPlan && !isPremiumPlanEnded}>
 			{sortByKey(data, 'date').map((datum) => {
 				const isToday = isItToday(new Date(datum.date), new Date());
 				return (
