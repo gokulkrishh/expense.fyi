@@ -1,5 +1,5 @@
 <a href="https://expense.fyi">
-<p align="center"><img alt="Expense.fyi – An open source expense tracker application to track your incomes, investments, subscriptions and expenses at ease." src="./public/static/icons/logo.svg"></p>
+<p align="center"><img alt="Expense.fyi – An open source expense tracker application to track your incomes, investments, subscriptions and expenses at ease." width="100" height="100" src="./public/static/icons/logo.svg"></p>
   <h1 align="center">Expense.fyi</h1>
 </a>
 
@@ -32,13 +32,14 @@ Expense.fyi is an open source application to effortlessly track and manage your 
 - [Tailwind](https://tailwindcss.com/) – CSS
 - [Supabase](https://supabase.com/) – database
 - [Vercel](https://vercel.com/) – hosting
+- [Resend](https://resend.com/) – emails
 
 ## Implementation
 
 - Expense.fyi is build using [NextJs](https://nextjs.org) from scratch.
-- [Supabase](https://supabase.com/) is an open source Firebase alternative, data is stored in postgres data and using magic link authentication service provided by supabase to signup users.
-- [Postgresql](https://www.postgresql.org/) is used as the database for storing user data, subscriptions etc. You can refer to the Prisma schema [here](/prisma/schema.prisma).
-- [Razorpay](https://razorpay.com/) is used as the payments system.
+- [Postgresql](https://www.postgresql.org/) is used as the ORM for easily communicating with database for storing user, subscriptions data etc. You can refer to the Prisma schema [here](/prisma/schema.prisma).
+- [Supabase](https://supabase.com/) is an open source Firebase alternative, the data is stored in postgres database (private data are encrypted) and using magic link for authentication provided by supabase.
+- [Razorpay](https://razorpay.com/) is used as the payments system. Awaiting for profile activiation, so payment disabled in code.
 
 ## Routes
 
@@ -51,7 +52,7 @@ Expense.fyi is an open source application to effortlessly track and manage your 
 
 ## Contribution
 
-We love our contributors! Here's how you can contribute:
+Here's how you can contribute:
 
 - [Open an issue](https://github.com/gokulkrishh/expense.fyi/issues) if you believe you've encountered a bug.
 - Make a [pull request](https://github.com/gokulkrishh/expense.fyi/pull) to add new features/make quality-of-life improvements/fix bugs.
@@ -66,4 +67,4 @@ We love our contributors! Here's how you can contribute:
 
 ## License
 
-Expense.fyi is open source under the GNU Affero General Public License Version 3 (AGPLv3) or any later version. You can [find it here](https://github.com/gokulkrishh/expense.fyi/blob/main/LICENSE.md).
+Expense.fyi is an open source under the GNU Affero General Public License Version 3 (AGPLv3) or any later version. You can [find it here](https://github.com/gokulkrishh/expense.fyi/blob/main/LICENSE.md).
