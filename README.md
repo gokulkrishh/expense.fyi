@@ -4,7 +4,7 @@
 </a>
 
 <p align="center">
-	Expense.fyi is Open Source Application to Effortlessly Track and Manage your expenses.
+	Expense.fyi is an open-source expense tracker application to effortlessly track and manage your expenses.
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 
 ## Introduction
 
-Expense.fyi is an open source application to effortlessly track and manage your incomes, investments, subscriptions and expenses.
+Expense.fyi is an open-source application to effortlessly track and manage your incomes, expenses, investments, and subscriptions.
 
 ## Tech Stack
 
