@@ -32,15 +32,6 @@ export default function Signup() {
 		inputElement.current?.focus();
 	}, []);
 
-	const checkAccountExists = async (email) => {
-		const res = await fetch('/api/auth/account-exists', {
-			method: 'POST',
-			body: JSON.stringify({ email }),
-			headers: { 'Content-Type': 'application/json' },
-		});
-		return await res.json();
-	};
-
 	const handleSignup = async () => {
 		setState((prev) => ({ ...prev, loading: true, error: '', success: false }));
 
