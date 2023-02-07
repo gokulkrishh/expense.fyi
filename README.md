@@ -1,10 +1,10 @@
 <a href="https://expense.fyi">
-<p align="center"><img alt="Expense.fyi – An open source expense tracker application to track your incomes, investments, subscriptions and expenses at ease." width="100" height="100" src="./public/static/icons/logo.svg"></p>
+<p align="center"><img alt="Expense.fyi – An open source expense tracker application to track your incomes, investments, subscriptions, and expenses at ease." width="100" height="100" src="./public/static/icons/logo.svg"></p>
   <h1 align="center">Expense.fyi</h1>
 </a>
 
 <p align="center">
-	Expense.fyi is an open-source expense tracker application to effortlessly track and manage your expenses.
+  Expense.fyi is an open-source expense tracker application to effortlessly track and manage your expenses.
 </p>
 
 <p align="center">
@@ -29,17 +29,17 @@ Expense.fyi is an open-source application to effortlessly track and manage your 
 ## Tech Stack
 
 - [Next.js](https://nextjs.org/) – framework
-- [Tailwind](https://tailwindcss.com/) – CSS
-- [Supabase](https://supabase.com/) – database
-- [Vercel](https://vercel.com/) – hosting
-- [Resend](https://resend.com/) – emails
+- [Tailwind](https://tailwindcss.com/) – CSS
+- [Supabase](https://supabase.com/) – database
+- [Vercel](https://vercel.com/) – hosting
+- [Resend](https://resend.com/) – emails
 
 ## Implementation
 
-- Expense.fyi is build using [NextJs](https://nextjs.org) from scratch.
-- [Postgresql](https://www.postgresql.org/) is used as the ORM for easily communicating with database for storing user, subscriptions data etc. You can refer to the Prisma schema [here](/prisma/schema.prisma).
-- [Supabase](https://supabase.com/) is an open source Firebase alternative, the data is stored in postgres database (private data are encrypted) and using magic link for authentication provided by supabase.
-- [Razorpay](https://razorpay.com/) is used as the payments system. Awaiting for profile activiation, so payment disabled in code.
+- Expense.fyi is built using [NextJs](https://nextjs.org) from scratch.
+- [Postgresql](https://www.postgresql.org/) is used as the ORM for easily communicating with the database for storing user, subscription data, etc. You can refer to the Prisma schema [here](/prisma/schema.prisma).
+- [Supabase](https://supabase.com/) is an open-source Firebase alternative, the data is stored in the Postgres database (private data are encrypted) and uses a magic link for authentication provided by supabase.
+- [Razorpay](https://razorpay.com/) is used as the payments system. Awaiting profile activation, so payment is disabled in the code.
 
 ## Routes
 
