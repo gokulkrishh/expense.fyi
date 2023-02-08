@@ -39,7 +39,7 @@ export default function Home({ user }) {
 	const { data: investmentsData = [] } = useSWR(`/api/investments/range?${rangeParams}`);
 	const { data: incomeData = [], isLoading } = useSWR(`/api/income/range?${rangeParams}`);
 	const { data: subscriptionsData = [], isLoading: isSubscriptionsLoading } = useSWR(
-		`/api/subscriptions/all?active=true`
+		`/api/subscriptions/all?active=true&${rangeParams}`
 	);
 
 	const chartdata = useMemo(() => extractExpensesData(expensesData, user.locale), [expensesData, user.locale]);
@@ -88,6 +88,7 @@ export default function Home({ user }) {
 										dropdown,
 									});
 								}}
+								maxDate={new Date()}
 								enableDropdown={true}
 								placeholder="Select a date"
 								enableYearPagination={true}
@@ -106,7 +107,7 @@ export default function Home({ user }) {
 					expensesData={expensesData}
 					incomeData={incomeData}
 					investmentsData={investmentsData}
-					subscriptionsData={chartDataForSubscription}
+					subscriptionsData={subscriptionsData}
 					isLoading={isLoading}
 				/>
 
@@ -115,7 +116,7 @@ export default function Home({ user }) {
 					<div className="mr-4 flex min-h-full w-full flex-col">
 						<Card className="h-full">
 							<h3 className="text-md font-semibold text-black">Expenses</h3>
-							<p className="mt-1 pb-2 text-sm font-normal text-zinc-500">Showing based on selected date range.</p>
+							<p className="mt-1 pb-2 text-sm font-normal text-zinc-500">Amount spent for the selected date range.</p>
 							{isExpensesLoading ? (
 								<LoaderChart className="h-[340px]" />
 							) : (
@@ -146,7 +147,7 @@ export default function Home({ user }) {
 						<Card className="h-full w-full">
 							<h3 className="text-md font-semibold text-black">Subscriptions</h3>
 							<p className="mt-1 pb-2 text-sm font-normal text-zinc-500">
-								Upcoming renewal dates based on date selection.
+								Calculated spent amount from added date to the selected date range.
 							</p>
 							{isSubscriptionsLoading ? (
 								<LoaderChart className="h-[340px]" type="donut" />
