@@ -23,8 +23,11 @@ export default function Subscriptions({ user }) {
 	const [show, setShow] = useState(false);
 	const [selected, setSelected] = useState({});
 	const { data = [], mutate, isLoading } = useSWR(`/api/subscriptions/all`);
+	const monthlyData = data.filter((datum) => datum.active && datum.paid === payingKey.monthly);
+	const yearlyData = data.filter((datum) => datum.active && datum.paid === payingKey.yearly);
 
 	const onHide = () => setShow(false);
+
 	const onEdit = (selected) => {
 		setShow(true);
 		setSelected(selected);
@@ -129,40 +132,26 @@ export default function Subscriptions({ user }) {
 						<Card title="Total Subscriptions" className="relative" data={data.length} />
 
 						<Card
-							title={`Total Amount`}
-							className="relative"
-							data={formatCurrency(
-								data.filter((datum) => datum.active).reduce((acc, datum) => Number(datum.price) + acc, 0),
-								user.currency,
-								user.locale
-							)}
-						/>
-
-						<Card
 							title="Active - Cancelled"
 							className="relative"
 							data={`${data.filter((datum) => datum.active).length} - ${data.filter((datum) => !datum.active).length}`}
 						/>
 
 						<Card
-							title={`Total Active - Monthly`}
+							title={`Total Active - Yearly`}
 							className="relative"
 							data={formatCurrency(
-								data
-									.filter((datum) => datum.active && datum.paid === payingKey.monthly)
-									.reduce((acc, datum) => Number(datum.price) + acc, 0),
+								yearlyData.reduce((acc, datum) => Number(datum.price) + acc, 0),
 								user.currency,
 								user.locale
 							)}
 						/>
 
 						<Card
-							title={`Total Active - Yearly`}
+							title={`Total Active - Monthly`}
 							className="relative"
 							data={formatCurrency(
-								data
-									.filter((datum) => datum.active && datum.paid === payingKey.yearly)
-									.reduce((acc, datum) => Number(datum.price) + acc, 0),
+								monthlyData.reduce((acc, datum) => Number(datum.price) + acc, 0),
 								user.currency,
 								user.locale
 							)}

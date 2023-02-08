@@ -59,15 +59,17 @@ const isInRangeOfSelectedDate = (data, start, end) => {
 };
 
 export const extractCategoriesFromData = (data, { start, end }) => {
-	return isInRangeOfSelectedDate(data, start, end).reduce((acc, datum) => {
-		acc.push(datum.name);
-		return acc;
-	}, []);
+	return data
+		.filter((datum) => datum.paidCount > 0)
+		.reduce((acc, datum) => {
+			acc.push(datum.name);
+			return acc;
+		}, []);
 };
 
 export const extractSubscriptionData = (data, { start, end }) => {
-	return isInRangeOfSelectedDate(data, start, end).reduce((acc, c) => {
-		acc.push({ name: c.name, price: Number(c.price) });
+	return data.reduce((acc, c) => {
+		acc.push({ name: c.name, price: Number(c.price) * Number(c.paidCount) });
 		return acc;
 	}, []);
 };

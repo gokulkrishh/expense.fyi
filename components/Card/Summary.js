@@ -1,19 +1,15 @@
-import {
-	BanknotesIcon,
-	BriefcaseIcon,
-	ChartBarSquareIcon,
-	CreditCardIcon,
-	PlayIcon,
-	ScaleIcon,
-} from '@heroicons/react/24/outline';
+import { BanknotesIcon, BriefcaseIcon, CreditCardIcon, PlayIcon, ScaleIcon } from '@heroicons/react/24/outline';
 import { Icon } from '@tremor/react';
 
 import LoaderCard from 'components/Loader/LoaderCard';
-import { ExpensesIcon } from 'components/Menu/Sidebar';
 
 import { formatCurrency } from 'utils/formatter';
 
+import { payingKey } from 'constants/index';
+
 import Card from '.';
+
+const calculateAmountForSubscription = (acc, datum) => Number(datum.price) * Number(datum.paidCount) + acc;
 
 export default function Summary({
 	isLoading,
@@ -24,7 +20,15 @@ export default function Summary({
 	currency,
 	locale,
 }) {
-	const totalSubscriptionsCost = subscriptionsData.reduce((acc, datum) => Number(datum.price) + acc, 0);
+	const totalSubscriptionsCostYear = subscriptionsData
+		.filter((datum) => datum.paid === payingKey.yearly)
+		.reduce(calculateAmountForSubscription, 0);
+
+	const totalSubscriptionsCostMonthly = subscriptionsData
+		.filter((datum) => datum.paid === payingKey.monthly)
+		.reduce(calculateAmountForSubscription, 0);
+
+	const totalSubscriptionsCost = totalSubscriptionsCostYear + totalSubscriptionsCostMonthly;
 	const totalExpenseCost = expensesData.reduce((acc, datum) => Number(datum.price) + acc, 0);
 	const totalIncomeAmount = incomeData.reduce((acc, datum) => Number(datum.price) + acc, 0);
 	const totalInvestmentsAmount = investmentsData.reduce((acc, datum) => Number(datum.price) * datum.units + acc, 0);
