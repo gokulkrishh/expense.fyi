@@ -17,7 +17,7 @@
   <a href="#introduction"><strong>Introduction</strong></a> ·
   <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
   <a href="#implementation"><strong>Implementation</strong></a> ·
-  <a href="#app-routes"><strong>App Routes</strong></a> ·
+  <a href="#routes"><strong>App Routes</strong></a> ·
   <a href="#contributing"><strong>Contributing</strong></a>
 </p>
 <br/>
