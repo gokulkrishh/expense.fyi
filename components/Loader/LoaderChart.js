@@ -14,14 +14,14 @@ export default function LoaderChart({ className, type = 'bar' }) {
 		return (
 			<div className={`relative mb-7 w-full bg-white p-4 px-0 ${className} `}>
 				<div className="animate-pulse">
-					<p className="h-[20px] w-[200px] rounded-md bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
+					<p className="float-right h-[20px] w-[200px] rounded-md bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
 				</div>
-				<p className="m-auto mt-[20px] h-full max-h-[310px] w-full max-w-[310px] animate-pulse rounded-full bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
+				<p className="m-auto !mt-[35px] h-full max-h-[310px] w-full max-w-[310px] animate-pulse rounded-full bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 pt-2 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
 			</div>
 		);
 	} else if (type === 'barlist') {
 		return (
-			<div className={`relative mb-7 w-full bg-white p-4 px-0 ${className} `}>
+			<div className={`relative mb-7 w-full bg-white p-4 px-0 ${className}`}>
 				<div className="animate-pulse">
 					<p className="h-[20px] w-[200px] rounded-md bg-gradient-to-br from-gray-200 via-slate-50 to-gray-100 text-xl font-semibold text-black xs:text-xl lg:text-xl xl:text-2xl" />
 				</div>
