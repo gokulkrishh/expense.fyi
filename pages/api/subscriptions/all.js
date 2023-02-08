@@ -3,13 +3,13 @@ import { format } from 'date-fns';
 import { withUserAuth } from 'lib/auth';
 import prisma from 'lib/prisma';
 
-import { calculateRenewalDate } from 'utils/date';
+import { calculatePaidCount, calculateRenewalDate } from 'utils/date';
 
 import { dateFormatStr } from 'constants/index';
 
 export default withUserAuth(async (req, res, user) => {
 	if (req.method === 'GET') {
-		const { active } = req.query;
+		const { active, start, end } = req.query;
 
 		const whereCondition = { user_id: user.id };
 
@@ -38,6 +38,7 @@ export default withUserAuth(async (req, res, user) => {
 			const updatedDate = data.map((datum) => ({
 				...datum,
 				renewal_date: format(calculateRenewalDate(datum.date, datum.paid), dateFormatStr),
+				paidCount: calculatePaidCount(datum, start, end),
 			}));
 
 			res.status(200).json(updatedDate);

@@ -1,4 +1,5 @@
 import {
+	addDays,
 	addMonths,
 	addYears,
 	differenceInMonths,
@@ -11,6 +12,8 @@ import {
 } from 'date-fns';
 
 import { dateFormatStr, payingKey } from 'constants/index';
+
+import { formatDate } from './formatter';
 
 export const getCurrentMonth = () => {
 	const date = new Date();
@@ -44,6 +47,22 @@ export const calculateRenewalDate = (dateStr, paid) => {
 	const yearRenewalDate = addYears(createdDateObj, differenceInYears(today, createdDateObj));
 	if (isToday(yearRenewalDate) && !isToday(createdDateObj)) return today;
 	return addYears(yearRenewalDate, 1);
+};
+
+export const calculatePaidCount = (datum, start, end) => {
+	const createdDate = new Date(datum.date);
+	const startDate = new Date(start);
+	const endDate = new Date(end);
+
+	if (createdDate >= startDate && createdDate <= endDate) {
+		if (datum.paid === payingKey.monthly) {
+			return differenceInMonths(endDate, createdDate) + 1;
+		} else {
+			return differenceInYears(endDate, createdDate) + 1;
+		}
+	} else {
+		return 0;
+	}
 };
 
 export const calculatePaidDate = (dateStr, paid) => {
