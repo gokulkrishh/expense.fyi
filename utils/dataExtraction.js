@@ -4,6 +4,7 @@ import { sortByKey } from './array';
 import { formatDate } from './formatter';
 
 const recentIndex = 4;
+const topExpenseIndex = 4;
 
 export const extractExpensesData = (data, locale) => {
 	const groupByDate = sortByKey(data, 'date').reduce((acc, datum) => {
@@ -48,7 +49,7 @@ export const extractTopExpenseCategoryData = (data) => {
 
 	return Object.values(dataMap)
 		.sort(sortValueByAsc)
-		.filter((_, index) => index <= recentIndex);
+		.filter((_, index) => index <= topExpenseIndex);
 };
 
 const isInRangeOfSelectedDate = (data, start, end) => {

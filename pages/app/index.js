@@ -206,7 +206,7 @@ export default function Home({ user }) {
 												return formatCurrency(number, user.currency, user.locale);
 											}}
 											color="amber"
-											showAnimation={true}
+											showAnimation={false}
 											marginTop="mt-4"
 										/>
 									</>
