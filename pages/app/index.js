@@ -131,7 +131,7 @@ export default function Home({ user }) {
 									showTooltip={true}
 									showLegend={true}
 									stack={false}
-									showAnimation={true}
+									showAnimation={false}
 									minValue={0}
 									maxValue={maxValueForXAxisBarChart?.value}
 									showGridLines={true}
@@ -153,7 +153,9 @@ export default function Home({ user }) {
 								<LoaderChart className="h-[340px]" type="donut" />
 							) : (
 								<>
-									<Legend categories={subscriptionDataForLegend} marginTop="mt-3" />
+									<div className="flex justify-end">
+										<Legend categories={subscriptionDataForLegend} marginTop="mt-3" />
+									</div>
 									<DonutChart
 										data={chartDataForSubscription}
 										category={'price'}
@@ -162,7 +164,7 @@ export default function Home({ user }) {
 											return formatCurrency(number, user.currency, user.locale);
 										}}
 										showLabel={true}
-										showAnimation={true}
+										showAnimation={false}
 										showTooltip={true}
 										height="h-80"
 										marginTop="mt-4"
