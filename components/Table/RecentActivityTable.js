@@ -24,7 +24,7 @@ export default function RecentActivityTable({ isLoading = false, data, locale, c
 				<thead>
 					<tr>
 						{isLoading ? (
-							<LoaderTableHeader thList={[1, 2, 3, 4]} thClassNames={thClassNames} />
+							<LoaderTableHeader thList={[1, 2, 3, 4, 5]} thClassNames={thClassNames} />
 						) : (
 							<>
 								<th className={thClassNames}>No.</th>
@@ -35,16 +35,16 @@ export default function RecentActivityTable({ isLoading = false, data, locale, c
 						)}
 					</tr>
 				</thead>
-				<tbody className="mb-2 text-sm font-medium text-zinc-800">
+				<tbody className="text-sm font-medium text-zinc-800">
 					{isLoading ? (
 						<LoaderTable tr={5} td={4} />
 					) : (
 						data.map((datum, index) => {
 							return (
 								<tr key={datum.id} className={`border-b-[1px] last:border-b-[0] `}>
-									<td className="max-w-[50px] pb-1">{index + 1}.</td>
-									<td className="pt-1 pb-1">{datum.name}</td>
-									<td className="flex flex-col pt-2 pb-1 pl-0">
+									<td className="max-w-[50px]">{index + 1}.</td>
+									<td className="pt-1">{datum.name}</td>
+									<td className="flex flex-col pt-2 pl-0">
 										<span className="capitalize">{datum.from}</span>
 										<span className="mb-1 text-xs text-gray-500">
 											{allCategory[datum.category] ? (
@@ -64,7 +64,7 @@ export default function RecentActivityTable({ isLoading = false, data, locale, c
 											)}
 										</span>
 									</td>
-									<td className="pt-1 pb-1">{formatCurrency(datum.price, currency, locale)}</td>
+									<td className="pt-1">{formatCurrency(datum.price, currency, locale)}</td>
 								</tr>
 							);
 						})

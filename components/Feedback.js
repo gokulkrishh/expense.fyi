@@ -71,8 +71,8 @@ const Feedback = ({ className }) => {
 
 			setState((prev) => ({ ...prev, sent: true, loading: false, message: '' }));
 			setTimeout(() => {
-				setState((prev) => ({ ...prev, show: false, sent: false }));
-			}, 6000);
+				setState((prev) => ({ ...prev, sent: false, show: false }));
+			}, 5000);
 		} catch (error) {
 			setState((prev) => ({ ...prev, loading: false }));
 			showErrorToast(error.message);
@@ -102,13 +102,12 @@ const Feedback = ({ className }) => {
 				leaveTo="opacity-0 translate-y-1"
 			>
 				<div
-					className="absolute right-0 z-10 mt-2 h-[197px] w-[290px] origin-top-right rounded-md bg-white px-4 py-2 shadow-md shadow-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
+					className="absolute right-0 z-10 mt-2 h-[170px] w-[290px] origin-top-right rounded-md bg-white px-4 py-2 shadow-md shadow-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
 					tabIndex="-1"
 				>
 					<div>
 						{!state.sent ? (
 							<>
-								<span className="text-md mb-2 mt-[2px] flex w-full items-center text-zinc-800">Feedback</span>
 								<form
 									onSubmit={(event) => {
 										event.preventDefault();
@@ -118,8 +117,8 @@ const Feedback = ({ className }) => {
 									}}
 								>
 									<textarea
-										className="mt-3 mb-3 block h-[100px] w-full appearance-none rounded-md bg-white px-3 py-2 text-sm text-zinc-800 ring-1 ring-gray-300 placeholder:text-zinc-400 focus:outline-none"
-										placeholder="Share your feedback"
+										className="mt-2 mb-2 block h-[100px] w-full appearance-none rounded-md bg-white px-3 py-2 text-sm text-zinc-800 ring-2 ring-gray-300 transition-all placeholder:text-zinc-400 focus:outline-none focus:ring-gray-500"
+										placeholder="Share your feedback..."
 										onChange={(event) => setState({ ...state, message: event.target.value })}
 										value={state.message}
 										style={{ resize: 'none' }}
@@ -128,10 +127,10 @@ const Feedback = ({ className }) => {
 										ref={inputElement}
 										maxLength="250"
 									/>
-									<div className="flex h-[30px] w-full justify-end">
+									<div className="mt-[12px] flex h-[32px] w-full justify-end">
 										<button
-											className={`w-[70px] items-center rounded-md bg-blue-600 text-sm font-medium uppercase text-white hover:bg-blue-700 ${
-												state.loading ? 'bg-blue-400' : 'bg-blue-600'
+											className={`w-[70px] items-center rounded-md text-sm font-medium uppercase text-white hover:bg-blue-800 ${
+												state.loading ? 'bg-blue-500' : 'bg-blue-700'
 											}`}
 											disabled={state.loading}
 										>
@@ -147,10 +146,21 @@ const Feedback = ({ className }) => {
 								</form>
 							</>
 						) : (
-							<div className="flex h-[204px] flex-col items-center justify-center">
-								<CheckCircleIcon className="mb-2 h-10 w-10 text-green-500" />
-								<span className="mb-2 block text-sm font-medium text-zinc-800">Your feedback is received.</span>
-								<span className="mb-3 block text-sm font-medium text-zinc-800">Will get in touch with you soon!</span>
+							<div className="mt-[10px] flex h-[140px] flex-col items-center justify-center">
+								<Transition
+									appear={true}
+									show={true}
+									enter="transform transition duration-[200ms]"
+									enterFrom="opacity-0 rotate-[45deg] scale-0"
+									enterTo="opacity-100 rotate-0 scale-100"
+									leave="transform duration-100 transition ease-in-out"
+									leaveFrom="opacity-100 rotate-0 scale-100"
+									leaveTo="opacity-0 rotate-0 scale-95"
+								>
+									<CheckCircleIcon className="mb-2 h-12 w-12 text-green-500 " />
+								</Transition>
+								<span className="mb-1 block text-sm font-semibold text-zinc-800">Your feedback is received!</span>
+								<span className="mb-3 block text-sm font-normal text-zinc-600">Thanks for improving the product.</span>
 							</div>
 						)}
 					</div>
