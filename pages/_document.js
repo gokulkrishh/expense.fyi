@@ -28,21 +28,9 @@ export default function Document() {
 				<meta name="twitter:site" content="@gokul_i" />
 				<meta name="twitter:url" content="https://expense.fyi/" />
 				<meta name="twitter:description" content="Effortlessly Track and Manage Expenses." />
-				<link rel="mask-icon" href="/static/icons/safari-pinned-tab.svg" color="#e2f3fe" />
-				<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png" />
-				<link
-					href="/static/icons/favicon-32x32.png"
-					type="image/png"
-					rel="icon"
-					media="(prefers-color-scheme: light)"
-				/>
-				<link
-					href="/static/icons/favicon-white-32x32.png"
-					type="image/png"
-					rel="icon"
-					media="(prefers-color-scheme: dark)"
-				/>
-				<link href="/static/icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+				<link href="/static/icons/icon.svg" rel="icon" type="image/svg+xml" />
+				<link href="/static/icons/favicon.ico" rel="alternate icon" sizes="any" />
+				<link href="/static/icons/apple-touch-icon.png" rel="apple-touch-icon" />
 				<link rel="manifest" href="/static/manifest.json" />
 			</Head>
 			<body className="font-default flex h-full flex-col text-gray-600 antialiased">
