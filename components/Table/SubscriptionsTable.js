@@ -7,7 +7,7 @@ import Table from 'components/Table';
 import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 
 const tdClassNames = 'relative p-4 pl-8 text-zinc-800 text-sm font-normal whitespace-nowrap';
-const thList = ['Name', 'Price', 'Renewal Date ↓', 'Added Date', 'Notes', 'Status', 'Actions'];
+const thList = ['Name', 'Price', 'Renewal Date ↓', 'Start Date', 'Notes', 'Status', 'Actions'];
 
 export default function SubscriptionTable({ isLoading, data = [], onEdit, onDelete, onActive, user }) {
 	const { currency, locale, isPremiumPlan, isPremiumPlanEnded } = user;

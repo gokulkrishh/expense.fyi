@@ -54,6 +54,17 @@ export default function Summary({
 					/>
 
 					<Card
+						title="Available Balance"
+						className="relative"
+						data={formatCurrency(totalBalanceAmount, currency, locale)}
+						icon={
+							<span className="absolute right-2 top-2">
+								<Icon icon={ScaleIcon} variant="light" size="xs" color="sky" />
+							</span>
+						}
+					/>
+
+					<Card
 						title="Total Spent"
 						className="relative"
 						data={formatCurrency(totalSpent, currency, locale)}
@@ -66,17 +77,6 @@ export default function Summary({
 									size="xs"
 									color="orange"
 								/>
-							</span>
-						}
-					/>
-
-					<Card
-						title="Available Balance"
-						className="relative"
-						data={formatCurrency(totalBalanceAmount, currency, locale)}
-						icon={
-							<span className="absolute right-2 top-2">
-								<Icon icon={ScaleIcon} variant="light" size="xs" color="sky" />
 							</span>
 						}
 					/>
