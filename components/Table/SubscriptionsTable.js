@@ -66,7 +66,7 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 								<p className="mt-[2px] text-xs text-zinc-500"> per {datum.paid.replace(/ly/, '')}</p>
 							</td>
 							<td className={tdClassNames}>
-								<p>{!datum.active ? '-' : isToday ? 'Today' : formatDate(renewalDateObj, locale)}</p>
+								<p>{isToday ? 'Today' : formatDate(renewalDateObj, locale)}</p>
 								<p className="mt-[2px] text-xs text-zinc-500">prev: {formatDate(datum.prev_renewal_date, locale)}</p>
 							</td>
 							<td className={`${tdClassNames}`}>{formatDate(datum.date, locale)}</td>
