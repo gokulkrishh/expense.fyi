@@ -3,7 +3,7 @@ import prisma from 'lib/prisma';
 
 export default withUserAuth(async (req, res) => {
 	if (req.method === 'PATCH') {
-		const { notes, name, price, paid, url, id, date, active } = req.body;
+		const { notes, name, price, paid, url, id, date, active, cancelled_at } = req.body;
 
 		if (!id) {
 			res.status(400).json({ message: 'Invalid request' });
@@ -11,7 +11,7 @@ export default withUserAuth(async (req, res) => {
 
 		try {
 			await prisma.subscriptions.update({
-				data: { notes, name, price, date, paid, url, active },
+				data: { notes, name, price, date, paid, url, active, cancelled_at },
 				where: { id },
 			});
 			res.status(200).json({ message: 'Updated' });

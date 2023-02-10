@@ -38,9 +38,7 @@ export default function Home({ user }) {
 	const { data: expensesData = [], isLoading: isExpensesLoading } = useSWR(`/api/expenses/range?${rangeParams}`);
 	const { data: investmentsData = [] } = useSWR(`/api/investments/range?${rangeParams}`);
 	const { data: incomeData = [], isLoading } = useSWR(`/api/income/range?${rangeParams}`);
-	const { data: subscriptionsData = [], isLoading: isSubscriptionsLoading } = useSWR(
-		`/api/subscriptions/all?active=true&${rangeParams}`
-	);
+	const { data: subscriptionsData = [], isLoading: isSubsLoading } = useSWR(`/api/subscriptions/all?${rangeParams}`);
 
 	const chartdata = useMemo(() => extractExpensesData(expensesData, user.locale), [expensesData, user.locale]);
 	const categoriesForChartData = useMemo(() => extractExpensesCategories(expensesData), [expensesData]);
@@ -149,7 +147,7 @@ export default function Home({ user }) {
 							<p className="mt-1 pb-2 text-sm font-normal text-zinc-500">
 								Calculated spent amount from added date to the selected date range.
 							</p>
-							{isSubscriptionsLoading ? (
+							{isSubsLoading ? (
 								<LoaderChart className="h-[340px]" type="donut" />
 							) : (
 								<>

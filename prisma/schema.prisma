@@ -15,23 +15,24 @@ datasource db {
 }
 
 model subscriptions {
-  id         String   @id @default(uuid())
+  id           String   @id @default(uuid())
   /// @encrypted
-  name       String
+  name         String
   /// @encrypted
-  notes      String?
-  url        String
+  notes        String?
+  url          String
   /// @encrypted
-  price      String   @default("0")
-  paid       String
-  notify     Boolean  @default(false)
-  date       String
-  created_at DateTime @default(now()) @db.Timestamptz(6)
-  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(6)
-  user_id    String   @db.Uuid
-  active     Boolean? @default(true)
-  nameHash   String?
-  user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  price        String   @default("0")
+  paid         String
+  notify       Boolean  @default(false)
+  date         String
+  created_at   DateTime @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+  user_id      String   @db.Uuid
+  active       Boolean? @default(true)
+  cancelled_at String?
+  nameHash     String?
+  user         users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model expenses {

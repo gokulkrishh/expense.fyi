@@ -1,5 +1,4 @@
 import {
-	addDays,
 	addMonths,
 	addYears,
 	differenceInMonths,
@@ -8,7 +7,10 @@ import {
 	format,
 	isThisMonth,
 	isToday,
+	isValid,
 	startOfMonth,
+	subMonths,
+	subYears,
 } from 'date-fns';
 
 import { dateFormatStr, payingKey } from 'constants/index';
@@ -49,16 +51,25 @@ export const calculateRenewalDate = (dateStr, paid) => {
 	return addYears(yearRenewalDate, 1);
 };
 
-export const calculatePaidCount = (datum, start, end) => {
-	const createdDate = new Date(datum.date);
-	const startDate = new Date(start);
-	const endDate = new Date(end);
+export const calculatePreviousRenewalDate = (dateStr, paid) => {
+	if (paid === payingKey.monthly) {
+		return subMonths(dateStr, 1);
+	}
 
-	if (createdDate >= startDate && createdDate <= endDate) {
+	return subYears(dateStr, 1);
+};
+
+export const calculatePaidCount = (datum, start, end, prev_renewal_date) => {
+	const previousRenewalDate = new Date(prev_renewal_date);
+	const rangeStartDate = new Date(start);
+	const hasValidCancelledAt = datum.cancelled_at !== null && isValid(new Date(datum.cancelled_at));
+	const rangeEndDate = hasValidCancelledAt ? new Date(datum.cancelled_at) : new Date(end);
+
+	if (previousRenewalDate >= rangeStartDate && previousRenewalDate <= rangeEndDate) {
 		if (datum.paid === payingKey.monthly) {
-			return differenceInMonths(endDate, createdDate) + 1;
+			return differenceInMonths(rangeEndDate, rangeStartDate) + 1;
 		} else {
-			return differenceInYears(endDate, createdDate) + 1;
+			return differenceInYears(rangeEndDate, rangeStartDate) + 1;
 		}
 	} else {
 		return 0;
