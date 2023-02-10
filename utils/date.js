@@ -60,16 +60,16 @@ export const calculatePreviousRenewalDate = (dateStr, paid) => {
 };
 
 export const calculatePaidCount = (datum, start, end, prev_renewal_date) => {
+	const hasValidCancelledAt = !datum.active && datum.cancelled_at !== null && isValid(new Date(datum.cancelled_at));
 	const previousRenewalDate = new Date(prev_renewal_date);
 	const rangeStartDate = new Date(start);
-	const hasValidCancelledAt = datum.cancelled_at !== null && isValid(new Date(datum.cancelled_at));
-	const rangeEndDate = hasValidCancelledAt ? new Date(datum.cancelled_at) : new Date(end);
+	const rangeEndDate = new Date(end);
 
 	if (previousRenewalDate >= rangeStartDate && previousRenewalDate <= rangeEndDate) {
 		if (datum.paid === payingKey.monthly) {
-			return differenceInMonths(rangeEndDate, rangeStartDate) + 1;
+			return differenceInMonths(rangeEndDate, rangeStartDate) + hasValidCancelledAt ? 0 : 1;
 		} else {
-			return differenceInYears(rangeEndDate, rangeStartDate) + 1;
+			return differenceInYears(rangeEndDate, rangeStartDate) + hasValidCancelledAt ? 0 : 1;
 		}
 	} else {
 		return 0;

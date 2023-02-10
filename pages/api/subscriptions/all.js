@@ -9,31 +9,11 @@ import { dateFormatStr } from 'constants/index';
 
 export default withUserAuth(async (req, res, user) => {
 	if (req.method === 'GET') {
-		const { active, start, end } = req.query;
-
-		const whereCondition = { user_id: user.id };
-
-		if (active === 'true') {
-			whereCondition.active = true;
-		}
+		const { start, end } = req.query;
 
 		try {
 			const data = await prisma.subscriptions.findMany({
-				where: whereCondition,
-				select: {
-					notes: true,
-					name: true,
-					price: true,
-					paid: true,
-					url: true,
-					date: true,
-					id: true,
-					active: true,
-					notify: true,
-					created_at: true,
-					cancelled_at: true,
-					updated_at: true,
-				},
+				where: { user_id: user.id },
 			});
 
 			const updatedDate = data.map((datum) => {

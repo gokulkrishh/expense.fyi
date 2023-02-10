@@ -62,10 +62,12 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 								</div>
 							</td>
 							<td className={tdClassNames}>
-								{formatCurrency(datum.price, currency, locale)} / {datum.paid.replace(/ly/, '')}
+								<p>{formatCurrency(datum.price, currency, locale)}</p>
+								<p className="mt-[2px] text-xs text-zinc-500"> per {datum.paid.replace(/ly/, '')}</p>
 							</td>
 							<td className={tdClassNames}>
-								{!datum.active ? '-' : isToday ? 'Today' : formatDate(renewalDateObj, locale)}
+								<p>{!datum.active ? '-' : isToday ? 'Today' : formatDate(renewalDateObj, locale)}</p>
+								<p className="mt-[2px] text-xs text-zinc-500">prev: {formatDate(datum.prev_renewal_date, locale)}</p>
 							</td>
 							<td className={`${tdClassNames}`}>{formatDate(datum.date, locale)}</td>
 							<td className={`${tdClassNames}`}>{datum.cancelled_at ? formatDate(datum.cancelled_at, locale) : '-'}</td>
@@ -100,7 +102,7 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 										title={datum.active ? 'Cancel it?' : 'Make it Active?'}
 									/>
 									<button onClick={() => onEdit(datum)} title="Edit">
-										<PencilIcon className="h-4 w-4 cursor-pointer text-slate-700 hover:text-slate-500" />
+										<PencilIcon className="hover:text-x-500 h-4 w-4 cursor-pointer text-slate-700" />
 									</button>
 									<button onClick={() => onDelete(datum.id)} title="Delete">
 										<TrashIcon className="h-4 w-4 cursor-pointer text-slate-700 hover:text-slate-500" />
