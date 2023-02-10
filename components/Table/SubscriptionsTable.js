@@ -1,13 +1,16 @@
 import Image from 'next/image';
 
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { format } from 'date-fns';
 
 import Table from 'components/Table';
 
 import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 
+import { dateFormatStr } from 'constants/index';
+
 const tdClassNames = 'relative p-4 pl-8 text-zinc-800 text-sm font-normal whitespace-nowrap';
-const thList = ['Name', 'Price', 'Renewal Date ↓', 'Start Date', 'Notes', 'Status', 'Actions'];
+const thList = ['Name', 'Price', 'Renewal Date ↓', 'Start Date', 'Cancel Date', 'Notes', 'Status', 'Actions'];
 
 export default function SubscriptionTable({ isLoading, data = [], onEdit, onDelete, onActive, user }) {
 	const { currency, locale, isPremiumPlan, isPremiumPlanEnded } = user;
@@ -59,12 +62,15 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 								</div>
 							</td>
 							<td className={tdClassNames}>
-								{formatCurrency(datum.price, currency, locale)} / {datum.paid.replace(/ly/, '')}
+								<p>{formatCurrency(datum.price, currency, locale)}</p>
+								<p className="mt-[2px] text-xs text-zinc-500"> per {datum.paid.replace(/ly/, '')}</p>
 							</td>
 							<td className={tdClassNames}>
-								{!datum.active ? '-' : isToday ? 'Today' : formatDate(renewalDateObj, locale)}
+								<p>{isToday ? 'Today' : formatDate(renewalDateObj, locale)}</p>
+								<p className="mt-[2px] text-xs text-zinc-500">prev: {formatDate(datum.prev_renewal_date, locale)}</p>
 							</td>
 							<td className={`${tdClassNames}`}>{formatDate(datum.date, locale)}</td>
+							<td className={`${tdClassNames}`}>{datum.cancelled_at ? formatDate(datum.cancelled_at, locale) : '-'}</td>
 							<td className={`${tdClassNames}  break-words`}>{datum.notes}</td>
 							<td className={`${tdClassNames}`}>
 								<span
@@ -83,12 +89,20 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 										defaultChecked={datum.active}
 										checked={datum.checked}
 										onChange={(event) => {
-											onActive({ ...datum, active: event.target.checked });
+											if (!event.target.checked) {
+												onActive({
+													...datum,
+													active: event.target.checked,
+													cancelled_at: format(new Date(), dateFormatStr),
+												});
+											} else {
+												onActive({ ...datum, active: event.target.checked, cancelled_at: '' });
+											}
 										}}
 										title={datum.active ? 'Cancel it?' : 'Make it Active?'}
 									/>
 									<button onClick={() => onEdit(datum)} title="Edit">
-										<PencilIcon className="h-4 w-4 cursor-pointer text-slate-700 hover:text-slate-500" />
+										<PencilIcon className="hover:text-x-500 h-4 w-4 cursor-pointer text-slate-700" />
 									</button>
 									<button onClick={() => onDelete(datum.id)} title="Delete">
 										<TrashIcon className="h-4 w-4 cursor-pointer text-slate-700 hover:text-slate-500" />
