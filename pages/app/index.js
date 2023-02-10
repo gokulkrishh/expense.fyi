@@ -145,7 +145,7 @@ export default function Home({ user }) {
 						<Card className="h-full w-full">
 							<h3 className="text-md font-semibold text-black">Subscriptions</h3>
 							<p className="mt-1 pb-2 text-sm font-normal text-zinc-500">
-								Calculated spent amount from added date to the selected date range.
+								Estimated spent amount for selected date range.
 							</p>
 							{isSubsLoading ? (
 								<LoaderChart className="h-[340px]" type="donut" />

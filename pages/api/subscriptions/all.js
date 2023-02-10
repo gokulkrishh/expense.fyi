@@ -23,7 +23,7 @@ export default withUserAuth(async (req, res, user) => {
 					...datum,
 					renewal_date: format(renewal_date, dateFormatStr),
 					prev_renewal_date,
-					paid_count: calculatePaidCount(datum, start, end, prev_renewal_date),
+					paid_count: calculatePaidCount(datum, start, end, prev_renewal_date, format(renewal_date, dateFormatStr)),
 				};
 			});
 
