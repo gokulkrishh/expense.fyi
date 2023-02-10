@@ -116,7 +116,7 @@ export default function AddSubscription({ show, selected, onHide, onSubmit, load
 							</div>
 						</label>
 						<label className="mr-4 block">
-							<span className="block text-sm font-medium text-zinc-600">Date</span>
+							<span className="block text-sm font-medium text-zinc-600">Start Date</span>
 							<div className="flex items-center justify-between">
 								<input
 									className="mt-2 block h-10 w-full appearance-none rounded-md bg-white p-3 text-sm leading-tight text-zinc-600 shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900 md:w-full"
