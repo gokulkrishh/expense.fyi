@@ -5,9 +5,11 @@ import {
 	differenceInYears,
 	endOfMonth,
 	format,
+	isFuture,
 	isThisMonth,
 	isToday,
 	isValid,
+	isWithinInterval,
 	startOfMonth,
 	subMonths,
 	subYears,
@@ -37,61 +39,66 @@ export const getEndDateOfMonth = (date) => {
 };
 
 export const calculateRenewalDate = (dateStr, paid) => {
-	const createdDateObj = new Date(dateStr);
+	const startDate = new Date(dateStr);
 	const today = new Date();
 
+	if (isFuture(startDate)) {
+		return startDate;
+	}
+
 	if (paid === payingKey.monthly) {
-		const monthlyDate = addMonths(createdDateObj, differenceInMonths(today, createdDateObj));
-		if (isToday(monthlyDate) && !isToday(createdDateObj)) return today;
+		const monthlyDate = addMonths(startDate, differenceInMonths(today, startDate));
+		if (isToday(monthlyDate) && !isToday(startDate)) return today;
 		return addMonths(monthlyDate, 1);
 	}
 
-	const yearRenewalDate = addYears(createdDateObj, differenceInYears(today, createdDateObj));
-	if (isToday(yearRenewalDate) && !isToday(createdDateObj)) return today;
+	const yearRenewalDate = addYears(startDate, differenceInYears(today, startDate));
+	if (isToday(yearRenewalDate) && !isToday(startDate)) return today;
 	return addYears(yearRenewalDate, 1);
 };
 
-export const calculatePreviousRenewalDate = (dateStr, paid) => {
-	if (paid === payingKey.monthly) {
-		return subMonths(dateStr, 1);
+export const calculatePreviousRenewalDate = (dateStr, { paid, date }) => {
+	let previousRenewalDate = null;
+	const startDate = new Date(date);
+
+	if (isFuture(startDate)) {
+		return startDate;
 	}
 
-	return subYears(dateStr, 1);
+	if (paid === payingKey.monthly) {
+		previousRenewalDate = subMonths(dateStr, 1);
+		return previousRenewalDate > startDate ? previousRenewalDate : startDate;
+	}
+
+	previousRenewalDate = subYears(dateStr, 1);
+	return previousRenewalDate > startDate ? previousRenewalDate : startDate;
 };
 
-export const calculatePaidCount = (datum, start, end, prev_renewal_date, renewal_date) => {
+export const calculatePaidDates = (datum, start, end) => {
+	if (!start || !end) return 0;
+
 	const hasValidCancelledAt = !datum.active && datum.cancelled_at !== null && isValid(new Date(datum.cancelled_at));
-	const previousRenewalDate = isToday(new Date(renewal_date)) ? new Date(renewal_date) : new Date(prev_renewal_date);
+	const startDate = new Date(datum.date);
 	const rangeStartDate = new Date(start);
-	const rangeEndDate = new Date(end);
-	let defaultCount = 1;
+	const rangeEndDate = hasValidCancelledAt ? new Date(new Date(datum.cancelled_at)) : new Date(end);
+	let startDateCount = 1;
+	let noOfPaidDurations = 0;
 
-	if (hasValidCancelledAt) {
-		defaultCount = 0;
-	}
-
-	if (previousRenewalDate >= rangeStartDate && previousRenewalDate <= rangeEndDate) {
-		if (datum.paid === payingKey.monthly) {
-			return differenceInMonths(rangeEndDate, rangeStartDate) + defaultCount;
-		} else {
-			return differenceInYears(rangeEndDate, rangeStartDate) + defaultCount;
+	if (datum.paid === payingKey.monthly) {
+		if (!isFuture(startDate)) {
+			noOfPaidDurations = differenceInMonths(rangeEndDate, startDate) + startDateCount;
 		}
 	} else {
-		return 0;
+		if (!isFuture(startDate)) {
+			noOfPaidDurations = differenceInYears(rangeEndDate, startDate) + startDateCount;
+		}
 	}
-};
 
-export const calculatePaidDate = (dateStr, paid) => {
-	const dateObj = new Date(dateStr);
-	const today = new Date();
-
-	if (paid === payingKey.monthly) {
-		const monthlyDate = addMonths(new Date(dateStr), differenceInMonths(today, dateObj));
-		return addMonths(monthlyDate, 0);
-	} else {
-		const yearRenewalDate = addYears(new Date(dateStr), differenceInYears(today, dateObj));
-		return addYears(yearRenewalDate, 0);
-	}
+	return [...Array(noOfPaidDurations).keys()]
+		.map((_, index) => {
+			return addMonths(startDate, index);
+		})
+		.filter((rD) => rD >= rangeStartDate && rD <= rangeEndDate);
 };
 
 export const calculateTopCategory = (data) => {
