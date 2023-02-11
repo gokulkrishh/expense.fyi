@@ -9,7 +9,7 @@ import { payingKey } from 'constants/index';
 
 import Card from '.';
 
-const calculateAmountForSubscription = (acc, datum) => Number(datum.price) * Number(datum.paid_count) + acc;
+const calculateAmountForSubscription = (acc, datum) => Number(datum.price) * Number(datum.paid_dates.length) + acc;
 
 export default function Summary({
 	isLoading,

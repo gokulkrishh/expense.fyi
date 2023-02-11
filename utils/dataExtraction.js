@@ -61,7 +61,7 @@ const isInRangeOfSelectedDate = (data, start, end) => {
 
 export const extractCategoriesFromData = (data, { start, end }) => {
 	return data
-		.filter((datum) => datum.paid_count > 0)
+		.filter((datum) => datum.paid_dates.length > 0)
 		.reduce((acc, datum) => {
 			acc.push(datum.name);
 			return acc;
@@ -70,7 +70,7 @@ export const extractCategoriesFromData = (data, { start, end }) => {
 
 export const extractSubscriptionData = (data, { start, end }) => {
 	return data.reduce((acc, c) => {
-		acc.push({ name: c.name, price: Number(c.price) * Number(c.paid_count) });
+		acc.push({ name: c.name, price: Number(c.price) * Number(c.paid_dates.length) });
 		return acc;
 	}, []);
 };

@@ -11,6 +11,7 @@ export const toastMessages = {
 	error: 'Error occurred, please try again.',
 	loading: 'Loading...',
 	paymentSuccess: 'Your payment is successful, page will reload in 6 seconds.',
+	premiumUpgrade: 'Upgrade for access to premium features.',
 };
 
 const defaultDuration = 1500;
