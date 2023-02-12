@@ -28,10 +28,12 @@ export default function Usage({ user }) {
 			</div>
 			<div className="p-3 py-0 pb-3 font-medium text-slate-700">
 				{isPremiumPlan && !isPremiumPlanEnded ? (
-					<p class="text-sm">Next billing at: {formatDate(addYears(new Date(user.billing_start_date), 1), locale)}</p>
+					<p className="text-sm">
+						Next billing at: {formatDate(addYears(new Date(user.billing_start_date), 1), locale)}
+					</p>
 				) : null}
 
-				{isPremiumPlanEnded ? <p class="text-sm">Premium plan ended, renew again.</p> : null}
+				{isPremiumPlanEnded ? <p className="text-sm">Premium plan ended, renew again.</p> : null}
 			</div>
 		</div>
 	);

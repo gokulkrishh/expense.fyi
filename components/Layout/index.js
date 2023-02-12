@@ -22,18 +22,11 @@ export default function Layout({ className, children, user }) {
 				show={state.show}
 				overrideClassname={state.overrideClassname}
 				onHide={onHide}
-				onToggle={() => {
-					onToggle(true);
-				}}
+				onToggle={() => onToggle(true)}
 				className="fixed left-0 top-0 bottom-0"
 			/>
 			<div className="ml-[64px] h-full w-full p-4 max-sm:ml-0">
-				<MenuIcon
-					onShow={() => {
-						onToggle(true);
-					}}
-				/>
-
+				<MenuIcon onShow={() => onToggle(true)} />
 				{children}
 			</div>
 		</main>

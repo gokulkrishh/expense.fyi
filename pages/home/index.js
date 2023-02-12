@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { useState } from 'react';
 
 import { ChevronUpIcon } from '@heroicons/react/24/solid';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 import Footer from 'components/Footer';
 import Logo from 'components/Logo';
@@ -220,12 +220,12 @@ export default function Home() {
 					</div>
 
 					<div className="mx-auto mt-16 mb-16 max-w-md px-3 text-center sm:max-w-lg sm:px-0">
-						<h3 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl">
+						<h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl">
 							<span className="bg-gradient-to-r from-amber-400 to-orange-600 bg-clip-text text-transparent">
 								Why to use
 							</span>{' '}
 							Expense.fyi?
-						</h3>
+						</h2>
 						<ul className="mt-6 list-decimal px-4 text-left leading-6 [counter-reset:section] sm:px-2">
 							<li className="before::h-2 font-default mt-4 text-base  sm:text-lg">
 								<b className="font-sans font-bold text-black">Easy to use:</b> Track expenses on-the-go with
@@ -247,13 +247,13 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="mx-auto mt-16 mb-16 max-w-2xl px-3 ">
-					<h3 className="mt-8 mb-12 text-center text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl">
+					<h2 className="mt-8 mb-12 text-center text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl">
 						Simple yet,{' '}
 						<span className="bg-gradient-to-r from-amber-400 to-orange-600 bg-clip-text text-transparent">
 							Powerful
 						</span>{' '}
 						Features.
-					</h3>
+					</h2>
 					<div className="mt-10 grid grid-cols-1 justify-center gap-10 p-5 lg:grid-cols-2 lg:gap-20">
 						<div className="mx-auto block h-fit max-w-sm rounded-2xl  border-[1px] bg-white p-2 sm:w-96 lg:ml-[-50px]">
 							{features.map((feature, index) => {
@@ -315,12 +315,12 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="mx-auto mt-16 mb-16 grid max-w-md justify-center px-3 text-center sm:px-0 md:max-w-[600px]">
-					<h3 className="mt-0 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl">
+					<h2 className="mt-0 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl">
 						Our{' '}
 						<span className="bg-gradient-to-r from-amber-400 to-orange-600 bg-clip-text text-transparent">
 							Pricing Plans
 						</span>
-					</h3>
+					</h2>
 					<p className="font-default mt-3 text-base leading-7 sm:text-lg">
 						Start for free, no credit card is required.
 					</p>
@@ -356,12 +356,12 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="mx-auto mt-16 mb-16 max-w-md px-3 text-center sm:max-w-lg sm:px-0">
-					<h3 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl sm:leading-[3.5rem]">
+					<h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl sm:leading-[3.5rem]">
 						Proudly{' '}
 						<span className="bg-gradient-to-r from-blue-400 to-sky-600 bg-clip-text text-transparent">
 							Open Sourced!
 						</span>
-					</h3>
+					</h2>
 					<p className="font-default mt-3 text-base leading-7 sm:text-lg">
 						Source code is available on GitHub - feel free to read, review, or contribute to it!
 					</p>

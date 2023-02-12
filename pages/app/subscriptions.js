@@ -116,7 +116,7 @@ export default function Subscriptions({ user }) {
 		<>
 			<Head>
 				<title>Expense.fyi - Subscriptions</title>
-				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 			</Head>
 
 			<div className="h-ful mb-20">
@@ -124,7 +124,7 @@ export default function Subscriptions({ user }) {
 					<h1 className="mr-3 mb-2 text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Subscriptions</h1>
 				</div>
 
-				<h3 className="mb-4 text-black">Summary</h3>
+				<h2 className="mb-4 text-black">Summary</h2>
 				{isLoading ? (
 					<LoaderCard nums={5} />
 				) : (
