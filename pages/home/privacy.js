@@ -9,7 +9,7 @@ export default function Privacy() {
 		<>
 			<Head>
 				<title>Expense.fyi – Privacy Policy</title>
-				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 			</Head>
 
 			<div

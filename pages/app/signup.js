@@ -56,7 +56,7 @@ export default function Signup() {
 		<>
 			<Head>
 				<title>Sign up for Expense.fyi</title>
-				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 			</Head>
 			<main
 				className={`font-default relative m-auto flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-orange-100 via-white to-orange-50 pl-2 pr-2`}

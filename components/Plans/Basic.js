@@ -14,7 +14,7 @@ export const BasicFeatureList = ({ className = '' }) => {
 		<div className={`mb-0 ml-1 mt-4 flex flex-col justify-center text-left text-white ${className}`}>
 			<span className="m-1 ml-0 flex items-center  text-[15px]">
 				<CheckCircleIcon className="mr-1 h-5 w-5 text-green-600" />
-				Trend visualization with charts
+				Trend visualisation with charts
 			</span>
 
 			<span className="m-1 ml-0 flex items-center text-[15px]">

@@ -39,7 +39,7 @@ export default function Settings({ user }) {
 		<>
 			<Head>
 				<title>Expense.fyi - Settings</title>
-				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 			</Head>
 
 			<Script src="https://checkout.razorpay.com/v1/checkout.js" async />

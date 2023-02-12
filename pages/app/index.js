@@ -63,7 +63,7 @@ export default function Home({ user }) {
 		<>
 			<Head>
 				<title>Expense.fyi - Overview</title>
-				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 			</Head>
 
 			<div className="2xl:container h-full w-full">
