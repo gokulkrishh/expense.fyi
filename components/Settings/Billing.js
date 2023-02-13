@@ -6,8 +6,6 @@ import { BasicFeatureList } from 'components/Plans/Basic';
 import { PremiumFeatureList } from 'components/Plans/Premium';
 import { showToast } from 'components/Toast';
 
-import { makePayment } from 'lib/razorpay';
-
 import { formatCurrency } from 'utils/formatter';
 
 import { paymentOptions, tiers } from 'constants/index';
@@ -19,6 +17,7 @@ const paymentData = {
 
 export default function Billing({ user }) {
 	const [loading, setLoading] = useState(false);
+
 	return (
 		<div className="mt-8 mb-2 flex w-full flex-col justify-center md:flex-row">
 			<div className="mt-4 grid w-full max-w-2xl grid-cols-1 gap-3 sm:gap-10 md:mt-0 lg:grid-cols-2">
@@ -76,8 +75,11 @@ export default function Billing({ user }) {
 						<button
 							onClick={() => {
 								if (user.isBasicPlan || user.isPremiumPlanEnded) {
-									// setLoading(true);
-									// makePayment({ ...paymentData, email: user.email, plan_status: user.plan_status });
+									const checkoutUrl =
+										'https://gokulkrishh.lemonsqueezy.com/checkout/buy/e8fff686-db8f-47af-b800-e678ef27dcfe?embed=1&logo=0&discount=0';
+									window.LemonSqueezy.Url.Open(checkoutUrl);
+									setLoading(true);
+
 									// setTimeout(() => {
 									// 	setLoading(false);
 									// }, 4000);
@@ -85,7 +87,7 @@ export default function Billing({ user }) {
 								}
 							}}
 							disabled={(user.isPremiumPlan && !user.isPremiumPlanEnded) || loading}
-							className={`mt-16 flex w-full justify-center rounded-md py-2 text-center text-sm font-semibold text-white ${
+							className={`lemonsqueezy-button mt-16 flex w-full justify-center rounded-md py-2 text-center text-sm font-semibold text-white ${
 								user.isPremiumPlan && !user.isPremiumPlanEnded
 									? 'bg-zinc-500 hover:bg-zinc-500'
 									: 'bg-zinc-900 hover:bg-zinc-800'

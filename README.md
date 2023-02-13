@@ -39,7 +39,7 @@ Expense.fyi is an open-source application to effortlessly track and manage your 
 - Expense.fyi is built using [NextJs](https://nextjs.org) from scratch.
 - [Postgresql](https://www.postgresql.org/) is used as the ORM for easily communicating with the database for storing user, subscription data, etc. You can refer to the Prisma schema [here](/prisma/schema.prisma).
 - [Supabase](https://supabase.com/) is an open-source Firebase alternative, the data is stored in the Postgres database (private data are encrypted) and uses a magic link for authentication provided by supabase.
-- [Razorpay](https://razorpay.com/) is used as the payments system. Awaiting profile activation, so payment is disabled in the code.
+- [LemonSqueezy](https://lemonsqueezy.com/) is used as the payment system. Its implementation is super simple.
 
 ## Routes
 
@@ -58,7 +58,7 @@ Here's how you can contribute:
 - Make a [pull request](https://github.com/gokulkrishh/expense.fyi/pull) to add new features/make quality-of-life improvements/fix bugs.
 
 <a href="https://github.com/gokulkrishh/expense.fyi/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=gokulkrishh/expense.fyi" />
+  <img src="https://contrib.rocks/image?repo=gokulkrishh/expense.fyi" alt="contributors" />
 </a>
 
 ## Author
