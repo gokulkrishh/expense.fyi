@@ -10,10 +10,8 @@ import { formatCurrency } from 'utils/formatter';
 
 import { paymentOptions, tiers } from 'constants/index';
 
-const paymentData = {
-	amount: tiers.yearly.premium,
-	currency: paymentOptions.currency,
-};
+const checkoutUrl =
+	'https://gokulkrishh.lemonsqueezy.com/checkout/buy/e8fff686-db8f-47af-b800-e678ef27dcfe?embed=1&logo=0&discount=0';
 
 export default function Billing({ user }) {
 	const [loading, setLoading] = useState(false);
@@ -42,7 +40,7 @@ export default function Billing({ user }) {
 						<button
 							disabled={true}
 							title={'Current plan'}
-							className={`mt-16 flex w-full justify-center rounded-md bg-zinc-500 py-2 text-center text-sm font-semibold text-white hover:bg-zinc-500`}
+							className={`mt-12 flex w-full justify-center rounded-md bg-zinc-500 py-2 text-center text-sm font-semibold text-white hover:bg-zinc-500`}
 						>
 							{user.isBasicPlan ? 'Current plan' : 'Expired'}
 						</button>
@@ -75,19 +73,13 @@ export default function Billing({ user }) {
 						<button
 							onClick={() => {
 								if (user.isBasicPlan || user.isPremiumPlanEnded) {
-									const checkoutUrl =
-										'https://gokulkrishh.lemonsqueezy.com/checkout/buy/e8fff686-db8f-47af-b800-e678ef27dcfe?embed=1&logo=0&discount=0';
-									window.LemonSqueezy.Url.Open(checkoutUrl);
 									setLoading(true);
-
-									// setTimeout(() => {
-									// 	setLoading(false);
-									// }, 4000);
-									showToast(`Contact support for the upgrade.`);
+									window?.LemonSqueezy?.Url?.Open(checkoutUrl);
+									setTimeout(() => setLoading(false));
 								}
 							}}
 							disabled={(user.isPremiumPlan && !user.isPremiumPlanEnded) || loading}
-							className={`lemonsqueezy-button mt-16 flex w-full justify-center rounded-md py-2 text-center text-sm font-semibold text-white ${
+							className={`mt-12 flex w-full justify-center rounded-md py-2 text-center text-sm font-semibold text-white ${
 								user.isPremiumPlan && !user.isPremiumPlanEnded
 									? 'bg-zinc-500 hover:bg-zinc-500'
 									: 'bg-zinc-900 hover:bg-zinc-800'

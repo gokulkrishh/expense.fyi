@@ -4,11 +4,12 @@ import prisma from 'lib/prisma';
 export default withUserAuth(
 	async (req, res, user) => {
 		if (req.method === 'POST') {
-			const { order_id, billing_start_date, plan_status, payment_id, payment_signature } = req.body;
+			const { order_identifier, billing_start_date, plan_status, order_status, order_store_id, order_number } =
+				req.body;
 
 			try {
 				await prisma.users.update({
-					data: { billing_start_date, order_id, plan_status, payment_id, payment_signature },
+					data: { order_identifier, billing_start_date, plan_status, order_status, order_store_id, order_number },
 					where: { id: user.id },
 				});
 				res.status(200).json({ message: 'Your payment details are captured.' });

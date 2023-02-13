@@ -63,7 +63,7 @@ export const siteUrls = {
 };
 
 const originalPriceMonthly = 400;
-const originalPriceYearly = 6000;
+const originalPriceYearly = 50;
 const discountPercentage = 40;
 
 export const tiers = {
@@ -71,7 +71,7 @@ export const tiers = {
 	yearly: { basic: 0, premium: (originalPriceYearly / 100) * discountPercentage, og: originalPriceYearly },
 };
 
-export const paymentOptions = { currency: 'INR', locale: 'en' };
+export const paymentOptions = { currency: 'USD', locale: 'en' };
 
 export const tierNames = {
 	basic: {

@@ -9,21 +9,19 @@ import SettingsLayout from 'components/SettingsLayout';
 
 import { onDismiss, onSuccess, paymentEvents } from 'lib/payments';
 
+const eventHandler = async ({ event, data }) => {
+	if (event === paymentEvents.success) {
+		await onSuccess(data, window.LemonSqueezy?.Url?.Close);
+	} else if (event === paymentEvents.closed) {
+		onDismiss();
+	}
+	return;
+};
+
 export default function Settings({ user }) {
 	const setupLemonSqueezy = () => {
-		if (typeof window.LemonSqueezy.Setup === 'function') {
-			window.LemonSqueezy.Setup({
-				eventHandler: ({ event, data }) => {
-					if (event === paymentEvents.success) {
-						onSuccess(data);
-					} else if (event === paymentEvents.closed) {
-						onDismiss();
-					} else {
-						console.error(`Unknown event type: ${event}`);
-					}
-				},
-			});
-		}
+		window?.createLemonSqueezy();
+		window?.LemonSqueezy?.Setup({ eventHandler });
 	};
 
 	return (
