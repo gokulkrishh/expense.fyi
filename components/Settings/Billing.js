@@ -6,19 +6,18 @@ import { BasicFeatureList } from 'components/Plans/Basic';
 import { PremiumFeatureList } from 'components/Plans/Premium';
 import { showToast } from 'components/Toast';
 
-import { makePayment } from 'lib/razorpay';
-
 import { formatCurrency } from 'utils/formatter';
 
 import { paymentOptions, tiers } from 'constants/index';
 
-const paymentData = {
-	amount: tiers.yearly.premium,
-	currency: paymentOptions.currency,
-};
+const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
+const checkoutId = isProduction ? '46fa70e1-32ef-4689-aa2d-468f8cc62cf2' : 'e8fff686-db8f-47af-b800-e678ef27dcfe';
+
+const checkoutUrl = `https://gokulkrishh.lemonsqueezy.com/checkout/buy/${checkoutId}?embed=1&desc=0&discount=0`;
 
 export default function Billing({ user }) {
 	const [loading, setLoading] = useState(false);
+
 	return (
 		<div className="mt-8 mb-2 flex w-full flex-col justify-center md:flex-row">
 			<div className="mt-4 grid w-full max-w-2xl grid-cols-1 gap-3 sm:gap-10 md:mt-0 lg:grid-cols-2">
@@ -43,7 +42,7 @@ export default function Billing({ user }) {
 						<button
 							disabled={true}
 							title={'Current plan'}
-							className={`mt-16 flex w-full justify-center rounded-md bg-zinc-500 py-2 text-center text-sm font-semibold text-white hover:bg-zinc-500`}
+							className={`mt-12 flex w-full justify-center rounded-md bg-zinc-500 py-2 text-center text-sm font-semibold text-white hover:bg-zinc-500`}
 						>
 							{user.isBasicPlan ? 'Current plan' : 'Expired'}
 						</button>
@@ -76,16 +75,13 @@ export default function Billing({ user }) {
 						<button
 							onClick={() => {
 								if (user.isBasicPlan || user.isPremiumPlanEnded) {
-									// setLoading(true);
-									// makePayment({ ...paymentData, email: user.email, plan_status: user.plan_status });
-									// setTimeout(() => {
-									// 	setLoading(false);
-									// }, 4000);
-									showToast(`Contact support for the upgrade.`);
+									setLoading(true);
+									window.LemonSqueezy?.Url?.Open?.(checkoutUrl);
+									setTimeout(() => setLoading(false));
 								}
 							}}
 							disabled={(user.isPremiumPlan && !user.isPremiumPlanEnded) || loading}
-							className={`mt-16 flex w-full justify-center rounded-md py-2 text-center text-sm font-semibold text-white ${
+							className={`mt-12 flex w-full justify-center rounded-md py-2 text-center text-sm font-semibold text-white ${
 								user.isPremiumPlan && !user.isPremiumPlanEnded
 									? 'bg-zinc-500 hover:bg-zinc-500'
 									: 'bg-zinc-900 hover:bg-zinc-800'

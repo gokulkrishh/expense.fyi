@@ -94,9 +94,10 @@ model users {
   updated_at                 DateTime        @default(now()) @updatedAt @db.Timestamptz(6)
   currency                   String          @default("INR")
   locale                     String          @default("en")
-  payment_id                 String?
-  order_id                   String?
-  payment_signature          String?
+  order_identifier           String?
+  order_store_id             String?
+  order_number               String?
+  order_status               String?
   billing_start_date         String?
   plan_status                String          @default("basic")
   trial_start_date           DateTime        @default(now()) @db.Timestamptz(6)

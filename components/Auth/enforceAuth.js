@@ -31,6 +31,7 @@ export default function enforceAuth(req, res) {
 						locale: true,
 						billing_start_date: true,
 						trial_start_date: true,
+						order_status: true,
 						usage: true,
 						email: true,
 						plan_status: true,
@@ -56,7 +57,8 @@ export default function enforceAuth(req, res) {
 		}
 
 		const isBasicPlan = serializedUserData.plan_status === tierNames.basic.key;
-		const isPremiumPlan = serializedUserData.plan_status === tierNames.premium.key;
+		const isPremiumPlan =
+			serializedUserData.order_status === 'paid' && serializedUserData.plan_status === tierNames.premium.key;
 		const isPremiumPlanEnded = isPremiumPlan && hasPremiumBillingCycleEnded(serializedUserData.billing_start_date);
 
 		return {

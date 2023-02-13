@@ -12,8 +12,8 @@ const nextConfig = {
 
 const ContentSecurityPolicy = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com checkout.razorpay.com api.razorpay.com;
-    child-src 'self' api.razorpay.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com app.lemonsqueezy.com *.cloudfront.net;
+    child-src 'self' gokulkrishh.lemonsqueezy.com;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
     media-src 'self';

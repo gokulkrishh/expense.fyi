@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 
 import { useMemo, useState } from 'react';
 
@@ -194,19 +195,35 @@ export default function Home({ user }) {
 									<LoaderChart type="barlist" className="h-[264px]" />
 								) : (
 									<>
-										<div className="mt-2 flex justify-between">
-											<p className="font-default text-sm font-medium text-zinc-500">Category</p>
-											<p className="font-default text-sm font-medium text-zinc-500">Amount</p>
-										</div>
-										<BarList
-											data={topSpendExpenseCategory}
-											valueFormatter={(number) => {
-												return formatCurrency(number, user.currency, user.locale);
-											}}
-											color="amber"
-											showAnimation={false}
-											marginTop="mt-4"
-										/>
+										{!isLoading && !topSpendExpenseCategory.length ? (
+											<div className="flex flex-col items-center justify-center">
+												<Image
+													className="mt-6 mb-6"
+													src="/static/illustrations/no-category.svg"
+													width={150}
+													height={150}
+													alt="No records"
+												/>
+											</div>
+										) : (
+											<>
+												{!isLoading && topSpendExpenseCategory.length ? (
+													<div className="mt-2 flex justify-between">
+														<p className="font-default text-sm font-medium text-zinc-500">Category</p>
+														<p className="font-default text-sm font-medium text-zinc-500">Amount</p>
+													</div>
+												) : null}
+												<BarList
+													data={topSpendExpenseCategory}
+													valueFormatter={(number) => {
+														return formatCurrency(number, user.currency, user.locale);
+													}}
+													color="amber"
+													showAnimation={false}
+													marginTop="mt-4"
+												/>
+											</>
+										)}
 									</>
 								)}
 								<p className="mb-3" />
