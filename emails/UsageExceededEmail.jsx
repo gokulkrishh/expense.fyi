@@ -9,8 +9,8 @@ import { Preview } from '@react-email/preview';
 import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
-import Footer from './components/Footer';
-import Footnote from './components/Footnote';
+import Footer from './Footer';
+import Footnote from './Footnote';
 
 const baseUrl = 'https://expense.fyi';
 const settingUrl = 'https://app.expense.fyi/settings';
