@@ -9,9 +9,9 @@ import { Preview } from '@react-email/preview';
 import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
-import ButtonLink from './components/ButtonLink';
-import Footer from './components/Footer';
-import Footnote from './components/Footnote';
+import ButtonLink from './ButtonLink';
+import Footer from './Footer';
+import Footnote from './Footnote';
 
 const baseUrl = 'https://expense.fyi';
 const appUrl = 'https://app.expense.fyi';

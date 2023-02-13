@@ -37,7 +37,7 @@
 		"@supabase/auth-helpers-nextjs": "^0.5.4",
 		"@supabase/auth-helpers-react": "^0.3.1",
 		"@supabase/supabase-js": "^2.7.1",
-		"@tremor/react": "^1.7.0",
+		"@tremor/react": "^1.8.0",
 		"@vercel/analytics": "^0.1.8",
 		"date-fns": "^2.29.3",
 		"debounce": "^1.2.1",
@@ -68,5 +68,10 @@
 		"prisma": "^4.10.1",
 		"tailwindcss": "^3.2.6"
 	},
-	"license": "AGPL-3.0"
+	"license": "AGPL-3.0",
+	"engines": {
+		"node": ">=18.14.0",
+		"npm": ">=9.3.1",
+		"yarn": ">=1.22.19"
+	}
 }

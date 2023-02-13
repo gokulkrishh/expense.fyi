@@ -6,7 +6,7 @@
 			"components/*": ["components/*"],
 			"constants/*": ["constants/*"],
 			"emails/*": ["emails/*"],
-			"data/*": ["emails/data/*"],
+			"data/*": ["data/*"],
 			"hooks/*": ["hooks/*"],
 			"lib/*": ["lib/*"],
 			"styles/*": ["styles/*"],
