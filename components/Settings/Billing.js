@@ -74,7 +74,7 @@ export default function Billing({ user }) {
 							onClick={() => {
 								if (user.isBasicPlan || user.isPremiumPlanEnded) {
 									setLoading(true);
-									window?.LemonSqueezy?.Url?.Open(checkoutUrl);
+									window.LemonSqueezy?.Url?.Open?.(checkoutUrl);
 									setTimeout(() => setLoading(false));
 								}
 							}}
