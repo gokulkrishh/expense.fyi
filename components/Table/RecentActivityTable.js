@@ -18,6 +18,22 @@ const allCategory = {
 const thClassNames = 'font-default text-sm font-medium text-zinc-500';
 
 export default function RecentActivityTable({ isLoading = false, data, locale, currency }) {
+	if (!isLoading && !data.length) {
+		return (
+			<>
+				<div className="flex flex-col items-center justify-center">
+					<Image
+						className="mt-8 mb-6"
+						src="/static/illustrations/no-expense.svg"
+						width={120}
+						height={120}
+						alt="No records"
+					/>
+				</div>
+			</>
+		);
+	}
+
 	return (
 		<>
 			<table className="mt-2 w-full table-auto border-collapse overflow-hidden">
