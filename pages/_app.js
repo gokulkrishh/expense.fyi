@@ -6,7 +6,7 @@ import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import { Analytics } from '@vercel/analytics/react';
 import NProgress from 'nprogress';
-import { ToastBar, Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { SWRConfig } from 'swr';
 
 import Layout from 'components/Layout';

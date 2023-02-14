@@ -8,7 +8,7 @@ import { tierNames } from 'constants/index';
 const { premium, basic } = tierNames;
 
 export default function Usage({ user }) {
-	const { usage, locale, isBasicPlan, isPremiumPlan, isPremiumPlanEnded } = user;
+	const { usage, locale, isPremiumPlan, isPremiumPlanEnded } = user;
 	const usageLimit = user.isPremiumPlan ? premium.usageLimit : basic.usageLimit;
 	return (
 		<div className="mt-4 w-full max-w-2xl rounded-lg bg-white p-3 text-left shadow shadow-gray-200 md:mt-0">
