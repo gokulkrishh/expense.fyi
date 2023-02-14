@@ -136,7 +136,7 @@ export default function Home({ user }) {
 									showGridLines={true}
 									marginTop="mt-4"
 									height="h-80"
-									yAxisWidth="w-20"
+									yAxisWidth="w-21"
 								/>
 							)}
 						</Card>
