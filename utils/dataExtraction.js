@@ -52,14 +52,7 @@ export const extractTopExpenseCategoryData = (data) => {
 		.filter((_, index) => index <= topExpenseIndex);
 };
 
-const isInRangeOfSelectedDate = (data, start, end) => {
-	return data.filter((datum) => {
-		const renewalDateObj = new Date(datum.renewal_date);
-		return renewalDateObj >= new Date(start) && renewalDateObj <= new Date(end);
-	});
-};
-
-export const extractCategoriesFromData = (data, { start, end }) => {
+export const extractCategoriesFromData = (data) => {
 	return data
 		.filter((datum) => datum.paid_dates.length > 0)
 		.reduce((acc, datum) => {
@@ -68,11 +61,13 @@ export const extractCategoriesFromData = (data, { start, end }) => {
 		}, []);
 };
 
-export const extractSubscriptionData = (data, { start, end }) => {
-	return data.reduce((acc, c) => {
-		acc.push({ name: c.name, price: Number(c.price) * Number(c.paid_dates.length) });
-		return acc;
-	}, []);
+export const extractSubscriptionData = (data) => {
+	return data
+		.filter((datum) => datum.paid_dates.length > 0)
+		.reduce((acc, c) => {
+			acc.push({ name: c.name, price: Number(c.price) * Number(c.paid_dates.length) });
+			return acc;
+		}, []);
 };
 
 export const extractRecentActivityData = (subscriptionsData, expensesData, investmentsData, incomeData) => {
