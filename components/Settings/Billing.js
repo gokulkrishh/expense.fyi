@@ -4,16 +4,12 @@ import Badge from 'components/Badge';
 import Loader from 'components/Loader';
 import { BasicFeatureList } from 'components/Plans/Basic';
 import { PremiumFeatureList } from 'components/Plans/Premium';
-import { showToast } from 'components/Toast';
 
 import { formatCurrency } from 'utils/formatter';
 
 import { paymentOptions, tiers } from 'constants/index';
 
-const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
-const checkoutId = isProduction ? '46fa70e1-32ef-4689-aa2d-468f8cc62cf2' : 'e8fff686-db8f-47af-b800-e678ef27dcfe';
-
-const checkoutUrl = `https://gokulkrishh.lemonsqueezy.com/checkout/buy/${checkoutId}?embed=1&desc=0&discount=0`;
+const checkoutUrl = `https://gokulkrishh.lemonsqueezy.com/checkout/buy/${process.env.NEXT_PUBLIC_LEMON_SQUEEZY_CHECKOUT_ID}?embed=1&desc=0&discount=0`;
 
 export default function Billing({ user }) {
 	const [loading, setLoading] = useState(false);

@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { ChevronUpIcon } from '@heroicons/react/24/solid';
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 import Footer from 'components/Footer';
 import Logo from 'components/Logo';

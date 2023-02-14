@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import useSWR from 'swr';
 import textFilter from 'text-filter';
