@@ -129,14 +129,14 @@ export default function Home({ user }) {
 									layout="horizontal"
 									showTooltip={true}
 									showLegend={true}
-									stack={false}
+									stack={true}
 									showAnimation={false}
 									minValue={0}
 									maxValue={maxValueForXAxisBarChart?.value}
 									showGridLines={true}
 									marginTop="mt-4"
 									height="h-80"
-									yAxisWidth="w-20"
+									yAxisWidth="w-21"
 								/>
 							)}
 						</Card>
