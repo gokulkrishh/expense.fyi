@@ -19,7 +19,7 @@ export default function IncomeTable({ onFilterChange, filterKey, isLoading, data
 		return (
 			<NoDataTable filterKey={filterKey} isPremiumPlan={isPremiumPlan} onFilterChange={onFilterChange}>
 				<div className="flex flex-col items-center justify-center ">
-					<p className="mt-2 font-medium text-black sm:mt-10">You don{"'"}t have any income!</p>
+					<p className="mt-2 font-medium text-black sm:mt-10">You don{"'"}t have any income yet.</p>
 					<Image className="mt-2" src="/static/illustrations/rich.svg" width={300} height={300} alt="No income" />
 				</div>
 			</NoDataTable>

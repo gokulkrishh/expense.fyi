@@ -17,18 +17,20 @@ export default function ExpensesTable({ filterKey, onFilterChange, isLoading, da
 	const { currency, locale, isPremiumPlan, isPremiumPlanEnded } = user;
 
 	if (!isLoading && !data.length) {
-		<NoDataTable filterKey={filterKey} isPremiumPlan={isPremiumPlan} onFilterChange={onFilterChange}>
-			<div className="flex flex-col items-center justify-center ">
-				<p className="mt-2 font-medium text-black sm:mt-10">You don{"'"}t have any expense!</p>
-				<Image
-					className="mt-2"
-					src="/static/illustrations/spending-money.svg"
-					width={300}
-					height={300}
-					alt="No expense"
-				/>
-			</div>
-		</NoDataTable>;
+		return (
+			<NoDataTable filterKey={filterKey} isPremiumPlan={isPremiumPlan} onFilterChange={onFilterChange}>
+				<div className="flex flex-col items-center justify-center ">
+					<p className="mt-2 font-medium text-black sm:mt-10">You don{"'"}t have any expense yet.</p>
+					<Image
+						className="mt-2"
+						src="/static/illustrations/spending-money.svg"
+						width={300}
+						height={300}
+						alt="No expense"
+					/>
+				</div>
+			</NoDataTable>
+		);
 	}
 
 	return (
