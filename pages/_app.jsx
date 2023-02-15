@@ -2,6 +2,7 @@ import Router from 'next/router';
 
 import { useEffect, useState } from 'react';
 
+import * as Tooltip from '@radix-ui/react-tooltip';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import { Analytics } from '@vercel/analytics/react';
@@ -35,9 +36,11 @@ export default function App({ Component, pageProps }) {
 		<SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps.initialSession}>
 			<SWRConfig value={{ fetcher }}>
 				{isAuthenticated ? (
-					<Layout user={pageProps.user}>
-						<Component {...pageProps} />
-					</Layout>
+					<Tooltip.Provider delayDuration={500}>
+						<Layout user={pageProps.user}>
+							<Component {...pageProps} />
+						</Layout>
+					</Tooltip.Provider>
 				) : (
 					<Component {...pageProps} />
 				)}
