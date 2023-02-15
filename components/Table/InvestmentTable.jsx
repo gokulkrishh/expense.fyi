@@ -9,31 +9,30 @@ import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 
 import { investmentCategory } from 'constants/index';
 
+import NoDataTable from './NoDataTable';
+
 const tdClassNames = 'relative p-4 pl-8 text-zinc-800 text-sm font-normal';
 const thList = ['Name', 'Price', 'Units', 'Bought Date ↓', 'Category', 'Notes', 'Actions'];
 
-export default function InvestmentTable({ isLoading, data = [], onEdit, onDelete, user }) {
+export default function InvestmentTable({ isLoading, data = [], onEdit, onDelete, user, onFilterChange, filterKey }) {
 	const { currency, locale, isPremiumPlan, isPremiumPlanEnded } = user;
 
 	if (!isLoading && !data.length) {
 		return (
-			<>
+			<NoDataTable filterKey={filterKey} isPremiumPlan={isPremiumPlan} onFilterChange={onFilterChange}>
 				<div className="flex flex-col items-center justify-center ">
-					<p className="mt-2 font-medium text-black sm:mt-10">You don{"'"}t have any investments yet!</p>
-					<Image
-						className="mt-2"
-						src="/static/illustrations/man-riding-a-rocket.svg"
-						width={300}
-						height={300}
-						alt="No records"
-					/>
+					<p className="mt-2 font-medium text-black sm:mt-10">You don{"'"}t have any investment!</p>
+					<Image className="mt-2" src="/static/illustrations/rich.svg" width={300} height={300} alt="No investment" />
 				</div>
-			</>
+			</NoDataTable>
 		);
 	}
 
 	return (
 		<Table
+			showFilter
+			onFilterChange={onFilterChange}
+			filterKey={filterKey}
 			title="Investments"
 			thList={thList}
 			isLoading={isLoading}

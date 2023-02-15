@@ -8,32 +8,39 @@ import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 import { expensesCategory } from 'constants/index';
 
 import Table from '.';
+import NoDataTable from './NoDataTable';
 
 const tdClassNames = 'relative p-4 pl-8 text-zinc-800 text-sm font-normal';
 const thList = ['Name', 'Price', 'Spent Date ↓', 'Category', 'Notes', 'Actions'];
 
-export default function ExpensesTable({ isLoading, data = [], onEdit, onDelete, user }) {
+export default function ExpensesTable({ filterKey, onFilterChange, isLoading, data = [], onEdit, onDelete, user }) {
 	const { currency, locale, isPremiumPlan, isPremiumPlanEnded } = user;
 
 	if (!isLoading && !data.length) {
-		return (
-			<>
-				<div className="flex flex-col items-center justify-center ">
-					<p className="mt-2 font-medium text-black sm:mt-10">You don{"'"}t have any expenses yet!</p>
-					<Image
-						className="mt-2"
-						src="/static/illustrations/spending-money.svg"
-						width={300}
-						height={300}
-						alt="No records"
-					/>
-				</div>
-			</>
-		);
+		<NoDataTable filterKey={filterKey} isPremiumPlan={isPremiumPlan} onFilterChange={onFilterChange}>
+			<div className="flex flex-col items-center justify-center ">
+				<p className="mt-2 font-medium text-black sm:mt-10">You don{"'"}t have any expense!</p>
+				<Image
+					className="mt-2"
+					src="/static/illustrations/spending-money.svg"
+					width={300}
+					height={300}
+					alt="No expense"
+				/>
+			</div>
+		</NoDataTable>;
 	}
 
 	return (
-		<Table title="Expenses" thList={thList} isLoading={isLoading} isPremiumPlan={isPremiumPlan && !isPremiumPlanEnded}>
+		<Table
+			showFilter
+			filterKey={filterKey}
+			onFilterChange={onFilterChange}
+			title="Expenses"
+			thList={thList}
+			isLoading={isLoading}
+			isPremiumPlan={isPremiumPlan && !isPremiumPlanEnded}
+		>
 			{sortByKey(data, 'date').map((datum) => {
 				const isToday = isItToday(new Date(datum.date), new Date());
 				return (

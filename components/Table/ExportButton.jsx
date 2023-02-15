@@ -4,13 +4,16 @@ import { exportTableToCsv } from 'utils/export';
 
 const excludedColumns = { actions: true };
 
-const ExportButton = ({ className = '', filename }) => {
+const ExportButton = ({ className = 'rounded-md px-[9px]', filename }) => {
 	return (
 		<button
 			className={`font-xs inline-flex items-center border border-gray-300 bg-white px-[8px] py-[6px] text-sm font-medium text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 ${className}`}
 			onClick={() => {
-				showToast('Export will begin shortly.');
-				exportTableToCsv(filename, excludedColumns);
+				const rows = document.querySelectorAll('table tr');
+				if (rows.length) {
+					showToast('Export will begin shortly.');
+					exportTableToCsv(filename, excludedColumns);
+				}
 			}}
 		>
 			<svg
@@ -32,7 +35,7 @@ const ExportButton = ({ className = '', filename }) => {
 	);
 };
 
-export const ExportButtonDummy = ({ className = '' }) => {
+export const ExportButtonDummy = ({ className = 'rounded-md px-[9px]' }) => {
 	return (
 		<button
 			className={`font-xs inline-flex items-center border border-gray-300 bg-white px-[8px] py-[6px] text-sm font-medium text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 ${className}`}

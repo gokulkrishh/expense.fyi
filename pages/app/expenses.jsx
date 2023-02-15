@@ -11,18 +11,22 @@ import LoaderCard from 'components/Loader/LoaderCard';
 import AddButton from 'components/Modal/AddButton';
 import AddExpense from 'components/Modal/AddExpense';
 import ExpensesTable from 'components/Table/ExpensesTable';
+import { filterMap } from 'components/Table/TableFilter';
 import { showErrorToast, showSuccessToast, toastMessages } from 'components/Toast';
 
 import { incrementUsageLimit } from 'lib/usageLimit';
 
-import { thisMonth } from 'utils/date';
+import { getRangeDateForFilter, thisMonth } from 'utils/date';
 import { formatCurrency } from 'utils/formatter';
+import { getApiUrl } from 'utils/url';
 
 export default function Expenses({ user }) {
 	const [loading, setLoading] = useState(false);
 	const [show, setShow] = useState(false);
 	const [selected, setSelected] = useState({});
-	const { data = [], mutate, isLoading } = useSWR(`/api/expenses/all`);
+	const [filterKey, setFilterKey] = useState(filterMap.thismonth);
+
+	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filterKey, 'expenses'));
 
 	const onHide = () => setShow(false);
 	const onEdit = (selected) => {
@@ -106,7 +110,7 @@ export default function Expenses({ user }) {
 
 				<h2 className="mb-4 text-black">Summary</h2>
 				{isLoading ? (
-					<LoaderCard nums={3} />
+					<LoaderCard nums={2} />
 				) : (
 					<div className="mb-6 grid grid-cols-1 gap-6 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
 						<Card title="Total Expenses" className="relative" data={data.length} />
@@ -115,15 +119,6 @@ export default function Expenses({ user }) {
 							className="relative"
 							data={formatCurrency(
 								data.reduce((acc, datum) => Number(datum.price) + acc, 0),
-								user.currency,
-								user.locale
-							)}
-						/>
-						<Card
-							title="This Month"
-							className="relative"
-							data={formatCurrency(
-								data.filter(thisMonth).reduce((acc, datum) => Number(datum.price) + acc, 0),
 								user.currency,
 								user.locale
 							)}
@@ -142,7 +137,17 @@ export default function Expenses({ user }) {
 					lookup={onLookup}
 				/>
 
-				<ExpensesTable isLoading={isLoading} data={data} onEdit={onEdit} onDelete={onDelete} user={user} />
+				<ExpensesTable
+					onFilterChange={(filterKey) => {
+						setFilterKey(filterKey);
+					}}
+					filterKey={filterKey}
+					isLoading={isLoading}
+					data={data}
+					onEdit={onEdit}
+					onDelete={onDelete}
+					user={user}
+				/>
 
 				{!isLoading ? (
 					<AddButton

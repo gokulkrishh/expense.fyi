@@ -7,6 +7,7 @@ const excludeLastColumnIndex = 1;
 
 export const exportTableToCsv = (filename) => {
 	const rows = document.querySelectorAll('table tr');
+
 	const csv = [];
 
 	for (var i = 0; i < rows.length; i++) {
