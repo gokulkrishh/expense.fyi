@@ -9,7 +9,7 @@ import { formatCurrency } from 'utils/formatter';
 
 import { paymentOptions, tiers } from 'constants/index';
 
-const checkoutUrl = `https://gokulkrishh.lemonsqueezy.com/checkout/buy/${process.env.NEXT_PUBLIC_LEMON_SQUEEZY_CHECKOUT_ID}?embed=1&desc=0&discount=0`;
+const checkoutUrl = `https://gokulkrishh.lemonsqueezy.com/checkout/buy/${process.env.NEXT_PUBLIC_LEMON_SQUEEZY_CHECKOUT_ID}?embed=1&media=0&logo=0&discount=0`;
 
 export default function Billing({ user }) {
 	const [loading, setLoading] = useState(false);
