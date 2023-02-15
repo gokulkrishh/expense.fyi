@@ -11,7 +11,6 @@
 		"format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
 		"lint": "next lint",
 		"prebuild": "prisma format && prisma generate",
-		"postbuild": "npm run coverage",
 		"predev": "prisma format && prisma generate",
 		"dbpush": "npm run predev && prisma db push",
 		"premigrate": "prisma db pull",
