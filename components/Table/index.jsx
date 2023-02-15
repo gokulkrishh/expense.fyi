@@ -1,30 +1,23 @@
-import { format } from 'date-fns';
-
 import LoaderTable, { LoaderTableHeader } from 'components/Loader/LoaderTable';
 
-import { dateFormatStr } from 'constants/index';
-
-import ExportButton, { ExportButtonDummy } from './ExportButton';
+import TableHeaderActions from './TableHeaderActions';
 
 const thClassNames =
-	'pl-8 pt-4 pb-3 text-zinc-600 bg-gray-100 h-[44px] tracking-wide leading-tight border-b border-gray-200 text-left text-xs font-bold uppercase';
+	'pl-8 pt-4 pb-4 text-zinc-600 bg-gray-100 h-[44px] tracking-wide leading-tight border-b border-gray-200 text-left text-xs font-bold uppercase';
 
-export default function Table({ title, isLoading = false, thList = [], children, isPremiumPlan }) {
+export default function Table({ title, isLoading = false, thList = [], children, ...otherProps }) {
+	const { filterKey, onFilterChange, isPremiumPlan, showFilter = false } = otherProps;
+
 	return (
 		<>
-			<div className="mb-4 flex h-[34px] w-full items-center justify-between">
-				<h3 className="text-black">Data</h3>
-				<div className="flex justify-end">
-					{isPremiumPlan && !isLoading ? (
-						<ExportButton
-							className="rounded-md px-[9px]"
-							filename={`${title}-${format(new Date(), dateFormatStr)}.csv`}
-						/>
-					) : !isLoading ? (
-						<ExportButtonDummy className="rounded-md px-[9px]" />
-					) : null}
-				</div>
-			</div>
+			<TableHeaderActions
+				isPremiumPlan={isPremiumPlan}
+				isLoading={isLoading}
+				showFilter={showFilter}
+				onFilterChange={onFilterChange}
+				filterKey={filterKey}
+				title={title}
+			/>
 			<div className="block w-full overflow-x-auto rounded-lg border">
 				<table className="relative w-full table-auto border-collapse overflow-hidden rounded-lg bg-slate-50 shadow-md shadow-gray-200">
 					<thead className="p-10">

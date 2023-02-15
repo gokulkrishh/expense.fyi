@@ -11,18 +11,22 @@ import LoaderCard from 'components/Loader/LoaderCard';
 import AddButton from 'components/Modal/AddButton';
 import AddInvestment from 'components/Modal/AddInvestment';
 import InvestmentTable from 'components/Table/InvestmentTable';
+import { filterMap } from 'components/Table/TableFilter';
 import { showErrorToast, showSuccessToast, toastMessages } from 'components/Toast';
 
 import { incrementUsageLimit } from 'lib/usageLimit';
 
 import { thisMonth } from 'utils/date';
 import { formatCurrency } from 'utils/formatter';
+import { getApiUrl } from 'utils/url';
 
 export default function Investments({ user }) {
 	const [loading, setLoading] = useState(false);
 	const [show, setShow] = useState(false);
 	const [selected, setSelected] = useState({});
-	const { data = [], mutate, isLoading } = useSWR(`/api/investments/all`);
+	const [filterKey, setFilterKey] = useState(filterMap.thismonth);
+
+	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filterKey, 'investments'));
 
 	const onHide = () => setShow(false);
 	const onEdit = (selected) => {
@@ -121,15 +125,6 @@ export default function Investments({ user }) {
 								user.locale
 							)}
 						/>
-						<Card
-							title="This Month"
-							className="relative"
-							data={formatCurrency(
-								data.filter(thisMonth).reduce((acc, datum) => Number(datum.price) * datum.units + acc, 0),
-								user.currency,
-								user.locale
-							)}
-						/>
 					</div>
 				)}
 
@@ -144,7 +139,17 @@ export default function Investments({ user }) {
 					lookup={onLookup}
 				/>
 
-				<InvestmentTable isLoading={isLoading} data={data} onEdit={onEdit} onDelete={onDelete} user={user} />
+				<InvestmentTable
+					onFilterChange={(filterKey) => {
+						setFilterKey(filterKey);
+					}}
+					filterKey={filterKey}
+					isLoading={isLoading}
+					data={data}
+					onEdit={onEdit}
+					onDelete={onDelete}
+					user={user}
+				/>
 
 				{!isLoading ? (
 					<AddButton

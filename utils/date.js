@@ -4,16 +4,19 @@ import {
 	differenceInMonths,
 	differenceInYears,
 	endOfMonth,
+	endOfWeek,
 	format,
 	isFuture,
 	isThisMonth,
 	isToday,
 	isValid,
-	isWithinInterval,
 	startOfMonth,
+	startOfWeek,
 	subMonths,
 	subYears,
 } from 'date-fns';
+
+import { filterMap } from 'components/Table/TableFilter';
 
 import { dateFormatStr, payingKey } from 'constants/index';
 
@@ -138,3 +141,12 @@ export const getFirstAndLastDateOfMonth = () => {
 };
 
 export const thisMonth = (datum) => isThisMonth(new Date(datum.date));
+
+export const getRangeDateForFilter = (filter) => {
+	const dateObj = new Date();
+	if (filter === filterMap.thisweek) {
+		return [format(startOfWeek(dateObj), dateFormatStr), format(endOfWeek(dateObj), dateFormatStr)];
+	} else {
+		return [format(startOfMonth(dateObj), dateFormatStr), format(endOfMonth(dateObj), dateFormatStr)];
+	}
+};

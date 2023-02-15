@@ -3,7 +3,7 @@ import SignUpEmail from 'emails/SignInEmail';
 
 import resend from 'lib/email';
 
-import { getURL } from 'utils/url';
+import { getUrl } from 'utils/url';
 
 import { sentFromEmailId } from 'constants/index';
 
@@ -17,7 +17,7 @@ export default async function handle(req, res) {
 			const { data, error } = await supbaseAdmin.auth.admin.generateLink({
 				type: 'magiclink',
 				email,
-				options: { redirectTo: getURL() },
+				options: { redirectTo: getUrl() },
 			});
 
 			if (error) {
