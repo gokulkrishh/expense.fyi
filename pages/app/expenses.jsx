@@ -2,6 +2,7 @@ import Head from 'next/head';
 
 import { useState } from 'react';
 
+import { useHotkeys } from 'react-hotkeys-hook';
 import useSWR from 'swr';
 import textFilter from 'text-filter';
 
@@ -19,11 +20,16 @@ import { incrementUsageLimit } from 'lib/usageLimit';
 import { formatCurrency } from 'utils/formatter';
 import { getApiUrl } from 'utils/url';
 
+import { shortcuts } from 'constants/index';
+
+const addShortcutKey = Object.values(shortcuts.expenses.add.shortcut);
+
 export default function Expenses({ user }) {
 	const [loading, setLoading] = useState(false);
 	const [show, setShow] = useState(false);
 	const [selected, setSelected] = useState({});
 	const [filterKey, setFilterKey] = useState(filterMap.thismonth);
+	useHotkeys(addShortcutKey, () => !isLoading && setShow(true));
 
 	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filterKey, 'expenses'));
 

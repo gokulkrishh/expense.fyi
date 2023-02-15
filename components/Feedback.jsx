@@ -2,19 +2,22 @@ import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 
 import { Transition } from '@headlessui/react';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
-import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/24/solid';
-import DeviceDetector from 'device-detector-js';
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import Loader from 'components/Loader';
 
+import { shortcuts } from 'constants/index';
+
 import { showErrorToast } from './Toast';
 
-const deviceDetector = new DeviceDetector();
+const openShortcutKey = Object.values(shortcuts.overview.feedback.shortcut);
 
 const Feedback = ({ className }) => {
-	const [state, setState] = useState({ show: false, message: '', emoji: '', sent: false, deviceDetails: {} });
+	const [state, setState] = useState({ show: false, message: '', emoji: '', sent: false });
 	const ref = useRef(null);
 	const inputElement = useRef(null);
+	useHotkeys(openShortcutKey, () => setState({ ...state, show: true }));
 
 	useEffect(() => {
 		inputElement.current?.focus();
@@ -47,21 +50,13 @@ const Feedback = ({ className }) => {
 	}, [onHide]);
 
 	const onSubmit = async (message) => {
-		const deviceDetails = deviceDetector.parse(window.navigator.userAgent);
-		const { client, device, os } = deviceDetails;
-
-		const clientData = `${client.name} v${client.version}`;
-		const deviceData = `${device.type} ${device.brand}`;
-		const osData = `${os.name} v${os.version}`;
-		let body = JSON.stringify({ message, client: clientData, os: osData, device: deviceData });
-
 		setState({ ...state, loading: true });
 
 		try {
 			const res = await fetch('/api/feedbacks/create', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body,
+				body: JSON.stringify({ message }),
 			});
 
 			if (!res.ok) {

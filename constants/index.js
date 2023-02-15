@@ -98,3 +98,20 @@ export const basicPlanUsageLimit = 100;
 export const premiumPlanUsageLimit = 2500;
 
 export const sentFromEmailId = 'Gokul from Expense.fyi <hello@expense.fyi>';
+
+export const shortcuts = {
+	sidebar: {
+		overview: { path: '/', shortcut: 'o' },
+		income: { path: '/income', shortcut: 'i' },
+		expenses: { path: '/expenses', shortcut: 'e' },
+		subscriptions: { path: '/subscriptions', shortcut: 's' },
+		investments: { path: '/investments', shortcut: 'v' },
+	},
+	expenses: { add: { shortcut: 'a' } },
+	income: { add: { shortcut: 'a' } },
+	subscriptions: { add: { shortcut: 'a' } },
+	investments: { add: { shortcut: 'a' } },
+	overview: {
+		feedback: { shortcut: 'f' },
+	},
+};

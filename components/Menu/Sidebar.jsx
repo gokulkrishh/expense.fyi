@@ -2,10 +2,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import PlanBadge from 'components/Plans/PlanBadge';
 
 import { supabase } from 'lib/supabase';
+
+import { shortcuts } from 'constants/index';
 
 import Logo from '../Logo';
 
@@ -100,8 +103,20 @@ const preferencesLinks = [
 	{ link: '/settings', activePath: '/app/settings', name: 'Settings', Icon: SettingsIcon },
 ];
 
+const { sidebar } = shortcuts;
+const sidebarShortcutsList = Object.values(sidebar).map((_) => _.shortcut);
+
 export default function Sidebar({ user, className, overrideClassname, onHide, show, onToggle }) {
 	const router = useRouter();
+
+	useHotkeys(sidebarShortcutsList, (_, handler) => {
+		const keys = handler.keys.join('');
+		if (keys === sidebar.overview.shortcut) router.push('/');
+		if (keys === sidebar.income.shortcut) router.push('/income');
+		if (keys === sidebar.expenses.shortcut) router.push('/expenses');
+		if (keys === sidebar.investments.shortcut) router.push('/investments');
+		if (keys === sidebar.subscriptions.shortcut) router.push('/subscriptions');
+	});
 
 	async function signOut() {
 		const { error } = await supabase.auth.signOut();
