@@ -25,10 +25,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-
       - name: Install yarn
-        - run: npm install -g yarn
-
+        run: npm install -g yarn
       - name: Install project dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true' # Over here!
         run: yarn
