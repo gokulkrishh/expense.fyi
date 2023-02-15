@@ -23,10 +23,10 @@ export default function RecentActivityTable({ isLoading = false, data, locale, c
 			<>
 				<div className="flex flex-col items-center justify-center">
 					<Image
-						className="mt-8 mb-6"
-						src="/static/illustrations/no-expense.svg"
-						width={120}
-						height={120}
+						className="mt-11 mb-6"
+						src="/static/illustrations/no-category.svg"
+						width={170}
+						height={170}
 						alt="No records"
 					/>
 				</div>
