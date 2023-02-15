@@ -47,7 +47,7 @@ export default function AddIncome({ show, selected, onLookup, onHide, onSubmit, 
 	};
 
 	return (
-		<Modal show={show} title={`${selected.id ? 'Edit' : 'Add'} Income`} onHide={onHide}>
+		<Modal inputRef={inputRef} show={show} title={`${selected.id ? 'Edit' : 'Add'} Income`} onHide={onHide}>
 			<div className="sm:flex sm:items-start">
 				<form
 					className="md:[420px] grid w-full grid-cols-1 items-center gap-4"

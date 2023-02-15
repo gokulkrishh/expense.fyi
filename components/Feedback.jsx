@@ -1,24 +1,26 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 
+import * as Tooltip from '@radix-ui/react-tooltip';
 import { Transition } from '@headlessui/react';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
-import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/24/solid';
-import DeviceDetector from 'device-detector-js';
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import useAutoFocus from 'hooks/useAutoFocus';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import Loader from 'components/Loader';
 
-import { showErrorToast } from './Toast';
+import { shortcuts } from 'constants/index';
 
-const deviceDetector = new DeviceDetector();
+import { showErrorToast } from './Toast';
+import TooltipText from './TooltipText';
+
+const openShortcutKey = Object.values(shortcuts.overview.feedback.shortcut);
 
 const Feedback = ({ className }) => {
-	const [state, setState] = useState({ show: false, message: '', emoji: '', sent: false, deviceDetails: {} });
+	const [state, setState] = useState({ show: false, message: '', emoji: '', sent: false });
 	const ref = useRef(null);
-	const inputElement = useRef(null);
-
-	useEffect(() => {
-		inputElement.current?.focus();
-	}, [inputElement]);
+	const inputElement = useAutoFocus();
+	useHotkeys(openShortcutKey, () => setState({ ...state, show: true }));
 
 	const onHide = useCallback(() => {
 		setState({ ...state, show: false, message: '' });
@@ -47,21 +49,13 @@ const Feedback = ({ className }) => {
 	}, [onHide]);
 
 	const onSubmit = async (message) => {
-		const deviceDetails = deviceDetector.parse(window.navigator.userAgent);
-		const { client, device, os } = deviceDetails;
-
-		const clientData = `${client.name} v${client.version}`;
-		const deviceData = `${device.type} ${device.brand}`;
-		const osData = `${os.name} v${os.version}`;
-		let body = JSON.stringify({ message, client: clientData, os: osData, device: deviceData });
-
 		setState({ ...state, loading: true });
 
 		try {
 			const res = await fetch('/api/feedbacks/create', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body,
+				body: JSON.stringify({ message }),
 			});
 
 			if (!res.ok) {
@@ -82,13 +76,20 @@ const Feedback = ({ className }) => {
 	return (
 		<div ref={ref} className={`relative inline-block text-left ${className}`}>
 			<div className="ml-2 mt-0 flex">
-				<button
-					className="font-xs shadow-xs inline-flex items-center rounded-md border border-zinc-200 bg-white px-[12px] py-[10px] text-sm font-medium leading-[16px] text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:px-[8px]"
-					onClick={() => setState({ ...state, show: !state.show })}
-				>
-					<ChatBubbleBottomCenterTextIcon className="relative top-[1px] h-4 w-4" />{' '}
-					<span className="ml-2 hidden sm:block">Feedback</span>
-				</button>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						<button
+							className="font-xs shadow-xs inline-flex items-center rounded-md border border-zinc-200 bg-white px-[12px] py-[10px] text-sm font-medium leading-[16px] text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:px-[8px]"
+							onClick={() => setState({ ...state, show: !state.show })}
+						>
+							<ChatBubbleBottomCenterTextIcon className="relative top-[1px] h-4 w-4" />{' '}
+							<span className="ml-2 hidden sm:block">Feedback</span>
+						</button>
+					</Tooltip.Trigger>
+					<Tooltip.Content hideWhenDetached className="TooltipContent">
+						<TooltipText className="mt-2" text="Open feedback" shortcut={openShortcutKey} />
+					</Tooltip.Content>
+				</Tooltip.Root>
 			</div>
 
 			<Transition

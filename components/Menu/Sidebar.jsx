@@ -1,11 +1,16 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import * as Tooltip from '@radix-ui/react-tooltip';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import PlanBadge from 'components/Plans/PlanBadge';
+import TooltipText from 'components/TooltipText';
 
 import { supabase } from 'lib/supabase';
+
+import { shortcuts } from 'constants/index';
 
 import Logo from '../Logo';
 
@@ -57,6 +62,9 @@ export const LogoutIcon = () => (
 	</svg>
 );
 
+const { sidebar } = shortcuts;
+const sidebarShortcutsList = Object.values(sidebar).map((_) => _.shortcut);
+
 const links = [
 	{
 		link: '/',
@@ -64,6 +72,7 @@ const links = [
 		description: 'Overview page for all expenses',
 		name: 'Overview',
 		Icon: OverviewIcon,
+		shortcutText: sidebar.overview.shortcut,
 	},
 	{
 		link: '/income',
@@ -71,6 +80,7 @@ const links = [
 		description: 'Add your income here',
 		name: 'Income',
 		Icon: IncomeIcon,
+		shortcutText: sidebar.income.shortcut,
 	},
 	{
 		link: '/expenses',
@@ -78,6 +88,7 @@ const links = [
 		activePath: '/app/expenses',
 		name: 'Expenses',
 		Icon: ExpensesIcon,
+		shortcutText: sidebar.expenses.shortcut,
 	},
 	{
 		link: '/investments',
@@ -85,6 +96,7 @@ const links = [
 		activePath: '/app/investments',
 		name: 'Investments',
 		Icon: InvestmentIcon,
+		shortcutText: sidebar.investments.shortcut,
 	},
 	{
 		link: '/subscriptions',
@@ -92,6 +104,7 @@ const links = [
 		activePath: '/app/subscriptions',
 		name: 'Subscriptions',
 		Icon: SubscriptionsIcon,
+		shortcutText: sidebar.subscriptions.shortcut,
 	},
 ];
 
@@ -102,6 +115,15 @@ const preferencesLinks = [
 
 export default function Sidebar({ user, className, overrideClassname, onHide, show, onToggle }) {
 	const router = useRouter();
+
+	useHotkeys(sidebarShortcutsList, (_, handler) => {
+		const keys = handler.keys.join('');
+		if (keys === sidebar.overview.shortcut) router.push('/');
+		if (keys === sidebar.income.shortcut) router.push('/income');
+		if (keys === sidebar.expenses.shortcut) router.push('/expenses');
+		if (keys === sidebar.investments.shortcut) router.push('/investments');
+		if (keys === sidebar.subscriptions.shortcut) router.push('/subscriptions');
+	});
 
 	async function signOut() {
 		const { error } = await supabase.auth.signOut();
@@ -157,18 +179,29 @@ export default function Sidebar({ user, className, overrideClassname, onHide, sh
 					<div className="mt-2 mb-2 flex w-full flex-col items-center border-t border-zinc-800"></div>
 					{links.map((linkItem) => (
 						<span key={linkItem.name} onClick={onHide}>
-							<Link
-								title={linkItem.name}
-								href={linkItem.link}
-								className={`mt-2 flex h-[40px] items-center rounded-lg p-2 text-base tracking-wide text-white transition-all hover:bg-zinc-800 ${
-									router.pathname === linkItem.activePath ? 'bg-zinc-800' : ''
-								} ${show ? 'w-[100%]' : ' w-[40px] justify-center'}`}
-							>
-								<span className="flex items-center">
-									<linkItem.Icon />
-									<span className={`ml-2 ${show ? 'visible' : 'hidden'}`}>{linkItem.name}</span>
-								</span>
-							</Link>
+							<Tooltip.Root>
+								<Tooltip.Trigger asChild>
+									<Link
+										title={linkItem.name}
+										href={linkItem.link}
+										className={`mt-2 flex h-[40px] items-center rounded-lg p-2 text-base tracking-wide text-white transition-all hover:bg-zinc-800 ${
+											router.pathname === linkItem.activePath ? 'bg-zinc-800' : ''
+										} ${show ? 'w-[100%]' : ' w-[40px] justify-center'}`}
+									>
+										<span className="flex items-center">
+											<linkItem.Icon />
+											<span className={`ml-2 ${show ? 'visible' : 'hidden'}`}>{linkItem.name}</span>
+										</span>
+									</Link>
+								</Tooltip.Trigger>
+								<Tooltip.Content hideWhenDetached side="right" className="TooltipContent">
+									<TooltipText
+										className={`ml-4 ${show ? 'xs:hidden' : 'xs:block'}`}
+										text={`${linkItem.name}`}
+										shortcut={linkItem.shortcutText}
+									/>
+								</Tooltip.Content>
+							</Tooltip.Root>
 						</span>
 					))}
 				</div>
@@ -178,14 +211,13 @@ export default function Sidebar({ user, className, overrideClassname, onHide, sh
 						<div key={linkItem.name} onClick={onHide}>
 							<Link
 								href={linkItem.link}
-								title={linkItem.name}
 								className={`mt-2 flex h-[40px] items-center rounded-lg p-2 text-base tracking-wide text-white hover:bg-zinc-800 ${
 									router.pathname === linkItem.activePath ? 'bg-zinc-800' : ''
 								} ${show ? '' : 'justify-center'}`}
 							>
 								<span className="flex items-center">
 									<linkItem.Icon />
-									<span className={`ml-2 ${show ? '' : 'hidden'}`}>{linkItem.name}</span>
+									<span className={`ml-2 mt-0 ${show ? '' : 'hidden'}`}>{linkItem.name}</span>
 								</span>
 							</Link>
 						</div>

@@ -1,7 +1,8 @@
 import Head from 'next/head';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
+import { useHotkeys } from 'react-hotkeys-hook';
 import useSWR from 'swr';
 
 import enforceAuth from 'components/Auth/enforceAuth';
@@ -16,15 +17,19 @@ import { incrementUsageLimit } from 'lib/usageLimit';
 
 import { formatCurrency } from 'utils/formatter';
 
-import { payingKey } from 'constants/index';
+import { payingKey, shortcuts } from 'constants/index';
+
+const addShortcutKey = Object.values(shortcuts.subscriptions.add.shortcut);
 
 export default function Subscriptions({ user }) {
 	const [loading, setLoading] = useState(false);
 	const [show, setShow] = useState(false);
 	const [selected, setSelected] = useState({});
 	const { data = [], mutate, isLoading } = useSWR(`/api/subscriptions/all`);
-	const monthlyData = data.filter((datum) => datum.active && datum.paid === payingKey.monthly);
-	const yearlyData = data.filter((datum) => datum.active && datum.paid === payingKey.yearly);
+	useHotkeys(addShortcutKey, () => !isLoading && setShow(true));
+
+	const monthlyData = useMemo(() => data.filter((datum) => datum.active && datum.paid === payingKey.monthly), [data]);
+	const yearlyData = useMemo(() => data.filter((datum) => datum.active && datum.paid === payingKey.yearly), [data]);
 
 	const onHide = () => setShow(false);
 
@@ -126,7 +131,7 @@ export default function Subscriptions({ user }) {
 
 				<h2 className="mb-4 text-black">Summary</h2>
 				{isLoading ? (
-					<LoaderCard nums={5} />
+					<LoaderCard nums={4} />
 				) : (
 					<div className="mb-6 grid grid-cols-1 gap-6 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
 						<Card title="Total Subscriptions" className="relative" data={data.length} />

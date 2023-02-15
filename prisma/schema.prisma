@@ -116,9 +116,6 @@ model feedbacks {
   id         Int      @id @default(autoincrement())
   message    String
   created_at DateTime @default(now()) @db.Timestamptz(6)
-  os         String
-  device     String
-  client     String
   user_id    String   @db.Uuid
 }
 

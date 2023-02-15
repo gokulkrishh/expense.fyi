@@ -46,7 +46,7 @@ export default function AddInvestment({ show, lookup, selected, onHide, onSubmit
 	};
 
 	return (
-		<Modal show={show} title={`${selected.id ? 'Edit' : 'Add'} Investment`} onHide={onHide}>
+		<Modal inputRef={inputRef} show={show} title={`${selected.id ? 'Edit' : 'Add'} Investment`} onHide={onHide}>
 			<div className="sm:flex sm:items-start">
 				<form
 					className="md:[420px] grid w-full grid-cols-1 items-center gap-4"

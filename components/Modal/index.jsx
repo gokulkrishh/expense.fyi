@@ -5,21 +5,11 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 
 import Portal from './Portal';
 
-export default function Modal({ show, title, children, onHide }) {
-	useEffect(() => {
-		const close = (e) => {
-			if (e.keyCode === 27) {
-				onHide();
-			}
-		};
-		window.addEventListener('keydown', close);
-		return () => window.removeEventListener('keydown', close);
-	}, [onHide]);
-
+export default function Modal({ show, title, children, onHide, inputRef }) {
 	return (
 		<Portal>
 			<Transition appear show={show} as={Fragment}>
-				<Dialog as="div" className={`relative z-20`} onClose={onHide}>
+				<Dialog initialFocus={inputRef} open={show} as="div" className={`relative z-20`} onClose={onHide}>
 					<Transition.Child
 						as={Fragment}
 						enter="ease-out duration-500"
