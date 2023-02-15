@@ -198,10 +198,10 @@ export default function Home({ user }) {
 										{!isLoading && !topSpendExpenseCategory.length ? (
 											<div className="flex flex-col items-center justify-center">
 												<Image
-													className="mt-6 mb-6"
-													src="/static/illustrations/no-category.svg"
-													width={150}
-													height={150}
+													className="mt-16 mb-6"
+													src="/static/illustrations/no-expense.svg"
+													width={120}
+													height={120}
 													alt="No records"
 												/>
 											</div>
