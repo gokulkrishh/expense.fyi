@@ -112,7 +112,7 @@ export default function Investments({ user }) {
 
 				<h2 className="mb-4 text-black">Summary</h2>
 				{isLoading ? (
-					<LoaderCard nums={3} />
+					<LoaderCard nums={2} />
 				) : (
 					<div className="mb-6 grid grid-cols-1 gap-6 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
 						<Card title="Total Investments" className="relative" data={data.length} />
