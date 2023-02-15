@@ -3,6 +3,7 @@ import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { Transition } from '@headlessui/react';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import useAutoFocus from 'hooks/useAutoFocus';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 import Loader from 'components/Loader';
@@ -16,12 +17,8 @@ const openShortcutKey = Object.values(shortcuts.overview.feedback.shortcut);
 const Feedback = ({ className }) => {
 	const [state, setState] = useState({ show: false, message: '', emoji: '', sent: false });
 	const ref = useRef(null);
-	const inputElement = useRef(null);
+	const inputElement = useAutoFocus();
 	useHotkeys(openShortcutKey, () => setState({ ...state, show: true }));
-
-	useEffect(() => {
-		inputElement.current?.focus();
-	}, [inputElement]);
 
 	const onHide = useCallback(() => {
 		setState({ ...state, show: false, message: '' });

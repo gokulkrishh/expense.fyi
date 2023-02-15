@@ -44,7 +44,7 @@ export default function AddSubscription({ show, selected, onHide, onSubmit, load
 	useEffect(() => setHasValidUrl(checkUrl(state.url)), [state.url]);
 
 	return (
-		<Modal show={show} title={`${selected.id ? 'Edit' : 'Add'} Subscription`} onHide={onHide}>
+		<Modal inputRef={inputRef} show={show} title={`${selected.id ? 'Edit' : 'Add'} Subscription`} onHide={onHide}>
 			<div className="flex items-start">
 				<form
 					className="md:[420px] grid w-full grid-cols-1 items-center gap-4"

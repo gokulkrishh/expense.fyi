@@ -63,7 +63,7 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 	};
 
 	return (
-		<Modal show={show} title={`${selected.id ? 'Edit' : 'Add'} Expense`} onHide={onHide}>
+		<Modal inputRef={inputRef} show={show} title={`${selected.id ? 'Edit' : 'Add'} Expense`} onHide={onHide}>
 			<div className="sm:flex sm:items-start">
 				<form
 					className="md:[420px] grid w-full grid-cols-1 items-center gap-4"
