@@ -4,9 +4,10 @@ export const expensesCategory = {
 	entertainment: { name: 'Entertainment', emoji: '🍿' },
 	bills: { name: 'Bills', emoji: '🧾' },
 	food: { name: 'Food', emoji: '🍔' },
+	cash: { name: 'Cash', emoji: '💵' },
 	grocery: { name: 'Grocery', emoji: '🛒' },
-	order: { name: 'Order', emoji: '📦' },
-	other: { name: 'Other', emoji: '🤷🏻‍♂️' },
+	order: { name: 'Online Order', emoji: '📦' },
+	other: { name: 'Others', emoji: '🤷🏻‍♂️' },
 	emi: { name: 'EMI', emoji: '🤑' },
 	upi: { name: 'UPI', emoji: '📲' },
 	creditcard: { name: 'Credit Card', emoji: '💳' },
@@ -15,6 +16,44 @@ export const expensesCategory = {
 	rent: { name: 'Rent', emoji: '🏠' },
 	shopping: { name: 'Shopping', emoji: '🛍️' },
 	travel: { name: 'Travel', emoji: '✈️' },
+};
+
+export const groupedExpensesCategory = {
+	dailyessentials: {
+		name: 'Essentials',
+		list: {
+			food: expensesCategory.food,
+			grocery: expensesCategory.grocery,
+			medical: expensesCategory.medical,
+		},
+	},
+	expenses: {
+		name: 'Expenses',
+		list: {
+			bills: expensesCategory.bills,
+			education: expensesCategory.education,
+			order: expensesCategory.order,
+			rent: expensesCategory.rent,
+		},
+	},
+	leisure: {
+		name: 'Leisure',
+		list: {
+			entertainment: expensesCategory.entertainment,
+			shopping: expensesCategory.shopping,
+			travel: expensesCategory.travel,
+		},
+	},
+	payments: {
+		name: 'Payments',
+		list: {
+			cash: expensesCategory.cash,
+			creditcard: expensesCategory.creditcard,
+			emi: expensesCategory.emi,
+			savings: expensesCategory.savings,
+			upi: expensesCategory.upi,
+		},
+	},
 };
 
 export const incomeCategory = {

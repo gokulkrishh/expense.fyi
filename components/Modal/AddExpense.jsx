@@ -9,14 +9,14 @@ import Dropdown from 'components/Dropdown';
 
 import { getCurrencySymbol } from 'utils/formatter';
 
-import { dateFormatStr, datePattern, expensesCategory } from 'constants/index';
+import { dateFormatStr, datePattern, expensesCategory, groupedExpensesCategory } from 'constants/index';
 
 import Modal from './';
 
 const todayDate = format(new Date(), dateFormatStr);
 
 const initialState = {
-	category: '',
+	category: 'food',
 	name: '',
 	notes: '',
 	price: '',
@@ -86,7 +86,7 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 							onChange={({ target }) => {
 								const { value } = target;
 								if (value.length) {
-									setState({ ...state, name: value });
+									setState({ ...state, name: value, autocomplete: value.length < 3 ? [] : state.autocomplete });
 									if (value.length > 2) onLookup(value);
 								} else {
 									setState({ ...state, name: '', category: '', autocomplete: [] });
@@ -97,6 +97,7 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 						<Dropdown
 							onHide={onHideDropdown}
 							data={state.autocomplete}
+							searchTerm={state.name.length > 2 ? state.name.toLowerCase() : ''}
 							onClick={({ name, category }) => {
 								setState({ ...state, name, category, autocomplete: [] });
 							}}
@@ -147,18 +148,28 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 								name="category"
 								className="mt-2 block h-10 w-full appearance-none rounded-md bg-white py-2 px-3 pr-8 text-sm text-zinc-800 shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
 								onChange={(event) => {
+									console.log('event --->', event.target.value);
 									setState({ ...state, category: event.target.value });
 								}}
 								value={state.category}
 								required
 							>
-								{Object.keys(expensesCategory).map((categoryKey) => {
+								{Object.keys(groupedExpensesCategory).map((key) => {
 									return (
-										<option key={categoryKey} value={categoryKey}>
-											{expensesCategory[categoryKey].name}
-										</option>
+										<optgroup label={groupedExpensesCategory[key].name} key={groupedExpensesCategory[key].name}>
+											{Object.keys(groupedExpensesCategory[key].list).map((listKey) => {
+												return (
+													<option key={listKey} value={listKey}>
+														{groupedExpensesCategory[key].list[listKey].name}
+													</option>
+												);
+											})}
+										</optgroup>
 									);
 								})}
+								<option key={'other'} value={'other'}>
+									{expensesCategory.other.name}
+								</option>
 							</select>
 						</label>
 					</div>
