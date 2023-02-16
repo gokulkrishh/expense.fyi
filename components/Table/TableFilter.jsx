@@ -19,7 +19,7 @@ export default function TableFilter({ filterKey = filterMap.all, onFilterChange 
 			</span>
 			<select
 				name="table-filter"
-				className="inline-flex w-[112px] items-center rounded-md border border-gray-300 bg-white py-[6px] px-[9px] text-sm font-medium text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 xs:w-[120px]"
+				className="inline-flex w-[112px] items-center rounded-md border border-gray-300 bg-white py-[6px] px-[9px] text-sm font-medium text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 xs:w-[120px]"
 				onChange={(event) => {
 					onFilterChange(event.target.value);
 				}}
