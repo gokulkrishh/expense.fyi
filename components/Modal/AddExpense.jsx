@@ -48,11 +48,7 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 
 	const onLookup = useMemo(() => {
 		const callbackHandler = (value) => {
-			const data = lookup(value);
-
-			if (data.length) {
-				setState((prev) => ({ ...prev, autocomplete: data }));
-			}
+			setState((prev) => ({ ...prev, autocomplete: lookup(value) }));
 		};
 
 		return debounce(callbackHandler, 500);
@@ -86,7 +82,7 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 							onChange={({ target }) => {
 								const { value } = target;
 								if (value.length) {
-									setState({ ...state, name: value, autocomplete: value.length < 3 ? [] : state.autocomplete });
+									setState({ ...state, name: value, autocomplete: [] });
 									if (value.length > 2) onLookup(value);
 								} else {
 									setState({ ...state, name: '', category: '', autocomplete: [] });

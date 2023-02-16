@@ -97,7 +97,13 @@ export default function Expenses({ user }) {
 
 	const onLookup = (name) => {
 		const result = data.filter(textFilter({ query: name, fields: ['name'] }));
-		if (result.length) return [result[0]];
+		if (result.length)
+			return Object.values(
+				result.reduce((acc, datum) => {
+					acc[datum.name] = datum;
+					return acc;
+				}, {})
+			).slice(0, 3);
 		return result;
 	};
 

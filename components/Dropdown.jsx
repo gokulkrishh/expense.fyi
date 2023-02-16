@@ -20,10 +20,10 @@ export default function Dropdown({ searchTerm = '', show, onHide, data = [], onC
 	return (
 		<Transition
 			as={'div'}
-			enter="transition-opacity duration-75"
-			enterFrom="opacity-0"
-			enterTo="opacity-100"
-			leave="transition-opacity duration-150"
+			enter="transition ease-out duration-200"
+			enterFrom="opacity-0 -translate-y-1"
+			enterTo="opacity-100 translate-y-0"
+			leave="transition ease-in duration-150"
 			leaveFrom="opacity-100"
 			leaveTo="opacity-0"
 			show={show}
@@ -31,7 +31,7 @@ export default function Dropdown({ searchTerm = '', show, onHide, data = [], onC
 			{data.length ? (
 				<div
 					ref={ref}
-					className="absolute	mt-[3px] ml-[2px] min-w-[160px] max-w-[250px] overflow-auto rounded-sm border border-gray-300 bg-white text-base shadow-md focus:outline-none sm:text-sm"
+					className="absolute	mt-[3px] min-w-[160px] max-w-[250px] overflow-auto rounded-md border border-gray-300 bg-white text-base shadow-md focus:outline-none sm:text-sm"
 				>
 					{data.map(({ name: datumName, id, category }) => {
 						const name = datumName.toLowerCase();
@@ -45,7 +45,7 @@ export default function Dropdown({ searchTerm = '', show, onHide, data = [], onC
 							<button
 								key={id}
 								onClick={() => onClick({ name, category })}
-								className="relative w-full cursor-default select-none p-2 text-left text-gray-900 hover:bg-gray-100"
+								className="relative w-full cursor-default select-none p-2 px-[10px] text-left text-gray-900 hover:bg-gray-100"
 							>
 								{searchTerm.length ? (
 									<span>
