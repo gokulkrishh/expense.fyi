@@ -24,22 +24,6 @@ const initialState = {
 	autocomplete: [],
 };
 
-const AutoComplete = ({ data, onClick }) => {
-	return (
-		<div className="absolute mt-1 w-full max-w-[150px] overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-			{data.map(({ name, id, category }) => (
-				<button
-					key={id}
-					onClick={() => onClick({ name, category })}
-					className="relative w-full cursor-default select-none p-2 text-left text-gray-900 hover:bg-gray-100"
-				>
-					{name}
-				</button>
-			))}
-		</div>
-	);
-};
-
 export default function AddExpense({ show, selected, lookup, onHide, onSubmit, loading, currency, locale }) {
 	const inputRef = useAutoFocus();
 	const [state, setState] = useState(initialState);
@@ -85,7 +69,7 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 									setState({ ...state, name: value, autocomplete: [] });
 									if (value.length > 2) onLookup(value);
 								} else {
-									setState({ ...state, name: '', category: '', autocomplete: [] });
+									setState({ ...state, name: '', category: 'food', autocomplete: [] });
 								}
 							}}
 							value={state.name}
@@ -144,7 +128,6 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 								name="category"
 								className="mt-2 block h-10 w-full appearance-none rounded-md bg-white py-2 px-3 pr-8 text-sm text-zinc-800 shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
 								onChange={(event) => {
-									console.log('event --->', event.target.value);
 									setState({ ...state, category: event.target.value });
 								}}
 								value={state.category}
