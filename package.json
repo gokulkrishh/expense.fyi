@@ -23,7 +23,7 @@
 	"dependencies": {
 		"@headlessui/react": "^1.7.11",
 		"@heroicons/react": "^2.0.16",
-		"@next/font": "13.1.6",
+		"@next/font": "13.2.1",
 		"@prisma/client": "^4.10.1",
 		"@radix-ui/react-tooltip": "^1.0.3",
 		"@react-email/button": "^0.0.6",
@@ -45,8 +45,8 @@
 		"date-fns": "^2.29.3",
 		"debounce": "^1.2.1",
 		"eslint": "8.34.0",
-		"eslint-config-next": "^13.1.6",
-		"next": "^13.1.6",
+		"eslint-config-next": "^13.2.1",
+		"next": "^13.2.1",
 		"nprogress": "^0.2.0",
 		"prisma-field-encryption": "^1.4.1",
 		"react": "^18.2.0",
@@ -61,7 +61,7 @@
 	},
 	"devDependencies": {
 		"@testing-library/react": "^14.0.0",
-		"@trivago/prettier-plugin-sort-imports": "^4.0.0",
+		"@trivago/prettier-plugin-sort-imports": "^4.1.0",
 		"@vitejs/plugin-react": "^3.1.0",
 		"@vitest/coverage-c8": "^0.28.5",
 		"autoprefixer": "^10.4.13",
