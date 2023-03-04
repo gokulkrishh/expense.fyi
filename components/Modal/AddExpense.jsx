@@ -139,7 +139,7 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 					<div className="grid grid-cols-[50%,50%]">
 						<label className="mr-4 block">
 							<span className="block text-sm font-medium text-zinc-800">
-								Category <span className="ml-1">{expensesCategory[state.category].emoji}</span>
+								Category <span className="ml-1">{expensesCategory[state.category]?.emoji}</span>
 							</span>
 							<select
 								name="category"
