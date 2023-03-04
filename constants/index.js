@@ -4,18 +4,25 @@ export const expensesCategory = {
 	entertainment: { name: 'Entertainment', emoji: '🍿' },
 	bills: { name: 'Bills', emoji: '🧾' },
 	food: { name: 'Food', emoji: '🍔' },
-	cash: { name: 'Cash', emoji: '💵' },
 	grocery: { name: 'Grocery', emoji: '🛒' },
 	order: { name: 'Online Order', emoji: '📦' },
 	other: { name: 'Others', emoji: '🤷🏻‍♂️' },
 	emi: { name: 'EMI', emoji: '🤑' },
-	upi: { name: 'UPI', emoji: '📲' },
-	creditcard: { name: 'Credit Card', emoji: '💳' },
 	savings: { name: 'Savings', emoji: '💰' },
+	debt: { name: 'Debt', emoji: '💸' },
+	loan: { name: 'Loan', emoji: '🤫' },
 	medical: { name: 'Medical', emoji: '🏥' },
 	rent: { name: 'Rent', emoji: '🏠' },
 	shopping: { name: 'Shopping', emoji: '🛍️' },
 	travel: { name: 'Travel', emoji: '✈️' },
+};
+
+export const expensesPaidViaList = {
+	cash: { name: 'Cash', emoji: '💵' },
+	creditcard: { name: 'Credit Card', emoji: '💳' },
+	debitcard: { name: 'Debit Card', emoji: '💳' },
+	netbanking: { name: 'Netbanking', emoji: '🏦' },
+	upi: { name: 'UPI', emoji: '📲' },
 };
 
 export const groupedExpensesCategory = {
@@ -47,11 +54,10 @@ export const groupedExpensesCategory = {
 	payments: {
 		name: 'Payments',
 		list: {
-			cash: expensesCategory.cash,
-			creditcard: expensesCategory.creditcard,
 			emi: expensesCategory.emi,
 			savings: expensesCategory.savings,
-			upi: expensesCategory.upi,
+			debt: expensesCategory.debt,
+			loan: expensesCategory.loan,
 		},
 	},
 };

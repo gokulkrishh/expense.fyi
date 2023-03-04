@@ -16,6 +16,7 @@ export default withUserAuth(async (req, res, user) => {
 					name: true,
 					price: true,
 					category: true,
+					paid_via: true,
 					id: true,
 					date: true,
 					created_at: true,
