@@ -3,11 +3,11 @@ import prisma from 'lib/prisma';
 
 export default withUserAuth(async (req, res, user) => {
 	if (req.method === 'POST') {
-		const { notes, name, price, category, date } = req.body;
+		const { notes, name, price, category, date, paid_via } = req.body;
 
 		try {
 			await prisma.expenses.create({
-				data: { notes, name, price, category, user_id: user.id, date },
+				data: { notes, name, price, category, user_id: user.id, date, paid_via },
 			});
 
 			res.status(201).json({ message: 'Added' });

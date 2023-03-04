@@ -4,7 +4,6 @@ import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 import Table from 'components/Table';
 
-import { sortByKey } from 'utils/array';
 import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 
 import NoDataTable from './NoDataTable';
@@ -36,7 +35,7 @@ export default function IncomeTable({ onFilterChange, filterKey, isLoading, data
 			isLoading={isLoading}
 			isPremiumPlan={isPremiumPlan && !isPremiumPlanEnded}
 		>
-			{sortByKey(data, 'date').map((datum) => {
+			{data.map((datum) => {
 				const isToday = isItToday(new Date(datum.date), new Date());
 				return (
 					<tr key={datum.id} className="border-b border-gray-200 last:border-0 hover:bg-gray-50">

@@ -11,11 +11,15 @@ export default withUserAuth(async (req, res, user) => {
 					user_id: user.id,
 					date: { lte: end, gte: start },
 				},
+				orderBy: {
+					date: 'desc',
+				},
 				select: {
 					notes: true,
 					name: true,
 					price: true,
 					category: true,
+					paid_via: true,
 					id: true,
 					date: true,
 					created_at: true,

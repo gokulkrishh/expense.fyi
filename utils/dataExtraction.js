@@ -7,7 +7,7 @@ const recentIndex = 4;
 const topExpenseIndex = 4;
 
 export const extractExpensesData = (data, locale) => {
-	const groupByDate = sortByKey(data, 'date').reduce((acc, datum) => {
+	const groupByDate = data.reduce((acc, datum) => {
 		const date = formatDate(datum.date, locale, { day: '2-digit', year: '2-digit', month: 'short' });
 		acc[date] = acc[date]
 			? {
@@ -40,7 +40,7 @@ const sortValueByAsc = (a, b) => (a.value > b.value ? -1 : 1);
 export const extractTopExpenseCategoryData = (data) => {
 	const dataMap = data.reduce((acc, datum) => {
 		const obj = {
-			name: `${expensesCategory[datum.category].emoji}  ${datum.category}`,
+			name: `${expensesCategory[datum.category]?.emoji}  ${datum.category}`,
 			value: acc[datum.category] ? Number(acc[datum.category].value) + Number(datum.price) : Number(datum.price),
 		};
 		acc[datum.category] = obj;
