@@ -11,6 +11,9 @@ export default withUserAuth(async (req, res, user) => {
 					user_id: user.id,
 					date: { lte: end, gte: start },
 				},
+				orderBy: {
+					date: 'desc',
+				},
 				select: {
 					notes: true,
 					name: true,

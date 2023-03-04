@@ -2,7 +2,6 @@ import Image from 'next/image';
 
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid';
 
-import { sortByKey } from 'utils/array';
 import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 
 import { expensesCategory, expensesPaidViaList } from 'constants/index';
@@ -43,13 +42,15 @@ export default function ExpensesTable({ filterKey, onFilterChange, isLoading, da
 			isLoading={isLoading}
 			isPremiumPlan={isPremiumPlan && !isPremiumPlanEnded}
 		>
-			{sortByKey(data, 'date').map((datum) => {
+			{data.map((datum) => {
 				const isToday = isItToday(new Date(datum.date), new Date());
 				return (
 					<tr key={datum.id} className="border-b border-gray-200 last:border-0 hover:bg-gray-50">
 						<td className={tdClassNames}>
 							<div className="flex items-center">
-								<span className="absolute left-2 inline-block">{expensesCategory[datum.category]?.emoji}</span>{' '}
+								<span className="category-emoji absolute left-2 inline-block">
+									{expensesCategory[datum.category]?.emoji}
+								</span>{' '}
 								<a target="_blank" className="" href={datum.url} rel="noreferrer">
 									{datum.name}
 								</a>

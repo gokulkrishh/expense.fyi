@@ -7,7 +7,7 @@ const recentIndex = 4;
 const topExpenseIndex = 4;
 
 export const extractExpensesData = (data, locale) => {
-	const groupByDate = sortByKey(data, 'date').reduce((acc, datum) => {
+	const groupByDate = data.reduce((acc, datum) => {
 		const date = formatDate(datum.date, locale, { day: '2-digit', year: '2-digit', month: 'short' });
 		acc[date] = acc[date]
 			? {

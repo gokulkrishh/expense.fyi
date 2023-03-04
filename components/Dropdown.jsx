@@ -33,7 +33,7 @@ export default function Dropdown({ searchTerm = '', show, onHide, data = [], onC
 					ref={ref}
 					className="absolute	mt-[3px] min-w-[160px] max-w-[250px] overflow-auto rounded-md border border-gray-300 bg-white text-base shadow-md focus:outline-none sm:text-sm"
 				>
-					{data.map(({ name: datumName, id, category }) => {
+					{data.map(({ name: datumName, id, category, paid_via }) => {
 						const name = datumName.toLowerCase();
 						let string, highlightedText, endString;
 						if (searchTerm.length) {
@@ -44,7 +44,7 @@ export default function Dropdown({ searchTerm = '', show, onHide, data = [], onC
 						return (
 							<button
 								key={id}
-								onClick={() => onClick({ name, category })}
+								onClick={() => onClick({ name, category, paid_via })}
 								className="relative w-full cursor-default select-none p-2 px-[10px] text-left text-gray-900 hover:bg-gray-100"
 							>
 								{searchTerm.length ? (

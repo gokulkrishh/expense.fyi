@@ -17,6 +17,9 @@ export default withUserAuth(async (req, res, user) => {
 					created_at: true,
 					updated_at: true,
 				},
+				orderBy: {
+					date: 'desc',
+				},
 			});
 
 			res.status(200).json(data);

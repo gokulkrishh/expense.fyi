@@ -84,7 +84,7 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 									setState({ ...state, name: value, autocomplete: [] });
 									if (value.length > 2) onLookup(value);
 								} else {
-									setState({ ...state, name: '', category: 'food', autocomplete: [] });
+									setState({ ...state, name: '', category: 'food', paid_via: 'cash', autocomplete: [] });
 								}
 							}}
 							value={state.name}
@@ -93,8 +93,8 @@ export default function AddExpense({ show, selected, lookup, onHide, onSubmit, l
 							onHide={onHideDropdown}
 							data={state.autocomplete}
 							searchTerm={state.name.length > 2 ? state.name.toLowerCase() : ''}
-							onClick={({ name, category }) => {
-								setState({ ...state, name, category, autocomplete: [] });
+							onClick={({ name, category, paid_via }) => {
+								setState({ ...state, name, category, paid_via, autocomplete: [] });
 							}}
 							show={Boolean(state.autocomplete?.length)}
 						/>
