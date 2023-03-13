@@ -5,6 +5,7 @@ import { useMemo, useState } from 'react';
 
 import { BarChart, BarList, DateRangePicker, DonutChart, Legend } from '@tremor/react';
 import { format } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 import useSWR from 'swr';
 
 import enforceAuth from 'components/Auth/enforceAuth';
@@ -91,8 +92,7 @@ export default function Home({ user }) {
 								enableDropdown={true}
 								placeholder="Select a date"
 								enableYearPagination={true}
-								maxWidth="max-w-none"
-								marginTop="mt-0"
+								className="mt-0 max-w-none"
 								color="blue"
 							/>
 						</div>
@@ -122,7 +122,7 @@ export default function Home({ user }) {
 								<BarChart
 									data={chartdata}
 									categories={categoriesForChartData}
-									dataKey="date"
+									index="date"
 									valueFormatter={(number) => {
 										return formatCurrency(number, user.currency, user.locale);
 									}}
@@ -134,9 +134,8 @@ export default function Home({ user }) {
 									minValue={0}
 									maxValue={maxValueForXAxisBarChart?.value}
 									showGridLines={true}
-									marginTop="mt-4"
-									height="h-80"
-									yAxisWidth="w-21"
+									className="mt-4 h-80"
+									yAxisWidth={84}
 								/>
 							)}
 						</Card>
@@ -153,20 +152,19 @@ export default function Home({ user }) {
 							) : (
 								<>
 									<div className="flex justify-end">
-										<Legend categories={subscriptionDataForLegend} marginTop="mt-3" />
+										<Legend categories={subscriptionDataForLegend} className="mt-3" />
 									</div>
 									<DonutChart
 										data={chartDataForSubscription}
 										category={'price'}
-										dataKey="name"
+										index="name"
 										valueFormatter={(number) => {
 											return formatCurrency(number, user.currency, user.locale);
 										}}
 										showLabel={true}
 										showAnimation={false}
 										showTooltip={true}
-										height="h-80"
-										marginTop="mt-4"
+										className="mt-4 h-80"
 									/>
 								</>
 							)}
@@ -220,7 +218,7 @@ export default function Home({ user }) {
 													}}
 													color="amber"
 													showAnimation={false}
-													marginTop="mt-4"
+													className="mt-4"
 												/>
 											</>
 										)}

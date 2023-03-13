@@ -18,8 +18,6 @@ import 'styles/globals.css';
 
 import 'nprogress/nprogress.css';
 
-import '@tremor/react/dist/esm/tremor.css';
-
 export default function App({ Component, pageProps }) {
 	const [supabaseClient] = useState(() => createBrowserSupabaseClient());
 
