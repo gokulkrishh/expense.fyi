@@ -18,7 +18,6 @@ module.exports = {
 		'^styles/(.*)$',
 		'^[./]',
 		'^nprogress/nprogress.css$',
-		'^@tremor/react/dist/esm/tremor.css$',
 	],
 	importOrderSeparation: true,
 	importOrderSortSpecifiers: true,

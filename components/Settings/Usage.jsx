@@ -24,7 +24,7 @@ export default function Usage({ user }) {
 					</div>
 					<p className="relative top-[15px] text-zinc-600">{usageLimit - usage} entries left</p>
 				</div>
-				<ProgressBar percentageValue={(usage / usageLimit) * 100} showAnimation={true} color="blue" marginTop="mt-1" />
+				<ProgressBar percentageValue={(usage / usageLimit) * 100} showAnimation={true} color="blue" className="mt-1" />
 			</div>
 			<div className="p-3 py-0 pb-3 font-medium text-slate-700">
 				{isPremiumPlan && !isPremiumPlanEnded ? (

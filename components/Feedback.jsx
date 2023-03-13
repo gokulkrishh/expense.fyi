@@ -79,7 +79,7 @@ const Feedback = ({ className }) => {
 				<Tooltip.Root>
 					<Tooltip.Trigger asChild>
 						<button
-							className="font-xs shadow-xs inline-flex items-center rounded-md border border-zinc-200 bg-white px-[12px] py-[10px] text-sm font-medium leading-[16px] text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:px-[8px]"
+							className="font-xs shadow-xs inline-flex items-center rounded-md border border-gray-300 bg-white px-[12px] py-[10px] text-sm font-medium leading-[16px] text-black shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:px-[8px]"
 							onClick={() => setState({ ...state, show: !state.show })}
 						>
 							<ChatBubbleBottomCenterTextIcon className="relative top-[1px] h-4 w-4" />{' '}
@@ -118,7 +118,7 @@ const Feedback = ({ className }) => {
 									}}
 								>
 									<textarea
-										className="mt-2 mb-2 block h-[100px] w-full appearance-none rounded-md bg-white px-3 py-2 text-sm text-zinc-800 ring-2 ring-gray-300 transition-all placeholder:text-zinc-400 focus:outline-none focus:ring-gray-500"
+										className="mt-2 mb-2 block h-[100px] w-full appearance-none rounded-md bg-white px-3 py-2 text-sm text-zinc-800 ring-2 ring-zinc-400 transition-all placeholder:text-zinc-400 focus:outline-none focus:ring-blue-500"
 										placeholder="Share your feedback..."
 										onChange={(event) => setState({ ...state, message: event.target.value })}
 										value={state.message}
