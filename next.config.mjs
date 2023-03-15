@@ -12,7 +12,7 @@ const nextConfig = {
 
 const ContentSecurityPolicy = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com app.lemonsqueezy.com *.cloudfront.net;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com app.lemonsqueezy.com *.cloudfront.net assets.lemonsqueezy.com;
     child-src 'self' gokulkrishh.lemonsqueezy.com;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
