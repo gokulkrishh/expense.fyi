@@ -9,7 +9,7 @@ import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 
 import { dateFormatStr } from 'constants/index';
 
-const tdClassNames = 'relative p-4 pl-8 text-zinc-800 text-sm font-normal whitespace-nowrap';
+const tdClassNames = 'relative p-4 pl-8 text-sm text-zinc-600 whitespace-nowrap';
 const thList = ['Name', 'Price', 'Renewal Date ↓', 'Start Date', 'Notes', 'Cancelled', 'Status', 'Actions'];
 
 export default function SubscriptionTable({ isLoading, data = [], onEdit, onDelete, onActive, user }) {
@@ -59,26 +59,26 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 										height={14}
 										alt={datum.name}
 									/>
-									<a target="_blank" className="underline" href={datum.url} rel="noreferrer">
+									<a target="_blank" className="font-medium text-zinc-900 underline" href={datum.url} rel="noreferrer">
 										{datum.name}
 									</a>
 								</div>
 							</td>
 							<td className={`${tdClassNames}`}>
-								<p>{formatCurrency(datum.price, currency, locale)}</p>
-								<p className="mt-[2px] text-xs text-zinc-500"> per {datum.paid.replace(/ly/, '')}</p>
+								<p className="font-medium text-zinc-900">{formatCurrency(datum.price, currency, locale)}</p>
+								<p className="mt-[2px] text-xs"> per {datum.paid.replace(/ly/, '')}</p>
 							</td>
 							<td className={`${tdClassNames}`}>
-								<p className={`${!datum.active ? 'line-through' : ''}`}>
+								<p className={`font-medium text-zinc-900 ${!datum.active ? 'line-through' : ''}`}>
 									{isToday ? 'Today' : formatDate(renewalDateObj, locale)}
 								</p>
-								<p className="mt-[2px] text-xs text-zinc-500">
+								<p className="mt-[2px] text-xs">
 									prev:{' '}
 									{isFuture(new Date(datum.prev_renewal_date)) ? 'None' : formatDate(datum.prev_renewal_date, locale)}
 								</p>
 							</td>
 							<td className={`${tdClassNames}`}>{formatDate(datum.date, locale)}</td>
-							<td className={`${tdClassNames}  break-words`}>{datum.notes}</td>
+							<td className={`${tdClassNames} break-words`}>{datum.notes}</td>
 							<td className={`${tdClassNames}`}>{datum.cancelled_at ? formatDate(datum.cancelled_at, locale) : '-'}</td>
 							<td className={`${tdClassNames}`}>
 								<span
