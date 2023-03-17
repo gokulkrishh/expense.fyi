@@ -33,18 +33,20 @@ export default function Dropdown({ searchTerm = '', show, onHide, data = [], onC
 					ref={ref}
 					className="absolute	mt-[3px] min-w-[160px] max-w-[250px] overflow-auto rounded-md border border-gray-300 bg-white text-base shadow-md focus:outline-none sm:text-sm"
 				>
-					{data.map(({ name: datumName, id, category, paid_via }) => {
+					{data.map((datum) => {
+						const { name: datumName, id } = datum;
 						const name = datumName.toLowerCase();
 						let string, highlightedText, endString;
+						const nameIndex = name.indexOf(searchTerm);
 						if (searchTerm.length) {
-							string = name.substr(0, name.indexOf(searchTerm));
-							endString = name.substr(name.indexOf(searchTerm) + searchTerm.length);
-							highlightedText = name.substr(name.indexOf(searchTerm), searchTerm.length);
+							string = datumName.substr(0, nameIndex);
+							endString = datumName.substr(nameIndex + searchTerm.length);
+							highlightedText = datumName.substr(nameIndex, searchTerm.length);
 						}
 						return (
 							<button
 								key={id}
-								onClick={() => onClick({ name, category, paid_via })}
+								onClick={() => onClick(datum)}
 								className="relative w-full cursor-default select-none p-2 px-[10px] text-left text-gray-900 hover:bg-gray-100"
 							>
 								{searchTerm.length ? (
