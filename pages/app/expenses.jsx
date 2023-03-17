@@ -100,7 +100,10 @@ export default function Expenses({ user }) {
 		if (result.length)
 			return Object.values(
 				result.reduce((acc, datum) => {
-					acc[datum.name] = datum;
+					const name = datum.name.toLowerCase();
+					if (!acc[name]) {
+						acc[name] = datum;
+					}
 					return acc;
 				}, {})
 			).slice(0, 3);

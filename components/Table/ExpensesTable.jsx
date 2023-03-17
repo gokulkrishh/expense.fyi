@@ -9,8 +9,8 @@ import { expensesCategory, expensesPaidViaList } from 'constants/index';
 import Table from '.';
 import NoDataTable from './NoDataTable';
 
-const tdClassNames = 'relative p-4 pl-8 text-zinc-800 text-sm font-normal';
-const thList = ['Name', 'Price', 'Spent Date ↓', 'Category', 'Paid', 'Notes', 'Actions'];
+const tdClassNames = 'relative p-4 pl-8 text-zinc-600 text-sm';
+const thList = ['Name', 'Price', 'Spent Date ↓', 'Category', 'Paid With', 'Notes', 'Actions'];
 
 export default function ExpensesTable({ filterKey, onFilterChange, isLoading, data = [], onEdit, onDelete, user }) {
 	const { currency, locale, isPremiumPlan, isPremiumPlanEnded } = user;
@@ -51,16 +51,18 @@ export default function ExpensesTable({ filterKey, onFilterChange, isLoading, da
 								<span className="category-emoji absolute left-2 inline-block">
 									{expensesCategory[datum.category]?.emoji}
 								</span>{' '}
-								<a target="_blank" className="" href={datum.url} rel="noreferrer">
+								<a target="_blank" className="font-medium text-zinc-900" href={datum.url} rel="noreferrer">
 									{datum.name}
 								</a>
 							</div>
 						</td>
-						<td className={tdClassNames}>{formatCurrency(datum.price, currency, locale)}</td>
-						<td className={tdClassNames}>{isToday ? 'Today' : formatDate(datum.date, locale)}</td>
+						<td className={`${tdClassNames} font-medium text-zinc-900`}>
+							{formatCurrency(datum.price, currency, locale)}
+						</td>
+						<td className={`${tdClassNames} text-zinc-900`}>{isToday ? 'Today' : formatDate(datum.date, locale)}</td>
 						<td className={`${tdClassNames} capitalize`}>{expensesCategory[datum.category]?.name}</td>
 						<td className={`${tdClassNames} capitalize`}>{expensesPaidViaList[datum.paid_via]?.name}</td>
-						<td className={`${tdClassNames}  break-words`}>{datum.notes}</td>
+						<td className={`${tdClassNames} break-words`}>{datum.notes}</td>
 						<td className={`${tdClassNames}`}>
 							<div className="flex w-14 items-center justify-between">
 								<button onClick={() => onEdit(datum)} title="Edit">

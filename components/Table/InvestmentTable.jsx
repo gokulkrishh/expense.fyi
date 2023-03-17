@@ -10,7 +10,7 @@ import { investmentCategory } from 'constants/index';
 
 import NoDataTable from './NoDataTable';
 
-const tdClassNames = 'relative p-4 pl-8 text-zinc-800 text-sm font-normal';
+const tdClassNames = 'relative p-4 pl-8 text-sm';
 const thList = ['Name', 'Price', 'Units', 'Bought Date ↓', 'Category', 'Notes', 'Actions'];
 
 export default function InvestmentTable({ isLoading, data = [], onEdit, onDelete, user, onFilterChange, filterKey }) {
@@ -41,9 +41,11 @@ export default function InvestmentTable({ isLoading, data = [], onEdit, onDelete
 				const isToday = isItToday(new Date(datum.date), new Date());
 				return (
 					<tr key={datum.id} className="border-b border-gray-200 last:border-0 hover:bg-gray-50">
-						<td className={`${tdClassNames}`}>{datum.name}</td>
-						<td className={tdClassNames}>{formatCurrency(datum.price, currency, locale)}</td>
-						<td className={`${tdClassNames}`}>{datum.units}</td>
+						<td className={`${tdClassNames} font-medium text-zinc-900`}>{datum.name}</td>
+						<td className={`${tdClassNames} font-medium text-zinc-900`}>
+							{formatCurrency(datum.price, currency, locale)}
+						</td>
+						<td className={`${tdClassNames} font-medium text-zinc-900`}>{datum.units}</td>
 						<td className={tdClassNames}>{isToday ? 'Today' : formatDate(datum.date, locale)}</td>
 						<td className={`${tdClassNames} capitalize`}>{investmentCategory[datum.category]}</td>
 						<td className={`${tdClassNames}  break-words`}>{datum.notes}</td>

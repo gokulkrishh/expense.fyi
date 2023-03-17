@@ -8,7 +8,7 @@ import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 
 import NoDataTable from './NoDataTable';
 
-const tdClassNames = 'relative p-4 pl-8 text-zinc-800 text-sm font-normal';
+const tdClassNames = 'relative p-4 pl-8 text-zinc-600 text-sm';
 const thList = ['Name', 'Price', 'Received Date ↓', 'Category', 'Notes', 'Actions'];
 
 export default function IncomeTable({ onFilterChange, filterKey, isLoading, data = [], onEdit, onDelete, user }) {
@@ -41,12 +41,14 @@ export default function IncomeTable({ onFilterChange, filterKey, isLoading, data
 					<tr key={datum.id} className="border-b border-gray-200 last:border-0 hover:bg-gray-50">
 						<td className={tdClassNames}>
 							<div className="flex items-center">
-								<a target="_blank" className="" href={datum.url} rel="noreferrer">
+								<a target="_blank" className="font-medium text-zinc-900" href={datum.url} rel="noreferrer">
 									{datum.name}
 								</a>
 							</div>
 						</td>
-						<td className={tdClassNames}>{formatCurrency(datum.price, currency, locale)}</td>
+						<td className={`${tdClassNames} font-medium text-zinc-900`}>
+							{formatCurrency(datum.price, currency, locale)}
+						</td>
 						<td className={tdClassNames}>{isToday ? 'Today' : formatDate(datum.date, locale)}</td>
 						<td className={`${tdClassNames} capitalize`}>{datum.category}</td>
 						<td className={`${tdClassNames}  break-words`}>{datum.notes}</td>

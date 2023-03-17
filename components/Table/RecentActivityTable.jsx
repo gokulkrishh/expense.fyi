@@ -15,7 +15,7 @@ const allCategory = {
 	...investmentCategory,
 };
 
-const thClassNames = 'font-default text-sm font-medium text-zinc-500';
+const thClassNames = 'text-zinc-600 h-[44px] tracking-wide leading-tight text-left text-xs font-bold uppercase';
 
 export default function RecentActivityTable({ isLoading = false, data, locale, currency }) {
 	if (!isLoading && !data.length) {
@@ -51,18 +51,18 @@ export default function RecentActivityTable({ isLoading = false, data, locale, c
 						)}
 					</tr>
 				</thead>
-				<tbody className="text-sm font-medium text-zinc-800">
+				<tbody className="text-sm font-medium">
 					{isLoading ? (
 						<LoaderTable tr={5} td={4} />
 					) : (
 						data.map((datum, index) => {
 							return (
 								<tr key={datum.id} className={`border-b-[1px] last:border-b-[0] `}>
-									<td className="max-w-[50px]">{index + 1}.</td>
-									<td className="pt-1">{datum.name}</td>
-									<td className="flex flex-col pt-2 pl-0">
-										<span className="capitalize">{datum.from}</span>
-										<span className="mb-1 text-xs text-gray-500">
+									<td className="font-zinc-600 max-w-[50px]">{index + 1}.</td>
+									<td className="pt-1 text-zinc-900">{datum.name}</td>
+									<td className="flex flex-col pt-2 pl-0 text-zinc-600">
+										<span className="capitalize text-zinc-600">{datum.from}</span>
+										<span className="mb-1 text-xs text-zinc-600">
 											{allCategory[datum.category] ? (
 												expensesCategory[datum.category] ? (
 													`${expensesCategory[datum.category].emoji} ${expensesCategory[datum.category].name}`
@@ -80,7 +80,7 @@ export default function RecentActivityTable({ isLoading = false, data, locale, c
 											)}
 										</span>
 									</td>
-									<td className="pt-1">{formatCurrency(datum.price, currency, locale)}</td>
+									<td className="pt-1 text-zinc-900">{formatCurrency(datum.price, currency, locale)}</td>
 								</tr>
 							);
 						})
