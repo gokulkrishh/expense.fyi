@@ -24,8 +24,8 @@ export const getUrl = () => {
 	return url;
 };
 
-export const getApiUrl = (filterKey, apiPath) => {
-	if (filterKey === filterMap.all) return `/api/${apiPath}/all`;
+export const getApiUrl = (filterKey, apiPath, categories = []) => {
+	if (filterKey === filterMap.all) return `/api/${apiPath}/all?categories=${categories.join(',')}`;
 	const [start, end] = getRangeDateForFilter(filterKey);
-	return `/api/${apiPath}/range?start=${start}&end=${end}`;
+	return `/api/${apiPath}/range?start=${start}&end=${end}&categories=${categories.join(',')}`;
 };

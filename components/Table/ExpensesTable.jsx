@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { useMemo } from 'react';
+
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
@@ -12,12 +14,34 @@ import NoDataTable from './NoDataTable';
 const tdClassNames = 'relative p-4 pl-8 text-zinc-600 text-sm';
 const thList = ['Name', 'Price', 'Spent Date ↓', 'Category', 'Paid With', 'Notes', 'Actions'];
 
-export default function ExpensesTable({ filterKey, onFilterChange, isLoading, data = [], onEdit, onDelete, user }) {
+const categoryFilterData = Object.keys(expensesCategory)
+	.filter(Boolean)
+	.map((key) => ({ name: expensesCategory[key]?.name, key }));
+
+export default function ExpensesTable({
+	filterKey,
+	onCategoryFilterChange,
+	onFilterChange,
+	isLoading,
+	data = [],
+	onEdit,
+	onDelete,
+	user,
+	categories,
+}) {
 	const { currency, locale, isPremiumPlan, isPremiumPlanEnded } = user;
 
 	if (!isLoading && !data.length) {
 		return (
-			<NoDataTable filterKey={filterKey} isPremiumPlan={isPremiumPlan} onFilterChange={onFilterChange}>
+			<NoDataTable
+				filterKey={filterKey}
+				categoryFilterData={categoryFilterData}
+				isPremiumPlan={isPremiumPlan}
+				enableCategoryFilter
+				onCategoryFilterChange={onCategoryFilterChange}
+				onFilterChange={onFilterChange}
+				categories={categories}
+			>
 				<div className="flex flex-col items-center justify-center ">
 					<p className="mt-2 font-medium text-black sm:mt-10">You don{"'"}t have any expense yet.</p>
 					<Image
@@ -39,8 +63,12 @@ export default function ExpensesTable({ filterKey, onFilterChange, isLoading, da
 			onFilterChange={onFilterChange}
 			title="Expenses"
 			thList={thList}
+			enableCategoryFilter
 			isLoading={isLoading}
 			isPremiumPlan={isPremiumPlan && !isPremiumPlanEnded}
+			categoryFilterData={categoryFilterData}
+			onCategoryFilterChange={onCategoryFilterChange}
+			categories={categories}
 		>
 			{data.map((datum) => {
 				const isToday = isItToday(new Date(datum.date), new Date());

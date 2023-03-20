@@ -54,7 +54,7 @@ export const extractTopExpenseCategoryData = (data) => {
 
 export const extractCategoriesFromData = (data) => {
 	return data
-		.filter((datum) => datum.paid_dates.length > 0)
+		.filter((datum) => datum.paid_dates && datum.paid_dates.length > 0)
 		.reduce((acc, datum) => {
 			acc.push(datum.name);
 			return acc;
