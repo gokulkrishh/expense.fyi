@@ -2,10 +2,18 @@ import { withUserAuth } from 'lib/auth';
 import prisma from 'lib/prisma';
 
 export default withUserAuth(async (req, res, user) => {
+	const { categories = '' } = req.query;
+	const categoriesList = categories.split(',');
+
+	console.log(
+		'asdasd --->',
+		categoriesList.map((category) => ({ category: { contains: category } }))
+	);
+
 	if (req.method === 'GET') {
 		try {
 			const data = await prisma.expenses.findMany({
-				where: { user_id: user.id },
+				where: { user_id: user.id, OR: categoriesList.map((category) => ({ category: { contains: category } })) },
 				select: {
 					notes: true,
 					name: true,

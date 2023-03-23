@@ -29,9 +29,10 @@ export default function Expenses({ user }) {
 	const [show, setShow] = useState(false);
 	const [selected, setSelected] = useState({});
 	const [filterKey, setFilterKey] = useState(filterMap.thismonth);
+	const [categories, setCategories] = useState([]);
 	useHotkeys(addShortcutKey, () => !isLoading && setShow(true));
 
-	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filterKey, 'expenses'));
+	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filterKey, 'expenses', categories));
 
 	const onHide = () => setShow(false);
 	const onEdit = (selected) => {
@@ -152,9 +153,9 @@ export default function Expenses({ user }) {
 				/>
 
 				<ExpensesTable
-					onFilterChange={(filterKey) => {
-						setFilterKey(filterKey);
-					}}
+					onFilterChange={(filterKey) => setFilterKey(filterKey)}
+					onCategoryFilterChange={setCategories}
+					categories={categories}
 					filterKey={filterKey}
 					isLoading={isLoading}
 					data={data}
