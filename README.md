@@ -50,6 +50,12 @@ Expense.fyi is an open-source application to effortlessly track and manage your 
 | Signin    | app.expense.fyi/signin | app.localhost:3000/signin |
 | Dashboard | app.expense.fyi        | app.localhost:3000        |
 
+To run app.localhost:3000 locally, open your hosts file and add the following line:
+
+```
+127.0.0.1 app.localhost
+```
+
 ## Contribution
 
 Here's how you can contribute:
