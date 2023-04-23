@@ -8,6 +8,7 @@ export const expensesCategory = {
 	order: { name: 'Online Order', emoji: '📦' },
 	other: { name: 'Others', emoji: '🤷🏻‍♂️' },
 	emi: { name: 'EMI', emoji: '🤑' },
+	sports: { name: 'Sports', emoji: '⚽️' },
 	savings: { name: 'Savings', emoji: '💰' },
 	debt: { name: 'Debt', emoji: '💸' },
 	loan: { name: 'Loan', emoji: '🤫' },
@@ -49,6 +50,7 @@ export const groupedExpensesCategory = {
 			entertainment: expensesCategory.entertainment,
 			shopping: expensesCategory.shopping,
 			travel: expensesCategory.travel,
+			sports: expensesCategory.sports,
 		},
 	},
 	payments: {
