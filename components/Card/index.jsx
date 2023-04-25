@@ -6,8 +6,8 @@ export default function Card({ title = '', data = '', className = 'w-[280px]', i
 				children
 			) : (
 				<>
-					<h3 className="text-xs font-semibold uppercase leading-6 text-zinc-500">{title}</h3>
-					<p className="text-2xl font-extrabold text-zinc-900">{data}</p>
+					<h3 className="text-xs font-semibold uppercase text-zinc-500">{title}</h3>
+					<p className="mt-1 text-2xl font-extrabold text-zinc-900">{data}</p>
 					{hint ? <p className="mt-2 text-xs text-gray-500">{hint}</p> : null}
 				</>
 			)}

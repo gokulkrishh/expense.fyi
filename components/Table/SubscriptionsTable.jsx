@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid';
-import { format, isFuture } from 'date-fns';
+import { format, isFuture, isSameMonth } from 'date-fns';
 
 import Table from 'components/Table';
 
@@ -10,7 +10,7 @@ import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 import { dateFormatStr } from 'constants/index';
 
 const tdClassNames = 'relative p-4 pl-8 text-sm text-zinc-600 whitespace-nowrap';
-const thList = ['Name', 'Price', 'Renewal Date ↓', 'Start Date', 'Notes', 'Cancelled', 'Status', 'Actions'];
+const thList = ['Name', 'Price', 'Renewal Date ↓', 'Start/Cancel Date', 'Notes', 'Status', 'Actions'];
 
 export default function SubscriptionTable({ isLoading, data = [], onEdit, onDelete, onActive, user }) {
 	const { currency, locale, isPremiumPlan, isPremiumPlanEnded } = user;
@@ -45,6 +45,7 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 				.map((datum) => {
 					const renewalDateObj = new Date(datum.renewal_date);
 					const isToday = isItToday(renewalDateObj, new Date(), locale);
+					const isMonth = isSameMonth(renewalDateObj, new Date());
 					return (
 						<tr
 							key={datum.id}
@@ -69,7 +70,12 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 								<p className="mt-[2px] text-xs"> per {datum.paid.replace(/ly/, '')}</p>
 							</td>
 							<td className={`${tdClassNames}`}>
-								<p className={`font-medium text-zinc-900 ${!datum.active ? 'line-through' : ''}`}>
+								<p
+									title={isMonth ? 'Overdue this month' : ''}
+									className={`font-medium ${!datum.active ? 'line-through' : ''} ${
+										isMonth ? 'text-green-600' : 'text-zinc-900'
+									}`}
+								>
 									{isToday ? 'Today' : formatDate(renewalDateObj, locale)}
 								</p>
 								<p className="mt-[2px] text-xs">
@@ -77,13 +83,21 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 									{isFuture(new Date(datum.prev_renewal_date)) ? 'None' : formatDate(datum.prev_renewal_date, locale)}
 								</p>
 							</td>
-							<td className={`${tdClassNames}`}>{formatDate(datum.date, locale)}</td>
+							<td className={`${tdClassNames}`}>
+								<p>{formatDate(datum.date, locale)}</p>
+								{datum.cancelled_at ? (
+									<p className="mt-[2px] text-xs">
+										Cancel: {datum.cancelled_at ? formatDate(datum.cancelled_at, locale) : '-'}
+									</p>
+								) : null}
+							</td>
 							<td className={`${tdClassNames} break-words`}>{datum.notes}</td>
-							<td className={`${tdClassNames}`}>{datum.cancelled_at ? formatDate(datum.cancelled_at, locale) : '-'}</td>
 							<td className={`${tdClassNames}`}>
 								<span
-									className={`inset-0 rounded-full px-2 py-1 text-xs font-medium ${
-										datum.active ? 'bg-green-200 text-green-900' : 'bg-red-200 text-red-900'
+									className={`inset-0 rounded-md border px-2 py-1 text-xs font-medium ${
+										datum.active
+											? 'border-green-200 bg-green-50 text-green-800'
+											: 'border-red-200 bg-red-50 text-red-900'
 									}`}
 								>
 									{datum.active ? 'Active' : 'Cancelled'}

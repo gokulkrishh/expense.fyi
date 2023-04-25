@@ -69,8 +69,8 @@ export default function Home({ user }) {
 			</Head>
 
 			<div className="2xl:container h-full w-full">
-				<div className="mb-4 flex flex-col justify-between sm:flex-row ">
-					<h1 className="mr-3 mb-2 text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Overview</h1>
+				<div className="mb-2 flex flex-col justify-between sm:flex-row ">
+					<h1 className="mb-2 mr-3 text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Overview</h1>
 					<div className="flex items-center font-medium">
 						<div className="ranger-picker mr-2 flex w-[calc(100%-51px)] items-center sm:mr-4">
 							<span className="mr-2 hidden text-xs font-semibold uppercase sm:inline-block">Showing:</span>
@@ -110,7 +110,7 @@ export default function Home({ user }) {
 					isLoading={isLoading}
 				/>
 
-				<h2 className="mt-8 mb-4 text-black">Report</h2>
+				<h2 className="mb-4 mt-8 text-black">Report</h2>
 				<div className="mb-8 grid grid-cols-1 gap-8 font-semibold lg:grid-cols-2">
 					<div className="mr-4 flex min-h-full w-full flex-col">
 						<Card className="h-full">
@@ -141,7 +141,7 @@ export default function Home({ user }) {
 						</Card>
 					</div>
 
-					<div className="mb-8 flex min-h-full w-full flex-col md:mt-0 md:mb-0">
+					<div className="mb-8 flex min-h-full w-full flex-col md:mb-0 md:mt-0">
 						<Card className="h-full w-full">
 							<h3 className="text-md font-semibold text-black">Subscriptions</h3>
 							<p className="mt-1 pb-2 text-sm font-normal text-zinc-500">
@@ -176,7 +176,7 @@ export default function Home({ user }) {
 					<div className="grid grid-cols-1 gap-8 font-semibold lg:grid-cols-2">
 						<div className="flex w-full flex-col md:mb-6">
 							<Card className="h-full w-full">
-								<h3 className="text-md font-semibold text-black">Recent Activity</h3>
+								<h3 className="text-md font-semibold text-black">Recent Activities</h3>
 								<RecentActivityTable
 									isLoading={isExpensesLoading}
 									currency={user.currency}
@@ -196,7 +196,7 @@ export default function Home({ user }) {
 										{!isLoading && !topSpendExpenseCategory.length ? (
 											<div className="flex flex-col items-center justify-center">
 												<Image
-													className="mt-16 mb-6"
+													className="mb-6 mt-16"
 													src="/static/illustrations/no-expense.svg"
 													width={120}
 													height={120}
@@ -206,9 +206,13 @@ export default function Home({ user }) {
 										) : (
 											<>
 												{!isLoading && topSpendExpenseCategory.length ? (
-													<div className="mt-2 flex justify-between">
-														<p className="font-default text-sm font-medium text-zinc-500">Category</p>
-														<p className="font-default text-sm font-medium text-zinc-500">Amount</p>
+													<div className="mt-5 flex justify-between">
+														<p className="font-default text-left text-xs font-bold uppercase leading-tight tracking-wide text-zinc-600">
+															Category
+														</p>
+														<p className="font-default text-left text-xs font-bold uppercase leading-tight tracking-wide text-zinc-600">
+															Amount
+														</p>
 													</div>
 												) : null}
 												<BarList

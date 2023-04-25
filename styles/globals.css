@@ -127,6 +127,11 @@ svg.tremor-DateRangePicker-calendarButtonIcon {
 	min-width: 150px;
 }
 
+.tremor-MultiSelectBox-root .tremor-MultiSelectBox-button {
+	--tw-text-opacity: 1;
+	color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .tremor-MultiSelectBox-button:focus {
 	--tw-ring-offset-width: 2px;
 	--tw-ring-opacity: 1 !important;

@@ -23,7 +23,7 @@ export default function RecentActivityTable({ isLoading = false, data, locale, c
 			<>
 				<div className="flex flex-col items-center justify-center">
 					<Image
-						className="mt-11 mb-6"
+						className="mb-6 mt-11"
 						src="/static/illustrations/no-category.svg"
 						width={170}
 						height={170}
@@ -60,7 +60,7 @@ export default function RecentActivityTable({ isLoading = false, data, locale, c
 								<tr key={datum.id} className={`border-b-[1px] last:border-b-[0] `}>
 									<td className="font-zinc-600 max-w-[50px]">{index + 1}.</td>
 									<td className="pt-1 text-zinc-900">{datum.name}</td>
-									<td className="flex flex-col pt-2 pl-0 text-zinc-600">
+									<td className="flex flex-col pl-0 pt-2 text-zinc-600">
 										<span className="capitalize text-zinc-600">{datum.from}</span>
 										<span className="mb-1 text-xs text-zinc-600">
 											{allCategory[datum.category] ? (
@@ -71,7 +71,7 @@ export default function RecentActivityTable({ isLoading = false, data, locale, c
 												)
 											) : (
 												<Image
-													className="mt-1 text-transparent"
+													className="mb-1 mt-1 text-transparent"
 													src={`http://www.google.com/s2/favicons?domain=${datum.url}&sz=125`}
 													width={10}
 													height={10}
