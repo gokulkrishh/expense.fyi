@@ -4,7 +4,7 @@ import { sortByKey } from './array';
 import { formatDate } from './formatter';
 
 const recentIndex = 4;
-const topExpenseIndex = 4;
+const topExpenseIndex = 5;
 
 export const extractExpensesData = (data, locale) => {
 	const groupByDate = data.reduce((acc, datum) => {

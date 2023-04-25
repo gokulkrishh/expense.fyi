@@ -176,7 +176,7 @@ export default function Home({ user }) {
 					<div className="grid grid-cols-1 gap-8 font-semibold lg:grid-cols-2">
 						<div className="flex w-full flex-col md:mb-6">
 							<Card className="h-full w-full">
-								<h3 className="text-md font-semibold text-black">Recent Activity</h3>
+								<h3 className="text-md font-semibold text-black">Recent Activities</h3>
 								<RecentActivityTable
 									isLoading={isExpensesLoading}
 									currency={user.currency}
@@ -206,9 +206,13 @@ export default function Home({ user }) {
 										) : (
 											<>
 												{!isLoading && topSpendExpenseCategory.length ? (
-													<div className="mt-2 flex justify-between">
-														<p className="font-default text-sm font-medium text-zinc-500">Category</p>
-														<p className="font-default text-sm font-medium text-zinc-500">Amount</p>
+													<div className="mt-5 flex justify-between">
+														<p className="font-default text-left text-xs font-bold uppercase leading-tight tracking-wide text-zinc-600">
+															Category
+														</p>
+														<p className="font-default text-left text-xs font-bold uppercase leading-tight tracking-wide text-zinc-600">
+															Amount
+														</p>
 													</div>
 												) : null}
 												<BarList
