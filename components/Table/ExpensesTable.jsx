@@ -84,7 +84,7 @@ export default function ExpensesTable({
 								</a>
 							</div>
 						</td>
-						<td className={`${tdClassNames} font-medium text-zinc-900`}>
+						<td className={`${tdClassNames} font-semibold text-zinc-900`}>
 							{formatCurrency(datum.price, currency, locale)}
 						</td>
 						<td className={`${tdClassNames} text-zinc-900`}>{isToday ? 'Today' : formatDate(datum.date, locale)}</td>

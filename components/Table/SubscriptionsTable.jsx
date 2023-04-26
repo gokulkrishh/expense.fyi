@@ -66,14 +66,14 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 								</div>
 							</td>
 							<td className={`${tdClassNames}`}>
-								<p className="font-medium text-zinc-900">{formatCurrency(datum.price, currency, locale)}</p>
+								<p className="font-semibold text-zinc-900">{formatCurrency(datum.price, currency, locale)}</p>
 								<p className="mt-[2px] text-xs"> per {datum.paid.replace(/ly/, '')}</p>
 							</td>
 							<td className={`${tdClassNames}`}>
 								<p
-									title={isMonth ? 'Overdue this month' : ''}
+									title={isMonth ? 'Due this month' : ''}
 									className={`font-medium ${!datum.active ? 'line-through' : ''} ${
-										isMonth ? 'text-green-600' : 'text-zinc-900'
+										isMonth && datum.active ? 'text-fuchsia-600' : 'text-zinc-900'
 									}`}
 								>
 									{isToday ? 'Today' : formatDate(renewalDateObj, locale)}
@@ -94,10 +94,10 @@ export default function SubscriptionTable({ isLoading, data = [], onEdit, onDele
 							<td className={`${tdClassNames} break-words`}>{datum.notes}</td>
 							<td className={`${tdClassNames}`}>
 								<span
-									className={`inset-0 rounded-md border px-2 py-1 text-xs font-medium ${
+									className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ${
 										datum.active
-											? 'border-green-200 bg-green-50 text-green-800'
-											: 'border-red-200 bg-red-50 text-red-900'
+											? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20'
+											: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/10'
 									}`}
 								>
 									{datum.active ? 'Active' : 'Cancelled'}
