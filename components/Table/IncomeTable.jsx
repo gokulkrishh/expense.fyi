@@ -46,7 +46,7 @@ export default function IncomeTable({ onFilterChange, filterKey, isLoading, data
 								</a>
 							</div>
 						</td>
-						<td className={`${tdClassNames} font-medium text-zinc-900`}>
+						<td className={`${tdClassNames} font-semibold text-zinc-900`}>
 							{formatCurrency(datum.price, currency, locale)}
 						</td>
 						<td className={tdClassNames}>{isToday ? 'Today' : formatDate(datum.date, locale)}</td>

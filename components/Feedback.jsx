@@ -118,7 +118,7 @@ const Feedback = ({ className }) => {
 									}}
 								>
 									<textarea
-										className="mt-2 mb-2 block h-[100px] w-full appearance-none rounded-md bg-white px-3 py-2 text-sm text-zinc-800 ring-2 ring-zinc-400 transition-all placeholder:text-zinc-400 focus:outline-none focus:ring-blue-500"
+										className="mb-2 mt-2 block h-[100px] w-full appearance-none rounded-md bg-white px-3 py-2 text-sm text-zinc-800 ring-2 ring-zinc-400 transition-all placeholder:text-zinc-400 focus:outline-none focus:ring-gray-900"
 										placeholder="Share your feedback..."
 										onChange={(event) => setState({ ...state, message: event.target.value })}
 										value={state.message}
