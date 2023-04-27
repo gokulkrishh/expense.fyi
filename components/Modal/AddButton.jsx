@@ -15,7 +15,7 @@ export default function AddButton({ onClick }) {
 				</button>
 			</Tooltip.Trigger>
 			<Tooltip.Content hideWhenDetached side="top" className="TooltipContent">
-				<TooltipText className="mb-[6px] -ml-2" text="Open" shortcut={'a'} />
+				<TooltipText className="-ml-2 mb-[6px]" text="Open add" shortcut={'a'} />
 			</Tooltip.Content>
 		</Tooltip.Root>
 	);

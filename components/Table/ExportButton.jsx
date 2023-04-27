@@ -17,7 +17,7 @@ const ExportButton = ({ className = 'rounded-md px-[9px]', filename }) => {
 			}}
 		>
 			<svg
-				className="mr-1 mt-[0px] h-4 w-4 text-black max-xs:mr-0"
+				className="mr-[1px] mt-[0px] h-4 w-4 text-black max-xs:mr-0"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ export const ExportButtonDummy = ({ className = 'rounded-md px-[9px]' }) => {
 			}}
 		>
 			<svg
-				className="mr-1 mt-[0px] h-4 w-4 text-black max-xs:mr-0"
+				className="mr-[1px] mt-[0px] h-4 w-4 text-black max-xs:mr-0"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"

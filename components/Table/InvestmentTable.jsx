@@ -42,7 +42,7 @@ export default function InvestmentTable({ isLoading, data = [], onEdit, onDelete
 				return (
 					<tr key={datum.id} className="border-b border-gray-200 last:border-0 hover:bg-gray-50">
 						<td className={`${tdClassNames} font-medium text-zinc-900`}>{datum.name}</td>
-						<td className={`${tdClassNames} font-medium text-zinc-900`}>
+						<td className={`${tdClassNames} font-semibold text-zinc-900`}>
 							{formatCurrency(datum.price, currency, locale)}
 						</td>
 						<td className={`${tdClassNames} font-medium text-zinc-900`}>{datum.units}</td>
