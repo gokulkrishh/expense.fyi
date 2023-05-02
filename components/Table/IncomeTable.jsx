@@ -6,6 +6,8 @@ import Table from 'components/Table';
 
 import { formatCurrency, formatDate, isItToday } from 'utils/formatter';
 
+import { incomeCategory } from 'constants/index';
+
 import NoDataTable from './NoDataTable';
 
 const tdClassNames = 'relative p-4 pl-8 text-zinc-600 text-sm';
@@ -50,7 +52,7 @@ export default function IncomeTable({ onFilterChange, filterKey, isLoading, data
 							{formatCurrency(datum.price, currency, locale)}
 						</td>
 						<td className={tdClassNames}>{isToday ? 'Today' : formatDate(datum.date, locale)}</td>
-						<td className={`${tdClassNames} capitalize`}>{datum.category}</td>
+						<td className={`${tdClassNames} capitalize`}>{incomeCategory[datum.category]}</td>
 						<td className={`${tdClassNames}  break-words`}>{datum.notes}</td>
 						<td className={`${tdClassNames}`}>
 							<div className="flex w-14 items-center justify-between">

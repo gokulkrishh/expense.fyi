@@ -22,7 +22,8 @@ export const expensesPaidViaList = {
 	cash: { name: 'Cash', emoji: '💵' },
 	creditcard: { name: 'Credit Card', emoji: '💳' },
 	debitcard: { name: 'Debit Card', emoji: '💳' },
-	netbanking: { name: 'Netbanking', emoji: '🏦' },
+	ewallet: { name: 'E-Wallet', emoji: '🪪' },
+	netbanking: { name: 'NetBanking', emoji: '🏦' },
 	upi: { name: 'UPI', emoji: '📲' },
 };
 
@@ -68,6 +69,7 @@ export const incomeCategory = {
 	'': 'Select',
 	ads: 'Ads',
 	other: 'Other',
+	passiveincome: 'Passive Income',
 	salary: 'Salary',
 	youtube: 'Youtube',
 };
