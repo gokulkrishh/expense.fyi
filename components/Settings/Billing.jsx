@@ -15,7 +15,7 @@ export default function Billing({ user }) {
 	const [loading, setLoading] = useState(false);
 
 	return (
-		<div className="mt-8 mb-2 flex w-full flex-col justify-center md:flex-row">
+		<div className="mb-2 mt-8 flex w-full flex-col justify-center md:flex-row">
 			<div className="mt-4 grid w-full max-w-2xl grid-cols-1 gap-3 sm:gap-10 md:mt-0 lg:grid-cols-2">
 				<div className={`rounded-lg bg-white p-5 text-left shadow ${user.isBasicPlan ? 'border-blue-700' : ''}`}>
 					<div className="relative flex items-center justify-between">
@@ -27,8 +27,8 @@ export default function Billing({ user }) {
 						</h3>
 					</div>
 					<p className="pb-1 pt-1 text-sm font-medium text-slate-700">Free forever with limited features.</p>
-					<div className="mt-3 mb-3">
-						<div className="mt-3 mb-4 font-semibold text-slate-900">
+					<div className="mb-0 mt-3">
+						<div className="mb-4 mt-3 font-semibold text-slate-900">
 							<span className="inline-flex text-3xl font-extrabold text-black">
 								{formatCurrency(tiers.yearly.basic, paymentOptions.currency, paymentOptions.locale)}{' '}
 							</span>
@@ -38,7 +38,7 @@ export default function Billing({ user }) {
 						<button
 							disabled={true}
 							title={'Current plan'}
-							className={`mt-12 flex w-full justify-center rounded-md bg-zinc-500 py-2 text-center text-sm font-semibold text-white hover:bg-zinc-500`}
+							className={`mt-6 flex w-full justify-center rounded-md bg-zinc-500 py-2 text-center text-sm font-semibold text-white hover:bg-zinc-500`}
 						>
 							{user.isBasicPlan ? 'Current plan' : 'Expired'}
 						</button>
@@ -60,8 +60,8 @@ export default function Billing({ user }) {
 						</h3>
 					</div>
 					<p className="pb-1 pt-1 text-sm font-medium text-slate-700">Access to all premium features.</p>
-					<div className="mt-3 mb-3">
-						<div className="mt-3 mb-4 font-semibold text-slate-900">
+					<div className="mb-0 mt-3">
+						<div className="mb-4 mt-3 font-semibold text-slate-900">
 							<span className="inline-flex text-3xl font-extrabold text-black">
 								{formatCurrency(tiers.yearly.premium, paymentOptions.currency, paymentOptions.locale)}{' '}
 							</span>
@@ -77,7 +77,7 @@ export default function Billing({ user }) {
 								}
 							}}
 							disabled={(user.isPremiumPlan && !user.isPremiumPlanEnded) || loading}
-							className={`mt-12 flex w-full justify-center rounded-md py-2 text-center text-sm font-semibold text-white ${
+							className={`mt-6 flex w-full justify-center rounded-md py-2 text-center text-sm font-semibold text-white ${
 								user.isPremiumPlan && !user.isPremiumPlanEnded
 									? 'bg-zinc-500 hover:bg-zinc-500'
 									: 'bg-zinc-900 hover:bg-zinc-800'

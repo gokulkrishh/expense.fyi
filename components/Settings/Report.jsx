@@ -41,7 +41,9 @@ export default function Report({ user }) {
 			<div className="mt-2 grid gap-6 p-3 sm:grid-cols-1">
 				<label className="block">
 					<div className="flex items-center justify-between text-black">
-						<p className="max-w-[280px] xs:max-w-full">Get email insights about your spendings on month end.</p>
+						<p className="max-w-[260px] text-[15px] xs:max-w-full">
+							Get useful insights about your spendings on month end via email.
+						</p>
 						<Switch
 							checked={emailReport}
 							onChange={onChange}
@@ -63,7 +65,7 @@ export default function Report({ user }) {
 
 	return (
 		<div className="mb-8 mt-4 w-full max-w-2xl rounded-lg bg-white p-3 text-left shadow shadow-gray-200 md:mt-0">
-			<h3 className="p-3 py-3 text-xl font-extrabold leading-6 text-black">Report</h3>
+			<h3 className="p-3 py-3 text-xl font-extrabold leading-6 text-black">Email Report</h3>
 			<div className="mx-2 border-b-[1px] border-zinc-200 px-3 py-1" />
 			{user.isPremiumPlan && !user.isPremiumPlanEnded
 				? EmailReportsToggle(onChange)
