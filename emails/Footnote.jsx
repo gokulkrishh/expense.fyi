@@ -1,4 +1,4 @@
-import { Text } from '@react-email/text';
+import { Text } from '@react-email/components';
 
 export default function Footnote({ hideNote }) {
 	return (

@@ -1,13 +1,6 @@
 import * as React from 'react';
 
-import { Button } from '@react-email/button';
-import { Container } from '@react-email/container';
-import { Head } from '@react-email/head';
-import { Html } from '@react-email/html';
-import { Img } from '@react-email/img';
-import { Preview } from '@react-email/preview';
-import { Section } from '@react-email/section';
-import { Text } from '@react-email/text';
+import { Button, Container, Head, Html, Img, Preview, Section, Text } from '@react-email/components';
 
 import Footer from './Footer';
 import Footnote from './Footnote';
@@ -28,11 +21,11 @@ export default function PlanExpiredEmail({ plan = 'Premium Plan' }) {
 					<Text style={{ ...h1, marginTop: '20px' }}>{plan} Expired</Text>
 					<Text style={{ ...text, marginTop: '30px', marginBottom: '10px' }}>Hi!</Text>
 					<Text style={{ ...text, marginTop: '0px', marginBottom: '0px' }}>
-						Your account{"'"}s <b>{plan}</b> has expired.
+						Your account{"'"}s <span style={{ fontWeight: 500 }}>{plan}</span> has expired.
 					</Text>
 					<Text style={{ ...text, marginTop: '10px' }}>
-						No worries, all data still there. Renew <b>Premium Plan</b> to continue enjoying premium features on
-						Expense.fyi.
+						No worries, all data still there. Renew <span style={{ fontWeight: 500 }}>Premium Plan</span> to continue
+						enjoying premium features on Expense.fyi.
 					</Text>
 
 					<Section style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>
@@ -75,6 +68,7 @@ const h1 = {
 	textAlign: 'center',
 	margin: '30px 0',
 	padding: '0',
+	fontWeight: 600,
 };
 
 const text = {

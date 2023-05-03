@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 const baseUrl = 'https://expense.fyi';
 
-export default function FeedbackEmail({ message = '', email = '' }) {
+export default function FeedbackEmail({ message = '', email = '', forDate = 'May 2023' }) {
 	return (
 		<Html>
 			<Head />
@@ -16,9 +16,10 @@ export default function FeedbackEmail({ message = '', email = '' }) {
 					<Section style={{ marginTop: '20px' }}>
 						<Img src={`${baseUrl}/static/icons/logo.png`} width="50" height="50" alt="Logo" style={logo} />
 					</Section>
-					<Text style={{ ...h1, marginTop: '20px' }}>New Feedback</Text>
-					<Text style={{ ...text, marginTop: '10px', marginBottom: '5px' }}>From: {email}</Text>
-					<Text style={{ ...text, marginTop: '0px' }}>{message}</Text>
+					<Text style={{ ...h1, marginTop: '20px', marginBottom: '0' }}>Expense Report</Text>
+					<Text style={{ ...text, lineHeight: '6px', textAlign: 'center', color: '#000', fontWeight: 500 }}>
+						{forDate}
+					</Text>
 					<Footer />
 				</Container>
 			</Section>

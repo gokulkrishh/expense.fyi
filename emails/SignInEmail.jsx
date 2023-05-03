@@ -1,15 +1,7 @@
 import * as React from 'react';
 
-import { Container } from '@react-email/container';
-import { Head } from '@react-email/head';
-import { Html } from '@react-email/html';
-import { Img } from '@react-email/img';
-import { Link } from '@react-email/link';
-import { Preview } from '@react-email/preview';
-import { Section } from '@react-email/section';
-import { Text } from '@react-email/text';
+import { Button, Container, Head, Html, Img, Link, Preview, Section, Text } from '@react-email/components';
 
-import ButtonLink from './ButtonLink';
 import Footer from './Footer';
 import Footnote from './Footnote';
 
@@ -28,11 +20,30 @@ export default function SignInEmail({ magicLink = '', btnText = 'Sign in' }) {
 					<Text style={{ ...h1, marginTop: '20px' }}>Magic Link</Text>
 					<Text style={text}>Hello!</Text>
 					<Text style={text}>
-						Please click the below link to {btnText} to your account. This link will expire in 10 minutes.
+						Please click the below link to <span style={{ fontWeight: 500 }}>{btnText}</span> to your account. This link
+						will expire in <span style={{ fontWeight: 500 }}>10 minutes</span>.
 					</Text>
 
-					<Section style={{ textAlign: 'left' }}>
-						<ButtonLink href={magicLink} btnText={btnText} />
+					<Section style={{ textAlign: 'center' }}>
+						<Button
+							pX={16}
+							pY={10}
+							style={{
+								backgroundColor: '#171717',
+								borderRadius: '5px',
+								color: '#fff',
+								fontFamily:
+									"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+								fontSize: '14px',
+								fontWeight: 500,
+								lineHeight: '50px',
+								textDecoration: 'none',
+								textAlign: 'center',
+							}}
+							href={magicLink}
+						>
+							{btnText}
+						</Button>
 					</Section>
 					<Text style={text}>
 						or if you are on mobile, copy and paste this URL into your browser:{' '}
@@ -77,6 +88,7 @@ const h1 = {
 	textAlign: 'center',
 	margin: '30px 0',
 	padding: '0',
+	fontWeight: 600,
 };
 
 const link = {

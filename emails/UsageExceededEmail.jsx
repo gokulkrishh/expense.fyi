@@ -1,13 +1,6 @@
 import * as React from 'react';
 
-import { Button } from '@react-email/button';
-import { Container } from '@react-email/container';
-import { Head } from '@react-email/head';
-import { Html } from '@react-email/html';
-import { Img } from '@react-email/img';
-import { Preview } from '@react-email/preview';
-import { Section } from '@react-email/section';
-import { Text } from '@react-email/text';
+import { Button, Container, Head, Html, Img, Preview, Section, Text } from '@react-email/components';
 
 import Footer from './Footer';
 import Footnote from './Footnote';
@@ -28,11 +21,13 @@ export default function UsageExceededEmail({ plan = 'Basic Plan', usage = 0, max
 					<Text style={{ ...h1, marginTop: '20px' }}>Usage Limit Reached</Text>
 					<Text style={{ ...text, marginTop: '30px', marginBottom: '10px' }}>Hi!</Text>
 					<Text style={{ ...text, marginTop: '0px', marginBottom: '0px' }}>
-						Your account has <b>exceeded</b> the usage limit of <b>{maxUsageLimit} entries</b> for <b>{plan}</b>.
+						Your account has <span style={{ fontWeight: 500 }}>exceeded</span> the usage limit of{' '}
+						<span style={{ fontWeight: 500 }}>{maxUsageLimit} entries</span> for{' '}
+						<span style={{ fontWeight: 500 }}>{plan}</span>.
 					</Text>
 					<Text style={{ ...text, marginTop: '10px' }}>
-						No worries, all data still there. Upgrade to <b>Premium Plan</b> to increase the entry limit and get all the
-						Premium features.
+						No worries, all data still there. Upgrade to <span style={{ fontWeight: 500 }}>Premium Plan</span> to
+						increase the entry limit and get all the Premium features.
 					</Text>
 
 					<Section style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>
@@ -75,6 +70,7 @@ const h1 = {
 	textAlign: 'center',
 	margin: '30px 0',
 	padding: '0',
+	fontWeight: 600,
 };
 
 const text = {
