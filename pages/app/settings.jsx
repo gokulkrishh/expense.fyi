@@ -4,6 +4,7 @@ import Script from 'next/script';
 import enforceAuth from 'components/Auth/enforceAuth';
 import Billing from 'components/Settings/Billing';
 import General from 'components/Settings/General';
+import Report from 'components/Settings/Report';
 import Usage from 'components/Settings/Usage';
 import SettingsLayout from 'components/SettingsLayout';
 
@@ -39,6 +40,7 @@ export default function Settings({ user }) {
 				<h1 className="mb-4 text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Settings</h1>
 				<SettingsLayout>
 					<General user={user} />
+					<Report user={user} />
 					<Usage user={user} />
 					<Billing user={user} />
 				</SettingsLayout>

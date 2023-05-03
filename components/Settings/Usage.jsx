@@ -16,8 +16,8 @@ export default function Usage({ user }) {
 			<div className="mx-2 border-b-[1px] border-zinc-200 px-3 py-1" />
 			<div className="p-3 py-3 text-sm text-black">
 				<div className="flex items-center justify-between">
-					<div className="mt-1 mb-2">
-						<p className="text-base font-medium text-slate-700">Entries added</p>
+					<div className="mb-2 mt-1">
+						<p className="block font-semibold text-zinc-600">Entries added</p>
 						<p className="mt-2 inline-block text-sm">
 							{usage} of {usageLimit}
 						</p>
