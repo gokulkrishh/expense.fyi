@@ -1,7 +1,9 @@
 const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
-	experimental: {},
+	experimental: {
+		appDir: false,
+	},
 	images: {
 		domains: ['www.google.com'],
 	},
