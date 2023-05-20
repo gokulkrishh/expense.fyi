@@ -1,4 +1,7 @@
 import { Head, Html, Main, NextScript } from 'next/document';
+import Script from 'next/script';
+
+const GOOGLE_ANALYTICS_ID = process.env.GA4_ANALYTICS_ID;
 
 export default function Document() {
 	return (
@@ -32,6 +35,19 @@ export default function Document() {
 				<link href="/static/icons/favicon.ico" rel="alternate icon" sizes="any" />
 				<link href="/static/icons/apple-touch-icon.png" rel="apple-touch-icon" />
 				<link rel="manifest" href="/static/manifest.json" />
+				<Script
+					src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+					strategy="afterInteractive"
+				/>
+				<Script id="ga4" strategy="afterInteractive">
+					{`
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+
+						gtag('config', '${GOOGLE_ANALYTICS_ID}');
+					`}
+				</Script>
 			</Head>
 			<body className="font-default flex h-full flex-col text-gray-600 antialiased">
 				<Main />

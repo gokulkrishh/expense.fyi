@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
-import { Analytics } from '@vercel/analytics/react';
 import NProgress from 'nprogress';
 import { Toaster } from 'react-hot-toast';
 import { SWRConfig } from 'swr';
@@ -43,7 +42,6 @@ export default function App({ Component, pageProps }) {
 					<Component {...pageProps} />
 				)}
 				<Toaster />
-				<Analytics />
 			</SWRConfig>
 		</SessionContextProvider>
 	);
