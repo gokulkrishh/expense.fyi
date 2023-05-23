@@ -18,7 +18,7 @@
   <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
   <a href="#implementation"><strong>Implementation</strong></a> ·
   <a href="#routes"><strong>App Routes</strong></a> ·
-  <a href="#contributing"><strong>Contributing</strong></a>
+  <a href="#contributions"><strong>Contributions</strong></a>
 </p>
 <br/>
 
@@ -50,7 +50,7 @@ Expense.fyi is an open-source application to effortlessly track and manage your 
 | Signin    | app.expense.fyi/signin | app.localhost:3000/signin |
 | Dashboard | app.expense.fyi        | app.localhost:3000        |
 
-## Contribution
+## Contributions
 
 Here's how you can contribute:
 
