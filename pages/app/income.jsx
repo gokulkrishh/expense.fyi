@@ -29,9 +29,10 @@ export default function Income({ user }) {
 	const [show, setShow] = useState(false);
 	const [selected, setSelected] = useState({});
 	const [filterKey, setFilterKey] = useState(filterMap.thismonth);
+	const [categories, setCategories] = useState([]);
 	useHotkeys(addShortcutKey, () => !isLoading && setShow(true));
 
-	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filterKey, 'income'));
+	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filterKey, 'income', categories));
 
 	const onHide = () => setShow(false);
 	const onEdit = (selected) => {
@@ -109,7 +110,7 @@ export default function Income({ user }) {
 
 			<div className="h-ful mb-20">
 				<div className="mb-2 flex justify-between">
-					<h1 className="mr-3 mb-2 text-2xl font-extrabold text-black max-sm:mb-4 max-sm:ml-[45px]">Income</h1>
+					<h1 className="max-sm:ml-[45px] mb-2 mr-3 text-2xl font-extrabold text-black max-sm:mb-4">Income</h1>
 				</div>
 
 				<h2 className="mb-4 text-black">Summary</h2>
@@ -145,6 +146,8 @@ export default function Income({ user }) {
 					onFilterChange={(filterKey) => {
 						setFilterKey(filterKey);
 					}}
+					onCategoryFilterChange={setCategories}
+					categories={categories}
 					filterKey={filterKey}
 					isLoading={isLoading}
 					data={data}

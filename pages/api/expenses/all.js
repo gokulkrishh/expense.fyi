@@ -5,11 +5,6 @@ export default withUserAuth(async (req, res, user) => {
 	const { categories = '' } = req.query;
 	const categoriesList = categories.split(',');
 
-	console.log(
-		'asdasd --->',
-		categoriesList.map((category) => ({ category: { contains: category } }))
-	);
-
 	if (req.method === 'GET') {
 		try {
 			const data = await prisma.expenses.findMany({
