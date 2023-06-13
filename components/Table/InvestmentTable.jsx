@@ -13,7 +13,21 @@ import NoDataTable from './NoDataTable';
 const tdClassNames = 'relative p-4 pl-8 text-sm';
 const thList = ['Name', 'Price', 'Units', 'Bought Date ↓', 'Category', 'Notes', 'Actions'];
 
-export default function InvestmentTable({ isLoading, data = [], onEdit, onDelete, user, onFilterChange, filterKey }) {
+const categoryFilterData = Object.keys(investmentCategory)
+	.filter(Boolean)
+	.map((key) => ({ name: investmentCategory[key]?.name, key }));
+
+export default function InvestmentTable({
+	isLoading,
+	data = [],
+	onEdit,
+	onDelete,
+	user,
+	onFilterChange,
+	filterKey,
+	onCategoryFilterChange,
+	categories,
+}) {
 	const { currency, locale, isPremiumPlan, isPremiumPlanEnded } = user;
 
 	if (!isLoading && !data.length) {
@@ -36,6 +50,10 @@ export default function InvestmentTable({ isLoading, data = [], onEdit, onDelete
 			thList={thList}
 			isLoading={isLoading}
 			isPremiumPlan={isPremiumPlan && !isPremiumPlanEnded}
+			categories={categories}
+			enableCategoryFilter
+			onCategoryFilterChange={onCategoryFilterChange}
+			categoryFilterData={categoryFilterData}
 		>
 			{data.map((datum) => {
 				const isToday = isItToday(new Date(datum.date), new Date());
