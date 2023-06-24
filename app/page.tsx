@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import Footer from '@/components/Footer';
 import Features from '@/components/home/features';
-import urls from '@/constants/url';
+import url from '@/constants/url';
 import logo from 'public/icons/logo.svg';
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
 					</Link>
 					<Link
 						href={'/signin'}
-						className="leading-2 mr-4 inline-flex h-[34px] items-center overflow-hidden rounded-full bg-gray-950 px-4 py-1 text-sm font-medium text-white transition hover:bg-gray-700"
+						className="leading-2 mr-4 inline-flex h-[34px] items-center overflow-hidden rounded-full bg-gray-900 px-4 py-1 text-sm font-medium text-white transition hover:bg-gray-700"
 					>
 						Sign in
 					</Link>
@@ -43,7 +43,7 @@ export default function Home() {
 					</svg>
 				</div>
 				<div className="mx-auto mb-16 mt-16 w-2/4 max-w-md px-3 text-center sm:max-w-lg sm:px-0">
-					<h1 className="sm:leading-[1.15]	mt-4 text-4xl font-black leading-[1.15] tracking-[-0.03em] text-black sm:text-5xl">
+					<h1 className="mt-4	text-4xl font-black leading-[1.15] tracking-[-0.03em] text-black sm:text-5xl sm:leading-[1.15]">
 						Effortlessly Track and Manage{' '}
 						<span className="bg-gradient-to-r from-amber-400 to-orange-600 bg-clip-text text-transparent">
 							Expenses.
@@ -55,13 +55,13 @@ export default function Home() {
 					</p>
 					<div className="mt-10 flex justify-center">
 						<Link
-							href={urls.app.signup}
-							className="inline-flex h-[34px] items-center justify-center rounded-full bg-gray-950 px-4 py-2.5 text-sm font-medium text-white hover:bg-gray-700 hover:shadow"
+							href={url.app.signup}
+							className="inline-flex h-[34px] items-center justify-center rounded-full bg-gray-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-gray-700 hover:shadow"
 						>
 							Try it for Free
 						</Link>
 						<Link
-							href={urls.github}
+							href={url.github}
 							className="ml-6 inline-flex h-[34px] items-center justify-center  rounded-full bg-white/0 px-4 py-2.5 text-sm font-medium text-slate-900 ring-1 ring-slate-900/10 hover:bg-gray-100 hover:shadow"
 						>
 							<svg
@@ -116,7 +116,7 @@ export default function Home() {
 						<Features />
 					</div>
 				</div>
-				<div className="md:max-w-[600px] mx-auto mb-16 mt-16 grid max-w-md justify-center px-3 text-center sm:px-0">
+				<div className="mx-auto mb-16 mt-16 grid max-w-md justify-center px-3 text-center sm:px-0 md:max-w-[600px]">
 					<h2 className="mt-0 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl">
 						Our{' '}
 						<span className="bg-gradient-to-r from-amber-400 to-orange-600 bg-clip-text text-transparent">
@@ -127,7 +127,7 @@ export default function Home() {
 						Start for free, no credit card is required.
 					</p>
 					<div className="mt-8 flex w-full flex-col sm:flex-row">
-						<div className="min-w-[330px] divide-y divide-gray-600 rounded-lg bg-gray-950 text-left shadow-sm sm:mr-8">
+						<div className="min-w-[330px] divide-y divide-gray-600 rounded-lg bg-gray-900 text-left shadow-sm sm:mr-8">
 							<div className="p-5 py-6">
 								<h2 className="text-3xl font-extrabold leading-6 text-white">Basic</h2>
 								<p className="mb-2 mt-2 text-gray-300">Free forever with limits.</p>
@@ -225,7 +225,7 @@ export default function Home() {
 								</a>
 							</div>
 						</div>
-						<div className="bg-pro-plan mt-8  min-w-[330px] divide-y divide-gray-600 rounded-lg bg-gray-950 text-left shadow-sm sm:mt-0">
+						<div className="bg-pro-plan mt-8  min-w-[330px] divide-y divide-gray-600 rounded-lg bg-gray-900 text-left shadow-sm sm:mt-0">
 							<div className="p-5 py-6">
 								<h2 className="text-3xl font-extrabold leading-6 text-white">Premium</h2>
 								<p className="mb-2 mt-2 text-gray-300">Access to all premium features.</p>
@@ -326,7 +326,7 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="mx-auto mb-16 mt-16 max-w-md px-3 text-center sm:max-w-lg sm:px-0">
-					<h2 className="sm:leading-[3.5rem] mt-4 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl">
+					<h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl sm:leading-[3.5rem]">
 						Proudly{' '}
 						<span className="bg-gradient-to-r from-blue-400 to-sky-600 bg-clip-text text-transparent">
 							Open Sourced!
@@ -336,7 +336,7 @@ export default function Home() {
 						Source code is available on GitHub - feel free to read, review, or contribute to it!
 					</p>
 					<Link
-						href={urls.github}
+						href={url.github}
 						className="mt-6 inline-flex h-[36px] items-center justify-center  rounded-full bg-white/0 px-4 py-2.5 text-sm font-medium text-slate-900 ring-1 ring-slate-900/10 hover:bg-gray-100 hover:shadow"
 					>
 						<svg

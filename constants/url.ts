@@ -1,10 +1,18 @@
-const urls = {
+const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
+
+const domain = 'expense.fyi';
+const local = 'localhost:3000';
+const home = isProduction ? domain : local;
+
+const url = {
+	home: `//${home}`,
 	app: {
-		signin: '/signin',
-		signup: '/signup',
+		signin: `//app.${home}/signin`,
+		signup: `//app.${home}/signup`,
+		overview: `//app.${home}`,
 	},
 	twitter: 'https://twitter.com/gokul_i',
 	github: 'https://github.com/gokulkrishh/expense.fyi',
 };
 
-export default urls;
+export default url;
