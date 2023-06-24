@@ -1,0 +1,8 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://expense.fyi/sitemap.xml
+Sitemap: http://expense.fyi/sitemap.xml
