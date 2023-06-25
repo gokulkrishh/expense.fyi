@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import messages, { emails } from '@/constants/messages';
-import SignInEmail from '@/emails/signin';
+import SignUpEmail from '@/emails/signup';
 import resend from '@/lib/email';
 import prisma from '@/lib/prisma';
 import { getRedirectUrl } from '@/lib/utils';
@@ -16,7 +16,7 @@ const supabaseAdmin = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process
 export async function POST(request: NextRequest) {
 	const { email } = await request.json();
 	const user = await prisma.users.findFirst({ where: { email }, select: { email: true } });
-	if (user) {
+	if (!user) {
 		try {
 			const { data, error } = await supabaseAdmin.auth.admin.generateLink({
 				type: 'magiclink',
@@ -34,19 +34,18 @@ export async function POST(request: NextRequest) {
 			try {
 				await resend.sendEmail({
 					from: emails.from,
-					subject: emails.signin.subject,
+					subject: emails.signup.subject,
 					to: email,
-					react: SignInEmail({ action_link }),
+					react: SignUpEmail({ action_link }),
 				});
 				return NextResponse.json({ message: emails.sent });
 			} catch (err: any) {
 				throw err;
 			}
 		} catch (error: any) {
-			console.log(error);
 			return NextResponse.json({ message: String(error) || messages.error }, { status: 500 });
 		}
 	} else {
-		return NextResponse.json({ message: messages.account.doesntexist }, { status: 404 });
+		return NextResponse.json({ message: messages.account.exist }, { status: 500 });
 	}
 }
