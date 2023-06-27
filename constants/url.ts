@@ -5,6 +5,7 @@ const local = 'localhost:3000';
 const home = isProduction ? domain : local;
 
 const url = {
+	homeWithoutApp: home,
 	home: `//${home}`,
 	app: {
 		signin: `//app.${home}/signin`,

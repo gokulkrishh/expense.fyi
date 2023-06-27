@@ -1,17 +1,45 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+import urls from '@/constants/url';
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 
 export async function middleware(req: NextRequest) {
 	const res = NextResponse.next();
+	const hostname = req.headers.get('host');
+	const url = req.nextUrl;
 
-	// Create a Supabase client configured to use cookies
+	const currentHost = hostname?.replace(`.${urls.homeWithoutApp}`, '');
+
 	const supabase = createMiddlewareClient({ req, res });
+	const { data } = await supabase.auth.getSession();
+	const { session } = data;
 
-	// Refresh session if expired - required for Server Components
-	// https://supabase.com/docs/guides/auth/auth-helpers/nextjs#managing-session-with-middleware
-	await supabase.auth.getSession();
+	if (currentHost === 'app') {
+		if (url.pathname === '/signin' || url.pathname === '/signup') {
+			if (session) {
+				url.pathname = '/';
+				return NextResponse.redirect(url);
+			}
+			return res;
+		}
+
+		url.pathname = `/dashboard${url.pathname}`;
+		return NextResponse.rewrite(url);
+	}
 
 	return res;
 }
+
+export const config = {
+	matcher: [
+		/*
+		 * Match all request paths except for the ones starting with:
+		 * - api (API routes)
+		 * - _next/static (static files)
+		 * - _next/image (image optimization files)
+		 * - favicon.ico (favicon file)
+		 */
+		'/((?!api|_next/static|_next/image|favicon.ico).*)',
+	],
+};
