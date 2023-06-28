@@ -2,8 +2,8 @@
 
 import { Separator } from 'components/ui/separator';
 
-import DatePicker from './datepicker';
-import Feedback from './feedback';
+import DatePicker from '../datepicker';
+import Feedback from '../feedback';
 
 export default function LayoutHeader({ title, showDatePicker = false }: { title: string; showDatePicker?: boolean }) {
 	return (

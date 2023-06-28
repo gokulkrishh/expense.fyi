@@ -18,12 +18,12 @@ import {
 	SignoutIcon,
 	SubscriptionsIcon,
 	SupportIcon,
-} from 'components/dashboard/icons';
+} from 'components/icons';
+import { Separator } from 'components/ui/separator';
 
 import shortcuts from 'constants/shortcuts';
 
-import { Separator } from '../ui/separator';
-import SidebarLink from './sidebar-link';
+import SidebarLink from './link';
 
 const dashboardLinks = [
 	{ name: 'Overview', href: '/', Icon: OverviewIcon, shortcutText: shortcuts.menu.overview.shortcut },

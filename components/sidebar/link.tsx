@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import * as Tooltip from '@radix-ui/react-tooltip';
 
-import TooltipText from './tooltip-text';
+import TooltipText from '../toast/text';
 
 export default function SidebarLink({
 	href,

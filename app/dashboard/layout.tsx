@@ -1,7 +1,7 @@
 import { Toaster } from 'react-hot-toast';
 
-import DashboardLayout from 'components/dashboard/layout';
-import Sidebar from 'components/dashboard/sidebar';
+import DashboardLayout from 'components/layout';
+import Sidebar from 'components/sidebar';
 import { ThemeProvider } from 'components/theme-provider';
 
 const title = 'Expense.fyi – Overview';

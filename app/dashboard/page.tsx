@@ -1,5 +1,5 @@
-import LayoutHeader from 'components/dashboard/layout-header';
-import Summary from 'components/dashboard/summary';
+import Summary from 'components/card/summary';
+import LayoutHeader from 'components/layout/header';
 
 async function getExpenses({ from, to }: { from: string; to: string }) {
 	if (from && to) {

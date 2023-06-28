@@ -1,5 +1,5 @@
-import LayoutHeader from 'components/dashboard/layout-header';
-import Summary from 'components/dashboard/summary';
+import Summary from 'components/card/summary';
+import LayoutHeader from 'components/layout/header';
 
 export default async function Page() {
 	return (

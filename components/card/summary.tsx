@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from 'components/ui/card';
 
-import CardLoader from './card-loader';
+import CardLoader from '../loader/card';
 
 const CardComponent = ({ title, data }: { title: String; data: String }) => {
 	return (
