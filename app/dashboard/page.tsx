@@ -1,4 +1,5 @@
 import LayoutHeader from '@/components/dashboard/layout-header';
+import Summary from '@/components/dashboard/summary';
 
 export async function getExpenses({ from, to }: { from: string; to: string }) {
 	if (from && to) {
@@ -12,7 +13,9 @@ export default async function Page() {
 	return (
 		<>
 			<LayoutHeader title="overview" showDatePicker={true} />
-			<div className="p-4 pt-3"></div>
+			<div className="p-4 pt-3">
+				<Summary />
+			</div>
 		</>
 	);
 }

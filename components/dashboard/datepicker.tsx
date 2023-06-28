@@ -39,7 +39,7 @@ function DatePickerWithRange({ className, date, onChange }: { className?: string
 						id="date"
 						variant={'outline'}
 						className={cn(
-							'!focus:bg-accent mr-[1px] min-w-[230px] justify-start rounded-br-none rounded-tr-none border-r !border-border border-gray-100 !bg-muted p-2 text-left font-normal hover:bg-accent focus-visible:!ring-1 focus-visible:!ring-gray-400',
+							'mr-[1px] h-[32px] min-w-[230px] justify-start rounded-br-none rounded-tr-none border-r !border-border border-gray-100 bg-muted p-2 text-left font-normal hover:bg-accent focus:bg-accent focus-visible:!ring-1 focus-visible:!ring-gray-400',
 							!date && 'text-muted-foreground'
 						)}
 					>
@@ -121,10 +121,10 @@ function DatePickerSelect({ onChange, selectedValue }: { onChange: any; selected
 				}
 			}}
 		>
-			<SelectTrigger className="!w-[130px] rounded-bl-none rounded-tl-none p-2">
+			<SelectTrigger className="h-[32px] !w-[130px] rounded-bl-none rounded-tl-none !border-border bg-muted p-2 focus:ring-0 focus-visible:!ring-1 focus-visible:!ring-gray-400">
 				<SelectValue placeholder="Select" />
 			</SelectTrigger>
-			<SelectContent position="popper">
+			<SelectContent className="!border-border" position="popper">
 				<SelectItem value="none">Select</SelectItem>
 				<SelectItem value="tdy">Today</SelectItem>
 				<SelectItem value="7days">Last 7 days</SelectItem>
