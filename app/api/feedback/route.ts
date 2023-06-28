@@ -2,16 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import FeedbackEmail from 'emails/feedback';
 
-import { User, checkAuth } from 'lib/auth';
+import { checkAuth } from 'lib/auth';
 import resend from 'lib/email';
 import prisma from 'lib/prisma';
 
 import { emails } from 'constants/messages';
 
 export async function POST(request: NextRequest) {
-	const user = await checkAuth();
 	const { message } = await request.json();
-	if (user) {
+	return await checkAuth(async (user: any) => {
 		try {
 			await prisma.feedbacks.create({ data: { message, user_id: user.id } });
 			await resend.sendEmail({
@@ -23,7 +22,7 @@ export async function POST(request: NextRequest) {
 			});
 			return NextResponse.json({ message: emails.feedback.sent }, { status: 201 });
 		} catch (error: any) {
-			return NextResponse.json({ error: String(error), message: emails.feedback.failed }, { status: 500 });
+			return NextResponse.json({ error: { message: emails.feedback.failed } }, { status: 500 });
 		}
-	}
+	});
 }

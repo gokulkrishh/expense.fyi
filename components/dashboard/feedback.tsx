@@ -35,6 +35,8 @@ export default function Feedback() {
 				setState((prev) => ({ ...prev, sent: false, show: false }));
 			}, 5000);
 		} catch (error: any) {
+			console.log(error);
+
 			setState((prev) => ({ ...prev, loading: false }));
 			showErrorToast(error.message);
 		}
@@ -70,8 +72,8 @@ export default function Feedback() {
 					</form>
 				) : (
 					<div className="flex h-[140px] flex-col items-center justify-center">
-						<CheckCircle2 className="mb-2 h-14 w-14 text-green-500" />
-						<span className="mb-1 mt-1 block text-sm font-semibold text-primary">Your feedback is received!</span>
+						<CheckCircle2 className="mb-2 h-12 w-12 text-green-500" />
+						<span className="mb-1 mt-1 block text-sm font-semibold text-primary">Got your feedback</span>
 						<span className="mb-3 block text-sm font-normal text-muted-foreground">
 							Thanks for improving the product.
 						</span>
