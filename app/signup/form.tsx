@@ -13,7 +13,7 @@ const initialState = { loading: false, email: '', success: false, error: '' };
 
 export default function Form() {
 	const [state, setState] = useState(initialState);
-	const inputElement = useRef(null);
+	const inputElement = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
 		inputElement.current?.focus();

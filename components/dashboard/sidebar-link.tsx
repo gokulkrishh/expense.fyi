@@ -8,7 +8,7 @@ import TooltipText from './tooltip-text';
 
 export default function SidebarLink({
 	href,
-	name,
+	name = '',
 	children,
 	active,
 	className = '',

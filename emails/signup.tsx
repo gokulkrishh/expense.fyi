@@ -9,39 +9,41 @@ import Footnote from './footnote';
 const baseUrl = 'https://expense.fyi';
 const logoUrl = `${baseUrl}/static/icons/logo.png`;
 
-export const SignUpEmail: React.FC<Readonly<SignUpEmailProps>> = ({ action_link = '' }) => {
+export const SignUpEmail = ({ action_link = '' }: { action_link?: string }): React.ReactElement<any> => {
 	return (
-		<Html>
-			<Head />
-			<Preview>Sign up link to Expense.fyi</Preview>
-			<Body style={main}>
-				<Container style={container}>
-					<Img src={`${logoUrl}`} width="50" height="50" alt="Logo" style={logo} />
-					<Section>
-						<Text style={{ ...h1, marginTop: '20px', textAlign: 'center' }}>Magic Link</Text>
-						<Text style={text}>Hola,</Text>
-						<Text style={text}>
-							To create your account, kindly follow the link provided below. Please note that the link will expire in 10
-							minutes.
-						</Text>
-						<Section style={{ textAlign: 'left' }}>
-							<ButtonLink href={action_link} btnText="Sign up" />
+		<>
+			<Html>
+				<Head />
+				<Preview>Sign up link to Expense.fyi</Preview>
+				<Body style={main}>
+					<Container style={container}>
+						<Img src={`${logoUrl}`} width="50" height="50" alt="Logo" style={logo} />
+						<Section>
+							<Text style={{ ...h1, marginTop: '20px', textAlign: 'center' }}>Magic Link</Text>
+							<Text style={text}>Hola,</Text>
+							<Text style={text}>
+								To create your account, kindly follow the link provided below. Please note that the link will expire in
+								10 minutes.
+							</Text>
+							<Section style={{ textAlign: 'left' }}>
+								<ButtonLink href={action_link} btnText="Sign up" />
+							</Section>
+							<Text style={text}>
+								or if you are on mobile, copy and paste this URL into your browser:{' '}
+								<Link style={{ ...link, display: 'block', marginTop: '15px', color: '#cc35e5' }} rel="nofollow">
+									{action_link.replace(/^https?:\/\//, '')}
+								</Link>
+							</Text>
+							<Text style={{ ...text, color: '#666666' }}>
+								If you didn{"'"}t try to Sign up, you can safely ignore this email.
+							</Text>
+							<Footnote hideNote={true} />
+							<Footer />
 						</Section>
-						<Text style={text}>
-							or if you are on mobile, copy and paste this URL into your browser:{' '}
-							<Link style={{ ...link, display: 'block', marginTop: '15px', color: '#cc35e5' }} rel="nofollow">
-								{action_link.replace(/^https?:\/\//, '')}
-							</Link>
-						</Text>
-						<Text style={{ ...text, color: '#666666' }}>
-							If you didn{"'"}t try to Sign up, you can safely ignore this email.
-						</Text>
-						<Footnote hideNote={true} />
-						<Footer />
-					</Section>
-				</Container>
-			</Body>
-		</Html>
+					</Container>
+				</Body>
+			</Html>
+		</>
 	);
 };
 

@@ -1,7 +1,7 @@
 import LayoutHeader from '@/components/dashboard/layout-header';
 import Summary from '@/components/dashboard/summary';
 
-export async function getExpenses({ from, to }: { from: string; to: string }) {
+async function getExpenses({ from, to }: { from: string; to: string }) {
 	if (from && to) {
 		const data = await fetch(`/api/expenses/range?f=${from}&t=${to}`);
 		return await data.json();
