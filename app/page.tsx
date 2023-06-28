@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import logo from 'public/icons/logo.svg';
 
-import Footer from 'components/footer1';
+import Footer from 'components/footer';
 import Features from 'components/home/features';
 
 import url from 'constants/url';
