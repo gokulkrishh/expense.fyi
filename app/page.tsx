@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Footer from '@/components/Footer';
-import Features from '@/components/home/features';
-import url from '@/constants/url';
 import logo from 'public/icons/logo.svg';
+
+import Footer from 'components/Footer';
+import Features from 'components/home/features';
+
+import url from 'constants/url';
 
 export default function Home() {
 	return (

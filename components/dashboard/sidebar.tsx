@@ -5,6 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import SvgWhiteLogo from 'public/icons/white-logo.svg';
+import { useHotkeys } from 'react-hotkeys-hook';
+
 import {
 	ExpensesIcon,
 	IncomeIcon,
@@ -14,11 +18,9 @@ import {
 	SignoutIcon,
 	SubscriptionsIcon,
 	SupportIcon,
-} from '@/components/dashboard/icons';
-import shortcuts from '@/constants/shourtcuts';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import SvgWhiteLogo from 'public/icons/white-logo.svg';
-import { useHotkeys } from 'react-hotkeys-hook';
+} from 'components/dashboard/icons';
+
+import shortcuts from 'constants/shortcuts';
 
 import { Separator } from '../ui/separator';
 import SidebarLink from './sidebar-link';

@@ -1,7 +1,8 @@
-import DashboardLayout from '@/components/dashboard/layout';
-import Sidebar from '@/components/dashboard/sidebar';
-import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from 'react-hot-toast';
+
+import DashboardLayout from 'components/dashboard/layout';
+import Sidebar from 'components/dashboard/sidebar';
+import { ThemeProvider } from 'components/theme-provider';
 
 const title = 'Expense.fyi – Overview';
 const description = 'Effortlessly Track and Manage Expenses.';

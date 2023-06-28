@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import url from '@/constants/url';
+import url from 'constants/url';
 
 const Footer = ({ className }: { className?: String }) => {
 	return (

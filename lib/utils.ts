@@ -1,6 +1,7 @@
-import urls from '@/constants/url';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+
+import urls from 'constants/url';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));

@@ -45,11 +45,6 @@ export const SignUpEmail = ({ action_link = '' }: { action_link?: string }) => {
 	);
 };
 
-interface SignUpEmailProps {
-	action_link?: string;
-	btnText?: string;
-}
-
 export default SignUpEmail;
 
 const main = {

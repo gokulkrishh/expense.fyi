@@ -4,10 +4,11 @@ import Link from 'next/link';
 
 import { useEffect, useRef, useState } from 'react';
 
-import CircleLoader from '@/components/loader/circle';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import url from '@/constants/url';
+import CircleLoader from 'components/loader/circle';
+import { Button } from 'components/ui/button';
+import { Input } from 'components/ui/input';
+
+import url from 'constants/url';
 
 const initialState = { loading: false, email: '', success: false, error: '' };
 

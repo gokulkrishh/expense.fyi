@@ -9,7 +9,7 @@ import Footnote from './footnote';
 const baseUrl = 'https://expense.fyi';
 const logoUrl = `${baseUrl}/static/icons/logo.png`;
 
-export const SignInEmail = ({ action_link = '' }) => {
+export const SignInEmail = ({ action_link = '' }: { action_link?: string }) => {
 	return (
 		<Html>
 			<Head />
@@ -43,10 +43,6 @@ export const SignInEmail = ({ action_link = '' }) => {
 		</Html>
 	);
 };
-
-interface SignInEmailProps {
-	action_link?: string;
-}
 
 export default SignInEmail;
 

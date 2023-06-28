@@ -14,7 +14,7 @@
 		"test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
 		"format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
 		"format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
-		"prebuild": "prisma format && prisma generate",
+		"prebuild": "npm run test && prisma format && prisma generate",
 		"predev": "prisma format && prisma generate",
 		"dbpush": "npm run predev && prisma db push",
 		"premigrate": "prisma db pull",
