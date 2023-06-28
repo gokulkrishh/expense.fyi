@@ -1,5 +1,7 @@
 'use client';
 
+import { Separator } from '@/components/ui/separator';
+
 import DatePicker from './datepicker';
 
 export default function LayoutHeader({ title, showDatePicker = false }: { title: string; showDatePicker?: boolean }) {
@@ -17,7 +19,7 @@ export default function LayoutHeader({ title, showDatePicker = false }: { title:
 					{/* <Feedback /> */}
 				</div>
 			</div>
-			<span className="block w-full border-t border-border" />
+			<Separator />
 		</>
 	);
 }

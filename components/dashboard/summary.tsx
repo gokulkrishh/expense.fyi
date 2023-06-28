@@ -15,7 +15,7 @@ const CardComponent = ({ title, data }: { title: String; data: String }) => {
 	);
 };
 
-export default function Summary({ isFetching = false }: { isFetching?: boolean }) {
+export default function Summary({ isFetching = true }: { isFetching?: boolean }) {
 	return (
 		<>
 			<h2 className="mb-4 font-semibold text-primary dark:text-white">Summary</h2>

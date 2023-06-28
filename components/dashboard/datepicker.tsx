@@ -39,7 +39,7 @@ function DatePickerWithRange({ className, date, onChange }: { className?: string
 						id="date"
 						variant={'outline'}
 						className={cn(
-							'mr-[1px] h-[32px] min-w-[230px] justify-start rounded-br-none rounded-tr-none border-r !border-border border-gray-100 bg-muted p-2 text-left font-normal hover:bg-accent focus:bg-accent focus-visible:!ring-1 focus-visible:!ring-gray-400',
+							'mr-[1px] h-[32px] min-w-[230px] justify-start rounded-br-none rounded-tr-none border-r !border-border border-gray-100 p-2 text-left font-normal hover:bg-accent focus:bg-accent focus-visible:!ring-1 focus-visible:!ring-gray-400 dark:bg-muted dark:hover:opacity-[0.8]',
 							!date && 'text-muted-foreground'
 						)}
 					>
@@ -121,7 +121,7 @@ function DatePickerSelect({ onChange, selectedValue }: { onChange: any; selected
 				}
 			}}
 		>
-			<SelectTrigger className="h-[32px] !w-[130px] rounded-bl-none rounded-tl-none !border-border bg-muted p-2 focus:ring-0 focus-visible:!ring-1 focus-visible:!ring-gray-400">
+			<SelectTrigger className="h-[32px] !w-[130px] rounded-bl-none rounded-tl-none !border-border p-2 hover:bg-accent focus:ring-0 focus-visible:!ring-1 focus-visible:!ring-gray-400 dark:bg-muted dark:hover:opacity-[0.8]">
 				<SelectValue placeholder="Select" />
 			</SelectTrigger>
 			<SelectContent className="!border-border" position="popper">

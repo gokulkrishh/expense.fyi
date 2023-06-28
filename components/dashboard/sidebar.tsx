@@ -20,6 +20,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import SvgWhiteLogo from 'public/icons/white-logo.svg';
 import { useHotkeys } from 'react-hotkeys-hook';
 
+import { Separator } from '../ui/separator';
 import SidebarLink from './sidebar-link';
 
 const dashboardLinks = [
@@ -74,8 +75,7 @@ export default function Sidebar() {
 						<Link href="/" className="mt-[3px] rounded-lg p-1 transition-all focus:outline-none">
 							<Image className="block" src={SvgWhiteLogo} width={30} height={30} alt="Expense.fyi" />
 						</Link>
-						<div className="mb-2 mt-[8px] flex w-full flex-col items-center border-t border-gray-100 opacity-[0.1]" />
-
+						<Separator className="mb-2 mt-[8px] border-t border-gray-100 opacity-[0.2]" />
 						{dashboardLinks.map((link) => {
 							return (
 								<SidebarLink
