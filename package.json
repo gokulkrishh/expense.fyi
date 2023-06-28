@@ -7,6 +7,11 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"check-types": "tsc --pretty --noEmit",
+		"check-format": "prettier --check .",
+		"check-lint": "eslint . --ext ts --ext tsx --ext js",
+		"test": "npm run check-format && npm run check-lint && npm run check-types",
+		"test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
 		"format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
 		"format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
 		"prebuild": "prisma format && prisma generate",
@@ -15,7 +20,8 @@
 		"premigrate": "prisma db pull",
 		"migrate": "prisma migrate dev --name initial-migration --create-only",
 		"email:dev": "email dev -p 3001",
-		"email:export": "email export"
+		"email:export": "email export",
+		"prepare": "husky install"
 	},
 	"workspaces": [
 		".react-email"
@@ -62,7 +68,9 @@
 	},
 	"devDependencies": {
 		"@trivago/prettier-plugin-sort-imports": "^4.1.1",
+		"eslint-config-prettier": "^8.8.0",
 		"prettier": "^2.8.8",
-		"prettier-plugin-tailwindcss": "^0.3.0"
+		"prettier-plugin-tailwindcss": "^0.3.0",
+		"husky": "^8.0.0"
 	}
 }

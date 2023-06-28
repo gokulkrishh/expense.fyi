@@ -9,42 +9,44 @@ import Footnote from './footnote';
 const baseUrl = 'https://expense.fyi';
 const logoUrl = `${baseUrl}/static/icons/logo.png`;
 
-export const SignInEmail = ({ action_link = '' }: { action_link?: string }): React.ReactElement<any> => {
+export const SignInEmail = ({ action_link = '' }) => {
 	return (
-		<>
-			<Html>
-				<Head />
-				<Preview>Sign in link to Expense.fyi</Preview>
-				<Body style={main}>
-					<Container style={container}>
-						<Img src={`${logoUrl}`} width="50" height="50" alt="Logo" style={logo} />
-						<Section>
-							<Text style={{ ...h1, marginTop: '20px', textAlign: 'center' }}>Magic Link</Text>
-							<Text style={text}>Hello</Text>
-							<Text style={text}>
-								Please click the below link to Sign in to your account. This link will expire in 10 minutes.
-							</Text>
-							<Section style={{ textAlign: 'left' }}>
-								<ButtonLink href={action_link} btnText="Sign in" />
-							</Section>
-							<Text style={text}>
-								or if you are on mobile, copy and paste this URL into your browser:{' '}
-								<Link style={{ ...link, display: 'block', marginTop: '15px', color: '#cc35e5' }} rel="nofollow">
-									{action_link.replace(/^https?:\/\//, '')}
-								</Link>
-							</Text>
-							<Text style={{ ...text, color: '#666666' }}>
-								If you didn{"'"}t try to Sign in, you can safely ignore this email.
-							</Text>
-							<Footnote hideNote={true} />
-							<Footer />
+		<Html>
+			<Head />
+			<Preview>Sign in link to Expense.fyi</Preview>
+			<Body style={main}>
+				<Container style={container}>
+					<Img src={`${logoUrl}`} width="50" height="50" alt="Logo" style={logo} />
+					<Section>
+						<Text style={{ ...h1, marginTop: '20px', textAlign: 'center' }}>Magic Link</Text>
+						<Text style={text}>Hello</Text>
+						<Text style={text}>
+							Please click the below link to Sign in to your account. This link will expire in 10 minutes.
+						</Text>
+						<Section style={{ textAlign: 'left' }}>
+							<ButtonLink href={action_link} btnText="Sign in" />
 						</Section>
-					</Container>
-				</Body>
-			</Html>
-		</>
+						<Text style={text}>
+							or if you are on mobile, copy and paste this URL into your browser:{' '}
+							<Link style={{ ...link, display: 'block', marginTop: '15px', color: '#cc35e5' }} rel="nofollow">
+								{action_link.replace(/^https?:\/\//, '')}
+							</Link>
+						</Text>
+						<Text style={{ ...text, color: '#666666' }}>
+							If you didn{"'"}t try to Sign in, you can safely ignore this email.
+						</Text>
+						<Footnote hideNote={true} />
+						<Footer />
+					</Section>
+				</Container>
+			</Body>
+		</Html>
 	);
 };
+
+interface SignInEmailProps {
+	action_link?: string;
+}
 
 export default SignInEmail;
 

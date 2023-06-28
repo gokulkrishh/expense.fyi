@@ -119,7 +119,7 @@ export default function Features() {
 	const [selected, setSelected] = useState(0);
 	return (
 		<>
-			<div className="lg:ml-[-50px] mx-auto block h-fit max-w-sm  rounded-2xl border-[1px] bg-white p-2 sm:w-96">
+			<div className="mx-auto block h-fit max-w-sm rounded-2xl  border-[1px] bg-white p-2 sm:w-96 lg:ml-[-50px]">
 				{features.map((feature, index) => {
 					const isSelected = index === selected;
 					return (
@@ -158,7 +158,7 @@ export default function Features() {
 					);
 				})}
 			</div>
-			<div className="lg:mt-[30px] lg:h-[360px] lg:w-[860px] relative max-w-xl overflow-hidden whitespace-nowrap rounded-lg border-[1px] bg-white shadow">
+			<div className="relative max-w-xl overflow-hidden whitespace-nowrap rounded-lg border-[1px] bg-white shadow lg:mt-[30px] lg:h-[360px] lg:w-[860px]">
 				<video
 					playsInline
 					autoPlay
