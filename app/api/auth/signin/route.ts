@@ -3,13 +3,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import SignInEmail from 'emails/signin';
 
+import { Database } from 'lib/database.types';
 import resend from 'lib/email';
 import prisma from 'lib/prisma';
 import { getRedirectUrl } from 'lib/utils';
 
 import messages, { emails } from 'constants/messages';
 
-const supabaseAdmin = createClient(
+const supabaseAdmin = createClient<Database>(
 	process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
 	process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
 	{

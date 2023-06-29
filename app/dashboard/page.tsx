@@ -18,7 +18,7 @@ export default async function Page() {
 			<LayoutHeader title="overview" showDatePicker={true} />
 			<div className="p-4 pt-3">
 				<Summary />
-				<h2 className="mb-4 mt-4 text-black">Reports</h2>
+				<h2 className="mb-4 font-semibold text-primary dark:text-white">Reports</h2>
 				<div className="mb-8 grid grid-cols-1 gap-8 font-semibold lg:grid-cols-2">
 					<div className="mr-4 flex min-h-full w-full flex-col">
 						<Card className="h-full">

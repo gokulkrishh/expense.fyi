@@ -25,11 +25,12 @@ export default function ChartLoader({ className, type }: { className?: string; t
 				<div className="animate-pulse">
 					<p className="h-[20px] w-[200px] rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
 				</div>
-				<p className="mb-[10px] mt-[10px] h-[34px] w-full animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
-				<p className="mb-[9px] h-[34px] w-[60%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
-				<p className="mb-[9px] h-[34px] w-[40%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
-				<p className="mb-[9px] h-[34px] w-[20%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
-				<p className="mb-[9px] h-[34px] w-[10%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
+				<p className="mb-[10px] mt-[10px] h-[32px] w-full animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
+				<p className="mb-[9px] h-[32px] w-[60%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
+				<p className="mb-[9px] h-[32px] w-[40%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
+				<p className="mb-[9px] h-[32px] w-[30%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
+				<p className="mb-[9px] h-[32px] w-[20%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
+				<p className="mb-[9px] h-[32px] w-[10%] animate-pulse rounded-sm bg-gradient-to-br from-gray-200 via-gray-100 pt-2 text-xl font-semibold dark:from-[#27272A] dark:via-[#27272A] dark:to-[#27272A] lg:text-xl xl:text-2xl" />
 			</div>
 		);
 	}
