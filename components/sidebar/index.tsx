@@ -101,7 +101,7 @@ export default function Sidebar() {
 							);
 						})}
 						<button
-							className={`mt-2 flex h-[40px] w-full items-center justify-center rounded-lg p-2 text-base tracking-wide text-white hover:bg-secondary`}
+							className={`mt-2 flex h-[40px] w-full items-center justify-center rounded-lg p-2 text-base tracking-wide text-white hover:bg-[#27272a]`}
 							onClick={signOut}
 							title="Sign out"
 						>

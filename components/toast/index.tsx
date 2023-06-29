@@ -20,7 +20,7 @@ export const showToast = (message = '', duration = defaultDuration) => {
 					<Transition
 						appear={true}
 						show={true}
-						enter="transform transition duration-[200ms]"
+						enter="transform transition duration-200"
 						enterFrom="opacity-0 rotate-[45deg] scale-0"
 						enterTo="opacity-100 rotate-0 scale-100"
 						leave="transform duration-100 transition ease-in-out"
@@ -49,7 +49,7 @@ export const showSuccessToast = (message = '', duration = defaultDuration) => {
 					<Transition
 						appear={true}
 						show={true}
-						enter="transform transition duration-[200ms]"
+						enter="transform transition duration-200"
 						enterFrom="opacity-0 rotate-[45deg] scale-0"
 						enterTo="opacity-100 rotate-0 scale-100"
 						leave="transform duration-100 transition ease-in-out"
@@ -78,7 +78,7 @@ export const showErrorToast = (message = messages.error, duration = 3000) => {
 					<Transition
 						appear={true}
 						show={true}
-						enter="transform transition duration-[200ms]"
+						enter="transform transition duration-200"
 						enterFrom="opacity-0 rotate-[45deg] scale-0"
 						enterTo="opacity-100 rotate-0 scale-100"
 						leave="transform duration-100 transition ease-in-out"
@@ -107,7 +107,7 @@ export const showWarningToast = (message = '', duration = 3000) => {
 					<Transition
 						appear={true}
 						show={true}
-						enter="transform transition duration-[200ms]"
+						enter="transform transition duration-200"
 						enterFrom="opacity-0 rotate-[45deg] scale-0"
 						enterTo="opacity-100 rotate-0 scale-100"
 						leave="transform duration-100 transition ease-in-out"

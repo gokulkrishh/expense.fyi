@@ -42,8 +42,8 @@ export default function SidebarLink({
 			) : (
 				<Link
 					href={href}
-					className={`mb-2 mt-1 flex items-center justify-center rounded-lg p-2 tracking-wide text-white transition-all hover:bg-secondary ${
-						active ? 'bg-gray-200 dark:bg-secondary' : ''
+					className={`mb-2 mt-1 flex items-center justify-center rounded-lg p-2 tracking-wide text-white transition-all hover:bg-[#27272a] ${
+						active ? 'bg-[#27272a]' : ''
 					} ${className}`}
 				>
 					{children}

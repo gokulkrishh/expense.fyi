@@ -38,6 +38,7 @@
 		"@react-email/components": "0.0.6",
 		"@supabase/auth-helpers-nextjs": "^0.7.2",
 		"@supabase/supabase-js": "^2.26.0",
+		"@tanstack/react-table": "^8.9.3",
 		"@types/node": "20.3.1",
 		"@types/react": "18.2.14",
 		"@types/react-dom": "18.2.6",
@@ -69,8 +70,8 @@
 	"devDependencies": {
 		"@trivago/prettier-plugin-sort-imports": "^4.1.1",
 		"eslint-config-prettier": "^8.8.0",
+		"husky": "^8.0.0",
 		"prettier": "^2.8.8",
-		"prettier-plugin-tailwindcss": "^0.3.0",
-		"husky": "^8.0.0"
+		"prettier-plugin-tailwindcss": "^0.3.0"
 	}
 }
