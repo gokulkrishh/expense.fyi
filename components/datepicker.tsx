@@ -1,7 +1,3 @@
-'use client';
-
-import * as React from 'react';
-
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { addDays, format, startOfMonth, startOfYear, subDays } from 'date-fns';
 import { DateRange } from 'react-day-picker';
@@ -13,21 +9,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'c
 
 import { cn } from 'lib/utils';
 
-export default function DatePicker() {
-	const [date, setDate] = React.useState({
-		from: startOfMonth(new Date()),
-		to: addDays(new Date(), 0),
-		selected: 'm',
-	});
+import { useDate } from './context/datepicker-provider';
 
-	const onChange = (dateValue: any) => {
-		setDate({ ...dateValue, selected: dateValue?.selected ?? 'none' });
-	};
+export default function DatePicker() {
+	const { date, onChange } = useDate();
 
 	return (
 		<div className="flex">
 			<DatePickerWithRange date={date} onChange={onChange} />
-			<DatePickerSelect onChange={onChange} selectedValue={date.selected} />
+			<DatePickerSelect onChange={onChange} selectedValue={date?.selected} />
 		</div>
 	);
 }

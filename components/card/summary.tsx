@@ -1,6 +1,10 @@
+'use client';
+
+import { useOverview } from 'components/context/overview-provider';
+import CardLoader from 'components/loader/card';
 import { Card, CardContent, CardHeader, CardTitle } from 'components/ui/card';
 
-import CardLoader from '../loader/card';
+import { formatCurrency } from 'lib/formatter';
 
 const CardComponent = ({ title, data }: { title: String; data: String }) => {
 	return (
@@ -15,19 +19,28 @@ const CardComponent = ({ title, data }: { title: String; data: String }) => {
 	);
 };
 
-export default function Summary({ isFetching = true }: { isFetching?: boolean }) {
+export default function Summary() {
+	const { data, loading } = useOverview();
+
+	const totalExpenses = data.expenses.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
+	const totalIncome = data.income.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
+	const totalInvesments = data.investments.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
+	const totalSubscriptions = data.subscriptions.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
+	const totalSpent = totalSubscriptions + totalExpenses + totalInvesments;
+	const totalBalance = totalIncome - totalSpent;
+
 	return (
 		<>
 			<h2 className="mb-4 font-semibold text-primary dark:text-white">Summary</h2>
-			{isFetching ? (
+			{loading ? (
 				<CardLoader cards={5} />
 			) : (
 				<div className="xs:grid-cols-2 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-					<CardComponent title="total income" data="$10,000" />
-					<CardComponent title="available balance" data="$10,000" />
-					<CardComponent title="total spent" data="$10,000" />
-					<CardComponent title="total expenses" data="$10,000" />
-					<CardComponent title="total subscriptions" data="$10,000" />
+					<CardComponent title="total income" data={formatCurrency({ value: totalIncome })} />
+					<CardComponent title="available balance" data={formatCurrency({ value: totalBalance })} />
+					<CardComponent title="total spent" data={formatCurrency({ value: totalSpent })} />
+					<CardComponent title="total expenses" data={formatCurrency({ value: totalExpenses })} />
+					<CardComponent title="total subscriptions" data={formatCurrency({ value: totalSubscriptions })} />
 				</div>
 			)}
 		</>

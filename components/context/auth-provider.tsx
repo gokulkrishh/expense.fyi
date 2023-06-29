@@ -18,7 +18,7 @@ export const AuthProvider = (props: any) => {
 	const [user, setUser] = useState<User | null>(null);
 	const router = useRouter();
 	const supabase = createClientComponentClient();
-	const { accessToken, children, rest } = props;
+	const { accessToken, children, ...others } = props;
 
 	useEffect(() => {
 		const searchParams = new URLSearchParams(window?.location?.hash ?? '');
@@ -79,7 +79,7 @@ export const AuthProvider = (props: any) => {
 	}, [initial, session, user]);
 
 	return (
-		<AuthContext.Provider value={value} {...rest}>
+		<AuthContext.Provider value={value} {...others}>
 			{session ? children : null}
 		</AuthContext.Provider>
 	);
@@ -90,6 +90,5 @@ export const useUser = () => {
 	if (context === undefined) {
 		throw new Error(`useUser must be used within a AuthContext.`);
 	}
-
 	return context?.session?.user ?? null;
 };

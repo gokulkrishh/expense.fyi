@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from 'components/ui/card';
 
 export default function CardLoader({ cards = 1 }) {
 	return (
-		<div className="xs:grid-cols-2 mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+		<div className="xs:grid-cols-2 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
 			{Array(cards)
 				.fill(0)
 				.map((card, index) => (
