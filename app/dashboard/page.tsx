@@ -63,7 +63,7 @@ export default async function Page() {
 										<h3>Top Spent Expenses</h3>
 									</CardHeader>
 									<CardContent>
-										<ChartLoader className="h-[230px] pl-0" type="barlist" />
+										<ChartLoader className="mb-10 h-[230px] pl-0 pt-0" type="barlist" />
 									</CardContent>
 								</Card>
 							</div>

@@ -1,8 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { useEffect, useRef, useState } from 'react';
+
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 import CircleLoader from 'components/loader/circle';
 import { Button } from 'components/ui/button';
@@ -14,10 +17,22 @@ const initialState = { loading: false, email: '', success: false, error: '' };
 export default function Form() {
 	const [state, setState] = useState(initialState);
 	const inputElement = useRef<HTMLInputElement>(null);
+	const supabase = createClientComponentClient();
+	const router = useRouter();
 
 	useEffect(() => {
 		inputElement.current?.focus();
-	}, []);
+
+		async function getUser() {
+			const { data } = await supabase.auth.getUser();
+			const { user } = data;
+			if (user) {
+				router.push(url.app.overview);
+			}
+		}
+
+		getUser();
+	}, [router, supabase.auth]);
 
 	const handleSignIn = async () => {
 		setState((prev) => ({ ...prev, loading: true, error: '', success: false }));

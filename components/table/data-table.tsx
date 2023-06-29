@@ -15,11 +15,11 @@ interface DataTableProps<TData, TValue> {
 
 const TableLoadingCell = () => {
 	return (
-		<span className="ml-[-8px] inline-block h-[20px] w-[50%] animate-pulse rounded-md bg-gray-200 px-2 pl-0 dark:bg-muted" />
+		<span className="inline-block h-[10px] w-[60%] animate-pulse rounded-md bg-gray-200 px-2 pl-0 dark:bg-muted" />
 	);
 };
 
-export function DataTable<TData, TValue>({ columns, data, className, loading }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns, data, className, loading = false }: DataTableProps<TData, TValue>) {
 	const table = useReactTable({
 		data,
 		columns,
@@ -59,7 +59,7 @@ export function DataTable<TData, TValue>({ columns, data, className, loading }: 
 						))
 					) : (
 						<TableRow>
-							<TableCell colSpan={columns.length} className="h-24 text-center">
+							<TableCell colSpan={columns.length} className="mt-6 h-24 text-center">
 								No results.
 							</TableCell>
 						</TableRow>

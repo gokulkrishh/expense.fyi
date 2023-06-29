@@ -3,7 +3,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 
 export type recentActivities = {
-	no: number;
+	no: string;
 	name: string;
 	amount: string;
 	category: string;

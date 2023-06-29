@@ -37,8 +37,10 @@ export const OverviewContextProvider = (props: any) => {
 		fetchAll();
 	}, [date]);
 
+	const value = useMemo(() => ({ data, loading }), [data, loading]);
+
 	return (
-		<OverviewContext.Provider value={{ data, loading }} {...others}>
+		<OverviewContext.Provider value={value} {...others}>
 			{children}
 		</OverviewContext.Provider>
 	);

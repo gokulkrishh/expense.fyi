@@ -2,6 +2,10 @@ import { formatDate } from './formatter';
 
 const dateStyle = { day: '2-digit', year: '2-digit', month: 'short' };
 
+export const sortByKey = (arr: Array<any>, key: string) => {
+	return arr.sort((a, b) => (a[key] < b[key] ? 1 : -1));
+};
+
 export const extractExpenses = (data: Array<Object>, locale: string) => {
 	const groupByDate = data.reduce((acc: any, datum: any) => {
 		const date = formatDate({ date: datum.date, locale, dateStyle });
@@ -47,4 +51,19 @@ export const extractSubscriptionsCategories = (data: Array<any>) => {
 			acc.push(datum.name);
 			return acc;
 		}, []);
+};
+
+export const extractRecentData = (
+	expenses: Array<Object>,
+	subscriptions: Array<Object>,
+	investments: Array<Object>,
+	income: Array<Object>
+) => {
+	const allData = [
+		...subscriptions.map((datum) => ({ ...datum, from: 'subcriptions' })),
+		...expenses.map((datum) => ({ ...datum, from: 'expenses' })),
+		...investments.map((datum) => ({ ...datum, from: 'investments' })),
+		...income.map((datum) => ({ ...datum, from: 'income' })),
+	];
+	return sortByKey(allData, 'updated_at').filter((_, index) => index <= 4);
 };

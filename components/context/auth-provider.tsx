@@ -27,7 +27,7 @@ export const AuthProvider = (props: any) => {
 
 		if (access_token && refresh_token) {
 			supabase.auth.setSession({ access_token, refresh_token });
-			router.replace('/');
+			router.push('/');
 			setInitial(true);
 		} else if (!accessToken) {
 			window.location.href = '/signin';
