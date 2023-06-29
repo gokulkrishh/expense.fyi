@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
@@ -16,7 +18,22 @@ export const AuthProvider = (props: any) => {
 	const [user, setUser] = useState<User | null>(null);
 	const router = useRouter();
 	const supabase = createClientComponentClient();
-	const { accessToken, ...rest } = props;
+	const { accessToken, children, rest } = props;
+
+	useEffect(() => {
+		const searchParams = new URLSearchParams(window?.location?.hash ?? '');
+		const access_token = searchParams.get('#access_token');
+		const refresh_token = searchParams.get('refresh_token');
+
+		if (access_token && refresh_token) {
+			supabase.auth.setSession({ access_token, refresh_token });
+			router.replace('/');
+			setInitial(true);
+		} else if (!accessToken) {
+			window.location.href = '/signin';
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	useEffect(() => {
 		async function getActiveSession() {
@@ -32,9 +49,13 @@ export const AuthProvider = (props: any) => {
 
 		const {
 			data: { subscription: authListener },
-		} = supabase.auth.onAuthStateChange((_, currentSession) => {
-			if (currentSession?.access_token !== accessToken) {
+		} = supabase.auth.onAuthStateChange((event, currentSession) => {
+			if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
 				router.refresh();
+			}
+
+			if (event == 'SIGNED_OUT') {
+				window.location.href = '/signin';
 			}
 
 			setSession(currentSession);
@@ -44,7 +65,8 @@ export const AuthProvider = (props: any) => {
 		return () => {
 			authListener?.unsubscribe();
 		};
-	}, [accessToken, router, supabase.auth]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const value = useMemo(() => {
 		return {
@@ -53,15 +75,21 @@ export const AuthProvider = (props: any) => {
 			user,
 			signOut: () => supabase.auth.signOut(),
 		};
-	}, [initial, session, supabase.auth, user]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [initial, session, user]);
 
-	return <AuthContext.Provider value={value} {...rest} />;
+	return (
+		<AuthContext.Provider value={value} {...rest}>
+			{session ? children : null}
+		</AuthContext.Provider>
+	);
 };
 
-export const useAuth = () => {
-	const context = useContext(AuthContext);
+export const useUser = () => {
+	const context = useContext<any>(AuthContext);
 	if (context === undefined) {
-		throw new Error('useAuth must be used within an AuthProvider');
+		throw new Error(`useUser must be used within a AuthContext.`);
 	}
-	return context;
+
+	return context?.session?.user ?? null;
 };

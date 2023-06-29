@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 
 import CircleLoader from 'components/loader/circle';
 import { Button } from 'components/ui/button';
-import { Input } from 'components/ui/input';
 
 import url from 'constants/url';
 
@@ -50,7 +49,8 @@ export default function Form() {
 		>
 			<label className="mb-1 block">
 				<span className="mb-2 block text-sm font-semibold leading-6">Email Address</span>
-				<Input
+				<input
+					className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-sm text-black shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
 					autoFocus
 					type="email"
 					placeholder="tim@apple.com"

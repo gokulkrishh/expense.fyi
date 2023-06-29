@@ -35,8 +35,6 @@ export default function Feedback() {
 				setState((prev) => ({ ...prev, sent: false, show: false }));
 			}, 5000);
 		} catch (error: any) {
-			console.log(error);
-
 			setState((prev) => ({ ...prev, loading: false }));
 			showErrorToast(error.message);
 		}

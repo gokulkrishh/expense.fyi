@@ -66,7 +66,7 @@ export default function Sidebar() {
 
 	async function signOut() {
 		await supabase.auth.signOut();
-		router.push('/signin');
+		window.location.href = '/signin';
 	}
 
 	return (
