@@ -1,16 +1,19 @@
 'use client';
 
+import { BadgeDollarSign, Banknote, Briefcase, PlayIcon, Wallet2 } from 'lucide-react';
+
 import { useOverview } from 'components/context/overview-provider';
 import CardLoader from 'components/loader/card';
 import { Card, CardContent, CardHeader, CardTitle } from 'components/ui/card';
 
 import { formatCurrency } from 'lib/formatter';
 
-const CardComponent = ({ title, data }: { title: String; data: String }) => {
+const CardComponent = ({ title, data, icon: Icon }: { title: String; data: String; icon?: any }) => {
 	return (
-		<Card>
+		<Card className="relative">
 			<CardHeader className="pb-0">
 				<CardTitle className="text-xs font-semibold uppercase text-muted-foreground">{title}</CardTitle>
+				{Icon ? <Icon className="absolute right-3 top-1 h-4 w-4" /> : null}
 			</CardHeader>
 			<CardContent>
 				<p className="mt-1 text-2xl font-extrabold text-foreground">{data}</p>
@@ -36,11 +39,15 @@ export default function Summary() {
 				<CardLoader cards={5} />
 			) : (
 				<div className="xs:grid-cols-2 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-					<CardComponent title="total income" data={formatCurrency({ value: totalIncome })} />
-					<CardComponent title="available balance" data={formatCurrency({ value: totalBalance })} />
-					<CardComponent title="total spent" data={formatCurrency({ value: totalSpent })} />
-					<CardComponent title="total expenses" data={formatCurrency({ value: totalExpenses })} />
-					<CardComponent title="total subscriptions" data={formatCurrency({ value: totalSubscriptions })} />
+					<CardComponent icon={Briefcase} title="total income" data={formatCurrency({ value: totalIncome })} />
+					<CardComponent icon={Wallet2} title="available balance" data={formatCurrency({ value: totalBalance })} />
+					<CardComponent icon={BadgeDollarSign} title="total spent" data={formatCurrency({ value: totalSpent })} />
+					<CardComponent icon={Banknote} title="total expenses" data={formatCurrency({ value: totalExpenses })} />
+					<CardComponent
+						icon={PlayIcon}
+						title="total subscriptions"
+						data={formatCurrency({ value: totalSubscriptions })}
+					/>
 				</div>
 			)}
 		</>

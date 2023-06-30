@@ -9,10 +9,13 @@ import { Button } from 'components/ui/button';
 import { Popover } from 'components/ui/popover';
 import { Textarea } from 'components/ui/textarea';
 
-import { showErrorToast } from './toast';
+import messages, { emails } from 'constants/messages';
+
+import { useToast } from './ui/use-toast';
 
 export default function Feedback() {
 	const [state, setState] = useState({ show: false, loading: false, message: '', sent: false });
+	const { toast } = useToast();
 
 	const onSubmit = async () => {
 		setState({ ...state, loading: true });
@@ -36,7 +39,7 @@ export default function Feedback() {
 			}, 5000);
 		} catch (error: any) {
 			setState((prev) => ({ ...prev, loading: false }));
-			showErrorToast(error.message);
+			toast({ description: emails.feedback.failed, variant: 'destructive' });
 		}
 	};
 

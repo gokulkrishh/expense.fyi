@@ -32,7 +32,7 @@ export default function TopSpentExpenses() {
 			}}
 			showAnimation={false}
 			className="mt-2"
-			color="red"
+			color="blue"
 		/>
 	);
 }

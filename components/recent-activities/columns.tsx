@@ -20,7 +20,7 @@ export const columns: ColumnDef<recentActivities>[] = [
 	},
 	{
 		accessorKey: 'category',
-		header: 'In / Category',
+		header: 'Category',
 	},
 	{
 		accessorKey: 'amount',

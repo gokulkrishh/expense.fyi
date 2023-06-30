@@ -1,12 +1,12 @@
 import { cookies } from 'next/headers';
 
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Toaster } from 'react-hot-toast';
 
 import { AuthProvider } from 'components/context/auth-provider';
 import DashboardLayout from 'components/layout';
 import Sidebar from 'components/sidebar';
 import { ThemeProvider } from 'components/theme-provider';
+import { Toaster } from 'components/ui/toaster';
 
 import { Database } from 'lib/database.types';
 

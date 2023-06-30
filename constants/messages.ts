@@ -23,7 +23,7 @@ export const emails = {
 	feedback: {
 		subject: '🎉 New Feedback Received',
 		sent: 'Feedback received.',
-		failed: 'Failed to send, try again.',
+		failed: 'Failed to send, please try again.',
 	},
 	usageLimit: {
 		premium: 'Your Premium Plan Expired!',
