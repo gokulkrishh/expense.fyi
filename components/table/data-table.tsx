@@ -2,6 +2,7 @@
 
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
+import { Skeleton } from 'components/ui/skeleton';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'components/ui/table';
 
 import { cn } from 'lib/utils';
@@ -14,9 +15,7 @@ interface DataTableProps<TData, TValue> {
 }
 
 const TableLoadingCell = () => {
-	return (
-		<span className="inline-block h-[10px] w-[60%] animate-pulse rounded-md bg-gray-200 px-2 pl-0 dark:bg-muted" />
-	);
+	return <Skeleton className="h-[20px] w-[60%] rounded-md pr-2" />;
 };
 
 export function DataTable<TData, TValue>({ columns, data, className, loading = false }: DataTableProps<TData, TValue>) {
@@ -60,7 +59,7 @@ export function DataTable<TData, TValue>({ columns, data, className, loading = f
 					) : (
 						<TableRow>
 							<TableCell colSpan={columns.length} className="mt-6 h-24 text-center">
-								No results.
+								No data
 							</TableCell>
 						</TableRow>
 					)}

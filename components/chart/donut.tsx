@@ -24,6 +24,10 @@ export default function Donut() {
 		return <ChartLoader className="h-[340px]" type="donut" />;
 	}
 
+	if (!chartData.length) {
+		return <p className="mt-16 h-48 text-center text-sm">No data</p>;
+	}
+
 	return (
 		<>
 			<div className="flex justify-end">

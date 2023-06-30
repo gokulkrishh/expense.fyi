@@ -1,3 +1,5 @@
+import { expensesCategory } from 'constants/categories';
+
 import { formatDate } from './formatter';
 
 const dateStyle = { day: '2-digit', year: '2-digit', month: 'short' };
@@ -59,11 +61,43 @@ export const extractRecentData = (
 	investments: Array<Object>,
 	income: Array<Object>
 ) => {
-	const allData = [
-		...subscriptions.map((datum) => ({ ...datum, from: 'subcriptions' })),
-		...expenses.map((datum) => ({ ...datum, from: 'expenses' })),
-		...investments.map((datum) => ({ ...datum, from: 'investments' })),
-		...income.map((datum) => ({ ...datum, from: 'income' })),
-	];
-	return sortByKey(allData, 'updated_at').filter((_, index) => index <= 4);
+	if (expenses.length || investments.length || income.length) {
+		const allData = [
+			...subscriptions.map((datum) => ({ ...datum, from: 'subcriptions' })),
+			...expenses.map((datum) => ({ ...datum, from: 'expenses' })),
+			...investments.map((datum) => ({ ...datum, from: 'investments' })),
+			...income.map((datum) => ({ ...datum, from: 'income' })),
+		];
+		return sortByKey(allData, 'updated_at').filter((_, index) => index <= 4);
+	}
+	return [];
+};
+
+const sortValueByAsc = (a: any, b: any) => (a.value > b.value ? -1 : 1);
+
+type DatumReturn = {
+	[key: string]: {
+		name: string;
+		value: number;
+	};
+};
+
+type Datum = {
+	category: string;
+	price: string;
+};
+
+export const extractTopExpenseCategories = (data: Array<Object>) => {
+	const dataMap = data.reduce<DatumReturn>((acc: any, datum: any) => {
+		acc[datum.category] = {
+			name: `${expensesCategory[datum.category]?.emoji}  ${datum.category}`,
+			value: acc[datum.category] ? Number(acc[datum.category].value) + Number(datum.price) : Number(datum.price),
+		};
+
+		return acc;
+	}, {});
+
+	return Object.values(dataMap)
+		.sort(sortValueByAsc)
+		.filter((_, index) => index <= 5);
 };

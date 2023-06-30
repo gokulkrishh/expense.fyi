@@ -1,4 +1,11 @@
-export const expensesCategory = {
+interface ExpensesCategory {
+	[key: string]: {
+		name: string;
+		emoji: string;
+	};
+}
+
+export const expensesCategory: ExpensesCategory = {
 	'': { name: 'Select', emoji: ' ' },
 	education: { name: 'Education', emoji: '📚' },
 	entertainment: { name: 'Entertainment', emoji: '🍿' },

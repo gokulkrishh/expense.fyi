@@ -50,7 +50,7 @@ export default function Feedback() {
 					</span>
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="z-10 mr-1 mt-2 h-[160px] w-[290px] rounded-md border border-border bg-popover p-4">
+			<PopoverContent className="z-10 mr-1 mt-2 h-[160px] w-[290px] rounded-md border border-border bg-popover p-4 shadow-sm">
 				{!state.sent ? (
 					<form
 						onSubmit={(event) => {
@@ -63,6 +63,7 @@ export default function Feedback() {
 							value={state.message}
 							placeholder="Share your feedback here"
 							className="h-[90px] resize-none "
+							required
 						/>
 						<Button disabled={state.loading} size={'sm'} className="float-right mt-[10px]">
 							Send

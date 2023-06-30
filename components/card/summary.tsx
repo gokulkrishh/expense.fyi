@@ -26,7 +26,7 @@ export default function Summary() {
 	const totalIncome = data.income.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
 	const totalInvesments = data.investments.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
 	const totalSubscriptions = data.subscriptions.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
-	const totalSpent = totalSubscriptions + totalExpenses + totalInvesments;
+	const totalSpent = totalExpenses + totalInvesments + totalSubscriptions;
 	const totalBalance = totalIncome - totalSpent;
 
 	return (

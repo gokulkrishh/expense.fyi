@@ -1,5 +1,6 @@
 import Summary from 'components/card/summary';
 import ExpesenseChart from 'components/chart/bar';
+import TopSpentExpenses from 'components/chart/bar-list';
 import DonutChart from 'components/chart/donut';
 import { DatePickerProvider } from 'components/context/datepicker-provider';
 import { OverviewContextProvider } from 'components/context/overview-provider';
@@ -21,7 +22,7 @@ export default async function Page() {
 							<div className="mr-4 flex min-h-full w-full flex-col">
 								<Card className="h-full">
 									<CardHeader>
-										<h3>Expenses</h3>
+										<h3 className="font-medium">Expenses</h3>
 										<p className="relative top-[-4px] pb-2 text-sm font-normal text-muted-foreground">
 											Amount spent for the selected date range.
 										</p>
@@ -35,7 +36,7 @@ export default async function Page() {
 							<div className="mb-8 flex min-h-full w-full flex-col md:mb-0 md:mt-0">
 								<Card className="h-full w-full">
 									<CardHeader>
-										<h3>Subscriptions</h3>
+										<h3 className="font-medium">Subscriptions</h3>
 										<p className="relative top-[-4px] pb-2 text-sm font-normal text-muted-foreground">
 											Estimated spent amount for selected date range.
 										</p>
@@ -49,7 +50,7 @@ export default async function Page() {
 							<div className="mb-8 flex min-h-full w-full flex-col md:mb-0 md:mt-0">
 								<Card className="h-full w-full">
 									<CardHeader>
-										<h3>Recent Activities</h3>
+										<h3 className="pb-0 font-medium">Recent Activities</h3>
 									</CardHeader>
 									<CardContent>
 										<RecentActivitiesTable />
@@ -60,10 +61,10 @@ export default async function Page() {
 							<div className="mb-8 flex min-h-full w-full flex-col md:mb-0 md:mt-0">
 								<Card className="h-full w-full">
 									<CardHeader>
-										<h3>Top Spent Expenses</h3>
+										<h3 className="pb-0 font-medium">Top Spent Expenses</h3>
 									</CardHeader>
 									<CardContent>
-										<ChartLoader className="mb-10 h-[230px] pl-0 pt-0" type="barlist" />
+										<TopSpentExpenses />
 									</CardContent>
 								</Card>
 							</div>

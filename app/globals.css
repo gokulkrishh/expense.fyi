@@ -33,6 +33,7 @@ html {
 	--destructive-foreground: 0 0% 98%;
 	--ring: 240 5% 64.9%;
 	--radius: 0.5rem;
+	--number-font: 'Cal Sans';
 }
 
 .dark {

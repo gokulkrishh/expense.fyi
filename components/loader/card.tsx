@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from 'components/ui/card';
+import { Skeleton } from 'components/ui/skeleton';
 
 export default function CardLoader({ cards = 1 }) {
 	return (
@@ -8,14 +9,12 @@ export default function CardLoader({ cards = 1 }) {
 				.map((card, index) => (
 					<Card key={`${card}-${index}`}>
 						<CardHeader className="pb-0">
-							<CardTitle className="animate-pulse rounded-sm bg-gray-200 text-xs font-semibold uppercase text-muted-foreground dark:bg-muted">
-								<span className="invisible">Loading</span>
+							<CardTitle>
+								<Skeleton className="h-4 rounded-sm" />
 							</CardTitle>
 						</CardHeader>
-						<CardContent className="p-4 pt-0">
-							<div className="w-[60%] animate-pulse rounded-sm bg-gray-200 dark:bg-muted">
-								<p className="invisible mt-1 text-2xl font-extrabold text-foreground">0</p>
-							</div>
+						<CardContent>
+							<Skeleton className="mt-2 h-7 w-[60%] rounded-sm" />
 						</CardContent>
 					</Card>
 				))}

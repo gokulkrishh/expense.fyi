@@ -29,6 +29,10 @@ export default function ExpesenseChart() {
 		return <ChartLoader className="h-[340px]" type="bar" />;
 	}
 
+	if (!chartData.length) {
+		return <p className="mt-16 h-48 text-center text-sm">No data</p>;
+	}
+
 	return (
 		<BarChart
 			className="-mt-4 h-96"
