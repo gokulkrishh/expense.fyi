@@ -1,6 +1,14 @@
 import Summary from 'components/card/summary';
 import LayoutHeader from 'components/layout/header';
 
+const title = 'Expense.fyi – Subscriptions';
+const description = 'Effortlessly Track and Manage Expenses.';
+
+export const metadata = {
+	title,
+	description,
+};
+
 export default async function Page() {
 	return (
 		<>

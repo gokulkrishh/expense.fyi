@@ -1,9 +1,11 @@
+'use client';
+
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { PlusIcon } from 'lucide-react';
 
 import TooltipText from 'components/toast/text';
 
-export default function AddButton({ onClick }: { onClick: () => void }) {
+export default function Add({ onClick }: { onClick?: any }) {
 	return (
 		<Tooltip.Root>
 			<Tooltip.Trigger asChild>

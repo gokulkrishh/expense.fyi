@@ -3,6 +3,9 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import { getExpenses, getIncome, getInvestments, getSubscriptions } from 'app/dashboard/apis';
+import { format, isValid } from 'date-fns';
+
+import { dateFormat } from 'constants/date';
 
 import { useDate } from './datepicker-provider';
 
@@ -25,16 +28,18 @@ export const OverviewContextProvider = (props: any) => {
 
 	useEffect(() => {
 		const fetchAll = async () => {
+			setLoading(true);
+			const formattedDate = { from: format(date.from, dateFormat), to: format(date.to, dateFormat) };
 			const [expenses = [], income = [], subscriptions = [], investments = []] = await Promise.all([
-				getExpenses(date),
-				getIncome(date),
-				getSubscriptions(date),
-				getInvestments(date),
+				getExpenses(formattedDate),
+				getIncome(formattedDate),
+				getSubscriptions(formattedDate),
+				getInvestments(formattedDate),
 			]);
 			setData({ expenses, income, subscriptions, investments });
 			setLoading(false);
 		};
-		fetchAll();
+		if (isValid(date.from) && isValid(date.to)) fetchAll();
 	}, [date]);
 
 	const value = useMemo(() => ({ data, loading }), [data, loading]);

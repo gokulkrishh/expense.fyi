@@ -4,11 +4,15 @@ import { format } from 'date-fns';
 
 import { dateFormat } from 'constants/date';
 
-export const getExpenses = async ({ from, to }: { from: string; to: string }) => {
+type Expenses = {
+	from: string;
+	to: string;
+	categories?: Array<string>;
+};
+
+export const getExpenses = async ({ from, to, categories = [] }: Expenses) => {
 	if (from && to) {
-		const res = await fetch(
-			`/api/expenses?from=${format(new Date(from), dateFormat)}&to=${format(new Date(to), dateFormat)}`
-		);
+		const res = await fetch(`/api/expenses`, { method: 'POST', body: JSON.stringify({ from, to, categories }) });
 		if (!res.ok) {
 			return [];
 		}
