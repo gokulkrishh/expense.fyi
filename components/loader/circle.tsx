@@ -1,7 +1,7 @@
-export default function CircleLoader({ className = '', color }: { className?: string; color?: 'black' | '' }) {
+export default function CircleLoader({ className = '' }: { className?: string }) {
 	return (
 		<svg
-			className={`h-5 w-5 animate-spin  ${color === 'black' ? 'text-black' : 'text-white'} ${className}`}
+			className={`dark:text-dark h-5 w-5 animate-spin text-white dark:text-black ${className}`}
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"

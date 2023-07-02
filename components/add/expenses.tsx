@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { addExpense } from 'app/dashboard/expenses/apis';
 import { format } from 'date-fns';
 import useAutoFocus from 'hooks/useAutoFocus';
 
@@ -12,11 +13,13 @@ import { Button } from 'components/ui/button';
 import { Input } from 'components/ui/input';
 import { Label } from 'components/ui/label';
 import { Textarea } from 'components/ui/textarea';
+import { useToast } from 'components/ui/use-toast';
 
 import { getCurrencySymbol } from 'lib/formatter';
 
 import { expensesCategory, expensesPay, groupedExpenses } from 'constants/categories';
 import { dateFormat, datePattern } from 'constants/date';
+import messages from 'constants/messages';
 
 interface AddExpenseProps {
 	show: boolean;
@@ -28,22 +31,36 @@ interface AddExpenseProps {
 const todayDate = format(new Date(), dateFormat);
 
 const initialState = {
-	loading: false,
 	category: 'food',
 	paid_via: 'upi',
 	name: '',
 	notes: '',
 	price: '',
 	date: todayDate,
-	autocomplete: [],
 };
 
-export default function AddExpense({ show, onHide, onSubmit }: AddExpenseProps) {
+export default function AddExpense({ show, onHide }: AddExpenseProps) {
 	const inputRef = useAutoFocus();
 	const user = useUser();
 	const [state, setState] = useState(initialState);
+	const [loading, setLoading] = useState(false);
+	const { toast } = useToast();
 
 	const onLookup = (value: string) => {};
+
+	const onSubmit = async () => {
+		try {
+			setLoading(true);
+			await addExpense(state);
+			setLoading(false);
+			toast({ description: `${messages.success}` });
+		} catch {
+			toast({ description: messages.error, variant: 'destructive' });
+		} finally {
+			setState({ ...initialState });
+			onHide();
+		}
+	};
 
 	return (
 		<Modal inputRef={inputRef} show={show} title={`Add Expense`} onHide={onHide}>
@@ -66,10 +83,10 @@ export default function AddExpense({ show, onHide, onSubmit }: AddExpenseProps) 
 						onChange={({ target }) => {
 							const { value } = target;
 							if (value.length) {
-								setState({ ...state, name: value, autocomplete: [] });
+								setState({ ...state, name: value });
 								if (value.length > 2) onLookup(value);
 							} else {
-								setState({ ...state, name: '', category: 'food', paid_via: 'cash', autocomplete: [] });
+								setState({ ...state, name: '', category: 'food', paid_via: 'upi' });
 							}
 						}}
 						value={state.name}
@@ -176,8 +193,8 @@ export default function AddExpense({ show, onHide, onSubmit }: AddExpenseProps) 
 						maxLength={60}
 					/>
 
-					<Button disabled={state.loading} className="mt-2" type="submit">
-						{state.loading ? <CircleLoader /> : 'Submit'}
+					<Button disabled={loading} className="mt-2" type="submit">
+						{loading ? <CircleLoader /> : 'Submit'}
 					</Button>
 				</form>
 			</div>
