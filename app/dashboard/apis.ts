@@ -55,3 +55,11 @@ export const getIncome = async ({ from, to }: { from: string; to: string }) => {
 		return await res.json();
 	}
 };
+
+export const getUser = async () => {
+	const res = await fetch(`/api/user`);
+	if (!res.ok) {
+		return {};
+	}
+	return await res.json();
+};

@@ -31,6 +31,10 @@ export default function RecentActivitiesTable() {
 		return <DataTable data={[dummy, dummy, dummy, dummy, dummy]} loading={loading} columns={columns} />;
 	}
 
+	if (!recentData.length) {
+		return <p className="flex h-64 items-center justify-center text-sm">No data</p>;
+	}
+
 	return (
 		<DataTable
 			loading={false}

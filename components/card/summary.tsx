@@ -1,6 +1,6 @@
 'use client';
 
-import { BadgeDollarSign, Banknote, Briefcase, PlayIcon, Wallet2 } from 'lucide-react';
+import { Banknote, Briefcase, PiggyBank, PlayIcon, Wallet2 } from 'lucide-react';
 
 import { useUser } from 'components/context/auth-provider';
 import { useOverview } from 'components/context/overview-provider';
@@ -17,8 +17,11 @@ export default function Summary() {
 	const totalExpenses = data.expenses.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
 	const totalIncome = data.income.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
 	const totalInvesments = data.investments.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
-	const totalSubscriptions = data.subscriptions.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
-	const totalSpent = totalExpenses + totalInvesments + totalSubscriptions;
+	const totalSubscriptions = data.subscriptions
+		.filter(({ isPaid }: any) => !!isPaid)
+		.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
+
+	const totalSpent = totalExpenses + totalInvesments;
 	const totalBalance = totalIncome - totalSpent;
 
 	return (
@@ -39,14 +42,14 @@ export default function Summary() {
 						data={formatCurrency({ value: totalBalance, currency: user.currency, locale: user.locale })}
 					/>
 					<SummaryCard
-						icon={BadgeDollarSign}
+						icon={Banknote}
 						title="total spent"
 						data={formatCurrency({ value: totalSpent, currency: user.currency, locale: user.locale })}
 					/>
 					<SummaryCard
-						icon={Banknote}
-						title="total expenses"
-						data={formatCurrency({ value: totalExpenses, currency: user.currency, locale: user.locale })}
+						icon={PiggyBank}
+						title="total investment"
+						data={formatCurrency({ value: totalInvesments, currency: user.currency, locale: user.locale })}
 					/>
 					<SummaryCard
 						icon={PlayIcon}

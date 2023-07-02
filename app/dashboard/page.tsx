@@ -1,4 +1,4 @@
-import Add from 'components/add';
+import Add from 'components/add-button';
 import Summary from 'components/card/summary';
 import ExpesenseChart from 'components/chart/bar';
 import TopSpentExpenses from 'components/chart/bar-list';
@@ -38,7 +38,7 @@ export default async function Page() {
 									<CardHeader>
 										<h3 className="font-medium">Subscriptions</h3>
 										<p className="relative top-[-4px] pb-2 text-sm font-normal text-muted-foreground">
-											Estimated spent amount for selected date range.
+											Amount spent for selected date range.
 										</p>
 									</CardHeader>
 									<CardContent className="mt-4">

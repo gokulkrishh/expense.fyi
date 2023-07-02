@@ -47,6 +47,7 @@ export default async function Layout({ children }: any) {
 						</ThemeProvider>
 						<Toaster />
 					</AuthProvider>
+					<div id="modal-root"></div>
 				</body>
 			</html>
 		</>

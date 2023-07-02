@@ -18,7 +18,7 @@ export default function Home() {
 						<span className="font-black tracking-[-0.03em] text-gray-900">Expense.fyi</span>
 					</Link>
 					<Link
-						href={'/signin'}
+						href={url.app.signin}
 						className="leading-2 mr-4 inline-flex h-[34px] items-center overflow-hidden rounded-full bg-gray-900 px-4 py-1 text-sm font-medium text-white transition hover:bg-gray-700"
 					>
 						Sign in

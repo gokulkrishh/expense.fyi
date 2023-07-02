@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { getUser } from 'app/dashboard/apis';
+
+import prisma from 'lib/prisma';
 
 interface User {}
 
@@ -40,8 +43,9 @@ export const AuthProvider = (props: any) => {
 			const {
 				data: { session: activeSession },
 			} = await supabase.auth.getSession();
+			const userData = await getUser();
 			setSession(activeSession ?? null);
-			setUser(activeSession?.user ?? null);
+			setUser(userData);
 			setInitial(false);
 		}
 
@@ -90,5 +94,5 @@ export const useUser = () => {
 	if (context === undefined) {
 		throw new Error(`useUser must be used within a AuthContext.`);
 	}
-	return context?.session?.user ?? null;
+	return context?.user ?? null;
 };

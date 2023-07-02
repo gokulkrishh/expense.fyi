@@ -25,7 +25,14 @@ export const expensesCategory: ExpensesCategory = {
 	travel: { name: 'Travel', emoji: '✈️' },
 };
 
-export const expensesPay = {
+interface ExpensesPay {
+	[key: string]: {
+		name: string;
+		emoji: string;
+	};
+}
+
+export const expensesPay: ExpensesPay = {
 	cash: { name: 'Cash', emoji: '💵' },
 	creditcard: { name: 'Credit Card', emoji: '💳' },
 	debitcard: { name: 'Debit Card', emoji: '💳' },
@@ -34,7 +41,18 @@ export const expensesPay = {
 	upi: { name: 'UPI', emoji: '📲' },
 };
 
-export const groupedExpenses = {
+interface GroupedExpensesCategory {
+	[key: string]: {
+		name: string;
+		list: {
+			[key: string]: {
+				name: string;
+			};
+		};
+	};
+}
+
+export const groupedExpenses: GroupedExpensesCategory = {
 	dailyessentials: {
 		name: 'Essentials',
 		list: {

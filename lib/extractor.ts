@@ -39,7 +39,7 @@ export const extractChartAxis = (data: Array<Object>) => data.sort((a: any, b: a
 
 export const extractSubscriptions = (data: Array<any>) => {
 	return data
-		.filter((datum) => datum.paid_dates?.length > 0)
+		.filter(({ isPaid }: any) => isPaid)
 		.reduce((acc, c) => {
 			acc.push({ name: c.name, price: Number(c.price) * Number(c.paid_dates.length) });
 			return acc;
@@ -48,7 +48,7 @@ export const extractSubscriptions = (data: Array<any>) => {
 
 export const extractSubscriptionsCategories = (data: Array<any>) => {
 	return data
-		.filter((datum) => datum.paid_dates && datum.paid_dates.length > 0)
+		.filter(({ isPaid }: any) => isPaid)
 		.reduce((acc, datum) => {
 			acc.push(datum.name);
 			return acc;

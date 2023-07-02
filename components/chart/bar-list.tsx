@@ -21,7 +21,7 @@ export default function TopSpentExpenses() {
 	}
 
 	if (!chartData.length) {
-		return <p className="mt-16 h-48 text-center text-sm">No data</p>;
+		return <p className="flex h-64 items-center justify-center text-sm">No data</p>;
 	}
 
 	return (
