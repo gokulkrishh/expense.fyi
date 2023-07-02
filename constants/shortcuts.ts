@@ -3,7 +3,7 @@ const shortcuts = {
 		open: { shortcut: 'f', text: 'open feedback' },
 	},
 	modal: {
-		open: { shortcut: 'a', text: 'open expense' },
+		open: { shortcut: 'a', text: 'open add' },
 	},
 	menu: {
 		expenses: { shortcut: 'e', text: 'expenses' },
