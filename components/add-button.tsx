@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { PlusIcon } from 'lucide-react';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
@@ -10,8 +11,11 @@ import shortcuts from 'constants/shortcuts';
 
 import AddExpense from './add/expenses';
 
+const openShortcutKey = Object.values(shortcuts.modal.open.shortcut);
+
 export default function Add({ onClick }: { onClick?: any }) {
 	const [show, setShow] = useState(false);
+	useHotkeys(openShortcutKey, () => setShow(true));
 
 	return (
 		<>
