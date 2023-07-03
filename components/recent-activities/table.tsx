@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 
 import { useUser } from 'components/context/auth-provider';
 import { useOverview } from 'components/context/overview-provider';
-import { DataTable } from 'components/table/data-table';
+import { DataTable } from 'components/recent-activities/data-table';
 
 import { extractRecentData } from 'lib/extractor';
 import { formatCurrency } from 'lib/formatter';

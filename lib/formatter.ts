@@ -2,7 +2,7 @@ import { dateFormat } from 'constants/date';
 
 const defaultCurrency = 'INR';
 const defaultLocale = 'en-IN';
-const defaultDateStyle = { day: '2-digit', month: 'short', year: '' };
+const defaultDateStyle = { day: '2-digit', month: 'short', year: 'numeric' };
 const timeStyle = { hour: 'numeric', minute: 'numeric' };
 const currencyStyle = { style: 'currency', currency: '', minimumFractionDigits: 2, maximumFractionDigits: 2 };
 
@@ -15,7 +15,7 @@ type Currency = {
 type Date = {
 	date: string;
 	locale?: string;
-	dateStyle: any;
+	dateStyle?: any;
 };
 
 export const formatCurrency = ({ value, currency = defaultCurrency, locale = defaultLocale }: Currency) => {
