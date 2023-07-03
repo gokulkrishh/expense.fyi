@@ -255,9 +255,9 @@ export default async function Page() {
 	return (
 		<>
 			<LayoutHeader title="expenses" />
-			<div className="p-4 pt-3">
+			<div className="w-full overflow-x-auto p-4 pt-3">
 				{/* <ExpensesSummary /> */}
-				<h2 className="mb-4 mt-4 font-semibold text-primary dark:text-white">Reports</h2>
+
 				<DataTable columns={columns} data={data} />
 			</div>
 		</>

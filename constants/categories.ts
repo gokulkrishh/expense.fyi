@@ -90,7 +90,11 @@ export const groupedExpenses: GroupedExpensesCategory = {
 	},
 };
 
-export const incomeCategory = {
+interface Income {
+	[key: string]: string;
+}
+
+export const incomeCategory: Income = {
 	'': 'Select',
 	ads: 'Ads',
 	other: 'Other',
@@ -99,7 +103,11 @@ export const incomeCategory = {
 	youtube: 'Youtube',
 };
 
-export const investmentCategory = {
+interface Investments {
+	[key: string]: string;
+}
+
+export const investmentCategory: Investments = {
 	'': 'Select',
 	crypto: 'Crypto Currency',
 	indianstock: 'Indian Stock',

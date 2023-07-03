@@ -8,9 +8,9 @@ import { Button } from 'components/ui/button';
 import { formatCurrency, formatDate } from 'lib/formatter';
 import { cn } from 'lib/utils';
 
-import { expensesCategory, expensesPay } from 'constants/categories';
+import { investmentCategory } from 'constants/categories';
 
-export type Expenses = {
+export type Investments = {
 	name: string;
 	date: string;
 	price: string;
@@ -31,19 +31,11 @@ const getSortedClassName = (column: any) => {
 	return cn({ 'font-semibold': isSorted(column) });
 };
 
-export const columns: ColumnDef<Expenses>[] = [
+export const columns: ColumnDef<Investments>[] = [
 	{
 		accessorKey: 'name',
 		header: () => {
 			return <div className="font-medium text-black dark:text-white">Name</div>;
-		},
-		cell: ({ row }) => {
-			const category = row.getValue<string>('category');
-			return (
-				<div className="font-medium">
-					<span className="mr-2">{expensesCategory[category]?.emoji}</span> {row.getValue('name')}
-				</div>
-			);
 		},
 	},
 	{
@@ -72,6 +64,29 @@ export const columns: ColumnDef<Expenses>[] = [
 		},
 	},
 	{
+		accessorKey: 'units',
+		header: ({ column }) => {
+			return (
+				<Button
+					className={cn(`p-0 text-xs uppercase text-black dark:text-white`, getSortedClassName(column))}
+					variant="ghost"
+					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+				>
+					Units
+					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
+				</Button>
+			);
+		},
+		cell: (props) => {
+			const {
+				row,
+				table: { options },
+			} = props;
+			const units = parseFloat(row.getValue('units'));
+			return <div className="font-medium">{units}</div>;
+		},
+	},
+	{
 		accessorKey: 'date',
 		header: ({ column }) => {
 			return (
@@ -80,7 +95,7 @@ export const columns: ColumnDef<Expenses>[] = [
 					variant="ghost"
 					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
 				>
-					Spent date
+					Bought date
 					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
 				</Button>
 			);
@@ -112,28 +127,10 @@ export const columns: ColumnDef<Expenses>[] = [
 		},
 		cell: ({ row }) => {
 			const category = row.getValue<string>('category');
-			return <div className="">{expensesCategory[category]?.name}</div>;
+			return <div className="">{investmentCategory[category]}</div>;
 		},
 	},
-	{
-		accessorKey: 'paid_via',
-		header: ({ column }) => {
-			return (
-				<Button
-					className={cn(`p-0 text-xs uppercase text-black dark:text-white`, getSortedClassName(column))}
-					variant="ghost"
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					Paid via
-					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
-				</Button>
-			);
-		},
-		cell: ({ row }) => {
-			const paid_via = row.getValue<string>('paid_via');
-			return <div className="">{expensesPay[paid_via]?.name}</div>;
-		},
-	},
+
 	{ accessorKey: 'notes', header: 'Notes' },
 	{
 		accessorKey: 'actions',
