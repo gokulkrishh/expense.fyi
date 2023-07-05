@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from 'components/ui/card';
 
-type Summary = { title: String; data: String; icon?: any };
+type Summary = { title: String; data: any; icon?: any };
 
 export default function SummaryCard({ title, data, icon: Icon }: Summary) {
 	return (

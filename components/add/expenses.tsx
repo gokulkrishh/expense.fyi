@@ -187,7 +187,7 @@ export default function AddExpense({ show, onHide }: AddExpenseProps) {
 						Notes <span className="mb-6 text-center text-sm text-muted-foreground">(optional)</span>
 					</Label>
 					<Textarea
-						className="h-18"
+						className="h-20"
 						onChange={(event) => setState({ ...state, notes: event.target.value })}
 						value={state.notes}
 						maxLength={60}

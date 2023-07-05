@@ -37,7 +37,6 @@ export default function RecentActivitiesTable() {
 
 	return (
 		<DataTable
-			loading={false}
 			columns={columns}
 			data={recentData.map((datum, index) => ({
 				no: `${index + 1}.`,

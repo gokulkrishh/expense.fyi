@@ -10,6 +10,8 @@ import { cn } from 'lib/utils';
 
 import { expensesCategory, expensesPay } from 'constants/categories';
 
+import { DataTableColumnHeader } from './data-table-column-header';
+
 export type Expenses = {
 	name: string;
 	date: string;
@@ -34,9 +36,7 @@ const getSortedClassName = (column: any) => {
 export const columns: ColumnDef<Expenses>[] = [
 	{
 		accessorKey: 'name',
-		header: () => {
-			return <div className="font-medium text-black dark:text-white">Name</div>;
-		},
+		header: ({ column }) => <DataTableColumnHeader column={column} title="name" />,
 		cell: ({ row }) => {
 			const category = row.getValue<string>('category');
 			return (
@@ -48,18 +48,7 @@ export const columns: ColumnDef<Expenses>[] = [
 	},
 	{
 		accessorKey: 'price',
-		header: ({ column }) => {
-			return (
-				<Button
-					className={cn(`p-0 text-xs uppercase text-black dark:text-white`, getSortedClassName(column))}
-					variant="ghost"
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					Price
-					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
-				</Button>
-			);
-		},
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Price" />,
 		cell: (props) => {
 			const {
 				row,
@@ -73,18 +62,7 @@ export const columns: ColumnDef<Expenses>[] = [
 	},
 	{
 		accessorKey: 'date',
-		header: ({ column }) => {
-			return (
-				<Button
-					className={cn(`p-0 text-xs uppercase text-black dark:text-white`, getSortedClassName(column))}
-					variant="ghost"
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					Spent date
-					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
-				</Button>
-			);
-		},
+		header: ({ column }) => <DataTableColumnHeader column={column} title="spent date" />,
 		cell: (props) => {
 			const {
 				row,
@@ -98,18 +76,7 @@ export const columns: ColumnDef<Expenses>[] = [
 	},
 	{
 		accessorKey: 'category',
-		header: ({ column }) => {
-			return (
-				<Button
-					className={cn(`p-0 text-xs uppercase text-black dark:text-white`, getSortedClassName(column))}
-					variant="ghost"
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					Category
-					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
-				</Button>
-			);
-		},
+		header: ({ column }) => <DataTableColumnHeader column={column} title="category" />,
 		cell: ({ row }) => {
 			const category = row.getValue<string>('category');
 			return <div className="">{expensesCategory[category]?.name}</div>;
@@ -117,27 +84,15 @@ export const columns: ColumnDef<Expenses>[] = [
 	},
 	{
 		accessorKey: 'paid_via',
-		header: ({ column }) => {
-			return (
-				<Button
-					className={cn(`p-0 text-xs uppercase text-black dark:text-white`, getSortedClassName(column))}
-					variant="ghost"
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					Paid via
-					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
-				</Button>
-			);
-		},
+		header: ({ column }) => <DataTableColumnHeader column={column} title="paid" />,
 		cell: ({ row }) => {
 			const paid_via = row.getValue<string>('paid_via');
 			return <div className="">{expensesPay[paid_via]?.name}</div>;
 		},
 	},
-	{ accessorKey: 'notes', header: 'Notes' },
+	{ accessorKey: 'notes' },
 	{
 		accessorKey: 'actions',
-		header: 'ACTIONS',
 		cell: ({ row }) => {
 			return (
 				<div className="flex">

@@ -7,6 +7,7 @@ const home = isProduction ? domain : local;
 const url = {
 	homeWithoutApp: home,
 	home: `//${home}`,
+	api: `${isProduction ? 'https://app.' : 'http://app.'}${home}`,
 	app: {
 		signin: `//app.${home}/signin`,
 		signup: `//app.${home}/signup`,

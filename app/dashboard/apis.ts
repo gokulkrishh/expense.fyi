@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 
 import { dateFormat } from 'constants/date';
+import url from 'constants/url';
 
 type Expenses = {
 	from: string;
@@ -10,7 +11,10 @@ type Expenses = {
 
 export const getExpenses = async ({ from, to, categories = [] }: Expenses) => {
 	if (from && to) {
-		const res = await fetch(`/api/expenses`, { method: 'POST', body: JSON.stringify({ from, to, categories }) });
+		const res = await fetch(`${url.api}/api/expenses`, {
+			method: 'POST',
+			body: JSON.stringify({ from, to, categories }),
+		});
 		if (!res.ok) {
 			return [];
 		}
@@ -21,7 +25,7 @@ export const getExpenses = async ({ from, to, categories = [] }: Expenses) => {
 export const getSubscriptions = async ({ from, to }: { from: string; to: string }) => {
 	if (from && to) {
 		const res = await fetch(
-			`/api/subscriptions?from=${format(new Date(from), dateFormat)}&to=${format(new Date(to), dateFormat)}`
+			`${url.api}/api/subscriptions?from=${format(new Date(from), dateFormat)}&to=${format(new Date(to), dateFormat)}`
 		);
 		if (!res.ok) {
 			return [];
@@ -33,7 +37,7 @@ export const getSubscriptions = async ({ from, to }: { from: string; to: string 
 export const getInvestments = async ({ from, to }: { from: string; to: string }) => {
 	if (from && to) {
 		const res = await fetch(
-			`/api/investments?from=${format(new Date(from), dateFormat)}&to=${format(new Date(to), dateFormat)}`
+			`${url.api}/api/investments?from=${format(new Date(from), dateFormat)}&to=${format(new Date(to), dateFormat)}`
 		);
 		if (!res.ok) {
 			return [];
@@ -45,19 +49,11 @@ export const getInvestments = async ({ from, to }: { from: string; to: string })
 export const getIncome = async ({ from, to }: { from: string; to: string }) => {
 	if (from && to) {
 		const res = await fetch(
-			`/api/income?from=${format(new Date(from), dateFormat)}&to=${format(new Date(to), dateFormat)}`
+			`${url.api}/api/income?from=${format(new Date(from), dateFormat)}&to=${format(new Date(to), dateFormat)}`
 		);
 		if (!res.ok) {
 			return [];
 		}
 		return await res.json();
 	}
-};
-
-export const getUser = async () => {
-	const res = await fetch(`/api/user`);
-	if (!res.ok) {
-		return {};
-	}
-	return await res.json();
 };

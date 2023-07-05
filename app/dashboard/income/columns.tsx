@@ -111,7 +111,6 @@ export const columns: ColumnDef<Income>[] = [
 	{ accessorKey: 'notes', header: 'Notes' },
 	{
 		accessorKey: 'actions',
-		header: 'ACTIONS',
 		cell: ({ row }) => {
 			return (
 				<div className="flex">

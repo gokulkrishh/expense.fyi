@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { DropdownMenuRadioGroup, DropdownMenuRadioItem } from '@radix-ui/react-dropdown-menu';
 import {
 	ColumnDef,
 	ColumnFiltersState,
@@ -14,9 +15,11 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from '@tanstack/react-table';
-import { SlidersHorizontal } from 'lucide-react';
+import { format } from 'date-fns';
+import { Filter, SlidersHorizontal } from 'lucide-react';
 
 import { useUser } from 'components/context/auth-provider';
+import { useExpenses } from 'components/context/expenses-provider';
 import { Button } from 'components/ui/button';
 import {
 	DropdownMenu,
@@ -25,7 +28,15 @@ import {
 	DropdownMenuTrigger,
 } from 'components/ui/dropdown-menu';
 import { Input } from 'components/ui/input';
+import { Skeleton } from 'components/ui/skeleton';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'components/ui/table';
+
+import { dateFormat } from 'constants/date';
+
+import { columns } from './columns';
+import { DataTableToolbar } from './data-table-toolbar';
+
+const emptyData = [{}, {}, {}, {}, {}];
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -38,12 +49,17 @@ declare module '@tanstack/react-table' {
 	}
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+const TableLoadingCell = () => {
+	return <Skeleton className="h-[20px] w-[60%] rounded-md pr-2" />;
+};
+
+export function DataTable<TData, TValue>() {
+	const user = useUser();
+	const { data, loading, filter, setFilter } = useExpenses();
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = useState({});
-	const user = useUser();
 
 	const table = useReactTable({
 		data,
@@ -60,39 +76,14 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
 	});
 
 	return (
-		<div>
-			<div className="flex items-center justify-end py-4">
-				<Input
-					placeholder="Filter name..."
-					value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-					onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
-					className="mr-4 max-w-sm"
-				/>
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button className="text-primary" variant="outline">
-							<SlidersHorizontal className="mr-[5px] h-[14px] w-[14px]" /> View
-						</Button>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end">
-						{table
-							.getAllColumns()
-							.filter((column) => column.getCanHide())
-							.map((column) => {
-								return (
-									<DropdownMenuCheckboxItem
-										key={column.id}
-										className="capitalize"
-										checked={column.getIsVisible()}
-										onCheckedChange={(value) => column.toggleVisibility(!!value)}
-									>
-										{column.id}
-									</DropdownMenuCheckboxItem>
-								);
-							})}
-					</DropdownMenuContent>
-				</DropdownMenu>
-			</div>
+		<div className="mb-8">
+			<DataTableToolbar
+				filename={`Expenses-${format(new Date(), dateFormat)}.csv`}
+				filter={filter}
+				setFilter={setFilter}
+				loading={loading || (!loading && !data.length)}
+				table={table}
+			/>
 			<div className="rounded-md border border-border">
 				<Table>
 					<TableHeader className="bg-muted">
@@ -117,6 +108,22 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
 									))}
 								</TableRow>
 							))
+						) : loading && table.getRowModel().rows?.length === 0 ? (
+							<>
+								{emptyData.map((_, index) => {
+									return (
+										<TableRow key={index}>
+											{Array.from({ length: columns.length }).map((_, idx) => {
+												return (
+													<TableCell className="p-3" key={idx}>
+														<TableLoadingCell />
+													</TableCell>
+												);
+											})}
+										</TableRow>
+									);
+								})}
+							</>
 						) : (
 							<TableRow>
 								<TableCell colSpan={columns.length} className="h-24 text-center">
