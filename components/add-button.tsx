@@ -13,7 +13,7 @@ import AddExpense from './add/expenses';
 
 const openShortcutKey = Object.values(shortcuts.modal.open.shortcut);
 
-export default function Add({ onClick }: { onClick?: any }) {
+export default function Add({ mutate }: { mutate?: any }) {
 	const [show, setShow] = useState(false);
 	useHotkeys(openShortcutKey, () => setShow(true));
 
@@ -37,7 +37,7 @@ export default function Add({ onClick }: { onClick?: any }) {
 					</kbd>{' '}
 				</TooltipContent>
 			</Tooltip>
-			<AddExpense show={show} selected={{}} onHide={() => setShow(false)} onSubmit={() => setShow(false)} />
+			<AddExpense show={show} selected={{}} mutate={mutate} onHide={() => setShow(false)} />
 		</>
 	);
 }

@@ -1,8 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
-import { DropdownMenuRadioGroup, DropdownMenuRadioItem } from '@radix-ui/react-dropdown-menu';
 import {
 	ColumnDef,
 	ColumnFiltersState,
@@ -16,36 +15,25 @@ import {
 	useReactTable,
 } from '@tanstack/react-table';
 import { format } from 'date-fns';
-import { Filter, SlidersHorizontal } from 'lucide-react';
 
+import Add from 'components/add-button';
 import { useUser } from 'components/context/auth-provider';
 import { useExpenses } from 'components/context/expenses-provider';
-import { Button } from 'components/ui/button';
-import {
-	DropdownMenu,
-	DropdownMenuCheckboxItem,
-	DropdownMenuContent,
-	DropdownMenuTrigger,
-} from 'components/ui/dropdown-menu';
-import { Input } from 'components/ui/input';
 import { Skeleton } from 'components/ui/skeleton';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'components/ui/table';
 
 import { dateFormat } from 'constants/date';
 
+import { deleteExpense } from './apis';
 import { columns } from './columns';
 import { DataTableToolbar } from './data-table-toolbar';
 
 const emptyData = [{}, {}, {}, {}, {}];
 
-interface DataTableProps<TData, TValue> {
-	columns: ColumnDef<TData, TValue>[];
-	data: TData[];
-}
-
 declare module '@tanstack/react-table' {
 	interface TableMeta<TData extends RowData> {
 		user: { locale: string; currency: string };
+		onDelete: (id: any) => void;
 	}
 }
 
@@ -55,11 +43,17 @@ const TableLoadingCell = () => {
 
 export function DataTable<TData, TValue>() {
 	const user = useUser();
-	const { data, loading, filter, setFilter } = useExpenses();
+	const { data, loading, filter, setFilter, mutate } = useExpenses();
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = useState({});
+
+	const onDelete = useCallback(async (id: any) => {
+		await deleteExpense(id);
+		mutate();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const table = useReactTable({
 		data,
@@ -72,7 +66,7 @@ export function DataTable<TData, TValue>() {
 		onColumnVisibilityChange: setColumnVisibility,
 		onRowSelectionChange: setRowSelection,
 		state: { sorting, columnFilters, columnVisibility, rowSelection },
-		meta: { user },
+		meta: { user, onDelete },
 	});
 
 	return (
@@ -134,6 +128,7 @@ export function DataTable<TData, TValue>() {
 					</TableBody>
 				</Table>
 			</div>
+			<Add mutate={mutate} />
 		</div>
 	);
 }

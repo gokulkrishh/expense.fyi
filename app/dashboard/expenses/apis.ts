@@ -1,9 +1,3 @@
-import { cache } from 'react';
-
-import { format } from 'date-fns';
-
-import { dateFormat } from 'constants/date';
-
 type ExpenseData = {
 	notes: string;
 	name: string;
@@ -15,5 +9,10 @@ type ExpenseData = {
 
 export const addExpense = async (data: ExpenseData) => {
 	const res = await fetch(`/api/expenses/add`, { method: 'POST', body: JSON.stringify(data) });
+	return await res.json();
+};
+
+export const deleteExpense = async (id: string) => {
+	const res = await fetch(`/api/expenses`, { method: 'DELETE', body: JSON.stringify({ id: [id] }) });
 	return await res.json();
 };

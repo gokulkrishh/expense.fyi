@@ -10,6 +10,7 @@ const messages = {
 	premiumUpgrade: 'Upgrade for access to premium features.',
 	request: {
 		failed: 'Failed to get the data',
+		invalid: 'Invalid request',
 	},
 	account: {
 		doesntexist: 'No such account, Sign up instead.',

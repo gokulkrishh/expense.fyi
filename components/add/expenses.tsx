@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { addExpense } from 'app/dashboard/expenses/apis';
 import { format } from 'date-fns';
 import useAutoFocus from 'hooks/useAutoFocus';
 
 import { useUser } from 'components/context/auth-provider';
+import { useExpenses } from 'components/context/expenses-provider';
 import CircleLoader from 'components/loader/circle';
 import Modal from 'components/modal';
 import { Button } from 'components/ui/button';
@@ -25,7 +26,7 @@ interface AddExpenseProps {
 	show: boolean;
 	selected: any;
 	onHide: () => void;
-	onSubmit: () => void;
+	mutate: () => void;
 }
 
 const todayDate = format(new Date(), dateFormat);
@@ -39,11 +40,18 @@ const initialState = {
 	date: todayDate,
 };
 
-export default function AddExpense({ show, onHide }: AddExpenseProps) {
-	const inputRef = useAutoFocus();
+export default function AddExpense({ show, onHide, mutate }: AddExpenseProps) {
+	const inputRef = useRef<any>(null);
+	const someRef = useRef<any>(null);
+
+	useEffect(() => {
+		inputRef.current?.focus();
+	}, []);
+
 	const user = useUser();
 	const [state, setState] = useState(initialState);
 	const [loading, setLoading] = useState(false);
+
 	const { toast } = useToast();
 
 	const onLookup = (value: string) => {};
@@ -57,13 +65,14 @@ export default function AddExpense({ show, onHide }: AddExpenseProps) {
 		} catch {
 			toast({ description: messages.error, variant: 'destructive' });
 		} finally {
-			setState({ ...initialState });
+			if (mutate) mutate();
 			onHide();
+			setState({ ...initialState });
 		}
 	};
 
 	return (
-		<Modal inputRef={inputRef} show={show} title={`Add Expense`} onHide={onHide}>
+		<Modal someRef={someRef} show={show} title={`Add Expense`} onHide={onHide}>
 			<div className="sm:flex sm:items-start">
 				<form
 					className="md:[420px] grid w-full grid-cols-1 items-center gap-3"
@@ -80,6 +89,7 @@ export default function AddExpense({ show, onHide }: AddExpenseProps) {
 						required
 						ref={inputRef}
 						autoFocus
+						autoComplete="off"
 						onChange={({ target }) => {
 							const { value } = target;
 							if (value.length) {

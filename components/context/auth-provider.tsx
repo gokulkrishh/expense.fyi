@@ -5,7 +5,9 @@ import { useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { SWRConfig } from 'swr';
 
+import fetcher from 'lib/fetcher';
 import prisma from 'lib/prisma';
 
 interface User {}
@@ -79,7 +81,7 @@ export const AuthProvider = (props: any) => {
 
 	return (
 		<AuthContext.Provider value={value} {...others}>
-			{session ? children : null}
+			<SWRConfig value={{ fetcher }}>{session ? children : null}</SWRConfig>
 		</AuthContext.Provider>
 	);
 };

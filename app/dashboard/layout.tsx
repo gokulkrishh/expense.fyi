@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { SWRConfig } from 'swr';
 
 import { AuthProvider } from 'components/context/auth-provider';
 import DashboardLayout from 'components/layout';
@@ -10,6 +11,7 @@ import { ThemeProvider } from 'components/theme-provider';
 import { Toaster } from 'components/ui/toaster';
 
 import { Database } from 'lib/database.types';
+import fetcher from 'lib/fetcher';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -62,7 +64,6 @@ export default async function Layout({ children }: any) {
 						</ThemeProvider>
 						<Toaster />
 					</AuthProvider>
-					<div id="modal-root"></div>
 				</body>
 			</html>
 		</>

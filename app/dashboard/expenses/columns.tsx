@@ -10,6 +10,7 @@ import { cn } from 'lib/utils';
 
 import { expensesCategory, expensesPay } from 'constants/categories';
 
+import { deleteExpense } from './apis';
 import { DataTableColumnHeader } from './data-table-column-header';
 
 export type Expenses = {
@@ -93,14 +94,24 @@ export const columns: ColumnDef<Expenses>[] = [
 	{ accessorKey: 'notes' },
 	{
 		accessorKey: 'actions',
-		cell: ({ row }) => {
+		cell: (props) => {
+			const {
+				row,
+				table: { options },
+			} = props;
+			const onDelete = options.meta?.onDelete;
 			return (
 				<div className="flex">
 					<Button className="mr-1 rounded-lg p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
 						<Pencil className="h-4 w-4" />
 					</Button>
 					<Button className="ml-2 rounded-lg p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
-						<Trash2 className="h-4 w-4" />
+						<Trash2
+							className="h-4 w-4"
+							onClick={() => {
+								onDelete(row.original?.id);
+							}}
+						/>
 					</Button>
 				</div>
 			);
