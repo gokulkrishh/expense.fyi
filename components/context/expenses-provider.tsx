@@ -1,9 +1,7 @@
 'use client';
 
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 
-import { getExpenses } from 'app/dashboard/apis';
-import { format, startOfMonth, startOfWeek } from 'date-fns';
 import useSWR from 'swr';
 
 import { dateFormat } from 'constants/date';
@@ -19,6 +17,7 @@ interface Data {
 export const ExpensesContextProvider = (props: any) => {
 	const [filter, setFilter] = useState(views.thisMonth.key);
 	const [categories, setCategories] = useState([]);
+
 	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filter, 'expenses', categories));
 	const { children, ...others } = props;
 
