@@ -34,7 +34,7 @@ export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TDa
 
 	return (
 		<div className={`mb-4 mt-10 flex flex-col items-center justify-between sm:flex-row ${className}`}>
-			<div className="mb-4 flex w-full flex-1 items-center space-x-2 sm:mb-0 sm:w-[250px] lg:w-[350px]">
+			<div className="mb-4 flex w-full flex-1 items-center space-x-2 sm:mb-0 sm:max-w-[300px] md:max-w-[350px]">
 				<Input
 					disabled={loading}
 					placeholder="Filter by name"

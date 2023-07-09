@@ -11,10 +11,12 @@ import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 import shortcuts from 'constants/shortcuts';
 
 import AddExpense from './add/expenses';
+import AddIncome from './add/income';
+import AddInvestments from './add/investments';
 
 const openShortcutKey = Object.values(shortcuts.modal.open.shortcut);
 
-type TypeProps = 'expenses' | 'income' | 'investment' | 'subscription';
+type TypeProps = 'expenses' | 'income' | 'investments' | 'subscriptions';
 
 type AddProps = {
 	mutate?: any;
@@ -56,6 +58,30 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			</Tooltip>
 			{type === 'expenses' ? (
 				<AddExpense
+					lookup={onLookup}
+					show={show}
+					selected={selected}
+					mutate={mutate}
+					onHide={() => {
+						if (onHide) onHide();
+						setShow(false);
+					}}
+				/>
+			) : null}
+			{type === 'income' ? (
+				<AddIncome
+					lookup={onLookup}
+					show={show}
+					selected={selected}
+					mutate={mutate}
+					onHide={() => {
+						if (onHide) onHide();
+						setShow(false);
+					}}
+				/>
+			) : null}
+			{type === 'investments' ? (
+				<AddInvestments
 					lookup={onLookup}
 					show={show}
 					selected={selected}

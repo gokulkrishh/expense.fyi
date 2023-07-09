@@ -35,7 +35,7 @@ export default function DataTableColumnHeader<TData, TValue>({
 						) : column.getIsSorted() === 'asc' ? (
 							<ArrowUpIcon className="ml-1 mt-[-1px] h-3.5 w-3.5" />
 						) : (
-							<CaretSortIcon className="ml-1 mt-[-1px] h-3.5 w-3.5" />
+							<CaretSortIcon className="ml-1 mt-[1px] h-3.5 w-3.5" />
 						)}
 					</Button>
 				</DropdownMenuTrigger>

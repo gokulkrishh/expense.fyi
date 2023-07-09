@@ -57,13 +57,7 @@ export default function DataTable<TData, TValue>(props: DataTableProps) {
 
 	return (
 		<div className="mb-8">
-			<DataTableToolbar
-				user={options.user}
-				filename={filename}
-				filter={filter}
-				loading={loading || (!loading && !data.length)}
-				table={table}
-			/>
+			<DataTableToolbar user={options.user} filename={filename} filter={filter} loading={loading} table={table} />
 			<div className="rounded-md border border-border">
 				<Table>
 					<TableHeader className="bg-muted">

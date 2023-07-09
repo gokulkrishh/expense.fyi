@@ -3,6 +3,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown, Pencil, Trash2 } from 'lucide-react';
 
+import DataTableColumnHeader from 'components/table/data-table-column-header';
 import { Button } from 'components/ui/button';
 
 import { formatCurrency, formatDate } from 'lib/formatter';
@@ -15,7 +16,7 @@ export type Investments = {
 	date: string;
 	price: string;
 	category: string;
-	paid_via: string;
+	units: number;
 	notes: string;
 	created_at: string;
 	updated_at: string;
@@ -23,35 +24,14 @@ export type Investments = {
 	actions: string;
 };
 
-const isSorted = (column: any) => {
-	return column.getIsSorted() === 'asc' || column.getIsSorted() === 'desc';
-};
-
-const getSortedClassName = (column: any) => {
-	return cn({ 'font-semibold': isSorted(column) });
-};
-
 export const columns: ColumnDef<Investments>[] = [
 	{
 		accessorKey: 'name',
-		header: () => {
-			return <div className="font-medium text-black dark:text-white">Name</div>;
-		},
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Name" />,
 	},
 	{
 		accessorKey: 'price',
-		header: ({ column }) => {
-			return (
-				<Button
-					className={cn(`p-0 text-xs uppercase text-black dark:text-white`, getSortedClassName(column))}
-					variant="ghost"
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					Price
-					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
-				</Button>
-			);
-		},
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Price" />,
 		cell: (props) => {
 			const {
 				row,
@@ -65,18 +45,7 @@ export const columns: ColumnDef<Investments>[] = [
 	},
 	{
 		accessorKey: 'units',
-		header: ({ column }) => {
-			return (
-				<Button
-					className={cn(`p-0 text-xs uppercase text-black dark:text-white`, getSortedClassName(column))}
-					variant="ghost"
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					Units
-					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
-				</Button>
-			);
-		},
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Units" />,
 		cell: (props) => {
 			const {
 				row,
@@ -88,18 +57,7 @@ export const columns: ColumnDef<Investments>[] = [
 	},
 	{
 		accessorKey: 'date',
-		header: ({ column }) => {
-			return (
-				<Button
-					className={cn(`p-0 text-xs uppercase text-black dark:text-white`, getSortedClassName(column))}
-					variant="ghost"
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					Bought date
-					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
-				</Button>
-			);
-		},
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Bought Date" />,
 		cell: (props) => {
 			const {
 				row,
@@ -113,18 +71,7 @@ export const columns: ColumnDef<Investments>[] = [
 	},
 	{
 		accessorKey: 'category',
-		header: ({ column }) => {
-			return (
-				<Button
-					className={cn(`p-0 text-xs uppercase text-black dark:text-white`, getSortedClassName(column))}
-					variant="ghost"
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					Category
-					<ArrowUpDown className={cn(`ml-1 h-3 w-3 ${getSortedClassName(column)}`)} />
-				</Button>
-			);
-		},
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Category" />,
 		cell: ({ row }) => {
 			const category = row.getValue<string>('category');
 			return <div className="">{investmentCategory[category]}</div>;
@@ -134,15 +81,30 @@ export const columns: ColumnDef<Investments>[] = [
 	{ accessorKey: 'notes', header: 'Notes' },
 	{
 		accessorKey: 'actions',
-		header: 'ACTIONS',
-		cell: ({ row }) => {
+		cell: (props) => {
+			const {
+				row,
+				table: {
+					options: { meta },
+				},
+			} = props;
 			return (
 				<div className="flex">
 					<Button className="mr-1 rounded-lg p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
-						<Pencil className="h-4 w-4" />
+						<Pencil
+							className="h-4 w-4"
+							onClick={() => {
+								meta?.onEdit(row.original);
+							}}
+						/>
 					</Button>
 					<Button className="ml-2 rounded-lg p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
-						<Trash2 className="h-4 w-4" />
+						<Trash2
+							className="h-4 w-4"
+							onClick={() => {
+								meta?.onDelete(row.original?.id);
+							}}
+						/>
 					</Button>
 				</div>
 			);

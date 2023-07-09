@@ -1,9 +1,9 @@
 import Summary from 'components/card/summary';
+import { IncomeContextProvider } from 'components/context/income-provider';
 import LayoutHeader from 'components/layout/header';
-import ExpensesSummary from 'components/summary/expenses';
 
-import { columns } from './columns';
-import { DataTable } from './data-table';
+import IncomeSummary from './summary';
+import IncomeTable from './table';
 
 const title = 'Expense.fyi – Income';
 const description = 'Effortlessly Track and Manage Expenses.';
@@ -264,9 +264,12 @@ export default async function Page() {
 	return (
 		<>
 			<LayoutHeader title="income" />
-			<div className="w-full overflow-x-auto p-4 pt-3">
-				<DataTable columns={columns} data={data} />
-			</div>
+			<IncomeContextProvider>
+				<div className="w-full overflow-x-auto p-4 pt-3">
+					<IncomeSummary />
+					<IncomeTable />
+				</div>
+			</IncomeContextProvider>
 		</>
 	);
 }

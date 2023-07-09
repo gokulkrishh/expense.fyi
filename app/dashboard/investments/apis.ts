@@ -1,18 +1,23 @@
-import { cache } from 'react';
-
-import { format } from 'date-fns';
-
-import { dateFormat } from 'constants/date';
-
-type InvestmentData = {
+export type InvestmentData = {
 	notes: string;
 	name: string;
 	price: string;
 	category: string;
+	units: number;
 	date: string;
 };
 
 export const addInvestment = async (data: InvestmentData) => {
 	const res = await fetch(`/api/investments/add`, { method: 'POST', body: JSON.stringify(data) });
+	return await res.json();
+};
+
+export const deleteInvestment = async (id: string) => {
+	const res = await fetch(`/api/investments`, { method: 'DELETE', body: JSON.stringify({ id: [id] }) });
+	return await res.json();
+};
+
+export const editInvestment = async (data: InvestmentData) => {
+	const res = await fetch(`/api/investments`, { method: 'PUT', body: JSON.stringify(data) });
 	return await res.json();
 };

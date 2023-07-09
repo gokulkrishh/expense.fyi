@@ -1,7 +1,7 @@
 import { ExpensesContextProvider } from 'components/context/expenses-provider';
 import LayoutHeader from 'components/layout/header';
-import ExpensesSummary from 'components/summary/expenses';
 
+import ExpensesSummary from './summary';
 import ExpenseTable from './table';
 
 const title = 'Expense.fyi – Expenses';
