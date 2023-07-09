@@ -1,9 +1,8 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import {
-	ColumnDef,
 	ColumnFiltersState,
 	RowData,
 	SortingState,
@@ -14,46 +13,35 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from '@tanstack/react-table';
-import { format } from 'date-fns';
 
 import Add from 'components/add-button';
-import { useUser } from 'components/context/auth-provider';
-import { useExpenses } from 'components/context/expenses-provider';
-import { Skeleton } from 'components/ui/skeleton';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'components/ui/table';
 
-import { dateFormat } from 'constants/date';
-
-import { deleteExpense } from './apis';
-import { columns } from './columns';
-import { DataTableToolbar } from './data-table-toolbar';
-
-const emptyData = [{}, {}, {}, {}, {}];
+import TableLoader from './data-table-loader';
+import DataTableToolbar from './data-table-toolbar';
 
 declare module '@tanstack/react-table' {
 	interface TableMeta<TData extends RowData> {
 		user: { locale: string; currency: string };
 		onDelete: (id: any) => void;
+		onEdit: (id: any) => void;
 	}
 }
 
-const TableLoadingCell = () => {
-	return <Skeleton className="h-[20px] w-[60%] rounded-md pr-2" />;
+type DataTableProps = {
+	data: Array<any>;
+	columns: Array<any>;
+	loading: boolean;
+	filter: { name: string; setFilter: (filter: string) => void };
+	options: { user: { locale: string; currency: string }; onDelete: (id: string) => void; onEdit: (id: string) => void };
+	filename: string;
 };
 
-export function DataTable<TData, TValue>() {
-	const user = useUser();
-	const { data, loading, filter, setFilter, mutate } = useExpenses();
+export default function DataTable<TData, TValue>(props: DataTableProps) {
+	const { data, columns, loading, filter, options, filename } = props;
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-	const [rowSelection, setRowSelection] = useState({});
-
-	const onDelete = useCallback(async (id: any) => {
-		await deleteExpense(id);
-		mutate();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	const table = useReactTable({
 		data,
@@ -64,17 +52,16 @@ export function DataTable<TData, TValue>() {
 		onColumnFiltersChange: setColumnFilters,
 		getFilteredRowModel: getFilteredRowModel(),
 		onColumnVisibilityChange: setColumnVisibility,
-		onRowSelectionChange: setRowSelection,
-		state: { sorting, columnFilters, columnVisibility, rowSelection },
-		meta: { user, onDelete },
+		state: { sorting, columnFilters, columnVisibility },
+		meta: options,
 	});
 
 	return (
 		<div className="mb-8">
 			<DataTableToolbar
-				filename={`Expenses-${format(new Date(), dateFormat)}.csv`}
+				user={options.user}
+				filename={filename}
 				filter={filter}
-				setFilter={setFilter}
 				loading={loading || (!loading && !data.length)}
 				table={table}
 			/>
@@ -103,21 +90,7 @@ export function DataTable<TData, TValue>() {
 								</TableRow>
 							))
 						) : loading && table.getRowModel().rows?.length === 0 ? (
-							<>
-								{emptyData.map((_, index) => {
-									return (
-										<TableRow key={index}>
-											{Array.from({ length: columns.length }).map((_, idx) => {
-												return (
-													<TableCell className="p-3" key={idx}>
-														<TableLoadingCell />
-													</TableCell>
-												);
-											})}
-										</TableRow>
-									);
-								})}
-							</>
+							<TableLoader rows={5} columns={columns.length} />
 						) : (
 							<TableRow>
 								<TableCell colSpan={columns.length} className="h-24 text-center">
@@ -128,7 +101,7 @@ export function DataTable<TData, TValue>() {
 					</TableBody>
 				</Table>
 			</div>
-			<Add mutate={mutate} />
+			<Add />
 		</div>
 	);
 }

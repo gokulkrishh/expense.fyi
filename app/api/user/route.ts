@@ -26,7 +26,7 @@ export async function GET() {
 				},
 			});
 			const isPremium = data?.order_status === 'paid' && data?.plan_status === 'premium';
-			const premiumPlanEnded =
+			const isPremiumPlanEnded =
 				isPremium && data?.billing_start_date && new Date() > addYears(new Date(data.billing_start_date), 1);
 
 			// if (!data.new_signup_email) {
@@ -43,10 +43,7 @@ export async function GET() {
 			// 	}
 			// }
 
-			return NextResponse.json(
-				{ ...data, is_premium: isPremium, is_premium_plan_ended: premiumPlanEnded },
-				{ status: 200 }
-			);
+			return NextResponse.json({ ...data, isPremium, isPremiumPlanEnded }, { status: 200 });
 		} catch (error) {
 			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
 		}

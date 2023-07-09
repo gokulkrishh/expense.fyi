@@ -22,7 +22,7 @@ export const ExpensesContextProvider = (props: any) => {
 	const { children, ...others } = props;
 
 	const value = useMemo(
-		() => ({ data, loading: isLoading, filter, setFilter, mutate }),
+		() => ({ data, loading: isLoading, filter: { name: filter, setFilter }, mutate }),
 		[data, isLoading, filter, mutate]
 	);
 

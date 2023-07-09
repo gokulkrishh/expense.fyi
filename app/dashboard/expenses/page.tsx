@@ -1,9 +1,8 @@
-import Add from 'components/add-button';
 import { ExpensesContextProvider } from 'components/context/expenses-provider';
 import LayoutHeader from 'components/layout/header';
 import ExpensesSummary from 'components/summary/expenses';
 
-import { DataTable } from './data-table';
+import ExpenseTable from './table';
 
 const title = 'Expense.fyi – Expenses';
 const description = 'Effortlessly Track and Manage Expenses.';
@@ -20,8 +19,7 @@ export default async function Page() {
 			<ExpensesContextProvider>
 				<div className="w-full overflow-x-auto p-4 pt-3">
 					<ExpensesSummary />
-					<DataTable />
-					<Add />
+					<ExpenseTable />
 				</div>
 			</ExpensesContextProvider>
 		</>

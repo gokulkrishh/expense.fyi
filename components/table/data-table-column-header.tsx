@@ -2,13 +2,7 @@ import { ArrowDownIcon, ArrowUpIcon, CaretSortIcon, EyeNoneIcon } from '@radix-u
 import { Column } from '@tanstack/react-table';
 
 import { Button } from 'components/ui/button';
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from 'components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from 'components/ui/dropdown-menu';
 
 import { cn } from 'lib/utils';
 
@@ -17,7 +11,7 @@ interface DataTableColumnHeaderProps<TData, TValue> extends React.HTMLAttributes
 	title: string;
 }
 
-export function DataTableColumnHeader<TData, TValue>({
+export default function DataTableColumnHeader<TData, TValue>({
 	column,
 	title,
 	className = '',
@@ -33,7 +27,7 @@ export function DataTableColumnHeader<TData, TValue>({
 					<Button
 						variant="ghost"
 						size="sm"
-						className="-ml-3 h-8 hover:opacity-80 focus-visible:ring-0 data-[state=open]:bg-accent"
+						className="-ml-3 h-8 whitespace-nowrap hover:opacity-80 focus-visible:ring-0 data-[state=open]:bg-accent"
 					>
 						<span className="text-sm capitalize">{title}</span>
 						{column.getIsSorted() === 'desc' ? (

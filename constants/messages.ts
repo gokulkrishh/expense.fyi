@@ -17,6 +17,7 @@ const messages = {
 		exist: 'This account already exists, Sign in instead.',
 		unauthorized: 'Unauthorized request',
 	},
+	export: 'Export will begin shortly.',
 };
 
 export const emails = {

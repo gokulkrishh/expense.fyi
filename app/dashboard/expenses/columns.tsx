@@ -1,17 +1,15 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, Pencil, Trash2 } from 'lucide-react';
+import { Pencil, Trash2 } from 'lucide-react';
 
+import DataTableColumnHeader from 'components/table/data-table-column-header';
 import { Button } from 'components/ui/button';
 
 import { formatCurrency, formatDate } from 'lib/formatter';
 import { cn } from 'lib/utils';
 
 import { expensesCategory, expensesPay } from 'constants/categories';
-
-import { deleteExpense } from './apis';
-import { DataTableColumnHeader } from './data-table-column-header';
 
 export type Expenses = {
 	name: string;
@@ -24,14 +22,6 @@ export type Expenses = {
 	updated_at: string;
 	id: string;
 	actions: string;
-};
-
-const isSorted = (column: any) => {
-	return column.getIsSorted() === 'asc' || column.getIsSorted() === 'desc';
-};
-
-const getSortedClassName = (column: any) => {
-	return cn({ 'font-semibold': isSorted(column) });
 };
 
 export const columns: ColumnDef<Expenses>[] = [
@@ -97,9 +87,10 @@ export const columns: ColumnDef<Expenses>[] = [
 		cell: (props) => {
 			const {
 				row,
-				table: { options },
+				table: {
+					options: { meta },
+				},
 			} = props;
-			const onDelete = options.meta?.onDelete;
 			return (
 				<div className="flex">
 					<Button className="mr-1 rounded-lg p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
@@ -109,7 +100,7 @@ export const columns: ColumnDef<Expenses>[] = [
 						<Trash2
 							className="h-4 w-4"
 							onClick={() => {
-								onDelete(row.original?.id);
+								meta?.onDelete(row.original?.id);
 							}}
 						/>
 					</Button>
