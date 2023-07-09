@@ -70,7 +70,7 @@ export default async function Page() {
 							</div>
 						</div>
 					</div>
-					<Add />
+					<Add type="expenses" />
 				</OverviewContextProvider>
 			</DatePickerProvider>
 		</>

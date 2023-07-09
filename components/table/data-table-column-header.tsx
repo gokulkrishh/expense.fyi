@@ -27,7 +27,7 @@ export default function DataTableColumnHeader<TData, TValue>({
 					<Button
 						variant="ghost"
 						size="sm"
-						className="-ml-3 h-8 whitespace-nowrap hover:opacity-80 focus-visible:ring-0 data-[state=open]:bg-accent"
+						className="-ml-3 h-10 whitespace-nowrap hover:opacity-80 focus-visible:ring-0 data-[state=open]:bg-accent"
 					>
 						<span className="text-sm capitalize">{title}</span>
 						{column.getIsSorted() === 'desc' ? (

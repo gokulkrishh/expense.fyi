@@ -59,3 +59,22 @@ export async function DELETE(request: NextRequest) {
 		}
 	});
 }
+
+export async function PUT(request: NextRequest) {
+	const { notes, name, price, category, id, date, paid_via } = await request.json();
+
+	return await checkAuth(async () => {
+		if (!id) {
+			return NextResponse.json(messages.request.invalid, { status: 400 });
+		}
+		try {
+			await prisma.expenses.update({
+				data: { notes, name, price, date, paid_via, category },
+				where: { id },
+			});
+			return NextResponse.json('updated', { status: 200 });
+		} catch (error) {
+			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
+		}
+	});
+}

@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { addExpense } from 'app/dashboard/expenses/apis';
+import { ExpenseData, addExpense, editExpense } from 'app/dashboard/expenses/apis';
 import { format } from 'date-fns';
-import useAutoFocus from 'hooks/useAutoFocus';
+import debounce from 'debounce';
 
+import AutoCompleteList from 'components/autocomplete-list';
 import { useUser } from 'components/context/auth-provider';
-import { useExpenses } from 'components/context/expenses-provider';
 import CircleLoader from 'components/loader/circle';
 import Modal from 'components/modal';
 import { Button } from 'components/ui/button';
@@ -27,6 +27,7 @@ interface AddExpenseProps {
 	selected: any;
 	onHide: () => void;
 	mutate: () => void;
+	lookup: () => void;
 }
 
 const todayDate = format(new Date(), dateFormat);
@@ -38,30 +39,51 @@ const initialState = {
 	notes: '',
 	price: '',
 	date: todayDate,
+	id: null,
+	autocomplete: [],
 };
 
-export default function AddExpense({ show, onHide, mutate }: AddExpenseProps) {
+export default function AddExpense({ show, onHide, mutate, selected, lookup }: AddExpenseProps) {
+	const user = useUser();
+	const [state, setState] = useState<any>(initialState);
+	const [loading, setLoading] = useState(false);
+	const { toast } = useToast();
 	const inputRef = useRef<any>(null);
-	const someRef = useRef<any>(null);
 
 	useEffect(() => {
 		inputRef.current?.focus();
 	}, []);
 
-	const user = useUser();
-	const [state, setState] = useState(initialState);
-	const [loading, setLoading] = useState(false);
+	useEffect(
+		() =>
+			setState(
+				selected.id
+					? { ...selected, ...{ paid_via: selected.paid_via ? selected.paid_via : initialState.paid_via } }
+					: initialState
+			),
+		[selected]
+	);
 
-	const { toast } = useToast();
+	const onLookup = useMemo(() => {
+		const callbackHandler = (value: string) => {
+			setState((prev: any) => ({ ...prev, autocomplete: lookup(value) }));
+		};
 
-	const onLookup = (value: string) => {};
+		return debounce(callbackHandler, 500);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const onSubmit = async () => {
 		try {
 			setLoading(true);
-			await addExpense(state);
+			const isEditing = selected?.id;
+			if (isEditing) {
+				await editExpense(state);
+			} else {
+				await addExpense(state);
+			}
 			setLoading(false);
-			toast({ description: `${messages.success}` });
+			toast({ description: `${isEditing ? messages.updated : messages.success}` });
 		} catch {
 			toast({ description: messages.error, variant: 'destructive' });
 		} finally {
@@ -72,13 +94,14 @@ export default function AddExpense({ show, onHide, mutate }: AddExpenseProps) {
 	};
 
 	return (
-		<Modal someRef={someRef} show={show} title={`Add Expense`} onHide={onHide}>
+		<Modal someRef={inputRef} show={show} title={`${selected.id ? 'Edit' : 'Add'} Expense`} onHide={onHide}>
 			<div className="sm:flex sm:items-start">
 				<form
 					className="md:[420px] grid w-full grid-cols-1 items-center gap-3"
 					onSubmit={(event) => {
 						event.preventDefault();
 						onSubmit();
+						if (!selected.id) setState({ ...initialState });
 					}}
 				>
 					<Label htmlFor="name">Name</Label>
@@ -93,7 +116,7 @@ export default function AddExpense({ show, onHide, mutate }: AddExpenseProps) {
 						onChange={({ target }) => {
 							const { value } = target;
 							if (value.length) {
-								setState({ ...state, name: value });
+								setState({ ...state, name: value, autocomplete: [] });
 								if (value.length > 2) onLookup(value);
 							} else {
 								setState({ ...state, name: '', category: 'food', paid_via: 'upi' });
@@ -204,7 +227,7 @@ export default function AddExpense({ show, onHide, mutate }: AddExpenseProps) {
 					/>
 
 					<Button disabled={loading} className="mt-2" type="submit">
-						{loading ? <CircleLoader /> : 'Submit'}
+						{loading ? <CircleLoader /> : `${selected?.id ? 'Update' : 'Submit'}`}
 					</Button>
 				</form>
 			</div>

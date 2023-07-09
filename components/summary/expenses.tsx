@@ -15,7 +15,7 @@ export default function ExpensesSummary() {
 		<>
 			<h2 className="mb-4 font-semibold text-primary dark:text-white">Summary</h2>
 			{loading ? (
-				<CardLoader cards={3} className="mb-6" />
+				<CardLoader cards={2} className="mb-6" />
 			) : (
 				<div className="xs:grid-cols-2 mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
 					<SummaryCard title="total expenses" data={data.length} />

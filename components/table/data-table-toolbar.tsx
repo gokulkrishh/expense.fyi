@@ -43,7 +43,11 @@ export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TDa
 					className="h-8 w-[inherit]"
 				/>
 				{isFiltered && (
-					<Button variant="ghost" onClick={() => table.resetColumnFilters()} className="h-8 px-2 text-primary lg:px-3">
+					<Button
+						variant="secondary"
+						onClick={() => table.resetColumnFilters()}
+						className="h-8 px-2 text-primary lg:px-3"
+					>
 						Reset
 						<Cross2Icon className="ml-3 h-4 w-4" />
 					</Button>

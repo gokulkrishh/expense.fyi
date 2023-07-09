@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import { truncate } from 'fs';
 import { PlusIcon } from 'lucide-react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
@@ -13,9 +14,25 @@ import AddExpense from './add/expenses';
 
 const openShortcutKey = Object.values(shortcuts.modal.open.shortcut);
 
-export default function Add({ mutate }: { mutate?: any }) {
+type TypeProps = 'expenses' | 'income' | 'investment' | 'subscription';
+
+type AddProps = {
+	mutate?: any;
+	type?: TypeProps;
+	selected?: any;
+	onHide?: () => void;
+	onLookup?: any;
+};
+
+export default function Add({ mutate, type, selected = {}, onHide, onLookup }: AddProps) {
 	const [show, setShow] = useState(false);
 	useHotkeys(openShortcutKey, () => setShow(true));
+
+	useEffect(() => {
+		if (selected?.id) {
+			setShow(true);
+		}
+	}, [selected.id]);
 
 	return (
 		<>
@@ -37,7 +54,18 @@ export default function Add({ mutate }: { mutate?: any }) {
 					</kbd>{' '}
 				</TooltipContent>
 			</Tooltip>
-			<AddExpense show={show} selected={{}} mutate={mutate} onHide={() => setShow(false)} />
+			{type === 'expenses' ? (
+				<AddExpense
+					lookup={onLookup}
+					show={show}
+					selected={selected}
+					mutate={mutate}
+					onHide={() => {
+						if (onHide) onHide();
+						setShow(false);
+					}}
+				/>
+			) : null}
 		</>
 	);
 }

@@ -94,7 +94,12 @@ export const columns: ColumnDef<Expenses>[] = [
 			return (
 				<div className="flex">
 					<Button className="mr-1 rounded-lg p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
-						<Pencil className="h-4 w-4" />
+						<Pencil
+							className="h-4 w-4"
+							onClick={() => {
+								meta?.onEdit(row.original);
+							}}
+						/>
 					</Button>
 					<Button className="ml-2 rounded-lg p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
 						<Trash2

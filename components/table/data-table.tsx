@@ -14,7 +14,6 @@ import {
 	useReactTable,
 } from '@tanstack/react-table';
 
-import Add from 'components/add-button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'components/ui/table';
 
 import TableLoader from './data-table-loader';
@@ -22,9 +21,9 @@ import DataTableToolbar from './data-table-toolbar';
 
 declare module '@tanstack/react-table' {
 	interface TableMeta<TData extends RowData> {
-		user: { locale: string; currency: string };
+		user: any;
 		onDelete: (id: any) => void;
-		onEdit: (id: any) => void;
+		onEdit: (data: any) => void;
 	}
 }
 
@@ -33,7 +32,7 @@ type DataTableProps = {
 	columns: Array<any>;
 	loading: boolean;
 	filter: { name: string; setFilter: (filter: string) => void };
-	options: { user: { locale: string; currency: string }; onDelete: (id: string) => void; onEdit: (id: string) => void };
+	options: { user: any; onDelete: (id: string) => void; onEdit: (data: any) => void };
 	filename: string;
 };
 
@@ -101,7 +100,6 @@ export default function DataTable<TData, TValue>(props: DataTableProps) {
 					</TableBody>
 				</Table>
 			</div>
-			<Add />
 		</div>
 	);
 }
