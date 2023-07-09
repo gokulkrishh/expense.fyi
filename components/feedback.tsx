@@ -13,7 +13,7 @@ import messages, { emails } from 'constants/messages';
 
 import { useToast } from './ui/use-toast';
 
-export default function Feedback() {
+export default function Feedback({ className }: { className?: string }) {
 	const [state, setState] = useState({ show: false, loading: false, message: '', sent: false });
 	const { toast } = useToast();
 
@@ -46,7 +46,7 @@ export default function Feedback() {
 	return (
 		<Popover>
 			<PopoverTrigger>
-				<Button className="h-[31px]" asChild size={'sm'}>
+				<Button className={`h-[31px] ${className}`} asChild size={'sm'}>
 					<span>
 						<MessageSquarePlus className="mr-[6px] mt-[2px] h-4 w-4" />
 						Feedback

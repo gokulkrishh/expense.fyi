@@ -39,7 +39,7 @@ export default function Modal({ show, title, children, onHide, someRef }: ModalP
 							leaveFrom="opacity-100"
 							leaveTo="opacity-0"
 						>
-							<Dialog.Panel className="fixed bottom-0 w-full transform overflow-hidden border border-border bg-background p-4 text-left  align-middle text-primary shadow-lg transition-all sm:static sm:max-w-md sm:rounded-lg">
+							<Dialog.Panel className="fixed bottom-0 w-full transform overflow-hidden bg-background p-4 text-left align-middle text-primary  shadow-lg transition-all sm:static sm:max-w-md sm:rounded-lg sm:border sm:border-border">
 								<Dialog.Title
 									as="h2"
 									className="mb-3 mt-[-4px] flex w-full items-center text-lg font-semibold text-primary"

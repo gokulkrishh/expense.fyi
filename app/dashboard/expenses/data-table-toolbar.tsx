@@ -57,8 +57,8 @@ export function DataTableToolbar<TData>({
 				</div>
 				{loading ? null : (
 					<>
-						<DataTableFilterOptions setFilter={setFilter} filter={filter} />
 						<DataTableViewOptions table={table} />
+						<DataTableFilterOptions setFilter={setFilter} filter={filter} />
 						<Button
 							variant="outline"
 							onClick={() => {

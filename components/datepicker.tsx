@@ -15,7 +15,7 @@ export default function DatePicker() {
 	const { date, onChange } = useDate();
 
 	return (
-		<div className="flex">
+		<div className="flex w-full">
 			<DatePickerWithRange date={date} onChange={onChange} />
 			<DatePickerSelect onChange={onChange} selectedValue={date?.selected} />
 		</div>
@@ -31,18 +31,18 @@ function DatePickerWithRange({ className, date, onChange }: { className?: string
 						id="date"
 						variant={'outline'}
 						className={cn(
-							'mr-[1px] h-[32px] min-w-[230px] justify-start rounded-br-none rounded-tr-none border-r !border-border border-gray-100 p-2 text-left font-normal hover:bg-accent focus:bg-accent focus-visible:!ring-1 focus-visible:!ring-gray-400 dark:bg-muted dark:hover:opacity-[0.8]',
+							'mr-[1px] h-[32px] w-[200px] justify-start rounded-br-none rounded-tr-none border-r !border-border border-gray-100 p-2 text-left font-normal hover:bg-accent focus:bg-accent focus-visible:!ring-1 focus-visible:!ring-gray-400 dark:bg-muted dark:hover:opacity-[0.8] sm:min-w-[230px]',
 							!date && 'text-muted-foreground'
 						)}
 					>
-						<CalendarIcon className="mr-2 h-4 w-4" />
+						<CalendarIcon className={`mr-2 hidden h-4 w-4 sm:inline-block`} />
 						{date?.from ? (
 							date.to ? (
-								<>
+								<span className="overflow-hidden text-ellipsis whitespace-nowrap">
 									{format(date.from, 'LLL dd, y')} - {format(date.to, 'LLL dd, y')}
-								</>
+								</span>
 							) : (
-								format(date.from, 'LLL dd, y')
+								<span>{format(date.from, 'LLL dd, y')}</span>
 							)
 						) : (
 							<span>Pick a date</span>
@@ -113,8 +113,8 @@ function DatePickerSelect({ onChange, selectedValue }: { onChange: any; selected
 				}
 			}}
 		>
-			<SelectTrigger className="h-[32px] !w-[130px] rounded-bl-none rounded-tl-none !border-border p-2 hover:bg-accent focus:ring-0 focus-visible:!ring-1 focus-visible:!ring-gray-400 dark:bg-muted dark:hover:opacity-[0.8]">
-				<SelectValue placeholder="Select" />
+			<SelectTrigger className="h-[32px] w-full rounded-bl-none rounded-tl-none !border-border p-2 hover:bg-accent focus:ring-0 focus-visible:!ring-1 focus-visible:!ring-gray-400 dark:bg-muted dark:hover:opacity-[0.8]">
+				<SelectValue className="overflow-hidden text-ellipsis whitespace-nowrap" placeholder="Select" />
 			</SelectTrigger>
 			<SelectContent className="!border-border" position="popper">
 				<SelectItem value="none">Select</SelectItem>
