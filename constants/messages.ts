@@ -27,6 +27,9 @@ export const emails = {
 		sent: 'Feedback received.',
 		failed: 'Failed to send, please try again.',
 	},
+	welcome: {
+		subject: '✨ Welcome to Expense.fyi',
+	},
 	usageLimit: {
 		premium: 'Your Premium Plan Expired!',
 		premiumExceeded: 'Your Premium Plan usage exceeded!',

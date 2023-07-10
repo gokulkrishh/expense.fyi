@@ -15,7 +15,7 @@ const btn = {
 	fontFamily:
 		"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
 	fontSize: '14px',
-	fontWeight: 500,
+	fontWeight: 400,
 	lineHeight: '50px',
 	textDecoration: 'none',
 };

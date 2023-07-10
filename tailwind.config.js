@@ -75,7 +75,7 @@ module.exports = {
 					},
 					content: {
 						subtle: '#9ca3af', // gray-400
-						DEFAULT: '#71717A', // gray-500
+						DEFAULT: '#000000', // gray-500
 						emphasis: '#374151', // gray-700
 						strong: '#111827', // gray-900
 						inverted: '#ffffff', // white
@@ -97,14 +97,14 @@ module.exports = {
 						emphasis: '#d1d5db', // gray-300
 					},
 					border: {
-						DEFAULT: '#1f2937', // gray-800
+						DEFAULT: '#09090c', // border-border
 					},
 					ring: {
 						DEFAULT: '#1f2937', // gray-800
 					},
 					content: {
-						subtle: '#4b5563', // gray-600
-						DEFAULT: '#71717A', // gray-600
+						subtle: '#27272a', // border-border
+						DEFAULT: '#ffffff', // white
 						emphasis: '#4b5563', // gray-200
 						strong: '#f9fafb', // gray-50
 						inverted: '#000000', // black

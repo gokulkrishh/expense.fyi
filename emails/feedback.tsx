@@ -50,6 +50,7 @@ const h1 = {
 	fontSize: '24px',
 	fontWeight: 'normal',
 	margin: '30px 0',
+	textAlign: 'center' as const,
 	padding: 0,
 };
 

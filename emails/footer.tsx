@@ -18,7 +18,7 @@ export default function Footer() {
 }
 
 const link = {
-	color: '#067df7',
+	color: '#0669ce',
 	textDecoration: 'none',
 };
 

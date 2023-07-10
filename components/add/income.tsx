@@ -26,7 +26,7 @@ interface AddIncome {
 	selected: any;
 	onHide: () => void;
 	mutate: () => void;
-	lookup: () => void;
+	lookup: (value: any) => void;
 }
 
 const todayDate = format(new Date(), dateFormat);

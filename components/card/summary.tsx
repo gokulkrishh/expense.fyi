@@ -18,7 +18,7 @@ export default function Summary() {
 	const totalIncome = data.income.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
 	const totalInvesments = data.investments.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
 	const totalSubscriptions = data.subscriptions
-		.filter(({ isPaid }: any) => !!isPaid)
+		.filter(({ paid_dates }: any) => paid_dates.length)
 		.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
 
 	const totalSpent = totalExpenses + totalInvesments;

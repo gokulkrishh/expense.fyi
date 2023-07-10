@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { addYears } from 'date-fns';
+import WelcomeEmail from 'emails/welcome';
 
 import { checkAuth } from 'lib/auth';
 import resend from 'lib/email';
 import prisma from 'lib/prisma';
 
-import messages from 'constants/messages';
+import messages, { emails } from 'constants/messages';
 
 export async function GET() {
 	return await checkAuth(async (user: any) => {
@@ -29,19 +30,19 @@ export async function GET() {
 			const isPremiumPlanEnded =
 				isPremium && data?.billing_start_date && new Date() > addYears(new Date(data.billing_start_date), 1);
 
-			// if (!data.new_signup_email) {
-			// 	try {
-			// 		await resend.sendEmail({
-			// 			from: sentFromEmailId,
-			// 			subject: '✨ Welcome to Expense.fyi',
-			// 			to: session.user.email,
-			// 			react: <WelcomeEmail />,
-			// 		});
-			// 		await prisma.users.update({ where: { id: session.user.id }, data: { new_signup_email: true } });
-			// 	} catch (error) {
-			// 		throw error;
-			// 	}
-			// }
+			if (!data?.new_signup_email) {
+				try {
+					await resend.sendEmail({
+						from: emails.from,
+						subject: emails.welcome.subject,
+						to: user.email,
+						react: WelcomeEmail(),
+					});
+					await prisma.users.update({ where: { id: user.id }, data: { new_signup_email: true } });
+				} catch (error) {
+					throw error;
+				}
+			}
 
 			return NextResponse.json({ ...data, isPremium, isPremiumPlanEnded }, { status: 200 });
 		} catch (error) {

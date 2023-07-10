@@ -5,8 +5,8 @@ export default function ChartLoader({ className, type }: { className?: string; t
 		return (
 			<div className={`relative mb-7 rounded-lg bg-background p-2 text-left ${className} `}>
 				<Skeleton className="float-right h-[20px] w-[40%] rounded-sm" />
-				<div className="mt-[45px] rounded-sm border-b border-dashed border-gray-200 dark:border-[#4b5563]"></div>
-				<div className="mt-[60px] rounded-sm border-b border-dashed border-gray-200 dark:border-[#4b5563]"></div>
+				<div className="mt-[45px] rounded-sm border-b border-dashed border-gray-200 dark:border-border"></div>
+				<div className="mt-[60px] rounded-sm border-b border-dashed border-gray-200 dark:border-border"></div>
 				<Skeleton className="mt-[20px] h-[200px] rounded-sm " />
 			</div>
 		);
