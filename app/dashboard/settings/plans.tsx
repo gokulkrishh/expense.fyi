@@ -14,7 +14,7 @@ const CheckIcon = () => (
 		viewBox="0 0 24 24"
 		fill="currentColor"
 		aria-hidden="true"
-		class="mr-1 h-5 w-5 text-green-600"
+		className="mr-1.5 h-5 w-5 text-green-600"
 	>
 		<path
 			fill-rule="evenodd"
