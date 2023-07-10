@@ -36,3 +36,39 @@ export async function GET(request: NextRequest) {
 		}
 	});
 }
+
+export async function DELETE(request: NextRequest) {
+	const { id } = await request.json();
+	return await checkAuth(async (user: any) => {
+		if (!id.length) {
+			return NextResponse.json(messages.request.invalid, { status: 400 });
+		}
+		try {
+			await prisma.subscriptions.delete({
+				where: { id: id[0] },
+			});
+			return NextResponse.json('deleted', { status: 200 });
+		} catch (error) {
+			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
+		}
+	});
+}
+
+export async function PUT(request: NextRequest) {
+	const { notes, name, price, paid, id, url, date, active, cancelled_at } = await request.json();
+
+	return await checkAuth(async () => {
+		if (!id) {
+			return NextResponse.json(messages.request.invalid, { status: 400 });
+		}
+		try {
+			await prisma.subscriptions.update({
+				data: { notes, name, price, date, url, paid, active, cancelled_at },
+				where: { id },
+			});
+			return NextResponse.json('updated', { status: 200 });
+		} catch (error) {
+			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
+		}
+	});
+}

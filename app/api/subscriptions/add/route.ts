@@ -6,11 +6,11 @@ import prisma from 'lib/prisma';
 import messages from 'constants/messages';
 
 export async function POST(request: NextRequest) {
-	const { notes, name, price, category, date } = await request.json();
+	const { notes, name, price, paid, date, url } = await request.json();
 	return await checkAuth(async (user: any) => {
 		try {
-			await prisma.income.create({
-				data: { notes, name, price, category, user_id: user.id, date },
+			await prisma.subscriptions.create({
+				data: { notes, name, price, paid, url, user_id: user.id, date },
 			});
 			return NextResponse.json('added', { status: 201 });
 		} catch (error) {

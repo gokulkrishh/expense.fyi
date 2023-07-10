@@ -40,7 +40,7 @@ export const columns: ColumnDef<Income>[] = [
 			const user = options.meta?.user;
 			const price = parseFloat(row.getValue('price'));
 			const formatted = formatCurrency({ value: price, currency: user?.currency, locale: user?.locale });
-			return <div className="font-medium">{formatted}</div>;
+			return <div className="">{formatted}</div>;
 		},
 	},
 	{
@@ -54,7 +54,7 @@ export const columns: ColumnDef<Income>[] = [
 			const user = options.meta?.user;
 			const date = row.getValue<string>('date');
 			const formatted = formatDate({ date, locale: user?.locale });
-			return <div className="font-medium">{formatted}</div>;
+			return <div className="">{formatted}</div>;
 		},
 	},
 	{

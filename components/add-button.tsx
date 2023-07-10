@@ -13,6 +13,7 @@ import shortcuts from 'constants/shortcuts';
 import AddExpense from './add/expenses';
 import AddIncome from './add/income';
 import AddInvestments from './add/investments';
+import AddSubscriptions from './add/subscriptions';
 
 const openShortcutKey = Object.values(shortcuts.modal.open.shortcut);
 
@@ -83,6 +84,17 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			{type === 'investments' ? (
 				<AddInvestments
 					lookup={onLookup}
+					show={show}
+					selected={selected}
+					mutate={mutate}
+					onHide={() => {
+						if (onHide) onHide();
+						setShow(false);
+					}}
+				/>
+			) : null}
+			{type === 'subscriptions' ? (
+				<AddSubscriptions
 					show={show}
 					selected={selected}
 					mutate={mutate}

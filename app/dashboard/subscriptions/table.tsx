@@ -12,7 +12,7 @@ import { useToast } from 'components/ui/use-toast';
 
 import messages from 'constants/messages';
 
-import { SubscriptionsData, deleteSubscriptions } from './apis';
+import { SubscriptionsData, deleteSubscription, editSubscription } from './apis';
 import { columns } from './columns';
 
 export default function SubscriptionsTable() {
@@ -21,14 +21,21 @@ export default function SubscriptionsTable() {
 	const user = useUser();
 	const { toast } = useToast();
 
-	const onDelete = useCallback((id: string) => {
-		deleteSubscriptions(id);
+	const onDelete = useCallback(async (id: string) => {
+		await deleteSubscription(id);
 		toast({ description: messages.deleted });
 		mutate();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const onEdit = useCallback(async (data: SubscriptionsData | any) => {
+	const onChange = useCallback(async (data: SubscriptionsData | any) => {
+		await editSubscription(data);
+		toast({ description: messages.updated });
+		mutate();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const onEdit = useCallback((data: SubscriptionsData | any) => {
 		setSelected(data);
 	}, []);
 
@@ -57,7 +64,7 @@ export default function SubscriptionsTable() {
 	return (
 		<>
 			<DataTable
-				options={{ user, onDelete, onEdit }}
+				options={{ user, onDelete, onEdit, onChange }}
 				filter={filter}
 				columns={columns}
 				data={data}

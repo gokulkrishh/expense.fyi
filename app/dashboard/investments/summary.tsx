@@ -27,7 +27,6 @@ export default function InvestmentsSummary() {
 							locale: user?.locale,
 						})}
 					/>
-					{/* <SummaryCard title="top spent category" data={formatCurrency({ value: 1 })} /> */}
 				</div>
 			)}
 		</>

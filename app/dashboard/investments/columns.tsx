@@ -40,7 +40,7 @@ export const columns: ColumnDef<Investments>[] = [
 			const user = options.meta?.user;
 			const price = parseFloat(row.getValue('price'));
 			const formatted = formatCurrency({ value: price, currency: user?.currency, locale: user?.locale });
-			return <div className="font-medium">{formatted}</div>;
+			return <div className="">{formatted}</div>;
 		},
 	},
 	{
@@ -52,7 +52,7 @@ export const columns: ColumnDef<Investments>[] = [
 				table: { options },
 			} = props;
 			const units = parseFloat(row.getValue('units'));
-			return <div className="font-medium">{units}</div>;
+			return <div className="">{units}</div>;
 		},
 	},
 	{
@@ -66,7 +66,7 @@ export const columns: ColumnDef<Investments>[] = [
 			const user = options.meta?.user;
 			const date = row.getValue<string>('date');
 			const formatted = formatDate({ date, locale: user?.locale });
-			return <div className="font-medium">{formatted}</div>;
+			return <div className="">{formatted}</div>;
 		},
 	},
 	{

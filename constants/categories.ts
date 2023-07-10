@@ -1,3 +1,5 @@
+import { Subscription } from '@supabase/supabase-js';
+
 interface ExpensesCategory {
 	[key: string]: {
 		name: string;
@@ -114,4 +116,22 @@ export const investmentCategory: Investments = {
 	mutualfunds: 'Mutual Funds',
 	other: 'Other',
 	usstock: 'US Stock',
+};
+
+interface Subscriptions {
+	[key: string]: {
+		name: string;
+		key: string;
+	};
+}
+
+export const subscriptionCategory: Subscriptions = {
+	monthly: {
+		name: 'Monthly',
+		key: 'monthly',
+	},
+	yearly: {
+		name: 'Yearly',
+		key: 'yearly',
+	},
 };

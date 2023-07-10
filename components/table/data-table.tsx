@@ -24,6 +24,7 @@ declare module '@tanstack/react-table' {
 		user: any;
 		onDelete: (id: any) => void;
 		onEdit: (data: any) => void;
+		onChange?: (data: any) => void;
 	}
 }
 
@@ -32,7 +33,7 @@ type DataTableProps = {
 	columns: Array<any>;
 	loading: boolean;
 	filter: { name: string; setFilter: (filter: string) => void };
-	options: { user: any; onDelete: (id: string) => void; onEdit: (data: any) => void };
+	options: { user: any; onDelete: (id: string) => void; onEdit: (data: any) => void; onChange?: (data: any) => void };
 	filename: string;
 	hideViewOptions?: boolean | undefined;
 };

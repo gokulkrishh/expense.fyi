@@ -15,17 +15,17 @@ export type SubscriptionsData = {
 	date: string;
 };
 
-export const addSubscriptions = async (data: SubscriptionsData) => {
-	const res = await fetch(`/api/Subscriptionss/add`, { method: 'POST', body: JSON.stringify(data) });
+export const addSubscription = async (data: SubscriptionsData) => {
+	const res = await fetch(`/api/subscriptions/add`, { method: 'POST', body: JSON.stringify(data) });
 	return await res.json();
 };
 
-export const deleteSubscriptions = async (id: string) => {
+export const deleteSubscription = async (id: string) => {
 	const res = await fetch(`/api/subscriptions`, { method: 'DELETE', body: JSON.stringify({ id: [id] }) });
 	return await res.json();
 };
 
-export const editSubscriptions = async (data: SubscriptionsData) => {
+export const editSubscription = async (data: SubscriptionsData) => {
 	const res = await fetch(`/api/subscriptions`, { method: 'PUT', body: JSON.stringify(data) });
 	return await res.json();
 };
