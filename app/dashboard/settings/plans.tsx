@@ -68,7 +68,7 @@ export default function Plans() {
 						</Button>
 					</CardContent>
 				</Card>
-				<Card className="w-full">
+				<Card className="w-full mt-8 sm:mt-0 mb-2">
 					<CardHeader>
 						<h2 className="font-semibold text-primary dark:text-white">Premium</h2>
 						<p className="text-sm text-muted-foreground">Access to all premium features.</p>
