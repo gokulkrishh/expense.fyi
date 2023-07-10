@@ -78,7 +78,7 @@
 	},
 	"devDependencies": {
 		"eslint-config-prettier": "^8.8.0",
-		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-prettier": "^5.0.0-alpha.2",
 		"husky": "^8.0.3",
 		"prettier": "^3.0.0",
 		"prettier-plugin-tailwindcss": "^0.3.0"
