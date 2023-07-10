@@ -87,7 +87,9 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 				<div className="mb-1 mt-1">
 					{formatted}
 					{cancelledAt ? (
-						<p className="mt-[2px] text-xs text-muted-foreground">Cancel: {formatDate({ date: cancelledAt, locale: user.locale })}</p>
+						<p className="mt-[2px] text-xs text-muted-foreground">
+							Cancel: {formatDate({ date: cancelledAt, locale: user.locale })}
+						</p>
 					) : null}
 				</div>
 			);

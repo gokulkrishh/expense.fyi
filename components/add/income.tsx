@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 
+import { incrementUsage } from 'app/dashboard/apis';
 import { addIncome, editIncome } from 'app/dashboard/income/apis';
 import { format } from 'date-fns';
 import debounce from 'debounce';
@@ -20,7 +21,6 @@ import { getCurrencySymbol } from 'lib/formatter';
 import { incomeCategory } from 'constants/categories';
 import { dateFormat, datePattern } from 'constants/date';
 import messages from 'constants/messages';
-import { incrementUsage } from 'app/dashboard/apis';
 
 interface AddIncome {
 	show: boolean;

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 
+import { incrementUsage } from 'app/dashboard/apis';
 import { addInvestment, editInvestment } from 'app/dashboard/investments/apis';
 import { format } from 'date-fns';
 import debounce from 'debounce';
@@ -20,7 +21,6 @@ import { getCurrencySymbol } from 'lib/formatter';
 import { investmentCategory } from 'constants/categories';
 import { dateFormat, datePattern } from 'constants/date';
 import messages from 'constants/messages';
-import { incrementUsage } from 'app/dashboard/apis';
 
 interface AddInvestments {
 	show: boolean;

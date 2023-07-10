@@ -11,6 +11,7 @@ const url = {
 	homeWithoutApp: home,
 	home: `//${home}`,
 	api: `${isProduction ? 'https://app.' : 'http://app.'}${home}`,
+	serverApi: `${isProduction ? 'https://' : 'http://'}${home}`,
 	app: {
 		signin: `//app.${home}/signin`,
 		signup: `//app.${home}/signup`,

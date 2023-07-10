@@ -13,6 +13,8 @@ import { Toaster } from 'components/ui/toaster';
 import { Database } from 'lib/database.types';
 import fetcher from 'lib/fetcher';
 
+import url from 'constants/url';
+
 const inter = Inter({ subsets: ['latin'] });
 
 const supabaseOption = {
@@ -29,10 +31,8 @@ export const metadata = {
 };
 
 async function getUser(cookies: any) {
-	const res = await fetch(`http://localhost:3000/api/user`, {
-		headers: {
-			cookie: cookies,
-		},
+	const res = await fetch(`${url.serverApi}/api/user`, {
+		headers: { cookie: cookies },
 	});
 	if (!res.ok) {
 		return {};
