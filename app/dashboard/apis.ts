@@ -57,3 +57,11 @@ export const getIncome = async ({ from, to }: { from: string; to: string }) => {
 		return await res.json();
 	}
 };
+
+export const incrementUsage = async () => {
+	const res = await fetch(`${url.api}/api/user/usage`, { method: 'POST' });
+	if (!res.ok) {
+		return 'Failed';
+	}
+	return await res.json();
+};

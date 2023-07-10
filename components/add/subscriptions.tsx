@@ -21,6 +21,7 @@ import { getCurrencySymbol } from 'lib/formatter';
 import { subscriptionCategory } from 'constants/categories';
 import { dateFormat, datePattern } from 'constants/date';
 import messages from 'constants/messages';
+import { incrementUsage } from 'app/dashboard/apis';
 
 const checkUrl = (urlString: string) => {
 	let url;
@@ -72,6 +73,7 @@ export default function AddSubscriptions({ show, onHide, mutate, selected }: Add
 			if (isEditing) {
 				await editSubscription(state);
 			} else {
+				incrementUsage();
 				await addSubscription(state);
 			}
 			setLoading(false);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Body, Button, Container, Head, Html, Img, Link, Preview, Section, Text } from '@react-email/components';
+import { Body, Container, Head, Html, Img, Link, Preview, Section, Text } from '@react-email/components';
 
 import ButtonLink from './button-link';
 import Footer from './footer';

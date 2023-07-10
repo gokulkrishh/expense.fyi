@@ -20,6 +20,7 @@ import { getCurrencySymbol } from 'lib/formatter';
 import { incomeCategory } from 'constants/categories';
 import { dateFormat, datePattern } from 'constants/date';
 import messages from 'constants/messages';
+import { incrementUsage } from 'app/dashboard/apis';
 
 interface AddIncome {
 	show: boolean;
@@ -69,6 +70,7 @@ export default function AddIncome({ show, onHide, mutate, selected, lookup }: Ad
 			if (isEditing) {
 				await editIncome(state);
 			} else {
+				incrementUsage();
 				await addIncome(state);
 			}
 			setLoading(false);

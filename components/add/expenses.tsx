@@ -21,6 +21,7 @@ import { getCurrencySymbol } from 'lib/formatter';
 import { expensesCategory, expensesPay, groupedExpenses } from 'constants/categories';
 import { dateFormat, datePattern } from 'constants/date';
 import messages from 'constants/messages';
+import { incrementUsage } from 'app/dashboard/apis';
 
 interface AddExpenseProps {
 	show: boolean;
@@ -80,6 +81,7 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 			if (isEditing) {
 				await editExpense(state);
 			} else {
+				incrementUsage();
 				await addExpense(state);
 			}
 			setLoading(false);

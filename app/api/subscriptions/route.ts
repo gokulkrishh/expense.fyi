@@ -7,7 +7,7 @@ import { calculatePaidDates, calculatePrevRenewalDate, calculateRenewalDate } fr
 import prisma from 'lib/prisma';
 
 import { dateFormat } from 'constants/date';
-import messages, { emails } from 'constants/messages';
+import messages from 'constants/messages';
 
 export async function GET(request: NextRequest) {
 	const { searchParams } = request.nextUrl;

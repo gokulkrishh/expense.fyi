@@ -20,6 +20,7 @@ import { getCurrencySymbol } from 'lib/formatter';
 import { investmentCategory } from 'constants/categories';
 import { dateFormat, datePattern } from 'constants/date';
 import messages from 'constants/messages';
+import { incrementUsage } from 'app/dashboard/apis';
 
 interface AddInvestments {
 	show: boolean;
@@ -69,6 +70,7 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 			if (isEditing) {
 				await editInvestment(state);
 			} else {
+				incrementUsage();
 				await addInvestment(state);
 			}
 			setLoading(false);
