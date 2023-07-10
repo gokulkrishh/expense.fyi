@@ -21,7 +21,10 @@ interface Data {
 
 export const OverviewContextProvider = (props: any) => {
 	const { date } = useDate();
-	const formattedDate = { from: format(date.from, dateFormat), to: format(date.to, dateFormat) };
+	const formattedDate = {
+		from: format(date.from || date.to, dateFormat),
+		to: format(date.to || date.from, dateFormat),
+	};
 	const { children, ...others } = props;
 	const { data: expensesData = [], isLoading: isExpenseLoading } = useSWR(
 		`/api/expenses?from=${formattedDate.from}&to=${formattedDate.to}`

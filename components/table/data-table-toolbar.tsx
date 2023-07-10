@@ -11,6 +11,7 @@ import { Input } from 'components/ui/input';
 import { useToast } from 'components/ui/use-toast';
 
 import { exportTableToCsv } from 'lib/export';
+import { formatDate } from 'lib/formatter';
 
 import { dateFormat } from 'constants/date';
 import messages from 'constants/messages';
@@ -22,13 +23,14 @@ interface DataTableToolbarProps<TData> {
 	table: Table<TData>;
 	className?: String;
 	loading: boolean;
+	hideViewOptions?: boolean | undefined;
 	user: { locale: string; currency: string; isPremium: boolean };
 	filter: { name: string; setFilter: (filter: string) => void };
 	filename: string;
 }
 
 export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TData>) {
-	const { table, className, loading, filter, user, filename } = props;
+	const { table, className, loading, filter, user, filename, hideViewOptions = false } = props;
 	const { toast } = useToast();
 	const isFiltered = table.getState().columnFilters.length > 0;
 
@@ -54,14 +56,16 @@ export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TDa
 				)}
 			</div>
 			<div className={`${loading ? 'pointer-events-none opacity-50' : ''} grid w-full grid-flow-col gap-3 sm:w-auto`}>
-				<DataTableFilterOptions setFilter={filter?.setFilter} filter={filter.name} />
+				{hideViewOptions ? null : <DataTableFilterOptions setFilter={filter?.setFilter} filter={filter.name} />}
 				<DataTableViewOptions table={table} />
 				{user.isPremium ? (
 					<Button
 						variant="outline"
 						onClick={() => {
 							toast({ description: messages.export });
-							exportTableToCsv(`${filename}-${format(new Date(), dateFormat)}.csv`);
+							exportTableToCsv(
+								`${filename} ${formatDate({ date: format(new Date(), dateFormat), locale: user.locale })}.csv`
+							);
 						}}
 						size="sm"
 						className="h-8 text-sm capitalize lg:flex"

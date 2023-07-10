@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Body, Container, Head, Html, Img, Link, Preview, Section, Text } from '@react-email/components';
+
 import ButtonLink from './button-link';
 import Footer from './footer';
 import Footnote from './footnote';
@@ -23,9 +24,8 @@ export default function WelcomeEmail() {
 					</Section>
 					<Text style={{ ...h1, marginTop: '20px' }}>Welcome to Expense.fyi</Text>
 					<Text style={text}>
-						Hi,
-						I{"'"}m Gokul, creator of the Expense.fyi, an open-source app to deliver financial clarity through spending
-						analysis. We are excited to have you on board.
+						Hi, I{"'"}m Gokul, creator of the Expense.fyi, an open-source app to deliver financial clarity through
+						spending analysis. We are excited to have you on board.
 					</Text>
 					<Text style={text}>Here is how you can get started:</Text>
 					<Text style={{ ...text, margin: '8px' }}>

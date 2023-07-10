@@ -75,7 +75,7 @@ export const columns: ColumnDef<Expenses>[] = [
 	},
 	{
 		accessorKey: 'paid_via',
-		header: ({ column }) => <DataTableColumnHeader column={column} title="paid" />,
+		header: ({ column }) => <DataTableColumnHeader column={column} title="paid via" />,
 		cell: ({ row }) => {
 			const paid_via = row.getValue<string>('paid_via');
 			return <div className="">{expensesPay[paid_via]?.name}</div>;

@@ -1,2 +1,2 @@
-declare module 'text-filter'
-declare module 'debounce'
+declare module 'text-filter';
+declare module 'debounce';

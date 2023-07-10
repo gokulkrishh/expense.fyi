@@ -34,10 +34,11 @@ type DataTableProps = {
 	filter: { name: string; setFilter: (filter: string) => void };
 	options: { user: any; onDelete: (id: string) => void; onEdit: (data: any) => void };
 	filename: string;
+	hideViewOptions?: boolean | undefined;
 };
 
 export default function DataTable<TData, TValue>(props: DataTableProps) {
-	const { data, columns, loading, filter, options, filename } = props;
+	const { data, columns, loading, filter, options, filename, hideViewOptions } = props;
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -57,7 +58,14 @@ export default function DataTable<TData, TValue>(props: DataTableProps) {
 
 	return (
 		<div className="mb-8">
-			<DataTableToolbar user={options.user} filename={filename} filter={filter} loading={loading} table={table} />
+			<DataTableToolbar
+				user={options.user}
+				filename={filename}
+				filter={filter}
+				loading={loading}
+				table={table}
+				hideViewOptions={hideViewOptions}
+			/>
 			<div className="rounded-md border border-border">
 				<Table>
 					<TableHeader className="bg-muted">

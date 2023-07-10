@@ -14,6 +14,8 @@ export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
 	return (
 		<DayPicker
+			fixedWeeks={false}
+			disabled={{ after: new Date() }}
 			showOutsideDays={showOutsideDays}
 			className={cn('p-3', className)}
 			classNames={{
@@ -37,7 +39,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
 				day_selected:
 					'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground',
 				day_today: 'bg-accent text-accent-foreground',
-				day_outside: 'text-muted-foreground opacity-50',
+				day_outside: 'text-muted-foreground pointer-events-none',
 				day_disabled: 'text-muted-foreground opacity-50',
 				day_range_middle: 'aria-selected:bg-accent aria-selected:text-accent-foreground',
 				day_hidden: 'invisible',

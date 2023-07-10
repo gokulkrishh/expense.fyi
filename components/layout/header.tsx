@@ -14,7 +14,7 @@ export default function LayoutHeader({ title, showDatePicker = false }: { title:
 				}`}
 			>
 				<h2
-					className={`text-2xl font-extrabold capitalize leading-snug tracking-tight ${showDatePicker ? 'mb-2' : ''}`}
+					className={`text-2xl font-extrabold capitalize leading-snug tracking-tight ${showDatePicker ? 'mb-2 sm:mb-0' : ''}`}
 				>
 					{title}
 				</h2>
