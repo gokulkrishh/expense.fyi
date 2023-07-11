@@ -1,6 +1,7 @@
 import LayoutHeader from 'components/layout/header';
 
 import Account from './account';
+import DeleteAccount from './delete-account';
 import Plans from './plans';
 import Theme from './theme';
 import Usage from './usage';
@@ -23,6 +24,7 @@ export default async function Page() {
 					<Theme />
 					<Usage />
 					<Plans />
+					<DeleteAccount />
 				</div>
 			</div>
 		</>

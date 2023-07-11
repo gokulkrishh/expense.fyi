@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { createClient } from '@supabase/supabase-js';
 import { addYears } from 'date-fns';
 import WelcomeEmail from 'emails/welcome';
 
 import { checkAuth } from 'lib/auth';
+import { Database } from 'lib/database.types';
 import resend from 'lib/email';
 import prisma from 'lib/prisma';
 
 import messages, { emails } from 'constants/messages';
+
+const supabaseAdmin = createClient<Database>(
+	process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
+	process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
+	{ auth: { persistSession: false } }
+);
 
 export async function GET() {
 	return await checkAuth(async (user: any) => {
@@ -57,6 +65,21 @@ export async function PATCH(request: NextRequest) {
 		try {
 			await prisma.users.update({ data: { currency, locale }, where: { id: user.id } });
 			return NextResponse.json('Updated');
+		} catch (error) {
+			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
+		}
+	});
+}
+
+export async function POST(request: NextRequest) {
+	return await checkAuth(async (user: any) => {
+		try {
+			const { error } = await supabaseAdmin.auth.admin.deleteUser(user.id);
+			await prisma.users.delete({ where: { id: user.id } });
+			if (error) {
+				return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
+			}
+			return NextResponse.json('Deleted');
 		} catch (error) {
 			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
 		}

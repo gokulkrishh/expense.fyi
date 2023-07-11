@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import { useUser } from 'components/context/auth-provider';
 import { Button } from 'components/ui/button';
 import { Card, CardContent, CardHeader } from 'components/ui/card';
@@ -7,6 +9,8 @@ import { Card, CardContent, CardHeader } from 'components/ui/card';
 import { formatCurrency } from 'lib/formatter';
 
 import { basicPlan, premiumPlan } from 'constants/usage';
+
+const checkoutUrl = `https://gokulkrishh.lemonsqueezy.com/checkout/buy/${process.env.NEXT_PUBLIC_LEMON_SQUEEZY_CHECKOUT_ID}?embed=1&media=0&logo=0&discount=0`;
 
 const CheckIcon = () => (
 	<svg
@@ -25,13 +29,22 @@ const CheckIcon = () => (
 );
 
 export default function Plans() {
+	const [loading, setLoading] = useState(false);
 	const user = useUser();
+	const { isPremium } = user;
 	return (
 		<div className="w-full">
 			<div className="grid w-full max-w-2xl grid-cols-1 gap-3 sm:gap-10 md:mt-0 lg:grid-cols-2">
 				<Card className="w-full">
 					<CardHeader>
-						<h2 className="font-semibold text-primary dark:text-white">Basic</h2>
+						<h2 className="relative inline-block font-semibold text-primary dark:text-white">
+							Basic{' '}
+							{!isPremium ? (
+								<span className="absolute right-0 top-0 w-fit rounded-full bg-blue-700 px-2 text-xs font-normal leading-[1.6] text-white">
+									Active
+								</span>
+							) : null}
+						</h2>
 						<p className="text-sm text-muted-foreground">Free forever with limited features.</p>
 					</CardHeader>
 					<CardContent>
@@ -63,14 +76,21 @@ export default function Plans() {
 								Email support available
 							</span>
 						</div>
-						<Button className="mb-3 mt-3 w-full text-sm" size={'sm'}>
-							Change plan
+						<Button disabled={isPremium} className="mb-3 mt-3 w-full text-sm" size={'sm'}>
+							{!isPremium ? 'Current plan' : 'Expired'}
 						</Button>
 					</CardContent>
 				</Card>
 				<Card className="mb-2 mt-3.5 w-full sm:mt-0">
 					<CardHeader>
-						<h2 className="font-semibold text-primary dark:text-white">Premium</h2>
+						<h2 className="relative inline-block font-semibold text-primary dark:text-white">
+							Premium{' '}
+							{isPremium ? (
+								<span className="absolute right-0 top-0 w-fit rounded-full bg-blue-700 px-2 text-xs font-normal leading-[1.6] text-white">
+									Active
+								</span>
+							) : null}
+						</h2>
 						<p className="text-sm text-muted-foreground">Access to all premium features.</p>
 					</CardHeader>
 					<CardContent>
@@ -102,8 +122,8 @@ export default function Plans() {
 								Priority support with quick reply
 							</span>
 						</div>
-						<Button className="mb-3 mt-3 w-full text-sm" size={'sm'}>
-							Change plan
+						<Button disabled={isPremium} className="mb-3 mt-3 w-full text-sm" size={'sm'}>
+							{isPremium ? 'Current plan' : 'Change plan'}
 						</Button>
 					</CardContent>
 				</Card>

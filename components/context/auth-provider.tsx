@@ -10,7 +10,23 @@ import { SWRConfig } from 'swr';
 import fetcher from 'lib/fetcher';
 import prisma from 'lib/prisma';
 
-interface User {}
+interface User {
+	currency: string;
+	locale: string;
+	billing_start_date: string;
+	trial_start_date: string;
+	order_status: string;
+	usage: number;
+	email: string;
+	plan_status: string;
+	new_signup_email: boolean;
+	basic_usage_limit_email: boolean;
+	premium_plan_expired_email: boolean;
+	premium_usage_limit_email: boolean;
+	monthly_email_report: boolean;
+	isPremium: boolean;
+	isPremiumPlanEnded: boolean;
+}
 
 interface Session {}
 
