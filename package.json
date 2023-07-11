@@ -63,6 +63,7 @@
 		"lucide-react": "^0.259.0",
 		"next": "13.4.9",
 		"next-themes": "^0.2.1",
+		"nextjs-toploader": "^1.4.2",
 		"postcss": "8.4.25",
 		"prisma": "^4.16.2",
 		"prisma-field-encryption": "^1.4.5",

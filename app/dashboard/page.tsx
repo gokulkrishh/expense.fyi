@@ -1,13 +1,8 @@
 import Add from 'components/add-button';
 import Summary from 'components/card/summary';
-import ExpesenseChart from 'components/chart/bar';
-import TopSpentExpenses from 'components/chart/bar-list';
-import DonutChart from 'components/chart/donut';
 import { DatePickerProvider } from 'components/context/datepicker-provider';
 import { OverviewContextProvider } from 'components/context/overview-provider';
 import LayoutHeader from 'components/layout/header';
-import RecentActivitiesTable from 'components/recent-activities/table';
-import { Card, CardContent, CardHeader } from 'components/ui/card';
 
 import Charts from './charts';
 

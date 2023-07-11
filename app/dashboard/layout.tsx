@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { SWRConfig } from 'swr';
+import NextTopLoader from 'nextjs-toploader';
 
 import { AuthProvider } from 'components/context/auth-provider';
 import DashboardLayout from 'components/layout';
@@ -11,7 +11,6 @@ import { ThemeProvider } from 'components/theme-provider';
 import { Toaster } from 'components/ui/toaster';
 
 import { Database } from 'lib/database.types';
-import fetcher from 'lib/fetcher';
 
 import url from 'constants/url';
 
@@ -53,6 +52,7 @@ export default async function Layout({ children }: any) {
 		<>
 			<html lang="en" suppressHydrationWarning>
 				<body className={`${inter.className} flex h-full flex-col text-gray-600 antialiased`}>
+					<NextTopLoader color="#1E88E5" height={2} showSpinner={false} />
 					<AuthProvider user={user} accessToken={session?.access_token || null}>
 						<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 							<main className="relative flex min-h-full min-w-full bg-background">
