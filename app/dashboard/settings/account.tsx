@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'c
 
 import data from 'data/currency.json';
 
+import { updateUser } from './apis';
+
 export default function Account() {
 	const user = useUser();
 	return (
@@ -28,7 +30,13 @@ export default function Account() {
 						<Label className="mb-3 block" htmlFor="currency">
 							Currency
 						</Label>
-						<Select>
+						<Select
+							onValueChange={async (value) => {
+								const [currency, locale] = value.split('-');
+								updateUser({ currency, locale });
+							}}
+							defaultValue={`${user.currency}-${user.locale}`}
+						>
 							<SelectTrigger className="w-full">
 								<SelectValue id="currency" placeholder="Select your currency" />
 							</SelectTrigger>

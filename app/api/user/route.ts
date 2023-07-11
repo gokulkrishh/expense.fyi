@@ -50,3 +50,15 @@ export async function GET() {
 		}
 	});
 }
+
+export async function PATCH(request: NextRequest) {
+	const { currency, locale } = await request.json();
+	return await checkAuth(async (user: any) => {
+		try {
+			await prisma.users.update({ data: { currency, locale }, where: { id: user.id } });
+			return NextResponse.json('Updated');
+		} catch (error) {
+			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
+		}
+	});
+}

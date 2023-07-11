@@ -17,7 +17,7 @@ export default function Usage() {
 	const { usage, locale, isPremium, isPremiumPlanEnded } = user;
 	const usageLimit = isPremium ? premiumPlan.limit : basicPlan.limit;
 	return (
-		<Card className="mt-10 w-full">
+		<Card className="w-full">
 			<CardHeader>
 				<h2 className="font-semibold text-primary dark:text-white">Usage</h2>
 			</CardHeader>

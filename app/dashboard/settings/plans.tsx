@@ -17,9 +17,9 @@ const CheckIcon = () => (
 		className="mr-1.5 h-5 w-5 text-green-600"
 	>
 		<path
-			fill-rule="evenodd"
+			fillRule="evenodd"
 			d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
-			clip-rule="evenodd"
+			clipRule="evenodd"
 		></path>
 	</svg>
 );
@@ -27,7 +27,7 @@ const CheckIcon = () => (
 export default function Plans() {
 	const user = useUser();
 	return (
-		<div className="mt-10 w-full">
+		<div className="w-full">
 			<div className="grid w-full max-w-2xl grid-cols-1 gap-3 sm:gap-10 md:mt-0 lg:grid-cols-2">
 				<Card className="w-full">
 					<CardHeader>
@@ -68,7 +68,7 @@ export default function Plans() {
 						</Button>
 					</CardContent>
 				</Card>
-				<Card className="w-full mt-8 sm:mt-0 mb-2">
+				<Card className="mb-2 mt-3.5 w-full sm:mt-0">
 					<CardHeader>
 						<h2 className="font-semibold text-primary dark:text-white">Premium</h2>
 						<p className="text-sm text-muted-foreground">Access to all premium features.</p>
