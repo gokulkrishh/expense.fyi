@@ -48,12 +48,13 @@ export const SignUpEmail = ({ action_link = '' }: { action_link?: string }) => {
 export default SignUpEmail;
 
 const main = {
-	backgroundColor: '#efeef1',
+	backgroundColor: '#ffffff',
 	margin: '0 auto',
 };
 
 const container = {
 	backgroundColor: '#ffffff',
+	border: '1px solid #eaeaea',
 	borderRadius: '5px',
 	margin: '40px auto',
 	padding: '20px',

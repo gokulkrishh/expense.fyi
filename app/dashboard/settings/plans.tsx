@@ -76,7 +76,7 @@ export default function Plans() {
 								Email support available
 							</span>
 						</div>
-						<Button disabled={isPremium} className="mb-3 mt-3 w-full text-sm" size={'sm'}>
+						<Button disabled={true} className="mb-3 mt-3 w-full text-sm" size={'sm'}>
 							{!isPremium ? 'Current plan' : 'Expired'}
 						</Button>
 					</CardContent>
@@ -123,7 +123,7 @@ export default function Plans() {
 							</span>
 						</div>
 						<Button disabled={isPremium} className="mb-3 mt-3 w-full text-sm" size={'sm'}>
-							{isPremium ? 'Current plan' : 'Change plan'}
+							{isPremium ? 'Current plan' : 'Go premium'}
 						</Button>
 					</CardContent>
 				</Card>
