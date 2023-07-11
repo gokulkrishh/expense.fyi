@@ -7,6 +7,7 @@ import Footer from 'components/footer';
 import Features from 'components/home/features';
 
 import url from 'constants/url';
+import { premiumPlan } from 'constants/usage';
 
 export default function Home() {
 	return (
@@ -233,7 +234,7 @@ export default function Home() {
 								<p className="mb-2 mt-2 text-gray-300">Access to all premium features.</p>
 								<p className="mt-4">
 									<span className="inline-flex text-3xl font-extrabold text-white">$ 20</span>
-									<span className="text-base  text-gray-100"> / year</span>
+									<span className="text-base text-gray-100"> / year</span>
 								</p>
 								<div className="mb-0 ml-1 mt-4 flex flex-col justify-center text-left text-white ">
 									<span className="m-1 ml-0 flex items-center  text-[15px]">
@@ -266,7 +267,7 @@ export default function Home() {
 												clipRule="evenodd"
 											></path>
 										</svg>
-										<span>Add up to 2500 total entries</span>
+										<span>Add up to {premiumPlan.limit} total entries</span>
 									</span>
 									<span className="m-1 ml-0 flex items-center text-[15px]">
 										<svg

@@ -86,8 +86,9 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 			}
 			setLoading(false);
 			toast({ description: `${isEditing ? messages.updated : messages.success}` });
-		} catch {
-			toast({ description: messages.error, variant: 'destructive' });
+		} catch (error: any) {
+			setLoading(false);
+			toast({ description: error.message, variant: 'destructive' });
 		} finally {
 			if (mutate) mutate();
 			onHide();

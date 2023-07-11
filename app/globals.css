@@ -93,3 +93,7 @@ textarea {
 .dark .tremor-BarList-labelText {
 	color: #fff !important;
 }
+
+.dark .recharts-tooltip-wrapper .text-tremor-content {
+	color: #000 !important;
+}

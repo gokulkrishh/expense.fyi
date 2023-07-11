@@ -9,6 +9,10 @@ export type InvestmentData = {
 
 export const addInvestment = async (data: InvestmentData) => {
 	const res = await fetch(`/api/investments/add`, { method: 'POST', body: JSON.stringify(data) });
+	if (!res.ok) {
+		const error = await res.json();
+		throw error;
+	}
 	return await res.json();
 };
 

@@ -27,13 +27,25 @@ export const emails = {
 		sent: 'Feedback received.',
 		failed: 'Failed to send, please try again.',
 	},
+	account: {
+		deleted: 'Your Expense.fyi account is Deleted!',
+	},
 	welcome: {
 		subject: '✨ Welcome to Expense.fyi',
 	},
 	usageLimit: {
-		premium: 'Your Premium Plan Expired!',
-		premiumExceeded: 'Your Premium Plan usage exceeded!',
-		basic: 'Your Basic Plan usage exceeded!',
+		premiumExpired: {
+			subject: 'Your Premium Plan Expired!',
+			message: 'Your premium plan limit is reached, renew again to continue.',
+		},
+		premium: {
+			subject: 'Your Premium Plan usage exceeded!',
+			message: 'Your premium plan limit is reached, renew to continue.',
+		},
+		basic: {
+			subject: 'Your Basic Plan usage exceeded!',
+			message: 'Your basic plan limit is reached, upgrade to premium plan.',
+		},
 	},
 	sent: 'We just sent an email with magic link, check your inbox.',
 	from: 'Gokul from Expense.fyi <hello@expense.fyi>',

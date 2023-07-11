@@ -9,7 +9,9 @@ import Footnote from './footnote';
 const baseUrl = 'https://expense.fyi';
 const settingUrl = 'https://app.expense.fyi/settings';
 
-export default function PlanExpiredEmail({ plan = 'Premium Plan' }) {
+type PlanExpiredProps = { plan?: string };
+
+export default function PlanExpiredEmail({ plan = 'Premium Plan' }: PlanExpiredProps) {
 	return (
 		<Html>
 			<Head />
@@ -29,7 +31,7 @@ export default function PlanExpiredEmail({ plan = 'Premium Plan' }) {
 						Expense.fyi.
 					</Text>
 
-					<Section style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>
+					<Section style={{ marginTop: '20px', marginBottom: '20px' }}>
 						<ButtonLink href={settingUrl} btnText="Renew now" />
 					</Section>
 					<Footnote />

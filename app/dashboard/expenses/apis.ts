@@ -10,6 +10,10 @@ export type ExpenseData = {
 
 export const addExpense = async (data: ExpenseData) => {
 	const res = await fetch(`/api/expenses/add`, { method: 'POST', body: JSON.stringify(data) });
+	if (!res.ok) {
+		const error = await res.json();
+		throw error;
+	}
 	return await res.json();
 };
 

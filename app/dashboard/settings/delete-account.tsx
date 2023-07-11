@@ -24,7 +24,7 @@ export default function DeleteAccount() {
 						</div>
 					</div>
 				</CardContent>
-				<CardFooter className="flex justify-end rounded-bl-xl rounded-br-xl border-b border-border bg-accent">
+				<CardFooter className="flex justify-end rounded-bl-xl rounded-br-xl border-b border-border bg-primary/10">
 					<Button
 						size={'sm'}
 						className="relative top-2"

@@ -48,13 +48,7 @@ export default function DeleteModal({ show, onHide }: { show: boolean; onHide: (
 				disabled={loading || verify !== user.email}
 				className="user-select-none mt-4 w-full"
 			>
-				{loading ? (
-					<>
-						<CircleLoader /> <span className="ml-2">Deleting</span>
-					</>
-				) : (
-					'Delete this account'
-				)}
+				{loading ? <CircleLoader /> : 'Confirm delete'}
 			</Button>
 		</Modal>
 	);

@@ -8,6 +8,10 @@ export type IncomeData = {
 
 export const addIncome = async (data: IncomeData) => {
 	const res = await fetch(`/api/income/add`, { method: 'POST', body: JSON.stringify(data) });
+	if (!res.ok) {
+		const error = await res.json();
+		throw error;
+	}
 	return await res.json();
 };
 

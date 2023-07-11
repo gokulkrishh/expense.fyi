@@ -1,3 +1,3 @@
 export const basicPlan = { limit: 100 };
 
-export const premiumPlan = { limit: 2500 };
+export const premiumPlan = { limit: 2000 };

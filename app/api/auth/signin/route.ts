@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { createClient } from '@supabase/supabase-js';
 import SignInEmail from 'emails/signin';
+import WelcomeEmail from 'emails/welcome';
 
 import { Database } from 'lib/database.types';
 import resend from 'lib/email';
@@ -16,10 +17,19 @@ const supabaseAdmin = createClient<Database>(
 	{ auth: { persistSession: false } }
 );
 
+type UserData = {
+	email: string;
+	id: string;
+	new_signup_email: boolean;
+};
+
 export async function POST(request: NextRequest) {
 	const { email } = await request.json();
-	const user = await prisma.users.findFirst({ where: { email }, select: { email: true } });
-	if (user) {
+	const user = (await prisma.users.findFirst({
+		where: { email },
+		select: { email: true, id: true, new_signup_email: true },
+	})) as UserData;
+	if (user && user.id) {
 		try {
 			const { data, error } = await supabaseAdmin.auth.admin.generateLink({
 				type: 'magiclink',
@@ -35,6 +45,15 @@ export async function POST(request: NextRequest) {
 			const { action_link } = properties;
 
 			try {
+				if (!user.new_signup_email) {
+					await resend.sendEmail({
+						from: emails.from,
+						subject: emails.welcome.subject,
+						to: user.email,
+						react: WelcomeEmail(),
+					});
+					await prisma.users.update({ where: { id: user.id }, data: { new_signup_email: true } });
+				}
 				await resend.sendEmail({
 					from: emails.from,
 					subject: emails.signin.subject,

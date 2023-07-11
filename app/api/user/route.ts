@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { createClient } from '@supabase/supabase-js';
 import { addYears } from 'date-fns';
-import WelcomeEmail from 'emails/welcome';
+import AccountedDeleteEmail from 'emails/account-deleted';
 
 import { checkAuth } from 'lib/auth';
 import { Database } from 'lib/database.types';
@@ -34,23 +34,10 @@ export async function GET() {
 					new_signup_email: true,
 				},
 			});
-			const isPremium = data?.order_status === 'paid' && data?.plan_status === 'premium';
+			const isPremiumPlan = data?.order_status === 'paid' && data?.plan_status === 'premium';
 			const isPremiumPlanEnded =
-				isPremium && data?.billing_start_date && new Date() > addYears(new Date(data.billing_start_date), 1);
-
-			if (!data?.new_signup_email) {
-				try {
-					await resend.sendEmail({
-						from: emails.from,
-						subject: emails.welcome.subject,
-						to: user.email,
-						react: WelcomeEmail(),
-					});
-					await prisma.users.update({ where: { id: user.id }, data: { new_signup_email: true } });
-				} catch (error) {
-					throw error;
-				}
-			}
+				isPremiumPlan && data?.billing_start_date && new Date() > addYears(new Date(data.billing_start_date), 1);
+			const isPremium = isPremiumPlan && !isPremiumPlanEnded;
 
 			return NextResponse.json({ ...data, isPremium, isPremiumPlanEnded }, { status: 200 });
 		} catch (error) {
@@ -75,9 +62,19 @@ export async function POST(request: NextRequest) {
 	return await checkAuth(async (user: any) => {
 		try {
 			const { error } = await supabaseAdmin.auth.admin.deleteUser(user.id);
-			await prisma.users.delete({ where: { id: user.id } });
 			if (error) {
 				return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
+			}
+			await prisma.users.delete({ where: { id: user.id } });
+			try {
+				await resend.sendEmail({
+					from: emails.from,
+					subject: emails.account.deleted,
+					to: user.email,
+					react: AccountedDeleteEmail(),
+				});
+			} catch (error) {
+				throw error;
 			}
 			return NextResponse.json('Deleted');
 		} catch (error) {

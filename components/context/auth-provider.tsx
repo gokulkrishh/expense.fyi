@@ -8,7 +8,6 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { SWRConfig } from 'swr';
 
 import fetcher from 'lib/fetcher';
-import prisma from 'lib/prisma';
 
 interface User {
 	currency: string;

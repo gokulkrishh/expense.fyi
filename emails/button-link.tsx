@@ -2,7 +2,7 @@ import { Button } from '@react-email/components';
 
 export default function ButtonLink({ href, btnText }: { href: string; btnText: string }) {
 	return (
-		<Button pX={16} pY={9} style={{ ...btn, textAlign: 'center' }} href={href}>
+		<Button pX={16} pY={8} style={{ ...btn, textAlign: 'center' }} href={href}>
 			{btnText}
 		</Button>
 	);

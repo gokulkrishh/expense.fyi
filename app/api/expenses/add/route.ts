@@ -16,5 +16,5 @@ export async function POST(request: NextRequest) {
 		} catch (error) {
 			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
 		}
-	});
+	}, false);
 }

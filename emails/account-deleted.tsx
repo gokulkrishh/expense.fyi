@@ -9,34 +9,21 @@ import Footnote from './footnote';
 const baseUrl = 'https://expense.fyi';
 const settingUrl = 'https://app.expense.fyi/settings';
 
-type UsageProps = {
-	plan?: string;
-	maxUsageLimit: number;
-};
-
-export default function UsageExceededEmail({ plan = 'Basic Plan', maxUsageLimit = 100 }: UsageProps) {
+export default function AccountedDeleteEmail() {
 	return (
 		<Html>
 			<Head />
-			<Preview>{`${plan} usage exceeded!`}</Preview>
+			<Preview>{`Your Expense.fyi account is Deleted!`}</Preview>
 			<Section style={main}>
 				<Container style={container}>
 					<Section style={{ marginTop: '20px' }}>
 						<Img src={`${baseUrl}/static/icons/logo.png`} width="50" height="50" alt="Logo" style={logo} />
 					</Section>
-					<Text style={{ ...h1, marginTop: '20px' }}>Usage Limit Reached</Text>
-					<Text style={{ ...text, marginTop: '30px', marginBottom: '10px' }}>Hi!</Text>
+					<Text style={{ ...h1, marginTop: '20px' }}>Account Deleted</Text>
+					<Text style={{ ...text, marginTop: '30px', marginBottom: '10px' }}>Hello,</Text>
 					<Text style={{ ...text, marginTop: '0px', marginBottom: '0px' }}>
-						Your account has <b>exceeded</b> the usage limit of <b>{maxUsageLimit} entries</b> for <b>{plan}</b>.
+						Your account and all its associated data has been deleted as per your request.
 					</Text>
-					<Text style={{ ...text, marginTop: '10px' }}>
-						No worries, all data still there. Upgrade to <b>Premium Plan</b> to increase the entry limit and get all the
-						Premium features.
-					</Text>
-
-					<Section style={{ marginTop: '20px', marginBottom: '20px' }}>
-						<ButtonLink href={settingUrl} btnText="Upgrade now" />
-					</Section>
 					<Footnote />
 					<Footer />
 				</Container>
