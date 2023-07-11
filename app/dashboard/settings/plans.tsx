@@ -1,16 +1,38 @@
 'use client';
 
-import { useState } from 'react';
+import Script from 'next/script';
+
+import { use, useState } from 'react';
+
+import { format } from 'date-fns';
 
 import { useUser } from 'components/context/auth-provider';
 import { Button } from 'components/ui/button';
 import { Card, CardContent, CardHeader } from 'components/ui/card';
+import { useToast } from 'components/ui/use-toast';
 
 import { formatCurrency } from 'lib/formatter';
 
+import { dateFormat } from 'constants/date';
+import messages from 'constants/messages';
 import { basicPlan, premiumPlan } from 'constants/usage';
 
-const checkoutUrl = `https://gokulkrishh.lemonsqueezy.com/checkout/buy/${process.env.NEXT_PUBLIC_LEMON_SQUEEZY_CHECKOUT_ID}?embed=1&media=0&logo=0&discount=0`;
+declare global {
+	interface Window {
+		createLemonSqueezy: any;
+		LemonSqueezy: {
+			Url: {
+				Close: () => void;
+				Open: (checkoutUrl: string) => void;
+			};
+			Setup: ({ eventHandler }: { eventHandler: any }) => void;
+		};
+	}
+}
+
+// Docs: https://docs.lemonsqueezy.com/api/orders#the-order-object
+
+const checkoutUrl = `https://expensefyi.lemonsqueezy.com/checkout/buy/${process.env.NEXT_PUBLIC_LEMON_SQUEEZY_CHECKOUT_ID}?embed=1&media=0&logo=0&desc=0&dark=1`;
 
 const CheckIcon = () => (
 	<svg
@@ -28,10 +50,61 @@ const CheckIcon = () => (
 	</svg>
 );
 
+export const paymentEvents = { success: 'Checkout.Success', closed: 'PaymentMethodUpdate.Closed' };
+
 export default function Plans() {
-	const [loading, setLoading] = useState(false);
 	const user = useUser();
-	const { isPremium } = user;
+	const [loading, setLoading] = useState(false);
+	const { isPremium, isPremiumEnded } = user;
+	const { toast } = useToast();
+
+	const onSuccess = async ({ order }: { order: any }, close: any) => {
+		const { attributes } = order.data;
+		try {
+			const res = await fetch('/api/user/upgrade', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					billing_start_date: format(new Date(), dateFormat),
+					plan_status: premiumPlan.name,
+					order_identifier: attributes.identifier,
+					order_store_id: String(attributes.store_id),
+					order_number: String(attributes.order_number),
+					order_status: attributes.status,
+				}),
+			});
+			if (!res.ok) {
+				const error = await res.json();
+				throw new Error(error.message || res.statusText);
+			} else {
+				toast({ description: messages.payments.success });
+				setTimeout(() => window.location.reload(), 6000);
+			}
+		} catch (error: any) {
+			toast({ description: error.message, variant: 'destructive' });
+		}
+	};
+
+	const onDismiss = () => {
+		toast({ description: messages.payments.dismissed });
+	};
+
+	const eventHandler = async ({ event, data }: { event: any; data: any }) => {
+		if (event === paymentEvents.success && window.LemonSqueezy) {
+			await onSuccess(data, window.LemonSqueezy?.Url?.Close);
+		} else if (event === paymentEvents.closed) {
+			onDismiss();
+		} else {
+			console.warn(`Unhandled event: ${event}`);
+		}
+		return false;
+	};
+
+	const setupLemonSqueezy = () => {
+		window.createLemonSqueezy?.();
+		window.LemonSqueezy?.Setup?.({ eventHandler });
+	};
+
 	return (
 		<div className="w-full">
 			<div className="grid w-full max-w-2xl grid-cols-1 gap-3 sm:gap-10 md:mt-0 lg:grid-cols-2">
@@ -50,7 +123,7 @@ export default function Plans() {
 					<CardContent>
 						<div className="flex items-center text-lg">
 							<span className="inline-flex text-3xl font-extrabold tabular-nums text-primary">
-								{formatCurrency({ value: 0, locale: user.locale, currency: user.currency })}
+								{formatCurrency({ value: 0, locale: 'en', currency: 'USD' })}
 							</span>
 							<span className="ml-[6px] text-base text-primary">per month</span>
 						</div>
@@ -122,12 +195,24 @@ export default function Plans() {
 								Priority support with quick reply
 							</span>
 						</div>
-						<Button disabled={isPremium} className="mb-3 mt-3 w-full text-sm" size={'sm'}>
+						<Button
+							onClick={() => {
+								if (!isPremium || isPremiumEnded) {
+									setLoading(true);
+									window.LemonSqueezy?.Url?.Open?.(checkoutUrl);
+									setTimeout(() => setLoading(false));
+								}
+							}}
+							disabled={(isPremium && !isPremiumEnded) || loading}
+							className="mb-3 mt-3 w-full text-sm"
+							size={'sm'}
+						>
 							{isPremium ? 'Current plan' : 'Go premium'}
 						</Button>
 					</CardContent>
 				</Card>
 			</div>
+			<Script src="https://app.lemonsqueezy.com/js/lemon.js" async onLoad={setupLemonSqueezy} />
 		</div>
 	);
 }

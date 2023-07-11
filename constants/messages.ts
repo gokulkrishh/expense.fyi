@@ -18,6 +18,10 @@ const messages = {
 		unauthorized: 'Unauthorized request',
 	},
 	export: 'Export will begin shortly.',
+	payments: {
+		success: 'Your payment is successful, page will reload in 6 seconds.',
+		dismissed: 'Payment is cancelled, please try again',
+	},
 };
 
 export const emails = {
