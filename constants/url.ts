@@ -1,7 +1,7 @@
 import { getRangeDateForFilter } from './date';
 import { views } from './table';
 
-const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
 const domain = 'expense.fyi';
 const local = 'localhost:3000';
