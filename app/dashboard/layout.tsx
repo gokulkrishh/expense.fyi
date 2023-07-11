@@ -30,6 +30,8 @@ export const metadata = {
 	description,
 };
 
+export const revalidate = 0;
+
 async function getUser(cookies: any) {
 	const res = await fetch(`${url.serverApi}/api/user`, {
 		headers: { cookie: cookies },

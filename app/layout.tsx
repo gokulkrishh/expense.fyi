@@ -12,6 +12,8 @@ export const metadata = {
 	description,
 };
 
+export const revalidate = 0;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
