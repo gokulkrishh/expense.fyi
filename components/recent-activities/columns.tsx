@@ -2,6 +2,8 @@
 
 import { ColumnDef } from '@tanstack/react-table';
 
+import { formatCurrency } from 'lib/formatter';
+
 export type recentActivities = {
 	no: string;
 	name: string;
@@ -25,5 +27,15 @@ export const columns: ColumnDef<recentActivities>[] = [
 	{
 		accessorKey: 'amount',
 		header: 'Amount',
+		cell: (props) => {
+			const {
+				row,
+				table: { options },
+			} = props;
+			const user = options.meta?.user;
+			const price = parseFloat(row.getValue('amount'));
+			const formatted = formatCurrency({ value: price, currency: user?.currency, locale: user?.locale });
+			return <div className="tabular-nums">{formatted}</div>;
+		},
 	},
 ];

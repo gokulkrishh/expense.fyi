@@ -49,7 +49,7 @@ export default function Plans() {
 					</CardHeader>
 					<CardContent>
 						<div className="flex items-center text-lg">
-							<span className="inline-flex text-3xl font-extrabold text-primary">
+							<span className="inline-flex text-3xl font-extrabold tabular-nums text-primary">
 								{formatCurrency({ value: 0, locale: user.locale, currency: user.currency })}
 							</span>
 							<span className="ml-[6px] text-base text-primary">per month</span>
@@ -95,7 +95,7 @@ export default function Plans() {
 					</CardHeader>
 					<CardContent>
 						<div className="flex items-center text-lg">
-							<span className="inline-flex text-3xl font-extrabold text-primary">
+							<span className="inline-flex text-3xl font-extrabold tabular-nums text-primary">
 								{formatCurrency({ value: 20, locale: 'en', currency: 'USD' })}
 							</span>
 							<span className="ml-[6px] text-base text-primary">per year</span>

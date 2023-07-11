@@ -10,7 +10,7 @@ export default function SummaryCard({ title, data, icon: Icon }: Summary) {
 				{Icon ? <Icon className="absolute right-3 top-1 h-4 w-4" /> : null}
 			</CardHeader>
 			<CardContent>
-				<p className="mt-1 text-2xl font-extrabold text-foreground">{data}</p>
+				<p className="mt-1 text-2xl font-extrabold tabular-nums text-foreground">{data}</p>
 			</CardContent>
 		</Card>
 	);

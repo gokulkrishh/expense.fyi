@@ -25,11 +25,11 @@ export default function Usage() {
 				<div className="flex items-center justify-between">
 					<Label className="mb-3 block" htmlFor="email">
 						Entries Added
-						<p className="mt-2 text-sm text-muted-foreground">
+						<p className="mt-2 text-sm tabular-nums text-muted-foreground">
 							{usage} of {usageLimit}
 						</p>
 					</Label>
-					<p className="text-sm text-muted-foreground">{usageLimit - usage} entries left</p>
+					<p className="text-sm tabular-nums text-muted-foreground">{usageLimit - usage} entries left</p>
 				</div>
 				<Progress value={(usage / usageLimit) * 100} />
 				<div className="mt-3 text-muted-foreground">

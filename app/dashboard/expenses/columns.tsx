@@ -31,7 +31,7 @@ export const columns: ColumnDef<Expenses>[] = [
 		cell: ({ row }) => {
 			const category = row.getValue<string>('category');
 			return (
-				<div className="">
+				<div className="font-medium">
 					<span className="mr-2">{expensesCategory[category]?.emoji}</span> {row.getValue('name')}
 				</div>
 			);
@@ -48,7 +48,7 @@ export const columns: ColumnDef<Expenses>[] = [
 			const user = options.meta?.user;
 			const price = parseFloat(row.getValue('price'));
 			const formatted = formatCurrency({ value: price, currency: user?.currency, locale: user?.locale });
-			return <div className="">{formatted}</div>;
+			return <div className="font-medium tabular-nums">{formatted}</div>;
 		},
 	},
 	{

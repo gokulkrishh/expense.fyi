@@ -28,6 +28,11 @@ export const columns: ColumnDef<Income>[] = [
 	{
 		accessorKey: 'name',
 		header: ({ column }) => <DataTableColumnHeader column={column} title="Name" />,
+		cell: (props) => {
+			const { row } = props;
+			const name = row.getValue<string>('name');
+			return <div className="font-medium">{name}</div>;
+		},
 	},
 	{
 		accessorKey: 'price',
@@ -40,7 +45,7 @@ export const columns: ColumnDef<Income>[] = [
 			const user = options.meta?.user;
 			const price = parseFloat(row.getValue('price'));
 			const formatted = formatCurrency({ value: price, currency: user?.currency, locale: user?.locale });
-			return <div className="">{formatted}</div>;
+			return <div className="font-medium tabular-nums">{formatted}</div>;
 		},
 	},
 	{

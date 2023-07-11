@@ -84,3 +84,12 @@ textarea {
 .dark .fill-tremor-content-emphasis {
 	fill: #fff !important;
 }
+
+.tremor-BarList-labelText,
+.recharts-surface text.fill-tremor-content-emphasis {
+	font-variant-numeric: tabular-nums;
+}
+
+.dark .tremor-BarList-labelText {
+	color: #fff !important;
+}

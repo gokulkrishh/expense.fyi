@@ -28,6 +28,11 @@ export const columns: ColumnDef<Investments>[] = [
 	{
 		accessorKey: 'name',
 		header: ({ column }) => <DataTableColumnHeader column={column} title="Name" />,
+		cell: (props) => {
+			const { row } = props;
+			const name = row.getValue<string>('name');
+			return <div className="font-medium">{name}</div>;
+		},
 	},
 	{
 		accessorKey: 'price',
@@ -40,7 +45,7 @@ export const columns: ColumnDef<Investments>[] = [
 			const user = options.meta?.user;
 			const price = parseFloat(row.getValue('price'));
 			const formatted = formatCurrency({ value: price, currency: user?.currency, locale: user?.locale });
-			return <div className="">{formatted}</div>;
+			return <div className="font-medium tabular-nums">{formatted}</div>;
 		},
 	},
 	{
@@ -52,7 +57,7 @@ export const columns: ColumnDef<Investments>[] = [
 				table: { options },
 			} = props;
 			const units = parseFloat(row.getValue('units'));
-			return <div className="">{units}</div>;
+			return <div className="tabular-nums">{units}</div>;
 		},
 	},
 	{

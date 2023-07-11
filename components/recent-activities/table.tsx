@@ -41,7 +41,7 @@ export default function RecentActivitiesTable() {
 			data={recentData.map((datum, index) => ({
 				no: `${index + 1}.`,
 				category: datum.category,
-				amount: formatCurrency({ value: datum.price, currency: user.currency, locale: user.locale }),
+				amount: datum.price,
 				name: datum.name,
 			}))}
 		/>

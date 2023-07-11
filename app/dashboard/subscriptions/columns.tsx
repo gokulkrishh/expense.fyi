@@ -22,7 +22,7 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 			const name = row.getValue<string>('name');
 			const url = row.original?.url;
 			return (
-				<div className="relative flex items-center">
+				<div className="relative flex items-center font-medium">
 					<Image
 						className="absolute inline-block text-transparent"
 						src={`https://www.google.com/s2/favicons?domain=${url}`}
@@ -50,7 +50,7 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 			const paid = row.original?.paid;
 			const formatted = formatCurrency({ value: price, currency: user?.currency, locale: user?.locale });
 			return (
-				<div className="mb-1 mt-1 ">
+				<div className="mb-1 mt-1 font-medium tabular-nums">
 					{formatted}
 					<p className="mt-[2px] text-xs text-muted-foreground"> per {paid.replace(/ly/, '')}</p>
 				</div>
