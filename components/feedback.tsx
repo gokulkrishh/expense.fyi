@@ -65,7 +65,7 @@ export default function Feedback({ className }: { className?: string }) {
 							onChange={(event) => setState({ ...state, message: event.target.value })}
 							value={state.message}
 							placeholder="Share your feedback here"
-							className="h-[90px] resize-none "
+							className="h-[90px] resize-none"
 							required
 						/>
 						<Button disabled={state.loading} size={'sm'} className="float-right mt-[10px]">

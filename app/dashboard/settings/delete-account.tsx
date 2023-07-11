@@ -2,12 +2,9 @@
 
 import { useState } from 'react';
 
-import { set } from 'date-fns';
-
-import { useUser } from 'components/context/auth-provider';
 import DeleteModal from 'components/modal/delete';
 import { Button } from 'components/ui/button';
-import { Card, CardContent, CardHeader } from 'components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from 'components/ui/card';
 
 export default function DeleteAccount() {
 	const [show, setShow] = useState(false);
@@ -15,24 +12,30 @@ export default function DeleteAccount() {
 	return (
 		<>
 			<Card className="w-full border border-red-600">
-				<CardHeader>
+				<CardHeader className="border-b border-border">
 					<h2 className="font-semibold text-primary dark:text-white">Delete Your Account</h2>
 				</CardHeader>
 				<CardContent>
-					<div className="relative mb-3 flex items-center justify-between">
+					<div className="relative mb-3 mt-5 flex items-center justify-between">
 						<div>
-							<p className="mr-1 text-sm">Permanently delete your account and data. This action is not reversible.</p>
+							<p className="mr-1 text-sm">
+								Permanently delete your account and all its associated data, this action cannot be undone.
+							</p>
 						</div>
-						<Button
-							variant={'destructive'}
-							onClick={() => {
-								setShow(true);
-							}}
-						>
-							Delete
-						</Button>
 					</div>
 				</CardContent>
+				<CardFooter className="flex justify-end rounded-bl-xl rounded-br-xl border-b border-border bg-accent">
+					<Button
+						size={'sm'}
+						className="relative top-2"
+						variant={'destructive'}
+						onClick={() => {
+							setShow(true);
+						}}
+					>
+						Delete your account
+					</Button>
+				</CardFooter>
 			</Card>
 			<DeleteModal show={show} onHide={onHide} />
 		</>

@@ -32,7 +32,7 @@ export default function DeleteModal({ show, onHide }: { show: boolean; onHide: (
 	return (
 		<Modal show={show} title="Delete Your Account" onHide={onHide} someRef={null}>
 			<div className="text-sm text-primary dark:text-muted-foreground">
-				Type your account email to delete your account.
+				Type this account email to delete your account and its data.
 			</div>
 			<Input
 				className="mt-3"
@@ -43,7 +43,6 @@ export default function DeleteModal({ show, onHide }: { show: boolean; onHide: (
 				}}
 			/>
 			<Button
-				size="sm"
 				onClick={onDelete}
 				variant={'destructive'}
 				disabled={loading || verify !== user.email}
