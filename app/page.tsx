@@ -45,7 +45,7 @@ export default function Home() {
 						<rect width="100%" height="100%" fill="url(#pattern)"></rect>
 					</svg>
 				</div>
-				<div className="mx-auto mb-16 mt-16 w-2/4 max-w-md px-3 text-center sm:max-w-lg sm:px-0">
+				<div className="mx-auto mb-16 mt-16 max-w-md px-3 text-center sm:max-w-lg sm:px-0">
 					<h1 className="mt-4	text-4xl font-black leading-[1.15] tracking-[-0.03em] text-black sm:text-5xl sm:leading-[1.15]">
 						Effortlessly Track and Manage{' '}
 						<span className="bg-gradient-to-r from-amber-400 to-orange-600 bg-clip-text text-transparent">
@@ -130,7 +130,7 @@ export default function Home() {
 						Start for free, no credit card is required.
 					</p>
 					<div className="mt-8 flex w-full flex-col sm:flex-row">
-						<div className="min-w-[330px] divide-y divide-gray-600 rounded-lg bg-gray-900 text-left shadow-sm sm:mr-8">
+						<div className="min-w-[330px] divide-y divide-gray-600 rounded-lg bg-zinc-900 text-left shadow-sm sm:mr-8">
 							<div className="p-5 py-6">
 								<h2 className="text-3xl font-extrabold leading-6 text-white">Basic</h2>
 								<p className="mb-2 mt-2 text-gray-300">Free forever with limits.</p>
@@ -228,7 +228,7 @@ export default function Home() {
 								</a>
 							</div>
 						</div>
-						<div className="bg-pro-plan mt-8  min-w-[330px] divide-y divide-gray-600 rounded-lg bg-gray-900 text-left shadow-sm sm:mt-0">
+						<div className="bg-pro-plan mt-8  min-w-[330px] divide-y divide-gray-600 rounded-lg bg-zinc-900 text-left shadow-sm sm:mt-0">
 							<div className="p-5 py-6">
 								<h2 className="text-3xl font-extrabold leading-6 text-white">Premium</h2>
 								<p className="mb-2 mt-2 text-gray-300">Access to all premium features.</p>
