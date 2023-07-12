@@ -3,7 +3,7 @@ import { views } from './table';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const domain = 'expense.fyi';
+const domain = 'expensetest123.vercel.app';
 const local = 'localhost:3000';
 const home = isProduction ? domain : local;
 
