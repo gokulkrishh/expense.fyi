@@ -1,5 +1,5 @@
 <a href="https://expense.fyi">
-<p align="center"><img alt="Expense.fyi – An open source expense tracker application to track your incomes, investments, subscriptions, and expenses at ease." width="100" height="100" src="./public/static/icons/logo.svg"></p>
+<p align="center"><img alt="Expense.fyi – An open source expense tracker application to track your incomes, investments, subscriptions, and expenses at ease." width="100" height="100" src="./public/icons/logo.svg"></p>
   <h1 align="center">Expense.fyi</h1>
 </a>
 
