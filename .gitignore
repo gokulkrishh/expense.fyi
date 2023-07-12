@@ -2,9 +2,9 @@
 
 # dependencies
 /node_modules
+react-email-starter/node_modules
 /.pnp
 .pnp.js
-react-email/node_modules/
 
 # testing
 /coverage
@@ -25,9 +25,11 @@ react-email/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
@@ -35,6 +37,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# others
-.husky

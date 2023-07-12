@@ -17,6 +17,7 @@ module.exports = {
 		'^data/(.*)$',
 		'^styles/(.*)$',
 		'^[./]',
+		'^nprogress/nprogress.css$',
 	],
 	importOrderSeparation: true,
 	importOrderSortSpecifiers: true,
