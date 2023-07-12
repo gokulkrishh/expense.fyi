@@ -1,13 +1,28 @@
 'use client';
 
-import { MenuIcon } from 'lucide-react';
-import { ChevronRightSquare } from 'lucide-react';
-
 import { useSidebar } from 'components/context/sidebar-provider';
+import { Button } from 'components/ui/button';
 import { Separator } from 'components/ui/separator';
 
 import DatePicker from '../datepicker';
 import Feedback from '../feedback';
+
+const MenuIcon = () => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		fill="currentColor"
+		aria-hidden="true"
+		className="m-auto h-6 w-6 text-black"
+	>
+		<title>Open menu</title>
+		<path
+			fillRule="evenodd"
+			d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+			clipRule="evenodd"
+		></path>
+	</svg>
+);
 
 export default function LayoutHeader({ title, showDatePicker = false }: { title: string; showDatePicker?: boolean }) {
 	const { show, setShow } = useSidebar();
@@ -19,10 +34,9 @@ export default function LayoutHeader({ title, showDatePicker = false }: { title:
 				}`}
 			>
 				<div className="flex">
-					<MenuIcon
-						onClick={() => setShow(!show)}
-						className="ml-0 mr-2 mt-[2px] h-7 w-7 text-primary hover:opacity-80 active:opacity-80 sm:hidden"
-					/>
+					<Button className="mr-2 mt-[-1px] p-1 sm:hidden" onClick={() => setShow(!show)} variant={'ghost'}>
+						<MenuIcon />
+					</Button>
 					<h2
 						className={`text-2xl font-extrabold capitalize leading-snug tracking-tight ${
 							showDatePicker ? 'mb-2 sm:mb-0' : ''

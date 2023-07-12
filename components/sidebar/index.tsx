@@ -99,6 +99,7 @@ export default function Sidebar() {
 							{dashboardLinks.map((link) => {
 								return (
 									<SidebarLink
+										onClick={() => setShow(false)}
 										key={link.name}
 										name={link.name}
 										active={pathname === link.href}
@@ -113,7 +114,12 @@ export default function Sidebar() {
 						<div>
 							{settingsLinks.map((link) => {
 								return (
-									<SidebarLink key={link.href} active={pathname === link.href} href={link.href}>
+									<SidebarLink
+										onClick={() => setShow(false)}
+										key={link.href}
+										active={pathname === link.href}
+										href={link.href}
+									>
 										<link.Icon className="text-white" />
 									</SidebarLink>
 								);

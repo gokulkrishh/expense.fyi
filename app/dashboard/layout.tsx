@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
+import Script from 'next/script';
 
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import NextTopLoader from 'nextjs-toploader';
@@ -14,6 +15,8 @@ import { Toaster } from 'components/ui/toaster';
 import { Database } from 'lib/database.types';
 
 import url from 'constants/url';
+
+const GOOGLE_ANALYTICS_ID = process.env.GA4_ANALYTICS_ID;
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -70,6 +73,19 @@ export default async function Layout({ children }: any) {
 						<Toaster />
 					</AuthProvider>
 				</body>
+				<Script
+					src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+					strategy="afterInteractive"
+				/>
+				<Script id="ga4" strategy="afterInteractive">
+					{`
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+
+						gtag('config', '${GOOGLE_ANALYTICS_ID}');
+					`}
+				</Script>
 			</html>
 		</>
 	);

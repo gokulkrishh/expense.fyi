@@ -4,6 +4,16 @@ import Link from 'next/link';
 
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
+type SidebarLinkProps = {
+	href: string;
+	name?: string;
+	children: any;
+	active?: boolean;
+	className?: string;
+	shortcut?: string;
+	onClick?: () => void;
+};
+
 export default function SidebarLink({
 	href,
 	name = '',
@@ -11,20 +21,17 @@ export default function SidebarLink({
 	active,
 	className = '',
 	shortcut,
-}: {
-	href: string;
-	name?: string;
-	children: any;
-	active?: boolean;
-	className?: string;
-	shortcut?: string;
-}) {
+	onClick,
+}: SidebarLinkProps) {
 	return (
 		<>
 			{shortcut ? (
 				<Tooltip>
 					<TooltipTrigger asChild>
 						<Link
+							onClick={() => {
+								if (onClick) onClick();
+							}}
 							href={href}
 							className={`mb-2 mt-1 flex items-center justify-center rounded-lg p-2 tracking-wide text-white transition-all hover:bg-[#27272a] ${
 								active ? 'bg-[#27272a]' : ''
