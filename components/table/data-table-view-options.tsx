@@ -22,7 +22,7 @@ export default function DataTableViewOptions<TData>({ table }: DataTableViewOpti
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button variant="outline" size="sm" className="h-8 text-sm capitalize lg:flex">
-					<MixerHorizontalIcon className="mr-2 h-4 w-4" />
+					<MixerHorizontalIcon className="mr-1.5 hidden h-4 w-4 sm:inline-block" />
 					Columns
 				</Button>
 			</DropdownMenuTrigger>

@@ -1,5 +1,4 @@
-import Summary from 'components/card/summary';
-import { IncomeContextProvider } from 'components/context/income-provider';
+import { DataContextProvider } from 'components/context/data-provider';
 import LayoutHeader from 'components/layout/header';
 
 import IncomeSummary from './summary';
@@ -264,12 +263,12 @@ export default async function Page() {
 	return (
 		<>
 			<LayoutHeader title="income" />
-			<IncomeContextProvider>
+			<DataContextProvider name="income">
 				<div className="w-full overflow-x-auto p-4 pt-3">
 					<IncomeSummary />
 					<IncomeTable />
 				</div>
-			</IncomeContextProvider>
+			</DataContextProvider>
 		</>
 	);
 }

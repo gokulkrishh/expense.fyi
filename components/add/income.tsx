@@ -7,6 +7,7 @@ import { addIncome, editIncome } from 'app/dashboard/income/apis';
 import { format } from 'date-fns';
 import debounce from 'debounce';
 
+import AutoCompleteList from 'components/autocomplete-list';
 import { useUser } from 'components/context/auth-provider';
 import CircleLoader from 'components/loader/circle';
 import Modal from 'components/modal';
@@ -58,10 +59,8 @@ export default function AddIncome({ show, onHide, mutate, selected, lookup }: Ad
 		const callbackHandler = (value: string) => {
 			setState((prev: any) => ({ ...prev, autocomplete: lookup(value) }));
 		};
-
 		return debounce(callbackHandler, 500);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [lookup]);
 
 	const onSubmit = async () => {
 		try {
@@ -97,25 +96,38 @@ export default function AddIncome({ show, onHide, mutate, selected, lookup }: Ad
 					}}
 				>
 					<Label htmlFor="name">Name</Label>
-					<Input
-						id="name"
-						placeholder="Salary"
-						maxLength={30}
-						required
-						ref={inputRef}
-						autoFocus
-						autoComplete="off"
-						onChange={({ target }) => {
-							const { value } = target;
-							if (value.length) {
-								setState({ ...state, name: value, autocomplete: [] });
-								if (value.length > 2) onLookup(value);
-							} else {
-								setState({ ...state, name: '', category: '', autocomplete: [] });
-							}
-						}}
-						value={state.name}
-					/>
+					<div className="relative">
+						<Input
+							id="name"
+							placeholder="Salary"
+							maxLength={30}
+							required
+							ref={inputRef}
+							autoFocus
+							autoComplete="off"
+							onChange={({ target }) => {
+								const { value } = target;
+								if (value.length) {
+									setState({ ...state, name: value, autocomplete: [] });
+									if (value.length > 2) onLookup(value);
+								} else {
+									setState({ ...state, name: '', category: '', autocomplete: [] });
+								}
+							}}
+							value={state.name}
+						/>
+						<AutoCompleteList
+							onHide={() => {
+								setState({ ...state, autocomplete: [] });
+							}}
+							data={state.autocomplete}
+							searchTerm={state.name.length > 2 ? state.name.toLowerCase() : ''}
+							onClick={({ name, category }) => {
+								setState({ ...state, name, category, autocomplete: [] });
+							}}
+							show={Boolean(state.autocomplete?.length)}
+						/>
+					</div>
 					<div className="grid grid-cols-[32%,38%,30%] gap-1">
 						<div className="mr-3">
 							<Label htmlFor="amount">

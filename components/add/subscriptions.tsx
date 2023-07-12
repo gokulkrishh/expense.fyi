@@ -2,12 +2,14 @@
 
 import Image from 'next/image';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { incrementUsage } from 'app/dashboard/apis';
 import { addSubscription, editSubscription } from 'app/dashboard/subscriptions/apis';
 import { format } from 'date-fns';
+import debounce from 'debounce';
 
+import AutoCompleteList from 'components/autocomplete-list';
 import { useUser } from 'components/context/auth-provider';
 import CircleLoader from 'components/loader/circle';
 import Modal from 'components/modal';
@@ -38,6 +40,7 @@ interface AddSubscriptions {
 	selected: any;
 	onHide: () => void;
 	mutate: () => void;
+	lookup: (name: string) => void;
 }
 
 const todayDate = format(new Date(), dateFormat);
@@ -51,7 +54,7 @@ const initialState = {
 	paid: 'monthly',
 };
 
-export default function AddSubscriptions({ show, onHide, mutate, selected }: AddSubscriptions) {
+export default function AddSubscriptions({ show, onHide, mutate, selected, lookup }: AddSubscriptions) {
 	const user = useUser();
 	const [state, setState] = useState<any>(initialState);
 	const [loading, setLoading] = useState(false);
@@ -65,6 +68,13 @@ export default function AddSubscriptions({ show, onHide, mutate, selected }: Add
 
 	useEffect(() => setState(selected.id ? selected : initialState), [selected]);
 	useEffect(() => setHasValidUrl(checkUrl(state.url)), [state.url]);
+
+	const onLookup = useMemo(() => {
+		const callbackHandler = (value: string) => {
+			setState((prev: any) => ({ ...prev, autocomplete: lookup(value) }));
+		};
+		return debounce(callbackHandler, 500);
+	}, [lookup]);
 
 	const onSubmit = async () => {
 		try {
@@ -100,24 +110,38 @@ export default function AddSubscriptions({ show, onHide, mutate, selected }: Add
 					}}
 				>
 					<Label htmlFor="name">Name</Label>
-					<Input
-						id="name"
-						placeholder="Netflix or Amazon Prime"
-						maxLength={30}
-						required
-						ref={inputRef}
-						autoFocus
-						autoComplete="off"
-						onChange={({ target }) => {
-							const { value } = target;
-							if (value.length) {
-								setState({ ...state, name: value });
-							} else {
-								setState({ ...state, name: '', paid: 'monthly' });
-							}
-						}}
-						value={state.name}
-					/>
+					<div className="relative">
+						<Input
+							id="name"
+							placeholder="Netflix or Amazon Prime"
+							maxLength={30}
+							required
+							ref={inputRef}
+							autoFocus
+							autoComplete="off"
+							onChange={({ target }) => {
+								const { value } = target;
+								if (value.length) {
+									setState({ ...state, name: value });
+									if (value.length > 2) onLookup(value);
+								} else {
+									setState({ ...state, name: '', paid: 'monthly' });
+								}
+							}}
+							value={state.name}
+						/>
+						<AutoCompleteList
+							onHide={() => {
+								setState({ ...state, autocomplete: [] });
+							}}
+							data={state.autocomplete}
+							searchTerm={state.name.length > 2 ? state.name.toLowerCase() : ''}
+							onClick={({ name, paid, url }) => {
+								setState({ ...state, name, paid, url, autocomplete: [] });
+							}}
+							show={Boolean(state.autocomplete?.length)}
+						/>
+					</div>
 					<div className="mt-1 grid grid-cols-[100%] gap-1">
 						<Label className="flex grow-0 items-center" htmlFor="website">
 							Website

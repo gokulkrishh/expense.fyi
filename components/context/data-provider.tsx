@@ -7,35 +7,36 @@ import useSWR from 'swr';
 import { views } from 'constants/table';
 import { getApiUrl } from 'constants/url';
 
-const IncomeContext = createContext(null);
+const DataContext = createContext(null);
 
 interface Data {
-	income: Array<any>;
+	Data: Array<any>;
 }
 
-export const IncomeContextProvider = (props: any) => {
+type Props = {
+	children: React.ReactNode;
+	name: string;
+};
+
+export const DataContextProvider = (props: Props) => {
+	const { children, name } = props;
 	const [filter, setFilter] = useState(views.thisMonth.key);
 	const [categories, setCategories] = useState([]);
 
-	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filter, 'income', categories));
-	const { children, ...others } = props;
+	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filter, name, categories));
 
 	const value = useMemo(
 		() => ({ data, loading: isLoading, filter: { name: filter, setFilter }, mutate }),
 		[data, isLoading, filter, mutate]
 	);
 
-	return (
-		<IncomeContext.Provider value={value} {...others}>
-			{children}
-		</IncomeContext.Provider>
-	);
+	return <DataContext.Provider value={value as any}>{children}</DataContext.Provider>;
 };
 
-export const useIncome = () => {
-	const context = useContext<any>(IncomeContext);
+export const useData = () => {
+	const context = useContext<any>(DataContext);
 	if (context === undefined) {
-		throw new Error(`useIncome must be used within a IncomeContext.`);
+		throw new Error(`useData must be used within a DataContext.`);
 	}
 	return context;
 };

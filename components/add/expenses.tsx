@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { incrementUsage } from 'app/dashboard/apis';
-import { ExpenseData, addExpense, editExpense } from 'app/dashboard/expenses/apis';
+import { addExpense, editExpense } from 'app/dashboard/expenses/apis';
 import { format } from 'date-fns';
 import debounce from 'debounce';
 
@@ -71,8 +71,7 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 		};
 
 		return debounce(callbackHandler, 500);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [lookup]);
 
 	const onSubmit = async () => {
 		try {
@@ -108,25 +107,38 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 					}}
 				>
 					<Label htmlFor="name">Name</Label>
-					<Input
-						id="name"
-						placeholder="Swiggy - Biriyani"
-						maxLength={30}
-						required
-						ref={inputRef}
-						autoFocus
-						autoComplete="off"
-						onChange={({ target }) => {
-							const { value } = target;
-							if (value.length) {
-								setState({ ...state, name: value, autocomplete: [] });
-								if (value.length > 2) onLookup(value);
-							} else {
-								setState({ ...state, name: '', category: 'food', paid_via: 'upi' });
-							}
-						}}
-						value={state.name}
-					/>
+					<div className="relative">
+						<Input
+							id="name"
+							placeholder="Swiggy - Biriyani"
+							maxLength={30}
+							required
+							ref={inputRef}
+							autoFocus
+							autoComplete="off"
+							onChange={({ target }) => {
+								const { value } = target;
+								if (value.length) {
+									setState({ ...state, name: value, autocomplete: [] });
+									if (value.length > 2) onLookup(value);
+								} else {
+									setState({ ...state, name: '', category: 'food', paid_via: 'upi' });
+								}
+							}}
+							value={state.name}
+						/>
+						<AutoCompleteList
+							onHide={() => {
+								setState({ ...state, autocomplete: [] });
+							}}
+							data={state.autocomplete}
+							searchTerm={state.name.length > 2 ? state.name.toLowerCase() : ''}
+							onClick={({ name, category, paid_via }) => {
+								setState({ ...state, name, category, paid_via, autocomplete: [] });
+							}}
+							show={Boolean(state.autocomplete?.length)}
+						/>
+					</div>
 					<div className="grid grid-cols-[50%,50%] gap-3">
 						<div className="mr-3">
 							<Label htmlFor="price">

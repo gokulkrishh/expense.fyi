@@ -1,4 +1,4 @@
-import { SubscriptionsContextProvider } from 'components/context/subscriptions-provider';
+import { DataContextProvider } from 'components/context/data-provider';
 import LayoutHeader from 'components/layout/header';
 
 import SubscriptionsSummary from './summary';
@@ -16,12 +16,12 @@ export default async function Page() {
 	return (
 		<>
 			<LayoutHeader title="subscriptions" />
-			<SubscriptionsContextProvider>
+			<DataContextProvider name="subscriptions">
 				<div className="w-full overflow-x-auto p-4 pt-3">
 					<SubscriptionsSummary />
 					<SubscriptionsTable />
 				</div>
-			</SubscriptionsContextProvider>
+			</DataContextProvider>
 		</>
 	);
 }

@@ -70,7 +70,7 @@ export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TDa
 						size="sm"
 						className="h-8 text-sm capitalize lg:flex"
 					>
-						<Download className="mr-2 h-3.5 w-3.5" />
+						<Download className="mr-1.5 hidden h-3.5 w-3.5 sm:inline-block" />
 						Export
 					</Button>
 				) : null}

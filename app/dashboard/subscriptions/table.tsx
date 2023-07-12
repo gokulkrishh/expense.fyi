@@ -2,13 +2,14 @@
 
 import { useCallback, useState } from 'react';
 
-import textFilter from 'text-filter';
-
 import Add from 'components/add-button';
 import { useUser } from 'components/context/auth-provider';
-import { useSubscriptions } from 'components/context/subscriptions-provider';
+import { useData } from 'components/context/data-provider';
 import DataTable from 'components/table/data-table';
 import { useToast } from 'components/ui/use-toast';
+
+import { sortByKey } from 'lib/extractor';
+import { lookup } from 'lib/lookup';
 
 import messages from 'constants/messages';
 
@@ -17,7 +18,7 @@ import { columns } from './columns';
 
 export default function SubscriptionsTable() {
 	const [selected, setSelected] = useState({});
-	const { data, loading, filter, mutate } = useSubscriptions();
+	const { data, loading, filter, mutate } = useData();
 	const user = useUser();
 	const { toast } = useToast();
 
@@ -43,23 +44,7 @@ export default function SubscriptionsTable() {
 		setSelected({});
 	}, []);
 
-	const onLookup = useCallback(
-		(name: string) => {
-			const result = data.filter(textFilter({ query: name, fields: ['name'] }));
-			if (result.length)
-				return Object.values(
-					result.reduce((acc: any, datum: any) => {
-						const name = datum.name.toLowerCase();
-						if (!acc[name]) {
-							acc[name] = datum;
-						}
-						return acc;
-					}, {})
-				).slice(0, 3);
-			return result;
-		},
-		[data]
-	);
+	const onLookup = useCallback((name: string) => lookup({ data, name }), [data]);
 
 	return (
 		<>
@@ -67,7 +52,7 @@ export default function SubscriptionsTable() {
 				options={{ user, onDelete, onEdit, onChange }}
 				filter={filter}
 				columns={columns}
-				data={data}
+				data={sortByKey(sortByKey(data, 'renewal_date'), 'active')}
 				loading={loading}
 				filename="Subscriptions"
 				hideViewOptions

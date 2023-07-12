@@ -2,13 +2,13 @@
 
 import { useCallback, useState } from 'react';
 
-import textFilter from 'text-filter';
-
 import Add from 'components/add-button';
 import { useUser } from 'components/context/auth-provider';
-import { useExpenses } from 'components/context/expenses-provider';
+import { useData } from 'components/context/data-provider';
 import DataTable from 'components/table/data-table';
 import { useToast } from 'components/ui/use-toast';
+
+import { lookup } from 'lib/lookup';
 
 import messages from 'constants/messages';
 
@@ -17,7 +17,7 @@ import { columns } from './columns';
 
 export default function ExpenseTable() {
 	const [selected, setSelected] = useState({});
-	const { data, loading, filter, mutate } = useExpenses();
+	const { data, loading, filter, mutate } = useData();
 	const user = useUser();
 	const { toast } = useToast();
 
@@ -36,23 +36,7 @@ export default function ExpenseTable() {
 		setSelected({});
 	}, []);
 
-	const onLookup = useCallback(
-		(name: string) => {
-			const result = data.filter(textFilter({ query: name, fields: ['name'] }));
-			if (result.length)
-				return Object.values(
-					result.reduce((acc: any, datum: any) => {
-						const name = datum.name.toLowerCase();
-						if (!acc[name]) {
-							acc[name] = datum;
-						}
-						return acc;
-					}, {})
-				).slice(0, 3);
-			return result;
-		},
-		[data]
-	);
+	const onLookup = useCallback((name: string) => lookup({ data, name }), [data]);
 
 	return (
 		<>

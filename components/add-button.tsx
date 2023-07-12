@@ -24,7 +24,7 @@ type AddProps = {
 	type?: TypeProps;
 	selected?: any;
 	onHide?: () => void;
-	onLookup?: any;
+	onLookup: (name: string) => void;
 };
 
 export default function Add({ mutate, type, selected = {}, onHide, onLookup }: AddProps) {
@@ -95,6 +95,7 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			) : null}
 			{type === 'subscriptions' ? (
 				<AddSubscriptions
+					lookup={onLookup}
 					show={show}
 					selected={selected}
 					mutate={mutate}

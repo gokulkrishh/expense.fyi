@@ -1,6 +1,8 @@
-import { Fragment, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { Transition } from '@headlessui/react';
+
+import { Button } from './ui/button';
 
 type AutoCompleteListProps = {
 	searchTerm?: string;
@@ -39,7 +41,7 @@ export default function AutoCompleteList({ searchTerm = '', show, onHide, data =
 			{data.length ? (
 				<div
 					ref={ref}
-					className="absolute	mt-[3px] min-w-[160px] max-w-[250px] overflow-auto rounded-md border border-gray-300 bg-white text-base shadow-md focus:outline-none sm:text-sm"
+					className="absolute mt-1 min-w-[160px] max-w-[250px] overflow-auto rounded-md border border-border bg-popover text-base shadow-md focus:outline-none sm:text-sm"
 				>
 					{data.map((datum) => {
 						const { name: datumName, id } = datum;
@@ -52,10 +54,11 @@ export default function AutoCompleteList({ searchTerm = '', show, onHide, data =
 							highlightedText = datumName.substr(nameIndex, searchTerm.length);
 						}
 						return (
-							<button
+							<Button
+								className="w-full justify-start rounded-none border-border px-3 py-2 [&:not(:last-child)]:border-b"
+								variant={'ghost'}
 								key={id}
 								onClick={() => onClick(datum)}
-								className="relative w-full cursor-default select-none p-2 px-[10px] text-left text-gray-900 hover:bg-gray-100"
 							>
 								{searchTerm.length ? (
 									<span>
@@ -66,7 +69,7 @@ export default function AutoCompleteList({ searchTerm = '', show, onHide, data =
 								) : (
 									name
 								)}
-							</button>
+							</Button>
 						);
 					})}
 				</div>
