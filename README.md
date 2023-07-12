@@ -29,7 +29,6 @@ Expense.fyi is an open-source application to effortlessly track and manage your 
 ## Tech Stack
 
 - [Next.js](https://nextjs.org/) – framework
-- [Components](https://ui.shadcn.com/) – ui-components
 - [Tailwind](https://tailwindcss.com/) – CSS
 - [Supabase](https://supabase.com/) – database
 - [Vercel](https://vercel.com/) – hosting
