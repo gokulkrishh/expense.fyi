@@ -94,8 +94,6 @@ export default function Plans() {
 			await onSuccess(data, window.LemonSqueezy?.Url?.Close);
 		} else if (event === paymentEvents.closed) {
 			onDismiss();
-		} else {
-			console.warn(`Unhandled event: ${event}`);
 		}
 		return false;
 	};

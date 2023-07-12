@@ -1,18 +1,32 @@
 'use client';
 
+import { Combobox } from 'components/combobox';
 import { useUser } from 'components/context/auth-provider';
 import { Card, CardContent, CardHeader } from 'components/ui/card';
 import { Input } from 'components/ui/input';
 import { Label } from 'components/ui/label';
-import { ScrollArea } from 'components/ui/scroll-area';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'components/ui/select';
 
 import data from 'data/currency.json';
 
 import { updateUser } from './apis';
 
+const currencyData = Object.keys(data)
+	.map((key: string) => {
+		const { languages = [], currency } = data[key as keyof typeof data];
+		const [currencyCode] = currency;
+		if (!currencyCode) return false;
+		return languages.map((language: any) => ({
+			label: `${data[key as keyof typeof data].name} - ${language}`,
+			value: `${currencyCode}-${language}`.toLowerCase(),
+		}));
+	})
+	.filter(Boolean)
+	.flat(Infinity);
+
 export default function Account() {
 	const user = useUser();
+	const currency = `${user.currency}-${user.locale}`;
+
 	return (
 		<Card className="w-full">
 			<CardHeader>
@@ -30,34 +44,14 @@ export default function Account() {
 						<Label className="mb-3 block" htmlFor="currency">
 							Currency
 						</Label>
-						<Select
-							onValueChange={async (value) => {
+						<Combobox
+							data={currencyData}
+							selected={currency}
+							onChange={async (value: string) => {
 								const [currency, locale] = value.split('-');
-								updateUser({ currency, locale });
+								await updateUser({ currency, locale });
 							}}
-							defaultValue={`${user.currency}-${user.locale}`}
-						>
-							<SelectTrigger className="w-full">
-								<SelectValue id="currency" placeholder="Select your currency" />
-							</SelectTrigger>
-							<SelectContent>
-								<ScrollArea className="h-[250px] max-w-[300px]">
-									{Object.keys(data).map((key: string) => {
-										const { languages = [], currency } = data[key as keyof typeof data];
-										const [currencyCode] = currency;
-										return languages.map((language: any) => (
-											<SelectItem
-												className="w-full"
-												key={`${currencyCode}-${language}`}
-												value={`${currencyCode}-${language}`}
-											>
-												{data[key as keyof typeof data].name} - {language}
-											</SelectItem>
-										));
-									})}
-								</ScrollArea>
-							</SelectContent>
-						</Select>
+						/>
 					</div>
 				</div>
 			</CardContent>

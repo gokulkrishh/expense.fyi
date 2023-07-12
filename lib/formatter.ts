@@ -18,19 +18,31 @@ type Date = {
 	dateStyle?: any;
 };
 
-export const formatCurrency = ({ value, currency = defaultCurrency, locale = defaultLocale }: Currency) => {
-	return new Intl.NumberFormat(locale, { ...currencyStyle, currency }).format(value).replace(/^(\D+)/, '$1 ');
+export const formatCurrency = ({ value, currency = defaultCurrency, locale = defaultLocale }: Currency): any => {
+	try {
+		return new Intl.NumberFormat(locale, { ...currencyStyle, currency }).format(value).replace(/^(\D+)/, '$1 ');
+	} catch {
+		return value;
+	}
 };
 
-export const formatDate = ({ date, locale = defaultLocale, dateStyle = defaultDateStyle }: Date) => {
-	return new Intl.DateTimeFormat(locale, dateStyle).format(new Date(date));
+export const formatDate = ({ date, locale = defaultLocale, dateStyle = defaultDateStyle }: Date): any => {
+	try {
+		return new Intl.DateTimeFormat(locale, dateStyle).format(new Date(date));
+	} catch {
+		return date;
+	}
 };
 
 export const getCurrencySymbol = (
 	currency: string = defaultCurrency,
 	locale: string = defaultLocale
 ): String | undefined => {
-	return new Intl.NumberFormat(locale, { ...currencyStyle, currency })
-		?.formatToParts(1)
-		?.find((x) => x.type === 'currency')?.value;
+	try {
+		return new Intl.NumberFormat(locale, { ...currencyStyle, currency })
+			?.formatToParts(1)
+			?.find((x) => x.type === 'currency')?.value;
+	} catch {
+		return '';
+	}
 };
