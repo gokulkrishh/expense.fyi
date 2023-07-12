@@ -53,7 +53,7 @@ export default function Feedback({ className }: { className?: string }) {
 					</span>
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="z-10 mr-1 mt-2 h-[160px] w-[290px] rounded-md border border-border bg-popover p-4 shadow-sm">
+			<PopoverContent className="z-10 mr-1 mt-[-20px] h-[160px] w-[290px] rounded-md border border-border bg-popover p-4 shadow-sm sm:top-0 sm:mt-2">
 				{!state.sent ? (
 					<form
 						onSubmit={(event) => {
