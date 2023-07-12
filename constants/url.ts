@@ -3,19 +3,19 @@ import { views } from './table';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const domain = 'expensetest123.vercel.app';
+const domain = 'expense.fyi';
 const local = 'localhost:3000';
 const home = isProduction ? domain : local;
 
 const url = {
 	homeWithoutApp: home,
 	home: `//${home}`,
-	api: `${isProduction ? 'https://' : 'http://'}${home}`,
+	api: `${isProduction ? 'https://app.' : 'http://app.'}${home}`,
 	serverApi: `${isProduction ? 'https://' : 'http://'}${home}`,
 	app: {
-		signin: `//${home}/signin`,
-		signup: `//${home}/signup`,
-		overview: `//${home}`,
+		signin: `//app.${home}/signin`,
+		signup: `//app.${home}/signup`,
+		overview: `//app.${home}`,
 	},
 	twitter: 'https://twitter.com/gokul_i',
 	github: 'https://github.com/gokulkrishh/expense.fyi',

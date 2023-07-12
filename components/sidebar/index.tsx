@@ -85,7 +85,7 @@ export default function Sidebar() {
 				})}`}
 			/>
 			<nav
-				className={`fixed bottom-0 left-0 top-0 z-[1] hidden min-h-full w-[64px] flex-col bg-[#09090b] px-3 py-2 transition-all dark:border-r-0 dark:border-border sm:flex sm:border-r ${cn(
+				className={`fixed bottom-0 left-0 top-0 z-[1] hidden min-h-full w-[64px] flex-col bg-[#09090b] px-3 py-2 transition-all sm:flex sm:dark:border-r sm:dark:border-border ${cn(
 					{ '!block': show }
 				)}`}
 			>

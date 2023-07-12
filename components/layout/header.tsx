@@ -13,7 +13,7 @@ const MenuIcon = () => (
 		viewBox="0 0 24 24"
 		fill="currentColor"
 		aria-hidden="true"
-		className="m-auto h-6 w-6 text-black"
+		className="m-auto h-6 w-6 text-black dark:text-white"
 	>
 		<title>Open menu</title>
 		<path

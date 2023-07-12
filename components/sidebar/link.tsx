@@ -49,6 +49,9 @@ export default function SidebarLink({
 				</Tooltip>
 			) : (
 				<Link
+					onClick={() => {
+						if (onClick) onClick();
+					}}
 					href={href}
 					className={`mb-2 mt-1 flex items-center justify-center rounded-lg p-2 tracking-wide text-white transition-all hover:bg-[#27272a] ${
 						active ? 'bg-[#27272a]' : ''

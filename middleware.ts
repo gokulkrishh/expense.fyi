@@ -16,18 +16,18 @@ export async function middleware(req: NextRequest) {
 	const { data } = await supabase.auth.getSession();
 	const { session } = data;
 
-	// if (currentHost === 'app') {
-	// 	if (url.pathname === '/signin' || url.pathname === '/signup') {
-	// 		if (session) {
-	// 			url.pathname = '/';
-	// 			return NextResponse.redirect(url);
-	// 		}
-	// 		return res;
-	// 	}
+	if (currentHost === 'app') {
+		if (url.pathname === '/signin' || url.pathname === '/signup') {
+			if (session) {
+				url.pathname = '/';
+				return NextResponse.redirect(url);
+			}
+			return res;
+		}
 
-	// 	url.pathname = `/dashboard${url.pathname}`;
-	// 	return NextResponse.rewrite(url);
-	// }
+		url.pathname = `/dashboard${url.pathname}`;
+		return NextResponse.rewrite(url);
+	}
 
 	return res;
 }
