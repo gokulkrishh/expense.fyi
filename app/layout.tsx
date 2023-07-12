@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 
@@ -13,6 +14,40 @@ const GOOGLE_ANALYTICS_ID = process.env.GA4_ANALYTICS_ID;
 export const metadata = {
 	title,
 	description,
+	manifest: 'https://expense.fyi/static/manifest.json',
+	themeColor: '#09090b',
+	viewport: {
+		width: 'device-width',
+		initialScale: 1,
+		userScalable: false,
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title,
+		url: 'https://expense.fyi',
+		description,
+		creator: '@gokul_i',
+		images: ['https://expense.fyi/static/og.jpg'],
+	},
+	openGraph: {
+		title,
+		description,
+		video: 'https://expense.fyi/static/demo.mp4',
+		url: 'https://expense.fyi',
+		type: 'website',
+		images: ['https://expense.fyi/static/og.jpg'],
+	},
+	icons: {
+		icon: 'https://expense.fyi/static/icons/icon.svg',
+		shortcut: 'https://expense.fyi/static/favicon.ico',
+		apple: 'https://expense.fyi/static/icons/apple-icon.png',
+	},
+	appleWebApp: {
+		mobileWebAppCapable: 'yes',
+		title,
+		statusBarStyle: '#09090b',
+		startupImage: ['https://expense.fyi/static/icons/apple-icon.png'],
+	},
 };
 
 export const revalidate = 0;

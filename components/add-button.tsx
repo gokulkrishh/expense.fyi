@@ -60,7 +60,7 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			{type === 'expenses' ? (
 				<AddExpense
 					lookup={(value: string) => {
-						if (onLookup) onLookup(value);
+						if (onLookup) return onLookup(value);
 					}}
 					show={show}
 					selected={selected}
@@ -74,7 +74,7 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			{type === 'income' ? (
 				<AddIncome
 					lookup={(value: string) => {
-						if (onLookup) onLookup(value);
+						if (onLookup) return onLookup(value);
 					}}
 					show={show}
 					selected={selected}
@@ -88,7 +88,7 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			{type === 'investments' ? (
 				<AddInvestments
 					lookup={(value: string) => {
-						if (onLookup) onLookup(value);
+						if (onLookup) return onLookup(value);
 					}}
 					show={show}
 					selected={selected}
@@ -102,7 +102,7 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			{type === 'subscriptions' ? (
 				<AddSubscriptions
 					lookup={(value: string) => {
-						if (onLookup) onLookup(value);
+						if (onLookup) return onLookup(value);
 					}}
 					show={show}
 					selected={selected}

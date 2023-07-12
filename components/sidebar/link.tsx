@@ -33,7 +33,7 @@ export default function SidebarLink({
 								if (onClick) onClick();
 							}}
 							href={href}
-							className={`mb-2 mt-1 flex items-center justify-center rounded-lg p-2 tracking-wide text-white transition-all hover:bg-[#27272a] ${
+							className={`mb-2 mt-2 flex items-center justify-center rounded-lg p-2 tracking-wide text-white transition-all hover:bg-[#27272a] ${
 								active ? 'bg-[#27272a]' : ''
 							} ${className}`}
 						>
@@ -53,7 +53,7 @@ export default function SidebarLink({
 						if (onClick) onClick();
 					}}
 					href={href}
-					className={`mb-2 mt-1 flex items-center justify-center rounded-lg p-2 tracking-wide text-white transition-all hover:bg-[#27272a] ${
+					className={`mb-2 mt-2 flex items-center justify-center rounded-lg p-2 tracking-wide text-white transition-all hover:bg-[#27272a] ${
 						active ? 'bg-[#27272a]' : ''
 					} ${className}`}
 				>
