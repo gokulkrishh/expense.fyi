@@ -14,7 +14,7 @@ const GOOGLE_ANALYTICS_ID = process.env.GA4_ANALYTICS_ID;
 export const metadata = {
 	title,
 	description,
-	manifest: 'https://expense.fyi/static/manifest.json',
+	manifest: 'https://expense.fyi/manifest.json',
 	themeColor: '#09090b',
 	viewport: {
 		width: 'device-width',
@@ -27,26 +27,26 @@ export const metadata = {
 		url: 'https://expense.fyi',
 		description,
 		creator: '@gokul_i',
-		images: ['https://expense.fyi/static/og.jpg'],
+		images: ['https://expense.fyi/og.jpg'],
 	},
 	openGraph: {
 		title,
 		description,
-		video: 'https://expense.fyi/static/demo.mp4',
+		video: 'https://expense.fyi/demo.mp4',
 		url: 'https://expense.fyi',
 		type: 'website',
-		images: ['https://expense.fyi/static/og.jpg'],
+		images: ['https://expense.fyi/og.jpg'],
 	},
 	icons: {
-		icon: 'https://expense.fyi/static/icons/icon.svg',
-		shortcut: 'https://expense.fyi/static/favicon.ico',
-		apple: 'https://expense.fyi/static/icons/apple-icon.png',
+		icon: 'https://expense.fyi/icons/icon.svg',
+		shortcut: 'https://expense.fyi/favicon.ico',
+		apple: 'https://expense.fyi/icons/apple-icon.png',
 	},
 	appleWebApp: {
 		mobileWebAppCapable: 'yes',
 		title,
 		statusBarStyle: '#09090b',
-		startupImage: ['https://expense.fyi/static/icons/apple-icon.png'],
+		startupImage: ['https://expense.fyi/icons/apple-icon.png'],
 	},
 };
 

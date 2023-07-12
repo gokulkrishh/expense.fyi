@@ -14,7 +14,7 @@ export default function FeedbackEmail({ message = '', email = '' }: { message?: 
 			<Section style={main}>
 				<Container style={container}>
 					<Section style={{ marginTop: '20px' }}>
-						<Img src={`${baseUrl}/static/icons/logo.png`} width="50" height="50" alt="Logo" style={logo} />
+						<Img src={`${baseUrl}/icons/logo.png`} width="50" height="50" alt="Logo" style={logo} />
 					</Section>
 					<Text style={{ ...h1, marginTop: '20px' }}>New Feedback</Text>
 					<Text style={{ ...text, marginTop: '10px', marginBottom: '5px' }}>From: {email}</Text>

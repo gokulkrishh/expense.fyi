@@ -7,7 +7,7 @@ import Footer from './footer';
 import Footnote from './footnote';
 
 const baseUrl = 'https://expense.fyi';
-const logoUrl = `${baseUrl}/static/icons/logo.png`;
+const logoUrl = `${baseUrl}/icons/logo.png`;
 
 export const SignUpEmail = ({ action_link = '' }: { action_link?: string }) => {
 	return (
