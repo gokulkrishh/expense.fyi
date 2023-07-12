@@ -24,7 +24,7 @@ type AddProps = {
 	type?: TypeProps;
 	selected?: any;
 	onHide?: () => void;
-	onLookup: (name: string) => void;
+	onLookup?: (name: string) => void;
 };
 
 export default function Add({ mutate, type, selected = {}, onHide, onLookup }: AddProps) {
@@ -59,7 +59,9 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			</Tooltip>
 			{type === 'expenses' ? (
 				<AddExpense
-					lookup={onLookup}
+					lookup={(value: string) => {
+						if (onLookup) onLookup(value);
+					}}
 					show={show}
 					selected={selected}
 					mutate={mutate}
@@ -71,7 +73,9 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			) : null}
 			{type === 'income' ? (
 				<AddIncome
-					lookup={onLookup}
+					lookup={(value: string) => {
+						if (onLookup) onLookup(value);
+					}}
 					show={show}
 					selected={selected}
 					mutate={mutate}
@@ -83,7 +87,9 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			) : null}
 			{type === 'investments' ? (
 				<AddInvestments
-					lookup={onLookup}
+					lookup={(value: string) => {
+						if (onLookup) onLookup(value);
+					}}
 					show={show}
 					selected={selected}
 					mutate={mutate}
@@ -95,7 +101,9 @@ export default function Add({ mutate, type, selected = {}, onHide, onLookup }: A
 			) : null}
 			{type === 'subscriptions' ? (
 				<AddSubscriptions
-					lookup={onLookup}
+					lookup={(value: string) => {
+						if (onLookup) onLookup(value);
+					}}
 					show={show}
 					selected={selected}
 					mutate={mutate}

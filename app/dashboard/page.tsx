@@ -6,8 +6,6 @@ import LayoutHeader from 'components/layout/header';
 
 import Charts from './charts';
 
-const onLookUp = () => {};
-
 export default async function Page() {
 	return (
 		<>
@@ -21,7 +19,7 @@ export default async function Page() {
 							<Charts />
 						</div>
 					</div>
-					<Add onLookup={onLookUp} type="expenses" />
+					<Add type="expenses" />
 				</OverviewContextProvider>
 			</DatePickerProvider>
 		</>

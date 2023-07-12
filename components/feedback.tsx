@@ -46,7 +46,7 @@ export default function Feedback({ className }: { className?: string }) {
 	return (
 		<Popover>
 			<PopoverTrigger>
-				<Button className={`h-[31px] ${className}`} asChild size={'sm'}>
+				<Button className={`sm:h-[31px] ${className}`} asChild size={'sm'}>
 					<span>
 						<MessageSquarePlus className="mr-[6px] mt-[2px] h-4 w-4" />
 						Feedback

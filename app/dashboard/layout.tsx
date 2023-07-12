@@ -5,6 +5,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import NextTopLoader from 'nextjs-toploader';
 
 import { AuthProvider } from 'components/context/auth-provider';
+import { SidebarContextProvider } from 'components/context/sidebar-provider';
 import DashboardLayout from 'components/layout';
 import Sidebar from 'components/sidebar';
 import { ThemeProvider } from 'components/theme-provider';
@@ -57,10 +58,12 @@ export default async function Layout({ children }: any) {
 						<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 							<main className="relative flex min-h-full min-w-full bg-background">
 								<DashboardLayout>
-									<Sidebar />
-									<div className="h-full w-full sm:ml-[64px]">
-										<div className="flex h-full w-full flex-col max-sm:ml-0">{children}</div>
-									</div>
+									<SidebarContextProvider>
+										<Sidebar />
+										<div className="h-full w-full sm:ml-[64px]">
+											<div className="flex h-full w-full flex-col max-sm:ml-0">{children}</div>
+										</div>
+									</SidebarContextProvider>
 								</DashboardLayout>
 							</main>
 						</ThemeProvider>
