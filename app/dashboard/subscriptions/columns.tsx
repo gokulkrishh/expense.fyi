@@ -157,5 +157,8 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 				</div>
 			);
 		},
+		meta: {
+			isTogglable: false,
+		},
 	},
 ];

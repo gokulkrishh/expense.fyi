@@ -111,7 +111,7 @@ export default function Sidebar() {
 								);
 							})}
 						</div>
-						<div>
+						<div className="flex flex-col items-center">
 							{settingsLinks.map((link) => {
 								return (
 									<SidebarLink

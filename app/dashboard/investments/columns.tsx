@@ -114,5 +114,8 @@ export const columns: ColumnDef<Investments>[] = [
 				</div>
 			);
 		},
+		meta: {
+			isTogglable: false,
+		},
 	},
 ];

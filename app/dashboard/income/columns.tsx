@@ -102,5 +102,8 @@ export const columns: ColumnDef<Income>[] = [
 				</div>
 			);
 		},
+		meta: {
+			isTogglable: false,
+		},
 	},
 ];

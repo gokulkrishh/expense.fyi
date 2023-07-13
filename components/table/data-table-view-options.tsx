@@ -5,13 +5,7 @@ import { MixerHorizontalIcon } from '@radix-ui/react-icons';
 import { Table } from '@tanstack/react-table';
 
 import { Button } from 'components/ui/button';
-import {
-	DropdownMenu,
-	DropdownMenuCheckboxItem,
-	DropdownMenuContent,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-} from 'components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent } from 'components/ui/dropdown-menu';
 
 interface DataTableViewOptionsProps<TData> {
 	table: Table<TData>;
@@ -29,7 +23,13 @@ export default function DataTableViewOptions<TData>({ table }: DataTableViewOpti
 			<DropdownMenuContent align="end" className="w-[150px]">
 				{table
 					.getAllColumns()
-					.filter((column) => typeof column.accessorFn !== 'undefined' && column.getCanHide())
+					.filter((column) => {
+						return (
+							typeof column.accessorFn !== 'undefined' &&
+							column.getCanHide() &&
+							column.columnDef.meta?.isTogglable !== false
+						);
+					})
 					.map((column) => {
 						return (
 							<DropdownMenuCheckboxItem
