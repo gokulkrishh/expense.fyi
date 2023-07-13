@@ -94,9 +94,10 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 						if (!selected.id) setState({ ...initialState });
 					}}
 				>
-					<Label htmlFor="name">Name</Label>
 					<div className="relative">
+						<Label htmlFor="name">Name</Label>
 						<Input
+							className="mt-1.5"
 							id="name"
 							placeholder="Name or $TSLA"
 							maxLength={30}
@@ -135,89 +136,81 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 									({getCurrencySymbol(user.currency, user.locale)})
 								</span>
 							</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<Input
-									id="price"
-									type="number"
-									placeholder="10000"
-									required
-									min="0"
-									onChange={(event) => setState({ ...state, price: event.target.value })}
-									value={state.price}
-								/>
-							</div>
+							<Input
+								className="mt-1.5"
+								id="price"
+								type="number"
+								placeholder="10000"
+								required
+								min="0"
+								onChange={(event) => setState({ ...state, price: event.target.value })}
+								value={state.price}
+							/>
 						</div>
 						<div className="mr-3">
-							<Label htmlFor="units">
-								Units
-								<span className="ml-2 font-mono text-xs text-muted-foreground">
-									({getCurrencySymbol(user.currency, user.locale)})
-								</span>
-							</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<Input
-									id="units"
-									type="number"
-									placeholder="10"
-									required
-									min="0"
-									onChange={(event) => setState({ ...state, units: event.target.value })}
-									value={state.units}
-								/>
-							</div>
+							<Label htmlFor="units">Units</Label>
+							<Input
+								className="mt-1.5"
+								id="units"
+								type="number"
+								placeholder="10"
+								required
+								min="0"
+								onChange={(event) => setState({ ...state, units: event.target.value })}
+								value={state.units}
+							/>
 						</div>
 					</div>
 					<div className="grid grid-cols-[50%,50%] gap-1">
 						<div className="mr-3">
 							<Label htmlFor="date">Bought Date</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<Input
-									id="date"
-									type="date"
-									required
-									max={todayDate}
-									pattern={datePattern}
-									onChange={(event) => {
-										setState({ ...state, date: event.target.value });
-									}}
-									value={state.date}
-								/>
-							</div>
+							<Input
+								className="mt-1.5"
+								id="date"
+								type="date"
+								required
+								max={todayDate}
+								pattern={datePattern}
+								onChange={(event) => {
+									setState({ ...state, date: event.target.value });
+								}}
+								value={state.date}
+							/>
 						</div>
 						<div className="mr-3">
 							<Label htmlFor="category">Category</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<select
-									id="category"
-									className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-									onChange={(event) => {
-										setState({ ...state, category: event.target.value });
-									}}
-									value={state.category}
-									required
-								>
-									{Object.keys(investmentCategory).map((categoryKey) => {
-										return (
-											<option key={categoryKey} value={categoryKey}>
-												{investmentCategory[categoryKey]}
-											</option>
-										);
-									})}
-								</select>
-							</div>
+							<select
+								id="category"
+								className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+								onChange={(event) => {
+									setState({ ...state, category: event.target.value });
+								}}
+								value={state.category}
+								required
+							>
+								{Object.keys(investmentCategory).map((categoryKey) => {
+									return (
+										<option key={categoryKey} value={categoryKey}>
+											{investmentCategory[categoryKey]}
+										</option>
+									);
+								})}
+							</select>
 						</div>
 					</div>
-					<Label className="mt-1 block">
-						Notes <span className="mb-6 text-center text-sm text-muted-foreground">(optional)</span>
-					</Label>
-					<Textarea
-						className="h-20"
-						onChange={(event) => setState({ ...state, notes: event.target.value })}
-						value={state.notes}
-						maxLength={60}
-					/>
+					<div>
+						<Label className="mt-1 block">
+							Notes <span className="mb-6 text-center text-sm text-muted-foreground">(optional)</span>
+						</Label>
+						<Textarea
+							className="mt-2 h-20"
+							onChange={(event) => setState({ ...state, notes: event.target.value })}
+							value={state.notes}
+							maxLength={60}
+						/>
+					</div>
 
-					<Button disabled={loading} className="mt-2" type="submit">
+					<Button disabled={loading} className="mt-1.5" type="submit">
 						{loading ? <CircleLoader /> : `${selected?.id ? 'Update' : 'Submit'}`}
 					</Button>
 				</form>

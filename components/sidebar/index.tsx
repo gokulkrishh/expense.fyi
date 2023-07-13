@@ -100,9 +100,10 @@ export default function Sidebar() {
 								<Image className="block" src={SvgWhiteLogo} width={30} height={30} alt="Expense.fyi" />
 							</Link>
 							<Separator className="mb-2 mt-[8px] border-t border-gray-100 opacity-[0.2]" />
-							{dashboardLinks.map((link) => {
+							{dashboardLinks.map((link, index) => {
 								return (
 									<SidebarLink
+										className={index === 0 ? '!mt-0' : ''}
 										onClick={() => setShow(false)}
 										key={link.name}
 										name={link.name}

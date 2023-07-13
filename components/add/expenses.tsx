@@ -108,7 +108,7 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 					<div className="relative">
 						<Label htmlFor="name">Name</Label>
 						<Input
-							className="mt-1"
+							className="mt-1.5"
 							id="name"
 							placeholder="Swiggy - Biriyani"
 							maxLength={30}
@@ -148,7 +148,7 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 								</span>
 							</Label>
 							<Input
-								className="mt-1"
+								className="mt-1.5"
 								id="price"
 								type="number"
 								placeholder="199"
@@ -161,7 +161,7 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 						<div className="mr-3">
 							<Label htmlFor="date">Spent Date</Label>
 							<Input
-								className="mt-1"
+								className="mt-1.5"
 								id="date"
 								type="date"
 								required
@@ -179,7 +179,7 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 							<Label htmlFor="category">Category</Label>
 							<select
 								id="category"
-								className="mt-1 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+								className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
 								onChange={(event) => {
 									setState({ ...state, category: event.target.value });
 								}}
@@ -208,7 +208,7 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 							<Label htmlFor="paid">Paid Via</Label>
 							<select
 								id="paid"
-								className="mt-1 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+								className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
 								onChange={(event) => {
 									setState({ ...state, paid_via: event.target.value });
 								}}
@@ -225,17 +225,19 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 							</select>
 						</div>
 					</div>
-					<Label className="block">
-						Notes <span className="mb-6 text-center text-sm text-muted-foreground">(optional)</span>
-					</Label>
-					<Textarea
-						className="h-20"
-						onChange={(event) => setState({ ...state, notes: event.target.value })}
-						value={state.notes}
-						maxLength={60}
-					/>
+					<div>
+						<Label className="block">
+							Notes <span className="text-center text-sm text-muted-foreground">(optional)</span>
+						</Label>
+						<Textarea
+							className="mt-2 h-20"
+							onChange={(event) => setState({ ...state, notes: event.target.value })}
+							value={state.notes}
+							maxLength={60}
+						/>
+					</div>
 
-					<Button disabled={loading} className="mt-1" type="submit">
+					<Button disabled={loading} className="mt-1.5" type="submit">
 						{loading ? <CircleLoader /> : `${selected?.id ? 'Update' : 'Submit'}`}
 					</Button>
 				</form>

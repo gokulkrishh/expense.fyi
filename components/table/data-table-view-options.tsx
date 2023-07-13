@@ -15,8 +15,8 @@ export default function DataTableViewOptions<TData>({ table }: DataTableViewOpti
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant="outline" size="sm" className="h-8 text-sm capitalize lg:flex">
-					<MixerHorizontalIcon className="mr-1.5 hidden h-4 w-4 sm:inline-block" />
+				<Button variant="outline" size="sm" className="h-8 text-sm capitalize max-sm:px-1 lg:flex">
+					<MixerHorizontalIcon className="mr-1.5 h-4 w-4 sm:inline-block" />
 					Columns
 				</Button>
 			</DropdownMenuTrigger>
