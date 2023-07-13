@@ -87,14 +87,13 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 				await addSubscription(state);
 			}
 			setLoading(false);
-			toast({ description: `${isEditing ? messages.updated : messages.success}` });
-		} catch (error: any) {
-			setLoading(false);
-			toast({ description: error.message, variant: 'destructive' });
-		} finally {
+			toast({ description: `${isEditing ? messages.updated : messages.success}`, variant: 'success' });
 			if (mutate) mutate();
 			onHide();
 			setState({ ...initialState });
+		} catch {
+			setLoading(false);
+			toast({ description: messages.error, variant: 'destructive' });
 		}
 	};
 

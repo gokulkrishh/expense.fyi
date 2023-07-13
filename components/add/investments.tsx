@@ -73,14 +73,13 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 				await addInvestment(state);
 			}
 			setLoading(false);
-			toast({ description: `${isEditing ? messages.updated : messages.success}` });
-		} catch (error: any) {
-			setLoading(false);
-			toast({ description: error.message, variant: 'destructive' });
-		} finally {
 			if (mutate) mutate();
+			toast({ description: `${isEditing ? messages.updated : messages.success}`, variant: 'success' });
 			onHide();
 			setState({ ...initialState });
+		} catch {
+			setLoading(false);
+			toast({ description: messages.error, variant: 'destructive' });
 		}
 	};
 
