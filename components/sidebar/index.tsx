@@ -92,7 +92,11 @@ export default function Sidebar() {
 				<div className="z-[10] mb-[10px] flex h-full w-[100%] flex-col justify-between">
 					<div className="flex h-full flex-col items-center justify-between">
 						<div className="flex flex-col items-center">
-							<Link href="/" className="mt-[3px] rounded-lg p-1 transition-all focus:outline-none">
+							<Link
+								onClick={() => setShow(false)}
+								href="/"
+								className="mt-[3px] rounded-lg p-1 transition-all focus:outline-none"
+							>
 								<Image className="block" src={SvgWhiteLogo} width={30} height={30} alt="Expense.fyi" />
 							</Link>
 							<Separator className="mb-2 mt-[8px] border-t border-gray-100 opacity-[0.2]" />

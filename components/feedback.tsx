@@ -9,11 +9,13 @@ import { Button } from 'components/ui/button';
 import { Popover } from 'components/ui/popover';
 import { Textarea } from 'components/ui/textarea';
 
+import { cn } from 'lib/utils';
+
 import messages, { emails } from 'constants/messages';
 
 import { useToast } from './ui/use-toast';
 
-export default function Feedback({ className }: { className?: string }) {
+export default function Feedback({ className, showDatePicker }: { className?: string; showDatePicker: boolean }) {
 	const [state, setState] = useState({ show: false, loading: false, message: '', sent: false });
 	const { toast } = useToast();
 
@@ -46,14 +48,18 @@ export default function Feedback({ className }: { className?: string }) {
 	return (
 		<Popover>
 			<PopoverTrigger>
-				<Button className={`sm:h-[31px] ${className}`} asChild size={'sm'}>
+				<Button className={`${className}`} asChild size={'sm'}>
 					<span>
 						<MessageSquarePlus className="mr-[6px] mt-[2px] h-4 w-4" />
 						Feedback
 					</span>
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="z-10 mr-1 mt-[-20px] h-[160px] w-[290px] rounded-md border border-border bg-popover p-4 shadow-sm sm:top-0 sm:mt-2">
+			<PopoverContent
+				className={`z-10 mr-1 h-[160px] w-[290px] rounded-md border border-border bg-popover p-4 shadow-sm sm:mt-2 ${cn(
+					{ 'mt-[-18px]': showDatePicker, 'mt-[20px]': !showDatePicker }
+				)} `}
+			>
 				{!state.sent ? (
 					<form
 						onSubmit={(event) => {
