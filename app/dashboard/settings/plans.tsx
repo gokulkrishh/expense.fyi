@@ -77,7 +77,7 @@ export default function Plans() {
 				const error = await res.json();
 				throw new Error(error.message || res.statusText);
 			} else {
-				toast({ description: messages.payments.success });
+				toast({ description: messages.payments.success, variant: 'success' });
 				setTimeout(() => window.location.reload(), 6000);
 			}
 		} catch (error: any) {

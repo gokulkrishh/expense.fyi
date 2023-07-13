@@ -20,8 +20,8 @@ export default function DataTableFilterOptions<TData>({
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant="outline" size="sm" className="h-8 select-none text-sm capitalize lg:flex">
-					<Filter className="mr-1.5 hidden h-3 w-3 sm:inline-block" />
+				<Button variant="outline" size="sm" className="h-8 text-sm capitalize max-sm:px-1 lg:flex">
+					<Filter className="mr-1.5 h-3 w-3 sm:inline-block" />
 					{views[filter].name}
 				</Button>
 			</DropdownMenuTrigger>

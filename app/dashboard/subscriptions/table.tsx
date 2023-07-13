@@ -22,19 +22,31 @@ export default function SubscriptionsTable() {
 	const user = useUser();
 	const { toast } = useToast();
 
-	const onDelete = useCallback(async (id: string) => {
-		await deleteSubscription(id);
-		toast({ description: messages.deleted });
-		mutate();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const onDelete = useCallback(
+		async (id: string) => {
+			try {
+				await deleteSubscription(id);
+				toast({ description: messages.deleted, variant: 'success' });
+				mutate();
+			} catch {
+				toast({ description: messages.error, variant: 'destructive' });
+			}
+		},
+		[mutate, toast]
+	);
 
-	const onChange = useCallback(async (data: SubscriptionsData | any) => {
-		await editSubscription(data);
-		toast({ description: messages.updated });
-		mutate();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const onChange = useCallback(
+		async (data: SubscriptionsData | any) => {
+			try {
+				await editSubscription(data);
+				toast({ description: messages.updated, variant: 'success' });
+				mutate();
+			} catch {
+				toast({ description: messages.error, variant: 'destructive' });
+			}
+		},
+		[mutate, toast]
+	);
 
 	const onEdit = useCallback((data: SubscriptionsData | any) => {
 		setSelected(data);

@@ -84,14 +84,13 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 				await addExpense(state);
 			}
 			setLoading(false);
-			toast({ description: `${isEditing ? messages.updated : messages.success}` });
-		} catch (error: any) {
-			setLoading(false);
-			toast({ description: error.message, variant: 'destructive' });
-		} finally {
+			toast({ description: `${isEditing ? messages.updated : messages.success}`, variant: 'success' });
 			if (mutate) mutate();
 			onHide();
 			setState({ ...initialState });
+		} catch {
+			setLoading(false);
+			toast({ description: messages.error, variant: 'destructive' });
 		}
 	};
 
@@ -106,9 +105,10 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 						if (!selected.id) setState({ ...initialState });
 					}}
 				>
-					<Label htmlFor="name">Name</Label>
 					<div className="relative">
+						<Label htmlFor="name">Name</Label>
 						<Input
+							className="mt-1.5"
 							id="name"
 							placeholder="Swiggy - Biriyani"
 							maxLength={30}
@@ -147,101 +147,97 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 									({getCurrencySymbol(user.currency, user.locale)})
 								</span>
 							</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<Input
-									id="price"
-									type="number"
-									placeholder="199"
-									required
-									min="0"
-									onChange={(event) => setState({ ...state, price: event.target.value })}
-									value={state.price}
-								/>
-							</div>
+							<Input
+								className="mt-1.5"
+								id="price"
+								type="number"
+								placeholder="199"
+								required
+								min="0"
+								onChange={(event) => setState({ ...state, price: event.target.value })}
+								value={state.price}
+							/>
 						</div>
 						<div className="mr-3">
 							<Label htmlFor="date">Spent Date</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<Input
-									id="date"
-									type="date"
-									required
-									max={todayDate}
-									pattern={datePattern}
-									onChange={(event) => {
-										setState({ ...state, date: event.target.value });
-									}}
-									value={state.date}
-								/>
-							</div>
+							<Input
+								className="mt-1.5"
+								id="date"
+								type="date"
+								required
+								max={todayDate}
+								pattern={datePattern}
+								onChange={(event) => {
+									setState({ ...state, date: event.target.value });
+								}}
+								value={state.date}
+							/>
 						</div>
 					</div>
 					<div className="grid grid-cols-[50%,50%] gap-3">
 						<div className="mr-3">
 							<Label htmlFor="category">Category</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<select
-									id="category"
-									className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-									onChange={(event) => {
-										setState({ ...state, category: event.target.value });
-									}}
-									value={state.category}
-									required
-								>
-									{Object.keys(groupedExpenses).map((key) => {
-										return (
-											<optgroup label={groupedExpenses[key].name} key={groupedExpenses[key].name}>
-												{Object.keys(groupedExpenses[key].list).map((listKey) => {
-													return (
-														<option key={listKey} value={listKey}>
-															{groupedExpenses[key].list[listKey].name}
-														</option>
-													);
-												})}
-											</optgroup>
-										);
-									})}
-									<option key={'other'} value={'other'}>
-										{expensesCategory.other.name}
-									</option>
-								</select>
-							</div>
+							<select
+								id="category"
+								className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+								onChange={(event) => {
+									setState({ ...state, category: event.target.value });
+								}}
+								value={state.category}
+								required
+							>
+								{Object.keys(groupedExpenses).map((key) => {
+									return (
+										<optgroup label={groupedExpenses[key].name} key={groupedExpenses[key].name}>
+											{Object.keys(groupedExpenses[key].list).map((listKey) => {
+												return (
+													<option key={listKey} value={listKey}>
+														{groupedExpenses[key].list[listKey].name}
+													</option>
+												);
+											})}
+										</optgroup>
+									);
+								})}
+								<option key={'other'} value={'other'}>
+									{expensesCategory.other.name}
+								</option>
+							</select>
 						</div>
 						<div className="mr-3">
-							<Label htmlFor="paid">Paid via</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<select
-									id="paid"
-									className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-									onChange={(event) => {
-										setState({ ...state, paid_via: event.target.value });
-									}}
-									value={state.paid_via}
-									required
-								>
-									{Object.keys(expensesPay).map((key) => {
-										return (
-											<option key={key} value={key}>
-												{expensesPay[key].name}
-											</option>
-										);
-									})}
-								</select>
-							</div>
+							<Label htmlFor="paid">Paid Via</Label>
+							<select
+								id="paid"
+								className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+								onChange={(event) => {
+									setState({ ...state, paid_via: event.target.value });
+								}}
+								value={state.paid_via}
+								required
+							>
+								{Object.keys(expensesPay).map((key) => {
+									return (
+										<option key={key} value={key}>
+											{expensesPay[key].name}
+										</option>
+									);
+								})}
+							</select>
 						</div>
 					</div>
-					<Label className="block">
-						Notes <span className="mb-6 text-center text-sm text-muted-foreground">(optional)</span>
-					</Label>
-					<Textarea
-						className="h-20"
-						onChange={(event) => setState({ ...state, notes: event.target.value })}
-						value={state.notes}
-						maxLength={60}
-					/>
+					<div>
+						<Label className="block">
+							Notes <span className="text-center text-sm text-muted-foreground">(optional)</span>
+						</Label>
+						<Textarea
+							className="mt-2 h-20"
+							onChange={(event) => setState({ ...state, notes: event.target.value })}
+							value={state.notes}
+							maxLength={60}
+						/>
+					</div>
 
-					<Button disabled={loading} className="mt-2" type="submit">
+					<Button disabled={loading} className="mt-1.5" type="submit">
 						{loading ? <CircleLoader /> : `${selected?.id ? 'Update' : 'Submit'}`}
 					</Button>
 				</form>

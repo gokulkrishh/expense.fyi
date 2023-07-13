@@ -21,12 +21,18 @@ export default function InvestmentsTable() {
 	const user = useUser();
 	const { toast } = useToast();
 
-	const onDelete = useCallback((id: string) => {
-		deleteInvestment(id);
-		toast({ description: messages.deleted });
-		mutate();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const onDelete = useCallback(
+		async (id: string) => {
+			try {
+				await deleteInvestment(id);
+				toast({ description: messages.deleted, variant: 'success' });
+				mutate();
+			} catch {
+				toast({ description: messages.error, variant: 'destructive' });
+			}
+		},
+		[mutate, toast]
+	);
 
 	const onEdit = useCallback(async (data: InvestmentData | any) => {
 		setSelected(data);

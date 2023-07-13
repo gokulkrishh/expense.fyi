@@ -21,12 +21,18 @@ export default function IncomeTable() {
 	const user = useUser();
 	const { toast } = useToast();
 
-	const onDelete = useCallback((id: string) => {
-		deleteIncome(id);
-		toast({ description: messages.deleted });
-		mutate();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const onDelete = useCallback(
+		async (id: string) => {
+			try {
+				await deleteIncome(id);
+				toast({ description: messages.deleted, variant: 'success' });
+				mutate();
+			} catch {
+				toast({ description: messages.error, variant: 'destructive' });
+			}
+		},
+		[mutate, toast]
+	);
 
 	const onEdit = useCallback(async (data: IncomeData | any) => {
 		setSelected(data);

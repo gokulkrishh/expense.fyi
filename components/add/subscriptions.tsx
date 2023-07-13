@@ -87,14 +87,13 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 				await addSubscription(state);
 			}
 			setLoading(false);
-			toast({ description: `${isEditing ? messages.updated : messages.success}` });
-		} catch (error: any) {
-			setLoading(false);
-			toast({ description: error.message, variant: 'destructive' });
-		} finally {
+			toast({ description: `${isEditing ? messages.updated : messages.success}`, variant: 'success' });
 			if (mutate) mutate();
 			onHide();
 			setState({ ...initialState });
+		} catch {
+			setLoading(false);
+			toast({ description: messages.error, variant: 'destructive' });
 		}
 	};
 
@@ -109,9 +108,10 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 						if (!selected.id) setState({ ...initialState });
 					}}
 				>
-					<Label htmlFor="name">Name</Label>
 					<div className="relative">
+						<Label htmlFor="name">Name</Label>
 						<Input
+							className="mt-1.5"
 							id="name"
 							placeholder="Netflix or Amazon Prime"
 							maxLength={30}
@@ -142,7 +142,7 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 							show={Boolean(state.autocomplete?.length)}
 						/>
 					</div>
-					<div className="mt-1 grid grid-cols-[100%] gap-1">
+					<div className="grid grid-cols-[100%] gap-1">
 						<Label className="flex grow-0 items-center" htmlFor="website">
 							Website
 							{hasValidUrl && state.url ? (
@@ -155,18 +155,17 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 								/>
 							) : null}
 						</Label>
-						<div className="mt-2 flex items-center justify-between">
-							<Input
-								id="website"
-								type="url"
-								pattern="https://.*|http://.*"
-								maxLength={30}
-								placeholder="netflix.com"
-								required
-								onChange={(event) => setState({ ...state, url: event.target.value })}
-								value={state.url}
-							/>
-						</div>
+						<Input
+							className="mt-1.5"
+							id="website"
+							type="url"
+							pattern="https://.*|http://.*"
+							maxLength={30}
+							placeholder="https://netflix.com"
+							required
+							onChange={(event) => setState({ ...state, url: event.target.value })}
+							value={state.url}
+						/>
 					</div>
 					<div className="grid grid-cols-[34%,36%,30%] gap-1">
 						<div className="mr-3">
@@ -176,66 +175,64 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 									({getCurrencySymbol(user.currency, user.locale)})
 								</span>
 							</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<Input
-									id="price"
-									type="number"
-									placeholder="199"
-									required
-									min="0"
-									onChange={(event) => setState({ ...state, price: event.target.value })}
-									value={state.price}
-								/>
-							</div>
+							<Input
+								className="mt-1.5"
+								id="price"
+								type="number"
+								placeholder="199"
+								required
+								min="0"
+								onChange={(event) => setState({ ...state, price: event.target.value })}
+								value={state.price}
+							/>
 						</div>
 						<div className="mr-3">
 							<Label htmlFor="date">Bought Date</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<Input
-									id="date"
-									type="date"
-									required
-									max={todayDate}
-									pattern={datePattern}
-									onChange={(event) => {
-										setState({ ...state, date: event.target.value });
-									}}
-									value={state.date}
-								/>
-							</div>
+							<Input
+								className="mt-1.5"
+								id="date"
+								type="date"
+								required
+								max={todayDate}
+								pattern={datePattern}
+								onChange={(event) => {
+									setState({ ...state, date: event.target.value });
+								}}
+								value={state.date}
+							/>
 						</div>
 						<div className="mr-3">
 							<Label htmlFor="paying">Paying</Label>
-							<div className="mt-2 flex items-center justify-between">
-								<select
-									id="paying"
-									className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-									onChange={(event) => {
-										setState({ ...state, paid: event.target.value });
-									}}
-									value={state.paid}
-									required
-								>
-									{Object.keys(subscriptionCategory).map((key) => {
-										return (
-											<option key={key} value={key}>
-												{subscriptionCategory[key].name}
-											</option>
-										);
-									})}
-								</select>
-							</div>
+							<select
+								id="paying"
+								className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+								onChange={(event) => {
+									setState({ ...state, paid: event.target.value });
+								}}
+								value={state.paid}
+								required
+							>
+								{Object.keys(subscriptionCategory).map((key) => {
+									return (
+										<option key={key} value={key}>
+											{subscriptionCategory[key].name}
+										</option>
+									);
+								})}
+							</select>
 						</div>
 					</div>
-					<Label className="mt-1 block">
-						Notes <span className="mb-6 text-center text-sm text-muted-foreground">(optional)</span>
-					</Label>
-					<Textarea
-						className="h-20"
-						onChange={(event) => setState({ ...state, notes: event.target.value })}
-						value={state.notes}
-						maxLength={60}
-					/>
+					<div>
+						<Label className="block">
+							Notes <span className="text-center text-sm text-muted-foreground">(optional)</span>
+						</Label>
+						<Textarea
+							className="mt-2 h-20"
+							onChange={(event) => setState({ ...state, notes: event.target.value })}
+							value={state.notes}
+							maxLength={60}
+						/>
+					</div>
 
 					<Button disabled={loading} className="mt-2" type="submit">
 						{loading ? <CircleLoader /> : `${selected?.id ? 'Update' : 'Submit'}`}

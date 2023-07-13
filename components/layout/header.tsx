@@ -4,6 +4,8 @@ import { useSidebar } from 'components/context/sidebar-provider';
 import { Button } from 'components/ui/button';
 import { Separator } from 'components/ui/separator';
 
+import { cn } from 'lib/utils';
+
 import DatePicker from '../datepicker';
 import Feedback from '../feedback';
 
@@ -52,7 +54,10 @@ export default function LayoutHeader({ title, showDatePicker = false }: { title:
 							<DatePicker />
 						</div>
 					) : null}
-					<Feedback className="absolute right-[16px] top-[12px] sm:relative sm:right-0 sm:top-0" />
+					<Feedback
+						showDatePicker={showDatePicker}
+						className="absolute right-[16px] top-[12px] sm:relative sm:right-0 sm:top-0"
+					/>
 				</div>
 			</div>
 			<Separator />
