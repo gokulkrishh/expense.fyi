@@ -1,13 +1,12 @@
 'use client';
 
-import { ColumnDef } from '@tanstack/react-table';
+import { ColumnDef, RowData } from '@tanstack/react-table';
 import { Pencil, Trash2 } from 'lucide-react';
 
 import DataTableColumnHeader from 'components/table/data-table-column-header';
 import { Button } from 'components/ui/button';
 
 import { formatCurrency, formatDate } from 'lib/formatter';
-import { cn } from 'lib/utils';
 
 import { expensesCategory, expensesPay } from 'constants/categories';
 
@@ -23,6 +22,12 @@ export type Expenses = {
 	id: string;
 	actions: string;
 };
+
+declare module '@tanstack/table-core' {
+	interface ColumnMeta<TData extends RowData, TValue> {
+		isTogglable: boolean;
+	}
+}
 
 export const columns: ColumnDef<Expenses>[] = [
 	{
@@ -111,6 +116,9 @@ export const columns: ColumnDef<Expenses>[] = [
 					</Button>
 				</div>
 			);
+		},
+		meta: {
+			isTogglable: false,
 		},
 	},
 ];
