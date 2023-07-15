@@ -46,7 +46,7 @@ export default function DataTableFacetedFilter<TData, TValue>({
 					size="sm"
 					className={`h-8 border-dashed ${cn({
 						'pointer-events-none opacity-50': disabled,
-						'w-full': selectedValues.size < 1,
+						'max:sm:w-full': selectedValues.size < 1,
 					})}`}
 				>
 					<PlusCircledIcon className="mr-2 h-4 w-4" />

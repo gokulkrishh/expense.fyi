@@ -21,7 +21,7 @@ const url = {
 	github: 'https://github.com/gokulkrishh/expense.fyi',
 };
 
-export const getApiUrl = (filterKey: string, apiPath: string, categories: string[]) => {
+export const getApiUrl = (filterKey: string, apiPath: string, categories: string[] = []) => {
 	if (filterKey === views.all.key) {
 		return `/api/${apiPath}?categories=${categories.join(',')}`;
 	}

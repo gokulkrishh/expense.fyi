@@ -58,7 +58,10 @@ export default function DataTable<TData, TValue>(props: DataTableProps) {
 		onSortingChange: setSorting,
 		getSortedRowModel: getSortedRowModel(),
 		onColumnFiltersChange: (filterFn: any) => {
-			filter.onFilter?.(filterFn?.()[0]?.value);
+			const [filterData] = filterFn?.();
+			if (filterData?.id === 'category') {
+				filter.onFilter?.(filterFn?.()[0]?.value);
+			}
 			return setColumnFilters(filterFn);
 		},
 		getFilteredRowModel: getFilteredRowModel(),
