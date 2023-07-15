@@ -77,6 +77,9 @@ export const columns: ColumnDef<Expenses>[] = [
 			const category = row.getValue<string>('category');
 			return <div className="">{expensesCategory[category]?.name}</div>;
 		},
+		filterFn: (row, id, value) => {
+			return value.includes(row.getValue(id));
+		},
 	},
 	{
 		accessorKey: 'paid_via',

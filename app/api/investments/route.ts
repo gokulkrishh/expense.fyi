@@ -5,21 +5,31 @@ import prisma from 'lib/prisma';
 
 import messages, { emails } from 'constants/messages';
 
+type Where = {
+	user_id: string;
+	date?: {
+		lte: string;
+		gte: string;
+	};
+	categories?: {
+		contains: string;
+	};
+};
+
 export async function GET(request: NextRequest) {
 	const { searchParams } = request.nextUrl;
 	const from = searchParams.get('from') || '';
 	const to = searchParams.get('to') || '';
-	const categories: any = searchParams.get('categories') || [];
-
-	const OR = { OR: categories.map((category: any) => ({ category: { contains: category } })) };
+	const categories: any = searchParams.get('categories') || '';
+	const OR = { OR: categories?.split(',').map((category: any) => ({ category: { contains: category } })) };
 
 	return await checkAuth(async (user: any) => {
 		try {
-			const where = { user_id: user.id, ...(categories.length && OR) };
-
-			if (from !== 'all' && to !== 'all') {
-				where.date = { lte: to, gte: from };
-			}
+			const where = {
+				user_id: user.id,
+				...(categories.length && OR),
+				...(to && from && { date: { lte: to, gte: from } }),
+			};
 
 			const data = await prisma.investments.findMany({
 				where,

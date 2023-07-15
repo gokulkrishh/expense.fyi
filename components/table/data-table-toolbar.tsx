@@ -5,7 +5,6 @@ import { Table } from '@tanstack/react-table';
 import { format } from 'date-fns';
 import { Download } from 'lucide-react';
 
-import { useUser } from 'components/context/auth-provider';
 import { Button } from 'components/ui/button';
 import { Input } from 'components/ui/input';
 import { useToast } from 'components/ui/use-toast';
@@ -18,6 +17,7 @@ import messages from 'constants/messages';
 
 import DataTableFilterOptions from './data-table-filter-options';
 import DataTableViewOptions from './data-table-view-options';
+import DataTableFacetedFilter from './data-table-faceted-filter';
 
 interface DataTableToolbarProps<TData> {
 	table: Table<TData>;
@@ -27,23 +27,32 @@ interface DataTableToolbarProps<TData> {
 	user: { locale: string; currency: string; isPremium: boolean };
 	filter: { name: string; setFilter: (filter: string) => void };
 	filename: string;
+	categories?: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[];
 }
 
 export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TData>) {
-	const { table, className, loading, filter, user, filename, hideViewOptions = false } = props;
+	const { table, className, loading, categories, filter, user, filename, hideViewOptions = false } = props;
 	const { toast } = useToast();
 	const isFiltered = table.getState().columnFilters.length > 0;
 
 	return (
 		<div className={`mb-4 mt-10 flex flex-col items-center justify-between sm:flex-row ${className}`}>
-			<div className="mb-4 flex w-full flex-1 items-center space-x-2 sm:mb-0 sm:max-w-[300px] md:max-w-[350px]">
+			<div className="mb-4 flex w-full flex-1 items-center space-x-2 sm:mb-0">
 				<Input
 					disabled={loading}
 					placeholder="Filter by name"
 					value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
 					onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
-					className="h-8 w-[inherit]"
+					className="mr-1.5 h-8 w-full sm:w-[200px]"
 				/>
+				{categories?.length && table.getColumn('category') ? (
+					<DataTableFacetedFilter
+						disabled={loading}
+						column={table.getColumn('category')}
+						title="Category"
+						options={categories}
+					/>
+				) : null}
 				{isFiltered && (
 					<Button
 						variant="secondary"
@@ -56,7 +65,7 @@ export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TDa
 				)}
 			</div>
 			<div className={`${loading ? 'pointer-events-none opacity-50' : ''} grid w-full grid-flow-col gap-3 sm:w-auto`}>
-				{hideViewOptions ? null : <DataTableFilterOptions setFilter={filter?.setFilter} filter={filter.name} />}
+				{!hideViewOptions ? <DataTableFilterOptions setFilter={filter?.setFilter} filter={filter.name} /> : null}
 				<DataTableViewOptions table={table} />
 				{user.isPremium ? (
 					<Button

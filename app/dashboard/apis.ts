@@ -6,14 +6,13 @@ import url from 'constants/url';
 type Expenses = {
 	from: string;
 	to: string;
-	categories?: Array<string>;
 };
 
-export const getExpenses = async ({ from, to, categories = [] }: Expenses) => {
+export const getExpenses = async ({ from, to }: Expenses) => {
 	if (from && to) {
 		const res = await fetch(`${url.api}/api/expenses`, {
 			method: 'POST',
-			body: JSON.stringify({ from, to, categories }),
+			body: JSON.stringify({ from, to }),
 		});
 		if (!res.ok) {
 			return [];
