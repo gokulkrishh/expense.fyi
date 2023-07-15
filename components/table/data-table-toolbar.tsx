@@ -25,7 +25,7 @@ interface DataTableToolbarProps<TData> {
 	loading: boolean;
 	hideViewOptions?: boolean | undefined;
 	user: { locale: string; currency: string; isPremium: boolean };
-	filter: { name: string; setFilter: (filter: string) => void };
+	filter: { name: string; setFilter: (filter: string) => void, onFilter?: (filterData: any) => void };
 	filename: string;
 	categories?: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[];
 }
@@ -56,7 +56,10 @@ export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TDa
 				{isFiltered && (
 					<Button
 						variant="secondary"
-						onClick={() => table.resetColumnFilters()}
+						onClick={() => {
+							filter.onFilter?.([]);
+							table.resetColumnFilters();
+						}}
 						className="h-8 px-2 text-primary lg:px-3"
 					>
 						Reset
