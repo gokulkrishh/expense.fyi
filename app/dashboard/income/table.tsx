@@ -14,6 +14,14 @@ import messages from 'constants/messages';
 
 import { IncomeData, deleteIncome } from './apis';
 import { columns } from './columns';
+import { incomeCategory } from 'constants/categories';
+
+const categories = Object.keys(incomeCategory)
+	.filter(Boolean)
+	.map((categoryKey) => ({
+		label: incomeCategory[categoryKey],
+		value: categoryKey,
+	}));
 
 export default function IncomeTable() {
 	const [selected, setSelected] = useState({});
@@ -53,6 +61,7 @@ export default function IncomeTable() {
 				data={data}
 				loading={loading}
 				filename="Income"
+				categories={categories}
 			/>
 			<Add onHide={onHide} onLookup={onLookup} selected={selected} mutate={mutate} type="income" />
 		</>

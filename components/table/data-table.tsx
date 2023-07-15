@@ -9,6 +9,8 @@ import {
 	VisibilityState,
 	flexRender,
 	getCoreRowModel,
+	getFacetedRowModel,
+	getFacetedUniqueValues,
 	getFilteredRowModel,
 	getSortedRowModel,
 	useReactTable,
@@ -32,14 +34,19 @@ type DataTableProps = {
 	data: Array<any>;
 	columns: Array<any>;
 	loading: boolean;
-	filter: { name: string; setFilter: (filter: string) => void };
+	filter: { name: string; setFilter: (filter: string) => void; onFilter: (categories: any) => void };
 	options: { user: any; onDelete: (id: string) => void; onEdit: (data: any) => void; onChange?: (data: any) => void };
 	filename: string;
 	hideViewOptions?: boolean | undefined;
+	categories?: {
+		label: string;
+		value: string;
+		icon?: React.ComponentType<{ className?: string }>;
+	}[];
 };
 
 export default function DataTable<TData, TValue>(props: DataTableProps) {
-	const { data, columns, loading, filter, options, filename, hideViewOptions } = props;
+	const { data, columns, loading, categories, filter, options, filename, hideViewOptions } = props;
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -50,8 +57,13 @@ export default function DataTable<TData, TValue>(props: DataTableProps) {
 		getCoreRowModel: getCoreRowModel(),
 		onSortingChange: setSorting,
 		getSortedRowModel: getSortedRowModel(),
-		onColumnFiltersChange: setColumnFilters,
+		onColumnFiltersChange: (filterFn: any) => {
+			filter.onFilter?.(filterFn?.()[0]?.value);
+			return setColumnFilters(filterFn);
+		},
 		getFilteredRowModel: getFilteredRowModel(),
+		getFacetedRowModel: getFacetedRowModel(),
+		getFacetedUniqueValues: getFacetedUniqueValues(),
 		onColumnVisibilityChange: setColumnVisibility,
 		state: { sorting, columnFilters, columnVisibility },
 		meta: options,
@@ -60,6 +72,7 @@ export default function DataTable<TData, TValue>(props: DataTableProps) {
 	return (
 		<div className="mb-8">
 			<DataTableToolbar
+				categories={categories}
 				user={options.user}
 				filename={filename}
 				filter={filter}

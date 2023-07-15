@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckCircle2, XCircle } from 'lucide-react';
+import { CheckCircle2, XCircle, Info } from 'lucide-react';
 
 import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from 'components/ui/toast';
 import { useToast } from 'components/ui/use-toast';
@@ -13,6 +13,7 @@ export function Toaster() {
 			{toasts.map(function ({ id, title, description, action, ...props }) {
 				const isSuccess = !title && props.variant === 'success';
 				const isFailure = !title && props.variant === 'destructive';
+				const isInfo = !title && props.variant === 'info';
 				return (
 					<Toast key={id} {...props}>
 						<div className="grid gap-1">
@@ -21,6 +22,7 @@ export function Toaster() {
 								<ToastDescription className="flex items-center">
 									{isSuccess ? <CheckCircle2 className="mr-1.5 h-4 w-4" /> : null}
 									{isFailure ? <XCircle className="mr-1.5 h-4 w-4" /> : null}
+									{isInfo ? <Info className="mr-1.5 h-4 w-4" /> : null}
 									{description}
 								</ToastDescription>
 							)}

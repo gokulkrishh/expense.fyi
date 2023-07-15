@@ -14,6 +14,14 @@ import messages from 'constants/messages';
 
 import { InvestmentData, deleteInvestment } from './apis';
 import { columns } from './columns';
+import { investmentCategory } from 'constants/categories';
+
+const categories = Object.keys(investmentCategory)
+	.filter(Boolean)
+	.map((categoryKey) => ({
+		label: investmentCategory[categoryKey],
+		value: categoryKey,
+	}));
 
 export default function InvestmentsTable() {
 	const [selected, setSelected] = useState({});
@@ -53,6 +61,7 @@ export default function InvestmentsTable() {
 				data={data}
 				loading={loading}
 				filename="Investments"
+				categories={categories}
 			/>
 			<Add onHide={onHide} onLookup={onLookup} selected={selected} mutate={mutate} type="investments" />
 		</>

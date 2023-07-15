@@ -15,6 +15,15 @@ import messages from 'constants/messages';
 import { ExpenseData, deleteExpense } from './apis';
 import { columns } from './columns';
 
+import { expensesCategory } from 'constants/categories';
+
+const categories = Object.keys(expensesCategory)
+	.filter(Boolean)
+	.map((categoryKey) => ({
+		label: expensesCategory[categoryKey].name,
+		value: categoryKey,
+	}));
+
 export default function ExpenseTable() {
 	const [selected, setSelected] = useState({});
 	const { data, loading, filter, mutate } = useData();
@@ -53,6 +62,7 @@ export default function ExpenseTable() {
 				data={data}
 				loading={loading}
 				filename="Expenses"
+				categories={categories}
 			/>
 			<Add onHide={onHide} onLookup={onLookup} selected={selected} mutate={mutate} type="expenses" />
 		</>

@@ -69,6 +69,9 @@ export const columns: ColumnDef<Income>[] = [
 			const category = row.getValue<string>('category');
 			return <div className="">{incomeCategory[category]}</div>;
 		},
+		filterFn: (row, id, value) => {
+			return value.includes(row.getValue(id));
+		},
 	},
 
 	{ accessorKey: 'notes', header: 'Notes' },

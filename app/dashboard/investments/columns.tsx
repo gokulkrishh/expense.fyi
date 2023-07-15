@@ -81,6 +81,9 @@ export const columns: ColumnDef<Investments>[] = [
 			const category = row.getValue<string>('category');
 			return <div className="">{investmentCategory[category]}</div>;
 		},
+		filterFn: (row, id, value) => {
+			return value.includes(row.getValue(id));
+		},
 	},
 
 	{ accessorKey: 'notes', header: 'Notes' },

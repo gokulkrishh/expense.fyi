@@ -21,9 +21,9 @@ const url = {
 	github: 'https://github.com/gokulkrishh/expense.fyi',
 };
 
-export const getApiUrl = (filterKey: string, apiPath: string, categories = []) => {
+export const getApiUrl = (filterKey: string, apiPath: string, categories: string[]) => {
 	if (filterKey === views.all.key) {
-		return `/api/${apiPath}?from=all&to=all&categories=${categories.join(',')}`;
+		return `/api/${apiPath}?categories=${categories.join(',')}`;
 	}
 	const [start, end] = getRangeDateForFilter(filterKey);
 	return `/api/${apiPath}?from=${start}&to=${end}&categories=${categories.join(',')}`;
