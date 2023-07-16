@@ -17,7 +17,7 @@ export default function InvestmentsSummary() {
 			{loading ? (
 				<CardLoader cards={2} className="mb-6" />
 			) : (
-				<div className="xs:grid-cols-2 mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+				<div className="mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 					<SummaryCard title="total investments" data={data.length} />
 					<SummaryCard
 						title="total amount"

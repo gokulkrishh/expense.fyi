@@ -8,7 +8,7 @@ import CardLoader from 'components/loader/card';
 
 import { formatCurrency } from 'lib/formatter';
 
-import SummaryCard from './summary-card';
+import SummaryCard from '../../components/card/summary-card';
 
 export default function Summary() {
 	const user = useUser();
@@ -28,9 +28,9 @@ export default function Summary() {
 		<>
 			<h2 className="mb-4 font-semibold text-primary dark:text-white">Summary</h2>
 			{loading ? (
-				<CardLoader cards={5} />
+				<CardLoader cards={5} className='' />
 			) : (
-				<div className="xs:grid-cols-2 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 					<SummaryCard
 						icon={Briefcase}
 						title="total income"
