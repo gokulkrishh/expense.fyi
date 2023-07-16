@@ -22,6 +22,7 @@ interface DataTableFacetedFilter<TData, TValue> {
 	column?: Column<TData, TValue>;
 	title?: string;
 	disabled?: boolean;
+	onFilter?: (filterData: any) => void;
 	options: {
 		label: string;
 		value: string;
@@ -34,6 +35,7 @@ export default function DataTableFacetedFilter<TData, TValue>({
 	disabled,
 	title,
 	options,
+	onFilter
 }: DataTableFacetedFilter<TData, TValue>) {
 	const facets = column?.getFacetedUniqueValues();
 	const selectedValues = new Set(column?.getFilterValue() as string[]);
@@ -99,6 +101,7 @@ export default function DataTableFacetedFilter<TData, TValue>({
 											}
 											const filterValues = Array.from(selectedValues);
 											column?.setFilterValue(filterValues.length ? filterValues : undefined);
+											onFilter?.(filterValues.length ? filterValues : [])
 										}}
 									>
 										<div
@@ -125,7 +128,10 @@ export default function DataTableFacetedFilter<TData, TValue>({
 								<CommandSeparator />
 								<CommandGroup>
 									<CommandItem
-										onSelect={() => column?.setFilterValue(undefined)}
+										onSelect={() => {
+											column?.setFilterValue(undefined)
+											onFilter?.([])
+										}}
 										className="justify-center text-center"
 									>
 										Clear filters

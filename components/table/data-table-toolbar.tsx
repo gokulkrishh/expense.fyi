@@ -50,6 +50,7 @@ export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TDa
 						disabled={loading}
 						column={table.getColumn('category')}
 						title="Category"
+						onFilter={filter.onFilter}
 						options={categories}
 					/>
 				) : null}

@@ -6,8 +6,6 @@ import useSWR from 'swr';
 
 import { views } from 'constants/table';
 import { getApiUrl } from 'constants/url';
-import { get } from 'http';
-import { set } from 'date-fns';
 
 const DataContext = createContext(null);
 

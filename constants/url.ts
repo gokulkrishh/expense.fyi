@@ -23,10 +23,10 @@ const url = {
 
 export const getApiUrl = (filterKey: string, apiPath: string, categories: string[] = []) => {
 	if (filterKey === views.all.key) {
-		return `/api/${apiPath}?categories=${categories.join(',')}`;
+		return `/api/${apiPath}?categories=${categories?.join(',')}`;
 	}
 	const [start, end] = getRangeDateForFilter(filterKey);
-	return `/api/${apiPath}?from=${start}&to=${end}&categories=${categories.join(',')}`;
+	return `/api/${apiPath}?from=${start}&to=${end}&categories=${categories?.join(',')}`;
 };
 
 export default url;
