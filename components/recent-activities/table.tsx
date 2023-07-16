@@ -7,7 +7,6 @@ import { useOverview } from 'components/context/overview-provider';
 import { DataTable } from 'components/recent-activities/data-table';
 
 import { extractRecentData } from 'lib/extractor';
-import { formatCurrency } from 'lib/formatter';
 
 import { columns } from './columns';
 

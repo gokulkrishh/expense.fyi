@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 
-import { truncate } from 'fs';
 import { PlusIcon } from 'lucide-react';
 import { useHotkeys } from 'react-hotkeys-hook';
 

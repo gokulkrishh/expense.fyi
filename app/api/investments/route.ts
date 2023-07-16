@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { checkAuth } from 'lib/auth';
 import prisma from 'lib/prisma';
 
-import messages, { emails } from 'constants/messages';
+import messages from 'constants/messages';
 
 type Where = {
 	user_id: string;

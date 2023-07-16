@@ -1,9 +1,8 @@
 'use client';
 
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext } from 'react';
 
-import { getExpenses, getIncome, getInvestments, getSubscriptions } from 'app/dashboard/apis';
-import { format, isValid } from 'date-fns';
+import { format } from 'date-fns';
 import useSWR from 'swr';
 
 import { dateFormat } from 'constants/date';

@@ -28,7 +28,7 @@ export default function Summary() {
 		<>
 			<h2 className="mb-4 font-semibold text-primary dark:text-white">Summary</h2>
 			{loading ? (
-				<CardLoader cards={5} className='' />
+				<CardLoader cards={5} />
 			) : (
 				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 					<SummaryCard

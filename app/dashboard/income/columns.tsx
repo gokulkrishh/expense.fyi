@@ -1,13 +1,12 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, Pencil, Trash2 } from 'lucide-react';
+import { Pencil, Trash2 } from 'lucide-react';
 
 import DataTableColumnHeader from 'components/table/data-table-column-header';
 import { Button } from 'components/ui/button';
 
 import { formatCurrency, formatDate } from 'lib/formatter';
-import { cn } from 'lib/utils';
 
 import { incomeCategory } from 'constants/categories';
 

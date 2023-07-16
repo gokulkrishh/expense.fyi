@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 import { DropdownMenuRadioGroup, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 import { Filter } from 'lucide-react';
 

@@ -9,7 +9,7 @@ import { AuthProvider } from 'components/context/auth-provider';
 import { SidebarContextProvider } from 'components/context/sidebar-provider';
 import DashboardLayout from 'components/layout';
 import Sidebar from 'components/sidebar';
-import { ThemeProvider } from 'components/theme-provider';
+import { ThemeProvider } from 'components/context/theme-provider';
 import { Toaster } from 'components/ui/toaster';
 
 import { Database } from 'lib/database.types';

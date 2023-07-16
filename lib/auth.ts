@@ -1,5 +1,5 @@
-import { cookies, headers } from 'next/headers';
-import { NextRequest, NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 
 import { createServerActionClient } from '@supabase/auth-helpers-nextjs';
 import { addYears } from 'date-fns';

@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { deleteUser } from 'app/dashboard/settings/apis';
-import { set } from 'date-fns';
 
 import { useUser } from 'components/context/auth-provider';
 import CircleLoader from 'components/loader/circle';

@@ -25,7 +25,7 @@ interface DataTableToolbarProps<TData> {
 	loading: boolean;
 	hideViewOptions?: boolean | undefined;
 	user: { locale: string; currency: string; isPremium: boolean };
-	filter: { name: string; setFilter: (filter: string) => void, onFilter?: (filterData: any) => void };
+	filter: { name: string; setFilter: (filter: string) => void; onFilter?: (filterData: any) => void };
 	filename: string;
 	categories?: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[];
 }
