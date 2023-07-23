@@ -16,6 +16,7 @@ import { formatCurrency } from 'lib/formatter';
 import { dateFormat } from 'constants/date';
 import messages from 'constants/messages';
 import { basicPlan, premiumPlan } from 'constants/usage';
+import { apiUrls } from 'lib/apiUrls';
 
 declare global {
 	interface Window {
@@ -61,7 +62,7 @@ export default function Plans() {
 	const onSuccess = async ({ order }: { order: any }, close: any) => {
 		const { attributes } = order.data;
 		try {
-			const res = await fetch('/api/user/upgrade', {
+			const res = await fetch(apiUrls.user.upgrade, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

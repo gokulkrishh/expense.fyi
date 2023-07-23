@@ -1,3 +1,5 @@
+import { apiUrls } from 'lib/apiUrls';
+
 export type InvestmentData = {
 	notes: string;
 	name: string;
@@ -8,7 +10,7 @@ export type InvestmentData = {
 };
 
 export const addInvestment = async (data: InvestmentData) => {
-	const res = await fetch(`/api/investments/add`, { method: 'POST', body: JSON.stringify(data) });
+	const res = await fetch(apiUrls.investments.add, { method: 'POST', body: JSON.stringify(data) });
 	if (!res.ok) {
 		const error = await res.json();
 		throw error;
@@ -17,11 +19,11 @@ export const addInvestment = async (data: InvestmentData) => {
 };
 
 export const deleteInvestment = async (id: string) => {
-	const res = await fetch(`/api/investments`, { method: 'DELETE', body: JSON.stringify({ id: [id] }) });
+	const res = await fetch(apiUrls.investments.modify, { method: 'DELETE', body: JSON.stringify({ id: [id] }) });
 	return await res.json();
 };
 
 export const editInvestment = async (data: InvestmentData) => {
-	const res = await fetch(`/api/investments`, { method: 'PUT', body: JSON.stringify(data) });
+	const res = await fetch(apiUrls.investments.modify, { method: 'PUT', body: JSON.stringify(data) });
 	return await res.json();
 };

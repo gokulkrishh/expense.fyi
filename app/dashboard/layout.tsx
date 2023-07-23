@@ -15,6 +15,7 @@ import { Toaster } from 'components/ui/toaster';
 import { Database } from 'lib/database.types';
 
 import url from 'constants/url';
+import { apiUrls } from 'lib/apiUrls';
 
 const GOOGLE_ANALYTICS_ID = process.env.GA4_ANALYTICS_ID;
 
@@ -36,7 +37,7 @@ export const metadata = {
 export const revalidate = 0;
 
 async function getUser(cookies: any) {
-	const res = await fetch(`${url.serverApi}/api/user`, {
+	const res = await fetch(`${url.serverApi}/${apiUrls.user.modify}`, {
 		headers: { cookie: cookies },
 	});
 	if (!res.ok) {

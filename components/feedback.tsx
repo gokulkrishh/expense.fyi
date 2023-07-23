@@ -14,6 +14,7 @@ import { cn } from 'lib/utils';
 import messages, { emails } from 'constants/messages';
 
 import { useToast } from './ui/use-toast';
+import { apiUrls } from 'lib/apiUrls';
 
 export default function Feedback({ className, showDatePicker }: { className?: string; showDatePicker: boolean }) {
 	const [state, setState] = useState({ show: false, loading: false, message: '', sent: false });
@@ -23,7 +24,7 @@ export default function Feedback({ className, showDatePicker }: { className?: st
 		setState({ ...state, loading: true });
 
 		try {
-			const res = await fetch(`/api/feedback`, {
+			const res = await fetch(apiUrls.feedback.add, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ message: state.message }),

@@ -8,6 +8,7 @@ import useSWR from 'swr';
 import { dateFormat } from 'constants/date';
 
 import { useDate } from './datepicker-provider';
+import { apiUrls } from 'lib/apiUrls';
 
 const OverviewContext = createContext(null);
 
@@ -20,22 +21,16 @@ interface Data {
 
 export const OverviewContextProvider = (props: any) => {
 	const { date } = useDate();
-	const formattedDate = {
-		from: format(date.from || date.to, dateFormat),
-		to: format(date.to || date.from, dateFormat),
-	};
+	const from = format(date.from || date.to, dateFormat);
+	const to = format(date.to || date.from, dateFormat);
 	const { children, ...others } = props;
-	const { data: expensesData = [], isLoading: isExpenseLoading } = useSWR(
-		`/api/expenses?from=${formattedDate.from}&to=${formattedDate.to}`
-	);
+	const { data: expensesData = [], isLoading: isExpenseLoading } = useSWR(apiUrls.expenses.getExpenses({ from, to }));
 	const { data: investmentsData = [], isLoading: isInvestmentsLoading } = useSWR(
-		`/api/investments?from=${formattedDate.from}&to=${formattedDate.to}`
+		apiUrls.investments.getInvestments({ from, to })
 	);
-	const { data: incomeData = [], isLoading: isIncomeLoading } = useSWR(
-		`/api/income?from=${formattedDate.from}&to=${formattedDate.to}`
-	);
+	const { data: incomeData = [], isLoading: isIncomeLoading } = useSWR(apiUrls.income.getIncome({ from, to }));
 	const { data: subscriptionsData = [], isLoading: isSubscriptionsLoading } = useSWR(
-		`/api/subscriptions?from=${formattedDate.from}&to=${formattedDate.to}`
+		apiUrls.subscriptions.getSubscriptions({ from, to })
 	);
 
 	const data = {
