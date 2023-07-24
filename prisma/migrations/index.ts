@@ -44,7 +44,7 @@ export type MigrationReport = {
 }
 
 /**
- * Migrate models concurrently.
+ * Migrate models sequentially.
  *
  * Processed models:
  * - subscriptions
@@ -58,17 +58,10 @@ export async function migrate(
   client: PrismaClient,
   reportProgress: ProgressReportCallback = defaultProgressReport
 ): Promise<MigrationReport> {
-  const [
-    processedsubscriptions,
-    processedexpenses,
-    processedincome,
-    processedinvestments
-  ] = await Promise.all([
-    migratesubscriptions(client, reportProgress),
-    migrateexpenses(client, reportProgress),
-    migrateincome(client, reportProgress),
-    migrateinvestments(client, reportProgress)
-  ])
+  const processedsubscriptions = await migratesubscriptions(client, reportProgress)
+  const processedexpenses = await migrateexpenses(client, reportProgress)
+  const processedincome = await migrateincome(client, reportProgress)
+  const processedinvestments = await migrateinvestments(client, reportProgress)
   return {
     subscriptions: processedsubscriptions,
     expenses: processedexpenses,
