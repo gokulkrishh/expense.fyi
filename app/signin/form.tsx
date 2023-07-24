@@ -11,6 +11,7 @@ import CircleLoader from 'components/loader/circle';
 import { Button } from 'components/ui/button';
 
 import url from 'constants/url';
+import { apiUrls } from 'lib/apiUrls';
 
 const initialState = { loading: false, email: '', success: false, error: '' };
 
@@ -38,7 +39,7 @@ export default function Form() {
 		setState((prev) => ({ ...prev, loading: true, error: '', success: false }));
 
 		try {
-			const res = await fetch('/api/auth/signin', {
+			const res = await fetch(apiUrls.auth.signin, {
 				method: 'POST',
 				body: JSON.stringify({ email: state.email }),
 				headers: { 'Content-Type': 'application/json' },
