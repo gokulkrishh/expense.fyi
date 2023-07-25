@@ -43,7 +43,7 @@ export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TDa
 					placeholder="Filter by name"
 					value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
 					onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
-					className="mr-1.5 h-8 w-full sm:w-[200px]"
+					className="mr-1.5 h-8 w-full sm:w-[200px] md:w-[300px]"
 				/>
 				{categories?.length && table.getColumn('category') ? (
 					<DataTableFacetedFilter
