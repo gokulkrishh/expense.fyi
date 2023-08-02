@@ -71,7 +71,11 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 			const active = row.getValue<boolean>('active');
 			const isItThisMonth = active && isThisMonth(new Date(renewalDate));
 			const formatted = renewalDate ? formatDate({ date: renewalDate, locale: user?.locale }) : '-';
-			return <div title={isItThisMonth ? 'Due this month' : ''} className={isItThisMonth ? 'text-red-500 font-medium' : ''}>{formatted}</div>;
+			return (
+				<div title={isItThisMonth ? 'Due this month' : ''} className={isItThisMonth ? 'font-medium text-red-500' : ''}>
+					{formatted}
+				</div>
+			);
 		},
 	},
 	{

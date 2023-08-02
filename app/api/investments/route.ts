@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
 					updated_at: true,
 				},
 			});
-			return NextResponse.json(data.sort((a,b) => Date.parse(b.date) - Date.parse(a.date)));
+			return NextResponse.json(data.sort((a, b) => Date.parse(b.date) - Date.parse(a.date)));
 		} catch (error) {
 			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
 		}
