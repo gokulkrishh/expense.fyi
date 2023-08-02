@@ -22,7 +22,7 @@ export default function InvestmentsSummary() {
 					<SummaryCard
 						title="total amount"
 						data={formatCurrency({
-							value: data.reduce((acc: any, datum: any) => Number(datum.price) + acc, 0),
+							value: data.reduce((acc: any, datum: any) => Number(datum.price) * Number(datum.units) + acc, 0),
 							currency: user?.currency,
 							locale: user?.locale,
 						})}

@@ -12,6 +12,7 @@ import { Checkbox } from 'components/ui/checkbox';
 import { formatCurrency, formatDate } from 'lib/formatter';
 
 import { SubscriptionsData } from './apis';
+import { isThisMonth } from 'date-fns';
 
 export const columns: ColumnDef<SubscriptionsData>[] = [
 	{
@@ -67,8 +68,10 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 			} = props;
 			const user = options.meta?.user;
 			const renewalDate = row.getValue<string>('renewal_date');
+			const active = row.getValue<boolean>('active');
+			const isItThisMonth = active && isThisMonth(new Date(renewalDate));
 			const formatted = renewalDate ? formatDate({ date: renewalDate, locale: user?.locale }) : '-';
-			return <div className="">{formatted}</div>;
+			return <div title={isItThisMonth ? 'Due this month' : ''} className={isItThisMonth ? 'text-red-500 font-medium' : ''}>{formatted}</div>;
 		},
 	},
 	{

@@ -34,8 +34,16 @@ export const columns: ColumnDef<Investments>[] = [
 		},
 	},
 	{
+		accessorKey: 'units',
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Units" />,
+		cell: ({ row }) => {
+			const units = parseFloat(row.getValue('units'));
+			return <div className="tabular-nums">{units}</div>;
+		},
+	},
+	{
 		accessorKey: 'price',
-		header: ({ column }) => <DataTableColumnHeader column={column} title="Price" />,
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Single Stock Price" />,
 		cell: (props) => {
 			const {
 				row,
@@ -48,15 +56,18 @@ export const columns: ColumnDef<Investments>[] = [
 		},
 	},
 	{
-		accessorKey: 'units',
-		header: ({ column }) => <DataTableColumnHeader column={column} title="Units" />,
+		accessorKey: 'price',
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Total Amount" />,
 		cell: (props) => {
 			const {
 				row,
 				table: { options },
 			} = props;
+			const user = options.meta?.user;
+			const price = parseFloat(row.getValue('price'));
 			const units = parseFloat(row.getValue('units'));
-			return <div className="tabular-nums">{units}</div>;
+			const formatted = formatCurrency({ value: units * price, currency: user?.currency, locale: user?.locale });
+			return <div className="font-medium tabular-nums">{formatted}</div>;
 		},
 	},
 	{

@@ -16,12 +16,15 @@ export default function Summary() {
 
 	const totalExpenses = data.expenses.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
 	const totalIncome = data.income.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
-	const totalInvesments = data.investments.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
+	const totalInvesments = data.investments.reduce(
+		(acc: any, { price, units }: any) => Number(price) * Number(units) + acc,
+		0
+	);
 	const totalSubscriptions = data.subscriptions
 		.filter(({ paid_dates }: any) => paid_dates.length)
-		.reduce((acc: any, { price }: any) => Number(price) + acc, 0);
+		.reduce((acc: any, { price, paid_dates }: any) => Number(price) * paid_dates.length + acc, 0);
 
-	const totalSpent = totalExpenses + totalInvesments;
+	const totalSpent = totalExpenses + totalInvesments + totalSubscriptions;
 	const totalBalance = totalIncome - totalSpent;
 
 	return (
@@ -44,6 +47,7 @@ export default function Summary() {
 					<SummaryCard
 						icon={Banknote}
 						title="total spent"
+						tooltip="Total of expenses + investments + subscriptions"
 						data={formatCurrency({ value: totalSpent, currency: user.currency, locale: user.locale })}
 					/>
 					<SummaryCard

@@ -30,7 +30,7 @@ export default function Charts() {
 					<CardHeader>
 						<h3 className="font-medium">Subscriptions</h3>
 						<p className="relative top-[-4px] pb-2 text-sm font-normal text-muted-foreground">
-							Amount spent for selected date range.
+							Estimated total amount spent for selected date range.
 						</p>
 					</CardHeader>
 					<CardContent className="mt-4">

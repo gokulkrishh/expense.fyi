@@ -1,13 +1,26 @@
 import { Card, CardContent, CardHeader, CardTitle } from 'components/ui/card';
 
-type Summary = { title: String; data: any; icon?: any };
+import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
-export default function SummaryCard({ title, data, icon: Icon }: Summary) {
+type Summary = { title: String; data: any; icon?: any; tooltip?: string };
+
+export default function SummaryCard({ title, data, icon: Icon, tooltip = '' }: Summary) {
+	const IconWithTooltip = () => (
+		<Tooltip>
+			<TooltipTrigger asChild>
+				<Icon className="absolute right-3 top-1 h-4 w-4" />
+			</TooltipTrigger>
+			<TooltipContent className="normal-case" side="bottom">
+				{tooltip}
+			</TooltipContent>
+		</Tooltip>
+	);
+
 	return (
 		<Card className="relative">
 			<CardHeader className="pb-0">
 				<CardTitle className="text-xs font-semibold uppercase text-muted-foreground">{title}</CardTitle>
-				{Icon ? <Icon className="absolute right-3 top-1 h-4 w-4" /> : null}
+				{Icon && tooltip ? <IconWithTooltip /> : Icon ? <Icon className="absolute right-3 top-1 h-4 w-4" /> : null}
 			</CardHeader>
 			<CardContent>
 				<p
