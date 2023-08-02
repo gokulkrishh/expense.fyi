@@ -165,7 +165,7 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 						<div className="mr-3">
 							<Label htmlFor="date">Bought Date</Label>
 							<Input
-								className="mt-1.5"
+								className="mt-1.5 appearance-none"
 								id="date"
 								type="date"
 								required

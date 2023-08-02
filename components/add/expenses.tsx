@@ -161,7 +161,7 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 						<div className="mr-3">
 							<Label htmlFor="date">Spent Date</Label>
 							<Input
-								className="mt-1.5"
+								className="mt-1.5 appearance-none"
 								id="date"
 								type="date"
 								required

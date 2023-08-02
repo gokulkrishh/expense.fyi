@@ -189,7 +189,7 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 						<div className="mr-3">
 							<Label htmlFor="date">Bought Date</Label>
 							<Input
-								className="mt-1.5"
+								className="mt-1.5 appearance-none"
 								id="date"
 								type="date"
 								required

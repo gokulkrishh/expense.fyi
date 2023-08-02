@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
 
 			const data = await prisma.income.findMany({
 				where,
-				orderBy: { date: 'desc' },
+				orderBy: { created_at: 'desc' },
 				select: {
 					notes: true,
 					name: true,
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
 					updated_at: true,
 				},
 			});
-			return NextResponse.json(data);
+			return NextResponse.json(data.sort((a,b) => Date.parse(b.date) - Date.parse(a.date)));
 		} catch (error) {
 			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });
 		}

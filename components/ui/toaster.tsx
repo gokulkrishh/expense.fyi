@@ -20,9 +20,9 @@ export function Toaster() {
 							{title && <ToastTitle>{title}</ToastTitle>}
 							{description && (
 								<ToastDescription className="flex items-center">
-									{isSuccess ? <CheckCircle2 className="mr-1.5 h-4 w-4" /> : null}
-									{isFailure ? <XCircle className="mr-1.5 h-4 w-4" /> : null}
-									{isInfo ? <Info className="mr-1.5 h-4 w-4" /> : null}
+									{isSuccess ? <CheckCircle2 className="mr-1.5 h-5 w-5" /> : null}
+									{isFailure ? <XCircle className="mr-1.5 h-5 w-5" /> : null}
+									{isInfo ? <Info className="mr-1.5 h-5 w-5" /> : null}
 									{description}
 								</ToastDescription>
 							)}

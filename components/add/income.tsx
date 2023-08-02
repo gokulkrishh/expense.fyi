@@ -150,7 +150,7 @@ export default function AddIncome({ show, onHide, mutate, selected, lookup }: Ad
 						<div className="mr-3">
 							<Label htmlFor="date">Received Date</Label>
 							<Input
-								className="mt-1.5"
+								className="mt-1.5 appearance-none"
 								id="date"
 								type="date"
 								required
