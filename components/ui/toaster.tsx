@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckCircle2, XCircle, Info } from 'lucide-react';
+import { CheckCircle2, Info, XCircle } from 'lucide-react';
 
 import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from 'components/ui/toast';
 import { useToast } from 'components/ui/use-toast';

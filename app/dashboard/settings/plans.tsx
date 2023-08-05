@@ -11,12 +11,12 @@ import { Button } from 'components/ui/button';
 import { Card, CardContent, CardHeader } from 'components/ui/card';
 import { useToast } from 'components/ui/use-toast';
 
+import { apiUrls } from 'lib/apiUrls';
 import { formatCurrency } from 'lib/formatter';
 
 import { dateFormat } from 'constants/date';
 import messages from 'constants/messages';
 import { basicPlan, premiumPlan } from 'constants/usage';
-import { apiUrls } from 'lib/apiUrls';
 
 declare global {
 	interface Window {

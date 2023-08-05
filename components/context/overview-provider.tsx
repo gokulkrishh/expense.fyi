@@ -5,10 +5,11 @@ import { createContext, useContext } from 'react';
 import { format } from 'date-fns';
 import useSWR from 'swr';
 
+import { apiUrls } from 'lib/apiUrls';
+
 import { dateFormat } from 'constants/date';
 
 import { useDate } from './datepicker-provider';
-import { apiUrls } from 'lib/apiUrls';
 
 const OverviewContext = createContext(null);
 

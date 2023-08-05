@@ -15,9 +15,9 @@ import { formatDate } from 'lib/formatter';
 import { dateFormat } from 'constants/date';
 import messages from 'constants/messages';
 
+import DataTableFacetedFilter from './data-table-faceted-filter';
 import DataTableFilterOptions from './data-table-filter-options';
 import DataTableViewOptions from './data-table-view-options';
-import DataTableFacetedFilter from './data-table-faceted-filter';
 
 interface DataTableToolbarProps<TData> {
 	table: Table<TData>;

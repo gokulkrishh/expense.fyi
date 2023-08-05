@@ -1,5 +1,6 @@
-import Add from 'components/add-button';
 import Summary from 'app/dashboard/summary';
+
+import Add from 'components/add-button';
 import { DatePickerProvider } from 'components/context/datepicker-provider';
 import { OverviewContextProvider } from 'components/context/overview-provider';
 import LayoutHeader from 'components/layout/header';

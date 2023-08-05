@@ -3,6 +3,7 @@
 import Image from 'next/image';
 
 import { ColumnDef } from '@tanstack/react-table';
+import { isThisMonth } from 'date-fns';
 import { Pencil, Trash2 } from 'lucide-react';
 
 import DataTableColumnHeader from 'components/table/data-table-column-header';
@@ -12,7 +13,6 @@ import { Checkbox } from 'components/ui/checkbox';
 import { formatCurrency, formatDate } from 'lib/formatter';
 
 import { SubscriptionsData } from './apis';
-import { isThisMonth } from 'date-fns';
 
 export const columns: ColumnDef<SubscriptionsData>[] = [
 	{

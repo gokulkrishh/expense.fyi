@@ -7,8 +7,9 @@ import { useEffect, useRef, useState } from 'react';
 import CircleLoader from 'components/loader/circle';
 import { Button } from 'components/ui/button';
 
-import url from 'constants/url';
 import { apiUrls } from 'lib/apiUrls';
+
+import url from 'constants/url';
 
 const initialState = { loading: false, email: '', success: false, error: '' };
 

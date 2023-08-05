@@ -4,7 +4,7 @@ import { Skeleton } from 'components/ui/skeleton';
 export default function CardLoader({ cards = 1, className = '' }: { cards?: number; className?: string }) {
 	return (
 		<div
-			className={`grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 ${className}`}
+			className={`grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 ${className}`}
 		>
 			{Array(cards)
 				.fill(0)

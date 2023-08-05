@@ -1,10 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from 'components/ui/card';
-
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
-type Summary = { title: String; data: any; icon?: any; tooltip?: string };
+type Summary = { title: String; data: any; icon?: any; tooltip?: string; info?: any };
 
-export default function SummaryCard({ title, data, icon: Icon, tooltip = '' }: Summary) {
+export default function SummaryCard({ title, data, icon: Icon, tooltip = '', info: Info }: Summary) {
 	const IconWithTooltip = () => (
 		<Tooltip>
 			<TooltipTrigger asChild>
@@ -29,6 +28,7 @@ export default function SummaryCard({ title, data, icon: Icon, tooltip = '' }: S
 				>
 					{data}
 				</p>
+				{Info ? <Info /> : null}
 			</CardContent>
 		</Card>
 	);

@@ -1,14 +1,30 @@
 'use client';
 
-import { Banknote, Briefcase, PiggyBank, PlayIcon, Wallet2 } from 'lucide-react';
+import { Banknote, Briefcase, MoveDownRight, MoveUpRight, PiggyBank, PlayIcon, Wallet2 } from 'lucide-react';
 
 import { useUser } from 'components/context/auth-provider';
 import { useOverview } from 'components/context/overview-provider';
 import CardLoader from 'components/loader/card';
+import { Badge } from 'components/ui/badge';
 
 import { formatCurrency } from 'lib/formatter';
+import { cn } from 'lib/utils';
 
 import SummaryCard from '../../components/card/summary-card';
+
+const Info = ({ value }: { value: number }) => {
+	const isUp = value > 0;
+	const Icon = isUp ? MoveUpRight : MoveDownRight;
+	return (
+		<Badge
+			variant="secondary"
+			className="absolute bottom-[20px] right-[10px] h-fit px-1 text-[10px] text-muted-foreground"
+		>
+			<Icon className={cn('mr-1 h-[0.65rem] w-[0.65rem]', { 'text-green-600': isUp, 'text-red-600': !isUp })} />
+			{value}%
+		</Badge>
+	);
+};
 
 export default function Summary() {
 	const user = useUser();
@@ -33,7 +49,7 @@ export default function Summary() {
 			{loading ? (
 				<CardLoader cards={5} />
 			) : (
-				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5">
 					<SummaryCard
 						icon={Briefcase}
 						title="total income"

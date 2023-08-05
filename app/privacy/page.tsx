@@ -1,9 +1,10 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 
-import Footer from 'components/footer';
 import logo from 'public/icons/logo.svg';
-import Image from 'next/image';
+
+import Footer from 'components/footer';
 
 export default function Privacy() {
 	return (
