@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
 
 			const data = await prisma.investments.findMany({
 				where,
-				orderBy: { created_at: 'desc' },
+				orderBy: { updated_at: 'desc' },
 				select: {
 					notes: true,
 					name: true,

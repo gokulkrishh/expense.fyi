@@ -25,7 +25,11 @@ export const OverviewContextProvider = (props: any) => {
 	const from = format(date.from || date.to, dateFormat);
 	const to = format(date.to || date.from, dateFormat);
 	const { children, ...others } = props;
-	const { data: expensesData = [], isLoading: isExpenseLoading } = useSWR(apiUrls.expenses.getExpenses({ from, to }));
+	const {
+		data: expensesData = [],
+		isLoading: isExpenseLoading,
+		mutate: mutateExpenses,
+	} = useSWR(apiUrls.expenses.getExpenses({ from, to }));
 	const { data: investmentsData = [], isLoading: isInvestmentsLoading } = useSWR(
 		apiUrls.investments.getInvestments({ from, to })
 	);
@@ -39,6 +43,9 @@ export const OverviewContextProvider = (props: any) => {
 		investments: investmentsData,
 		income: incomeData,
 		subscriptions: subscriptionsData,
+		mutate: {
+			mutateExpenses,
+		},
 	};
 	const loading = isExpenseLoading || isInvestmentsLoading || isIncomeLoading || isSubscriptionsLoading;
 

@@ -83,8 +83,8 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 			if (isEditing) {
 				await editSubscription(state);
 			} else {
-				incrementUsage();
 				await addSubscription(state);
+				incrementUsage();
 			}
 			setLoading(false);
 			toast({ description: `${isEditing ? messages.updated : messages.success}`, variant: 'success' });

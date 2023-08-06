@@ -69,8 +69,8 @@ export default function AddIncome({ show, onHide, mutate, selected, lookup }: Ad
 			if (isEditing) {
 				await editIncome(state);
 			} else {
-				incrementUsage();
 				await addIncome(state);
+				incrementUsage();
 			}
 			setLoading(false);
 			toast({ description: `${isEditing ? messages.updated : messages.success}`, variant: 'success' });

@@ -80,8 +80,8 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 			if (isEditing) {
 				await editExpense(state);
 			} else {
-				incrementUsage();
 				await addExpense(state);
+				incrementUsage();
 			}
 			setLoading(false);
 			toast({ description: `${isEditing ? messages.updated : messages.success}`, variant: 'success' });

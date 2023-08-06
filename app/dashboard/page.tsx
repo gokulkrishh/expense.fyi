@@ -1,10 +1,10 @@
 import Summary from 'app/dashboard/summary';
 
-import Add from 'components/add-button';
 import { DatePickerProvider } from 'components/context/datepicker-provider';
 import { OverviewContextProvider } from 'components/context/overview-provider';
 import LayoutHeader from 'components/layout/header';
 
+import AddData from './add-data';
 import Charts from './charts';
 
 export default async function Page() {
@@ -20,7 +20,7 @@ export default async function Page() {
 							<Charts />
 						</div>
 					</div>
-					<Add type="expenses" />
+					<AddData />
 				</OverviewContextProvider>
 			</DatePickerProvider>
 		</>

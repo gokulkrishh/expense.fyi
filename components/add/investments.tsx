@@ -69,8 +69,8 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 			if (isEditing) {
 				await editInvestment(state);
 			} else {
-				incrementUsage();
 				await addInvestment(state);
+				incrementUsage();
 			}
 			setLoading(false);
 			if (mutate) mutate();
