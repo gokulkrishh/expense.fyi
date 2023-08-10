@@ -111,10 +111,23 @@ module.exports = {
 					},
 				},
 			},
+			boxShadow: {
+				// light
+				'tremor-input': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+				'tremor-card': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+				'tremor-dropdown': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+				// dark
+				'dark-tremor-input': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+				'dark-tremor-card': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+				'dark-tremor-dropdown': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)',
+				'tremor-small': '0.375rem',
+				'tremor-default': '0.5rem',
+				'tremor-full': '9999px',
 			},
 			fontSize: {
 				'tremor-label': ['0.75rem'],

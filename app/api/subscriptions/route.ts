@@ -20,7 +20,8 @@ export async function GET(request: NextRequest) {
 				where: { user_id: user.id },
 				orderBy: { date: 'desc' },
 			});
-			const updatedDate = data.map((datum) => {
+
+			let updatedDate = data.map((datum) => {
 				const renewal_date = calculateRenewalDate(datum.date, datum.paid);
 				const prev_renewal_date = format(calculatePrevRenewalDate(renewal_date, datum.paid), dateFormat);
 				return {
@@ -30,6 +31,11 @@ export async function GET(request: NextRequest) {
 					paid_dates: calculatePaidDates(datum, from, to),
 				};
 			});
+
+			if (from !== '' && to !== '') {
+				updatedDate = updatedDate.filter((datum) => datum.paid_dates?.length);
+			}
+
 			return NextResponse.json(updatedDate, { status: 200 });
 		} catch (error) {
 			return NextResponse.json({ error, message: messages.request.failed }, { status: 500 });

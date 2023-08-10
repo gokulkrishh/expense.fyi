@@ -4,10 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { useState } from 'react';
-
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Menu } from 'lucide-react';
 import SvgWhiteLogo from 'public/icons/white-logo.svg';
 import { useHotkeys } from 'react-hotkeys-hook';
 

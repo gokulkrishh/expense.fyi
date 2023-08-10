@@ -16,14 +16,15 @@ interface Data {
 type Props = {
 	children: React.ReactNode;
 	name: string;
+	isNotRange?: boolean;
 };
 
 export const DataContextProvider = (props: Props) => {
-	const { children, name } = props;
+	const { children, name, isNotRange = false } = props;
 	const [filter, setFilter] = useState(views.thisMonth.key);
 	const [categories, setCategories] = useState<string[]>([]);
 
-	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filter, name, categories));
+	const { data = [], mutate, isLoading } = useSWR(getApiUrl(filter, name, categories, isNotRange));
 
 	const onFilter = useCallback((categories: string[] = []) => {
 		setCategories(categories);

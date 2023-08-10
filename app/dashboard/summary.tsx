@@ -36,10 +36,10 @@ export default function Summary() {
 		(acc: any, { price, units }: any) => Number(price) * Number(units) + acc,
 		0
 	);
-	const totalSubscriptions = data.subscriptions
-		.filter(({ paid_dates }: any) => paid_dates.length)
-		.reduce((acc: any, { price, paid_dates }: any) => Number(price) * paid_dates.length + acc, 0);
-
+	const totalSubscriptions = data.subscriptions.reduce(
+		(acc: any, { price, paid_dates }: any) => Number(price) * paid_dates.length + acc,
+		0
+	);
 	const totalSpent = totalExpenses + totalInvesments + totalSubscriptions;
 	const totalBalance = totalIncome - totalSpent;
 

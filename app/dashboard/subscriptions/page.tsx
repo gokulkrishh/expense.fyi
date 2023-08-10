@@ -16,7 +16,7 @@ export default async function Page() {
 	return (
 		<>
 			<LayoutHeader title="subscriptions" />
-			<DataContextProvider name="subscriptions">
+			<DataContextProvider name="subscriptions" isNotRange={true}>
 				<div className="w-full overflow-x-auto p-4 pt-3">
 					<SubscriptionsSummary />
 					<SubscriptionsTable />
