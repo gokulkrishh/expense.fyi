@@ -140,8 +140,9 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 								className="mt-1.5"
 								id="price"
 								type="number"
-								placeholder="10000"
+								placeholder="1000"
 								required
+								step="any"
 								min="0"
 								onChange={(event) => setState({ ...state, price: event.target.value })}
 								value={state.price}
@@ -156,6 +157,7 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 								placeholder="10"
 								required
 								min="0"
+								step="any"
 								onChange={(event) => setState({ ...state, units: event.target.value })}
 								value={state.units}
 							/>

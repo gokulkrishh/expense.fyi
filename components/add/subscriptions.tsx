@@ -179,9 +179,10 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 								className="mt-1.5"
 								id="price"
 								type="number"
-								placeholder="199"
+								placeholder="699"
 								required
 								min="0"
+								step="any"
 								onChange={(event) => setState({ ...state, price: event.target.value })}
 								value={state.price}
 							/>

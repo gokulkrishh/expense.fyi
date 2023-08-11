@@ -154,6 +154,7 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 								placeholder="199"
 								required
 								min="0"
+								step="any"
 								onChange={(event) => setState({ ...state, price: event.target.value })}
 								value={state.price}
 							/>

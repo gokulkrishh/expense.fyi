@@ -4,7 +4,7 @@ const defaultCurrency = 'INR';
 const defaultLocale = 'en-IN';
 const defaultDateStyle = { day: '2-digit', month: 'short', year: 'numeric' };
 const timeStyle = { hour: 'numeric', minute: 'numeric' };
-const currencyStyle = { style: 'currency', currency: '', minimumFractionDigits: 2, maximumFractionDigits: 2 };
+const currencyStyle = { style: 'currency', currency: '', minimumFractionDigits: 0, maximumFractionDigits: 2 };
 
 type Currency = {
 	value: number | bigint;

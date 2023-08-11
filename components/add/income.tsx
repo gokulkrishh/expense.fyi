@@ -140,9 +140,10 @@ export default function AddIncome({ show, onHide, mutate, selected, lookup }: Ad
 								className="mt-1.5"
 								id="amount"
 								type="number"
-								placeholder="100000"
+								placeholder="10000"
 								required
 								min="0"
+								step="any"
 								onChange={(event) => setState({ ...state, price: event.target.value })}
 								value={state.price}
 							/>
