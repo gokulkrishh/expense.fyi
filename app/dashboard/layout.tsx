@@ -57,7 +57,7 @@ export default async function Layout({ children }: any) {
 		<>
 			<html lang="en" suppressHydrationWarning>
 				<body className={`${inter.className} flex h-full flex-col text-gray-600 antialiased`}>
-					<NextTopLoader color="#1E88E5" height={2} showSpinner={false} />
+					<NextTopLoader color="#0076ff" height={2} showSpinner={false} />
 					<AuthProvider user={user} accessToken={session?.access_token || null}>
 						<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 							<main className="relative flex min-h-full min-w-full bg-background">

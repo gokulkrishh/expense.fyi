@@ -91,7 +91,7 @@ export default function Sidebar() {
 							<Link
 								onClick={() => setShow(false)}
 								href="/"
-								className="mt-[3px] rounded-lg p-1 transition-all focus:outline-none"
+								className="mt-[3px] active:scale-95 rounded-lg p-1 transition-all focus:outline-none"
 							>
 								<Image className="block" src={SvgWhiteLogo} width={30} height={30} alt="Expense.fyi" />
 							</Link>
