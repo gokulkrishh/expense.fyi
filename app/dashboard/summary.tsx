@@ -18,9 +18,14 @@ const Info = ({ value }: { value: number }) => {
 	return (
 		<Badge
 			variant="secondary"
-			className="absolute bottom-[20px] right-[10px] h-fit px-1 text-[10px] text-muted-foreground"
+			className={`absolute bg-transparent tabular-nums font-semibold bottom-[5px] right-[5px] h-[18px] px-1 text-[10px] text-muted-foreground ${cn(
+				{
+					'text-green-600': isUp,
+					'text-red-600': !isUp,
+				}
+			)}`}
 		>
-			<Icon className={cn('mr-1 h-[0.65rem] w-[0.65rem]', { 'text-green-600': isUp, 'text-red-600': !isUp })} />
+			<Icon className="mr-[0.5] h-[0.65rem] w-[0.65rem]" />
 			{value}%
 		</Badge>
 	);

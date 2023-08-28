@@ -33,7 +33,7 @@ export default function DeleteAccount() {
 							setShow(true);
 						}}
 					>
-						Delete your account
+						Submit
 					</Button>
 				</CardFooter>
 			</Card>

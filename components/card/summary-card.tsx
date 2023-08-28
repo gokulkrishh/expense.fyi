@@ -18,7 +18,10 @@ export default function SummaryCard({ title, data, icon: Icon, tooltip = '', inf
 	return (
 		<Card className="relative">
 			<CardHeader className="pb-0">
-				<CardTitle className="text-xs font-semibold uppercase text-muted-foreground">{title}</CardTitle>
+				<CardTitle className="text-xs font-semibold uppercase text-muted-foreground">
+					{title}
+					{Info ? <Info /> : null}
+				</CardTitle>
 				{Icon && tooltip ? <IconWithTooltip /> : Icon ? <Icon className="absolute right-3 top-1 h-4 w-4" /> : null}
 			</CardHeader>
 			<CardContent>
@@ -28,7 +31,6 @@ export default function SummaryCard({ title, data, icon: Icon, tooltip = '', inf
 				>
 					{data}
 				</p>
-				{Info ? <Info /> : null}
 			</CardContent>
 		</Card>
 	);
