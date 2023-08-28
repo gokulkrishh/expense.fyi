@@ -62,6 +62,10 @@ Here's how you can contribute:
   <img src="https://contrib.rocks/image?repo=gokulkrishh/expense.fyi" alt="contributors" />
 </a>
 
+## Repo Activity
+
+![Alt](https://repobeats.axiom.co/api/embed/39144a92441882ef68fb1adf1c8166e1d6dfdb79.svg "Repobeats analytics image")
+
 ## Author
 
 - Gokulakrishnan Kalaikovan ([@gokul_i](https://twitter.com/gokul_i))
