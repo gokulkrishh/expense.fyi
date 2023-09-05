@@ -31,7 +31,7 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 						height={14}
 						alt={name}
 					/>
-					<a target="_blank" className="ml-6 underline" href={url} rel="noreferrer">
+					<a target="_blank" className="ml-6 underline hover:opacity-80" href={url} rel="noreferrer">
 						{name}
 					</a>
 				</div>
@@ -113,8 +113,8 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 				<span
 					className={`inline-flex items-center rounded-md px-2 py-1 text-xs  ${
 						active
-							? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20'
-							: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/10'
+							? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-700/20'
+							: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-700/10'
 					}`}
 				>
 					{active ? 'Active' : 'Cancelled'}
@@ -143,9 +143,9 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 							if (meta?.onChange) meta?.onChange({ ...row.original, active: checked, cancelled_at: '' });
 						}}
 						checked={active}
-						className="mr-4 p-0 hover:bg-transparent hover:opacity-70"
+						className="mr-3 p-0 hover:bg-transparent hover:opacity-70"
 					/>
-					<Button className="mr-4 rounded-lg p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
+					<Button className="mr-3 rounded-lg p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
 						<Pencil
 							className="h-4 w-4"
 							onClick={() => {
@@ -153,7 +153,7 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 							}}
 						/>
 					</Button>
-					<Button className="rounded-lg p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
+					<Button className="rounded-lg mr-3 p-0 hover:bg-transparent hover:opacity-70" variant={'ghost'}>
 						<Trash2
 							className="h-4 w-4"
 							onClick={() => {

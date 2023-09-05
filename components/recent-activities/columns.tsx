@@ -22,7 +22,7 @@ export const columns: ColumnDef<recentActivities>[] = [
 	},
 	{
 		accessorKey: 'category',
-		header: 'Category',
+		header: 'Type/Category',
 	},
 	{
 		accessorKey: 'amount',
@@ -35,7 +35,7 @@ export const columns: ColumnDef<recentActivities>[] = [
 			const user = options.meta?.user;
 			const price = parseFloat(row.getValue('amount'));
 			const formatted = formatCurrency({ value: price, currency: user?.currency, locale: user?.locale });
-			return <div className="tabular-nums">{formatted}</div>;
+			return <div className="tabular-nums font-medium">{formatted}</div>;
 		},
 	},
 ];

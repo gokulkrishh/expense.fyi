@@ -59,7 +59,7 @@ export const extractRecentData = (
 ) => {
 	if (expenses.length || investments.length || income.length) {
 		const allData = [
-			...subscriptions.map((datum) => ({ ...datum, from: 'subcriptions' })),
+			...subscriptions.map((datum) => ({ ...datum, from: 'subcriptions', category: 'subcriptions' })),
 			...expenses.map((datum) => ({ ...datum, from: 'expenses' })),
 			...investments.map((datum) => ({ ...datum, from: 'investments' })),
 			...income.map((datum) => ({ ...datum, from: 'income' })),

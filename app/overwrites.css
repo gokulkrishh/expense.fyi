@@ -38,3 +38,7 @@ textarea {
 .dark .recharts-tooltip-wrapper .text-tremor-content {
 	color: #000 !important;
 }
+
+.tremor-BarList-labelText {
+  font-weight: 500;
+}

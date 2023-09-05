@@ -2,7 +2,6 @@
 
 import { useMemo } from 'react';
 
-import { useUser } from 'components/context/auth-provider';
 import { useOverview } from 'components/context/overview-provider';
 import { DataTable } from 'components/recent-activities/data-table';
 
@@ -10,15 +9,14 @@ import { extractRecentData } from 'lib/extractor';
 
 import { columns } from './columns';
 
-const dummy = {
-	no: '1.',
-	category: 'Food',
-	amount: '$ 100',
-	name: 'McDonalds',
+const initialData = {
+	no: '',
+	category: '',
+	amount: '',
+	name: '',
 };
 
 export default function RecentActivitiesTable() {
-	const user = useUser();
 	const { data, loading } = useOverview();
 
 	const recentData = useMemo(
@@ -27,7 +25,13 @@ export default function RecentActivitiesTable() {
 	);
 
 	if (loading) {
-		return <DataTable data={[dummy, dummy, dummy, dummy, dummy]} loading={loading} columns={columns} />;
+		return (
+			<DataTable
+				data={[initialData, initialData, initialData, initialData, initialData]}
+				loading={loading}
+				columns={columns}
+			/>
+		);
 	}
 
 	if (!recentData.length) {

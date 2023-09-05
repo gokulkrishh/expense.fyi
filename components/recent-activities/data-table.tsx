@@ -50,7 +50,7 @@ export function DataTable<TData, TValue>({ columns, data, className, loading = f
 								data-state={row.getIsSelected() && 'selected'}
 							>
 								{row.getVisibleCells().map((cell) => (
-									<TableCell className={cn({ 'not:last:border-b': loading }, 'py-4')} key={cell.id}>
+									<TableCell className={cn({ 'not:last:border-b': loading }, 'py-3.5')} key={cell.id}>
 										{loading ? <TableLoadingCell /> : flexRender(cell.column.columnDef.cell, cell.getContext())}
 									</TableCell>
 								))}
