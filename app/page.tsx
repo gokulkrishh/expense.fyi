@@ -20,7 +20,7 @@ export default function Home() {
 					</Link>
 					<Link
 						href={url.app.signin}
-						className="leading-2 mr-4 inline-flex h-[34px] items-center overflow-hidden rounded-full bg-gray-900 px-4 py-1 text-sm font-medium text-white transition hover:bg-gray-700"
+						className="leading-2 mr-4 inline-flex h-[34px] items-center overflow-hidden rounded-full bg-gray-900 px-4 py-1 text-sm font-medium text-white transition hover:bg-primary/90"
 					>
 						Sign in
 					</Link>
@@ -59,7 +59,7 @@ export default function Home() {
 					<div className="mt-10 flex justify-center">
 						<Link
 							href={url.app.signup}
-							className="inline-flex h-[34px] items-center justify-center rounded-full bg-gray-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-gray-700 hover:shadow"
+							className="inline-flex h-[34px] items-center justify-center rounded-full bg-gray-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-primary/90 hover:shadow"
 						>
 							Try it for Free
 						</Link>
