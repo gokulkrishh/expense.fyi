@@ -206,7 +206,7 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 							<Label htmlFor="paying">Paying</Label>
 							<select
 								id="paying"
-								className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+								className="mt-1.5 flex h-9 max-sm:h-10 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
 								onChange={(event) => {
 									setState({ ...state, paid: event.target.value });
 								}}

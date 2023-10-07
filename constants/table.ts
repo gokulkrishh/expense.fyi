@@ -11,11 +11,19 @@ export const views: Views = {
 		key: 'all',
 	},
 	thisWeek: {
-		name: 'This week',
+		name: 'This Week',
 		key: 'thisWeek',
 	},
 	thisMonth: {
-		name: 'This month',
+		name: 'This Month',
 		key: 'thisMonth',
+	},
+	pastWeek: {
+		name: 'Past Week',
+		key: 'pastWeek',
+	},
+	pastMonth: {
+		name: 'Past Month',
+		key: 'pastMonth',
 	},
 };
