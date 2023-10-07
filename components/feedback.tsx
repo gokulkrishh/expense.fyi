@@ -49,7 +49,7 @@ export default function Feedback({ className, showDatePicker }: { className?: st
 	return (
 		<Popover>
 			<PopoverTrigger>
-				<Button className={`${className}`} asChild size={'sm'}>
+				<Button className={`${className} max-sm:h-9 max-sm:text-sm`} asChild size={'sm'}>
 					<span>
 						<MessageSquarePlus className="mr-[6px] mt-[2px] h-4 w-4" />
 						Feedback

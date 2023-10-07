@@ -81,7 +81,7 @@ export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TDa
 							);
 						}}
 						size="sm"
-						className="h-8 text-sm capitalize max-sm:px-1 lg:flex"
+						className="h-8 max-sm:h-10 text-sm capitalize max-sm:px-1 lg:flex"
 					>
 						<Download className="mr-1.5 h-3.5 w-3.5 sm:inline-block" />
 						Export
