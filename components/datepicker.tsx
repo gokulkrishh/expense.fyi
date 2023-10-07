@@ -22,7 +22,19 @@ export default function DatePicker() {
 	);
 }
 
-function DatePickerWithRange({ className, date, onChange }: { className?: string; date: DateRange; onChange: any }) {
+export function DatePickerWithRange({
+	className,
+	date,
+	onChange,
+	noOfMonths = 2,
+	pickerClassName = '',
+}: {
+	className?: string;
+	pickerClassName?: string;
+	noOfMonths?: number;
+	date: DateRange;
+	onChange: any;
+}) {
 	return (
 		<div className={cn('grid gap-2', className)}>
 			<Popover>
@@ -30,10 +42,10 @@ function DatePickerWithRange({ className, date, onChange }: { className?: string
 					<Button
 						id="date"
 						variant={'outline'}
-						className={cn(
+						className={`${cn(
 							'mr-[1px] h-[32px] w-[200px] justify-start rounded-br-none rounded-tr-none border-r !border-border border-gray-100 p-2 text-left font-normal hover:bg-accent focus:bg-accent focus-visible:!ring-1 focus-visible:!ring-gray-400 dark:bg-muted dark:hover:opacity-[0.8] sm:min-w-[235px]',
 							!date && 'text-muted-foreground'
-						)}
+						)} ${pickerClassName}`}
 					>
 						<CalendarIcon className={`mr-2 hidden h-4 w-4 sm:inline-block`} />
 						{date?.from ? (
@@ -56,7 +68,7 @@ function DatePickerWithRange({ className, date, onChange }: { className?: string
 						defaultMonth={date?.from}
 						selected={date}
 						onSelect={onChange}
-						numberOfMonths={2}
+						numberOfMonths={noOfMonths}
 					/>
 				</PopoverContent>
 			</Popover>

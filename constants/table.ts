@@ -18,4 +18,8 @@ export const views: Views = {
 		name: 'This month',
 		key: 'thisMonth',
 	},
+	custom: {
+		name: 'Custom',
+		key: 'custom',
+	},
 };
