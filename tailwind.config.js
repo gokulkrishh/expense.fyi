@@ -105,7 +105,7 @@ module.exports = {
 					content: {
 						subtle: '#27272a', // border-border
 						DEFAULT: '#ffffff', // white
-						emphasis: '#4b5563', // gray-200
+						emphasis: '#fff', // gray-200
 						strong: '#f9fafb', // gray-50
 						inverted: '#000000', // black
 					},
