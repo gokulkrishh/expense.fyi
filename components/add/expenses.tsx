@@ -31,22 +31,21 @@ interface AddExpenseProps {
 	lookup: (value: any) => void;
 }
 
-const todayDate = format(new Date(), dateFormat);
-
 const initialState = {
 	category: 'food',
 	paid_via: 'upi',
 	name: '',
 	notes: '',
 	price: '',
-	date: todayDate,
+	date: '',
 	id: null,
 	autocomplete: [],
 };
 
 export default function AddExpense({ show, onHide, mutate, selected, lookup }: AddExpenseProps) {
 	const user = useUser();
-	const [state, setState] = useState<any>(initialState);
+	const todayDate = format(new Date(), dateFormat);
+	const [state, setState] = useState<any>({ ...initialState, date: todayDate });
 	const [loading, setLoading] = useState(false);
 	const { toast } = useToast();
 	const inputRef = useRef<any>(null);
@@ -60,9 +59,9 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 			setState(
 				selected.id
 					? { ...selected, ...{ paid_via: selected.paid_via ? selected.paid_via : initialState.paid_via } }
-					: initialState
+					: { ...initialState, date: todayDate }
 			),
-		[selected]
+		[selected, todayDate]
 	);
 
 	const onLookup = useMemo(() => {

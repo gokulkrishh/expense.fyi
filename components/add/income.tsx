@@ -31,11 +31,9 @@ interface AddIncome {
 	lookup: (value: any) => void;
 }
 
-const todayDate = format(new Date(), dateFormat);
-
 const initialState = {
 	category: '',
-	date: todayDate,
+	date: '',
 	name: '',
 	notes: '',
 	price: '',
@@ -44,7 +42,8 @@ const initialState = {
 
 export default function AddIncome({ show, onHide, mutate, selected, lookup }: AddIncome) {
 	const user = useUser();
-	const [state, setState] = useState<any>(initialState);
+	const todayDate = format(new Date(), dateFormat);
+	const [state, setState] = useState<any>({ ...initialState, date: todayDate });
 	const [loading, setLoading] = useState(false);
 	const { toast } = useToast();
 	const inputRef = useRef<any>(null);
@@ -53,7 +52,7 @@ export default function AddIncome({ show, onHide, mutate, selected, lookup }: Ad
 		inputRef.current?.focus();
 	}, []);
 
-	useEffect(() => setState(selected.id ? selected : initialState), [selected]);
+	useEffect(() => setState(selected.id ? selected : { ...initialState, date: todayDate }), [selected, todayDate]);
 
 	const onLookup = useMemo(() => {
 		const callbackHandler = (value: string) => {

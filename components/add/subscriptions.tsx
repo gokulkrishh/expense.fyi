@@ -43,10 +43,8 @@ interface AddSubscriptions {
 	lookup: (name: string) => void;
 }
 
-const todayDate = format(new Date(), dateFormat);
-
 const initialState = {
-	date: todayDate,
+	date: '',
 	name: '',
 	notes: '',
 	url: '',
@@ -56,7 +54,8 @@ const initialState = {
 
 export default function AddSubscriptions({ show, onHide, mutate, selected, lookup }: AddSubscriptions) {
 	const user = useUser();
-	const [state, setState] = useState<any>(initialState);
+	const todayDate = format(new Date(), dateFormat);
+	const [state, setState] = useState<any>({ ...initialState, date: todayDate });
 	const [loading, setLoading] = useState(false);
 	const { toast } = useToast();
 	const [hasValidUrl, setHasValidUrl] = useState(false);
@@ -66,7 +65,7 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 		inputRef.current?.focus();
 	}, []);
 
-	useEffect(() => setState(selected.id ? selected : initialState), [selected]);
+	useEffect(() => setState(selected.id ? selected : { ...initialState, date: todayDate }), [selected, todayDate]);
 	useEffect(() => setHasValidUrl(checkUrl(state.url)), [state.url]);
 
 	const onLookup = useMemo(() => {

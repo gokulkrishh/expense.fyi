@@ -13,7 +13,7 @@ export default function DeleteAccount() {
 		<>
 			<Card className="w-full border border-red-600">
 				<CardHeader className="border-b border-border">
-					<h2 className="font-semibold text-primary dark:text-white">Delete Your Account</h2>
+					<h2 className="font-semibold text-primary dark:text-white">Delete Account</h2>
 				</CardHeader>
 				<CardContent>
 					<div className="relative mb-3 mt-5 flex items-center justify-between">
@@ -33,7 +33,7 @@ export default function DeleteAccount() {
 							setShow(true);
 						}}
 					>
-						Submit
+						Delete Account
 					</Button>
 				</CardFooter>
 			</Card>
