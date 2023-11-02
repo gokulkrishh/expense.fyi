@@ -139,6 +139,7 @@ export default function AddIncome({ show, onHide, mutate, selected, lookup }: Ad
 								className="mt-1.5"
 								id="amount"
 								type="number"
+								inputMode="numeric"
 								placeholder="10000"
 								required
 								min="0"

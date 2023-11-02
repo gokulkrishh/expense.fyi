@@ -69,6 +69,8 @@ export default function Form() {
 				<input
 					className="mt-2 block h-10 w-full appearance-none rounded-md bg-white px-3 text-sm text-black shadow-sm ring-1 ring-gray-300 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gray-900"
 					autoFocus
+					inputMode="email"
+					autoComplete="email"
 					type="email"
 					placeholder="tim@apple.com"
 					required

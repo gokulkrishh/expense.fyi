@@ -158,6 +158,7 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 							className="mt-1.5"
 							id="website"
 							type="url"
+							inputMode="url"
 							pattern="https://.*|http://.*"
 							maxLength={30}
 							placeholder="https://netflix.com"
@@ -177,6 +178,7 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 							<Input
 								className="mt-1.5"
 								id="price"
+								inputMode="numeric"
 								type="number"
 								placeholder="699"
 								required
