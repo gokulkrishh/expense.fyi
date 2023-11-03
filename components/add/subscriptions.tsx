@@ -178,7 +178,7 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 							<Input
 								className="mt-1.5"
 								id="price"
-								inputMode="numeric"
+								inputMode="decimal"
 								type="number"
 								placeholder="699"
 								required

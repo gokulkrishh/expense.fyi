@@ -138,7 +138,7 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 							<Input
 								className="mt-1.5"
 								id="price"
-								inputMode="numeric"
+								inputMode="decimal"
 								type="number"
 								placeholder="1000"
 								required
@@ -154,7 +154,7 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 								className="mt-1.5"
 								id="units"
 								type="number"
-								inputMode="numeric"
+								inputMode="decimal"
 								placeholder="10"
 								required
 								min="0"
