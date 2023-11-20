@@ -1,3 +1,4 @@
+import { Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 
@@ -15,16 +16,9 @@ export const metadata = {
 	title,
 	description,
 	manifest: 'https://expense.fyi/manifest.json',
-	themeColor: '#09090b',
-	viewport: {
-		width: 'device-width',
-		initialScale: 1,
-		userScalable: false,
-	},
 	twitter: {
 		card: 'summary_large_image',
 		title,
-		url: 'https://expense.fyi',
 		description,
 		creator: '@gokul_i',
 		images: ['https://expense.fyi/og.jpg'],
@@ -32,7 +26,6 @@ export const metadata = {
 	openGraph: {
 		title,
 		description,
-		video: 'https://expense.fyi/demo.mp4',
 		url: 'https://expense.fyi',
 		type: 'website',
 		images: ['https://expense.fyi/og.jpg'],
@@ -47,6 +40,13 @@ export const metadata = {
 		statusBarStyle: 'black',
 		startupImage: ['https://expense.fyi/icons/apple-icon.png'],
 	},
+};
+
+export const viewport: Viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	userScalable: false,
+	themeColor: '#09090b',
 };
 
 export const revalidate = 0;
