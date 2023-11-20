@@ -49,7 +49,7 @@ export const checkAuth = async (callback: Function, isGetMethod = true) => {
 		if (isBasicUsageExceeded && !isGetMethod && user) {
 			if (!basic_usage_limit_email) {
 				try {
-					await resend.sendEmail({
+					await resend.emails.send({
 						from: emails.from,
 						subject: emails.usageLimit.basic.subject,
 						to: user.email,
@@ -66,7 +66,7 @@ export const checkAuth = async (callback: Function, isGetMethod = true) => {
 		if (isPremiumPlanExpired && !isGetMethod && user) {
 			if (!premium_plan_expired_email) {
 				try {
-					await resend.sendEmail({
+					await resend.emails.send({
 						from: emails.from,
 						subject: emails.usageLimit.premiumExpired.subject,
 						to: user.email,
@@ -83,7 +83,7 @@ export const checkAuth = async (callback: Function, isGetMethod = true) => {
 		if (isPremiumUsageExceeded && !isGetMethod && user) {
 			if (!premium_usage_limit_email) {
 				try {
-					await resend.sendEmail({
+					await resend.emails.send({
 						from: emails.from,
 						subject: emails.usageLimit.premium.subject,
 						to: user.email,

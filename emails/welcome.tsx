@@ -1,8 +1,19 @@
 import * as React from 'react';
 
-import { Body, Container, Head, Html, Img, Link, Preview, Section, Text } from '@react-email/components';
+import {
+	Body,
+	Container,
+	Head,
+	Heading,
+	Html,
+	Img,
+	Link,
+	Preview,
+	Section,
+	Tailwind,
+	Text,
+} from '@react-email/components';
 
-import ButtonLink from './button-link';
 import Footer from './footer';
 import Footnote from './footnote';
 
@@ -17,89 +28,56 @@ export default function WelcomeEmail() {
 		<Html>
 			<Head />
 			<Preview>Welcome to Expense.fyi</Preview>
-			<Section style={main}>
-				<Container style={container}>
-					<Section style={{ marginTop: '20px' }}>
-						<Img src={`${baseUrl}/icons/logo.png`} width="50" height="50" alt="Logo" style={logo} />
-					</Section>
-					<Text style={{ ...h1, marginTop: '20px' }}>Welcome to Expense.fyi</Text>
-					<Text style={text}>
-						Hi, I{"'"}m Gokul, creator of the Expense.fyi, an open-source app to deliver financial clarity through
-						spending analysis. We are excited to have you on board.
-					</Text>
-					<Text style={text}>Here is how you can get started:</Text>
-					<Text style={{ ...text, margin: '8px' }}>
-						1. Watch this{' '}
-						<Link href={demoVideoUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
-							demo video
-						</Link>{' '}
-						to know how its done in Expense.fyi.
-					</Text>
-					<Text style={{ ...text, margin: '8px' }}>
-						2. Star our{' '}
-						<Link href={githubUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
-							Github
-						</Link>{' '}
-						repository.
-					</Text>
-					<Text style={{ ...text, margin: '8px' }}>
-						3. Follow us on{' '}
-						<Link href={twitterUrl} target="_blank" style={{ ...link, textDecoration: 'underline' }}>
-							Twitter
+			<Tailwind>
+				<Body className="bg-white my-auto mx-auto font-sans">
+					<Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
+						<Section className="mt-[22px] flex justify-center ">
+							<Img src={`${baseUrl}/icons/logo.png`} width="50" height="50" alt="Logo" />
+						</Section>
+						<Heading className="text-black text-[24px] font-normal text-center p-0 mb-[24px] mt-[12px] mx-0">
+							Welcome to Expense.fyi
+						</Heading>
+						<Text className="text-black text-[14px] leading-[24px]">
+							Hi, I{"'"}m Gokul, creator of the Expense.fyi, an open-source app to deliver financial clarity through
+							spending analysis. We are excited to have you on board.
+						</Text>
+						<Text className="text-black text-[14px] leading-[24px]">Here is how you can get started:</Text>
+
+						<Text className="m-1">
+							1. Watch this{' '}
+							<Link href={demoVideoUrl} target="_blank" className="underline">
+								demo video
+							</Link>{' '}
+							to know how its done in Expense.fyi.
+						</Text>
+						<Text className="m-1">
+							2. Star our{' '}
+							<Link href={githubUrl} target="_blank" className="underline">
+								Github
+							</Link>{' '}
+							repository.
+						</Text>
+						<Text className="m-1">
+							3. Follow us on{' '}
+							<Link href={twitterUrl} target="_blank" className="underline">
+								Twitter
+							</Link>
+							.
+						</Text>
+						<Text className="m-1">4. Finally, spread some word about us.</Text>
+
+						<Link
+							href={appUrl}
+							className="bg-[#000000] mt-2 inline-block p-2.5 px-3 rounded-md text-white text-[12px] font-medium no-underline text-center"
+						>
+							Get started
 						</Link>
-						.
-					</Text>
-					<Text style={{ ...text, margin: '8px' }}>4. Finally, spread some word about us.</Text>
 
-					<Section style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>
-						<ButtonLink href={appUrl} btnText="Get started" />
-					</Section>
-
-					<Footnote />
-					<Footer />
-				</Container>
-			</Section>
+						<Footnote />
+						<Footer />
+					</Container>
+				</Body>
+			</Tailwind>
 		</Html>
 	);
 }
-
-const main = {
-	backgroundColor: '#efeef1',
-	margin: '0 auto',
-};
-
-const container = {
-	backgroundColor: '#ffffff',
-	borderRadius: '5px',
-	margin: '40px auto',
-	padding: '20px',
-	width: '465px',
-};
-
-const logo = {
-	margin: '0 auto',
-};
-
-const h1 = {
-	color: '#000',
-	fontFamily:
-		"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-	fontSize: '24px',
-	fontWeight: '500',
-	textAlign: 'center' as const,
-	margin: '30px 0',
-	padding: '0',
-};
-
-const link = {
-	color: '#0669ce',
-	textDecoration: 'none',
-};
-
-const text = {
-	color: '#000',
-	fontFamily:
-		"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-	fontSize: '14px',
-	lineHeight: '24px',
-};

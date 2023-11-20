@@ -15,6 +15,25 @@ const dataFormatter = (number: number) => {
 	return '$ ' + Intl.NumberFormat('us').format(number).toString();
 };
 
+const customTooltip = ({ payload, active, user }: { payload?: any; active?: boolean; user: any }) => {
+	if (!active || !payload) return null;
+	return (
+		<div className="w-56 rounded-tremor-default text-tremor-default bg-tremor-background p-2 shadow-tremor-dropdown border border-tremor-border">
+			{payload.map((category: any, idx: number) => (
+				<div className={`flex items-center justify-between`} key={idx}>
+					<div className="flex items-center">
+						<span className={`bg-${category.color}-500 p-0.5 rounded-full inline-block w-2 h-2`}></span>
+						<span className="text-black ml-2 capitalize ">{category.dataKey}</span>
+					</div>
+					<span className="text-black flex ml-2">
+						{formatCurrency({ value: category.value, currency: user.currency, locale: user.locale })}
+					</span>
+				</div>
+			))}
+		</div>
+	);
+};
+
 export default function ExpesenseChart() {
 	const user = useUser();
 	const { data, loading } = useOverview();
@@ -44,7 +63,7 @@ export default function ExpesenseChart() {
 			}}
 			yAxisWidth={84}
 			maxValue={maxXAxisValue?.value}
-			showTooltip
+			customTooltip={(props) => customTooltip({ ...props, user })}
 			showLegend
 			showGridLines
 			stack

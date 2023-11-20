@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 	return await checkAuth(async (user: any) => {
 		try {
 			await prisma.feedbacks.create({ data: { message, user_id: user.id } });
-			await resend.sendEmail({
+			await resend.emails.send({
 				from: emails.from,
 				subject: emails.feedback.subject,
 				to: emails.email,

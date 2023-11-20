@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
 			}
 			await prisma.users.delete({ where: { id: user.id } });
 			try {
-				await resend.sendEmail({
+				await resend.emails.send({
 					from: emails.from,
 					subject: emails.account.deleted,
 					to: user.email,

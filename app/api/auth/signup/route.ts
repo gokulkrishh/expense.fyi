@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 			const { action_link } = properties;
 
 			try {
-				await resend.sendEmail({
+				await resend.emails.send({
 					from: emails.from,
 					subject: emails.signup.subject,
 					to: email,

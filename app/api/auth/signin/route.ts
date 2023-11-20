@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
 
 			try {
 				if (!user.new_signup_email) {
-					await resend.sendEmail({
+					await resend.emails.send({
 						from: emails.from,
 						subject: emails.welcome.subject,
 						to: user.email,
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
 					});
 					await prisma.users.update({ where: { id: user.id }, data: { new_signup_email: true } });
 				}
-				await resend.sendEmail({
+				await resend.emails.send({
 					from: emails.from,
 					subject: emails.signin.subject,
 					to: email,
