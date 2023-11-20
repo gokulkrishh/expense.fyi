@@ -28,8 +28,8 @@ export const SignInEmail = ({ action_link = '' }: { action_link?: string }) => {
 			<Tailwind>
 				<Body className="bg-white my-auto mx-auto font-sans">
 					<Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
-						<Section className="mt-[22px] flex justify-center ">
-							<Img src={`${baseUrl}/icons/logo.png`} width="50" height="50" alt="Logo" />
+						<Section className="mt-[22px]">
+							<Img src={`${baseUrl}/icons/logo.png`} width="50" height="50" alt="Logo" className="block m-auto" />
 						</Section>
 						<Heading className="text-black text-[24px] font-normal text-center p-0 mb-[24px] mt-[12px] mx-0">
 							Magic Link

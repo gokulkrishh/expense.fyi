@@ -43,9 +43,8 @@ export const metadata = {
 		apple: 'https://expense.fyi/icons/apple-icon.png',
 	},
 	appleWebApp: {
-		mobileWebAppCapable: 'yes',
 		title,
-		statusBarStyle: '#09090b',
+		statusBarStyle: 'black',
 		startupImage: ['https://expense.fyi/icons/apple-icon.png'],
 	},
 };
