@@ -1,6 +1,10 @@
 'use client';
 
-import { createContext, useContext, useMemo, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+
+import * as NProgress from 'nprogress';
 
 const SidebarContext = createContext(null);
 
@@ -17,6 +21,13 @@ export const SidebarContextProvider = (props: Props) => {
 	const [show, setShow] = useState(false);
 
 	const value = useMemo(() => ({ show, setShow }), [show, setShow]);
+
+	const pathname = usePathname();
+	const router = useRouter();
+
+	useEffect(() => {
+		NProgress.done();
+	}, [pathname, router]);
 
 	return <SidebarContext.Provider value={value as any}>{children}</SidebarContext.Provider>;
 };
