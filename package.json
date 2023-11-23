@@ -49,11 +49,7 @@
 		"@supabase/supabase-js": "^2.38.5",
 		"@tanstack/react-table": "^8.10.7",
 		"@tremor/react": "^3.11.1",
-		"@types/node": "20.9.4",
-		"@types/react": "18.2.38",
-		"@types/react-dom": "18.2.17",
 		"autoprefixer": "10.4.16",
-		"cal-sans": "^1.0.1",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
 		"cmdk": "^0.2.0",
@@ -88,6 +84,9 @@
 		"eslint-plugin-prettier": "^5.0.1",
 		"husky": "^8.0.3",
 		"prettier": "3.1.0",
-		"prettier-plugin-tailwindcss": "^0.5.7"
+		"prettier-plugin-tailwindcss": "^0.5.7",
+		"@types/node": "20.9.4",
+		"@types/react": "18.2.38",
+		"@types/react-dom": "18.2.17"
 	}
 }
