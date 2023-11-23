@@ -52,20 +52,28 @@ const settingsLinks = [
 
 const menuShortcutList = Object.values(shortcuts.menu).map((_) => _.shortcut);
 
+const options = {
+	keyup: true,
+};
+
 export default function Sidebar() {
 	const pathname = usePathname();
 	const router = useRouter();
 	const supabase = createClientComponentClient();
 	const { show, setShow } = useSidebar();
 
-	useHotkeys(menuShortcutList, (_, handler) => {
-		const keys = handler.keys?.join('');
-		if (keys === shortcuts.menu.overview.shortcut) router.push('/');
-		if (keys === shortcuts.menu.income.shortcut) router.push('/income');
-		if (keys === shortcuts.menu.expenses.shortcut) router.push('/expenses');
-		if (keys === shortcuts.menu.investments.shortcut) router.push('/investments');
-		if (keys === shortcuts.menu.subscriptions.shortcut) router.push('/subscriptions');
-	});
+	useHotkeys(
+		menuShortcutList,
+		(_, handler) => {
+			const keys = handler.keys?.join('');
+			if (keys === shortcuts.menu.overview.shortcut) router.push('/');
+			if (keys === shortcuts.menu.income.shortcut) router.push('/income');
+			if (keys === shortcuts.menu.expenses.shortcut) router.push('/expenses');
+			if (keys === shortcuts.menu.investments.shortcut) router.push('/investments');
+			if (keys === shortcuts.menu.subscriptions.shortcut) router.push('/subscriptions');
+		},
+		options
+	);
 
 	async function signOut() {
 		await supabase.auth.signOut();

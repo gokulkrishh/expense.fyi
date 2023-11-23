@@ -44,14 +44,14 @@
 		"@radix-ui/react-toast": "^1.1.5",
 		"@radix-ui/react-tooltip": "^1.0.7",
 		"@react-email/components": "0.0.11",
-		"@react-email/render": "^0.0.9-canary.2",
+		"@react-email/render": "^0.0.9",
 		"@supabase/auth-helpers-nextjs": "^0.8.7",
-		"@supabase/supabase-js": "^2.38.4",
+		"@supabase/supabase-js": "^2.38.5",
 		"@tanstack/react-table": "^8.10.7",
 		"@tremor/react": "^3.11.1",
-		"@types/node": "20.9.2",
-		"@types/react": "18.2.37",
-		"@types/react-dom": "18.2.15",
+		"@types/node": "20.9.4",
+		"@types/react": "18.2.38",
+		"@types/react-dom": "18.2.17",
 		"autoprefixer": "10.4.16",
 		"cal-sans": "^1.0.1",
 		"class-variance-authority": "^0.7.0",
@@ -80,7 +80,7 @@
 		"tailwindcss": "3.3.5",
 		"tailwindcss-animate": "^1.0.7",
 		"text-filter": "^0.1.1",
-		"typescript": "5.2.2"
+		"typescript": "5.3.2"
 	},
 	"devDependencies": {
 		"@trivago/prettier-plugin-sort-imports": "^4.3.0",

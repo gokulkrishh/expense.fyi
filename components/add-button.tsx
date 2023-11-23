@@ -26,9 +26,13 @@ type AddProps = {
 	onLookup?: (name: string) => void;
 };
 
+const options = {
+	keyup: true,
+};
+
 export default function Add({ mutate, type, selected = {}, onHide, onLookup }: AddProps) {
 	const [show, setShow] = useState(false);
-	useHotkeys(openShortcutKey, () => setShow(true));
+	useHotkeys(openShortcutKey, () => setShow(true), options);
 
 	useEffect(() => {
 		if (selected?.id) {
