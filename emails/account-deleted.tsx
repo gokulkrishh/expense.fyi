@@ -9,9 +9,9 @@ const baseUrl = 'https://expense.fyi';
 export default function AccountedDeleteEmail() {
 	return (
 		<Html>
-			<Head />
-			<Preview>Your Expense.fyi account is Deleted!</Preview>
 			<Tailwind>
+				<Head />
+				<Preview>Your Expense.fyi account is Deleted!</Preview>
 				<Body className="bg-white my-auto mx-auto font-sans">
 					<Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
 						<Section className="mt-[22px]">

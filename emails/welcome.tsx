@@ -26,9 +26,9 @@ const demoVideoUrl = `https://www.youtube.com/watch?v=faueh3BZXCo`;
 export default function WelcomeEmail() {
 	return (
 		<Html>
-			<Head />
-			<Preview>Welcome to Expense.fyi</Preview>
 			<Tailwind>
+				<Head />
+				<Preview>Welcome to Expense.fyi</Preview>
 				<Body className="bg-white my-auto mx-auto font-sans">
 					<Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
 						<Section className="mt-[22px]">

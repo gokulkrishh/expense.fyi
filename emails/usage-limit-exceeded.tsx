@@ -28,9 +28,9 @@ type UsageProps = {
 export default function UsageExceededEmail({ plan = 'Basic Plan', maxUsageLimit = 100 }: UsageProps) {
 	return (
 		<Html>
-			<Head />
-			<Preview>{`${plan} usage exceeded!`}</Preview>
 			<Tailwind>
+				<Head />
+				<Preview>{`${plan} usage exceeded!`}</Preview>
 				<Body className="bg-white my-auto mx-auto font-sans">
 					<Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
 						<Section className="mt-[22px]">

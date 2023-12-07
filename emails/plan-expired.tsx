@@ -25,9 +25,9 @@ type PlanExpiredProps = { plan?: string };
 export default function PlanExpiredEmail({ plan = 'Premium Plan' }: PlanExpiredProps) {
 	return (
 		<Html>
-			<Head />
-			<Preview>{`${plan} Expired!`}</Preview>
 			<Tailwind>
+				<Head />
+				<Preview>{`${plan} Expired!`}</Preview>
 				<Body className="bg-white my-auto mx-auto font-sans">
 					<Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
 						<Section className="mt-[22px]">
