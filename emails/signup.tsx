@@ -40,7 +40,7 @@ export const SignUpEmail = ({ action_link = '' }: { action_link?: string }) => {
 							minutes.
 						</Text>
 						<Link
-							className="bg-[#000000] p-2.5 px-3 mt-1 w-[60px] block rounded-md text-white text-[13px] font-normal no-underline text-center"
+							className="bg-[#000000] p-2 px-2.5 mt-1 w-[60px] block rounded-md text-white text-[13px] font-normal no-underline text-center"
 							href={action_link}
 						>
 							Sign up
