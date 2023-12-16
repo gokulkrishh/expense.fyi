@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import Script from 'next/script';
 
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import HolyLoader from 'holy-loader';
+import NextTopLoader from 'nextjs-toploader';
 
 import { AuthProvider } from 'components/context/auth-provider';
 import { SidebarContextProvider } from 'components/context/sidebar-provider';
@@ -57,7 +57,7 @@ export default async function Layout({ children }: any) {
 		<>
 			<html lang="en" suppressHydrationWarning>
 				<body className={`${inter.className} flex h-full flex-col text-gray-600 antialiased`}>
-					<HolyLoader color="#0076ff" height={2} />
+					<NextTopLoader color="#0076ff" height={2} showSpinner={false} />
 					<AuthProvider user={user} accessToken={session?.access_token || null}>
 						<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 							<main className="relative flex min-h-full min-w-full bg-background">

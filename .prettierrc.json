@@ -17,7 +17,8 @@
 		"^constants/(.*)$",
 		"^data/(.*)$",
 		"^styles/(.*)$",
-		"^[./]"
+		"^[./]",
+		"^nprogress/nprogress.css$"
 	],
 	"importOrderSeparation": true,
 	"importOrderSortSpecifiers": true,
