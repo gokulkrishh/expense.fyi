@@ -133,7 +133,7 @@ export default function Plans() {
 							</span>
 							<span className="mb-3 flex text-sm">
 								<CheckIcon />
-								Add up to {basicPlan.limit} total entries
+								Add up to {basicPlan.limit} entries per account
 							</span>
 							<span className="mb-3 flex text-sm">
 								<CheckIcon />
@@ -179,7 +179,7 @@ export default function Plans() {
 							</span>
 							<span className="mb-3 flex text-sm">
 								<CheckIcon />
-								Add up to {premiumPlan.limit} total entries
+								Add up to {premiumPlan.limit} entries per account
 							</span>
 							<span className="mb-3 flex text-sm">
 								<CheckIcon />

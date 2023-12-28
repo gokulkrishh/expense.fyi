@@ -169,7 +169,7 @@ export default function Home() {
 												clipRule="evenodd"
 											></path>
 										</svg>
-										<span>Add up to 100 total entries</span>
+										<span>Add up to 100 entries per account</span>
 									</span>
 									<span className="m-1 ml-0 flex items-center text-[15px]">
 										<svg
@@ -267,7 +267,7 @@ export default function Home() {
 												clipRule="evenodd"
 											></path>
 										</svg>
-										<span>Add up to {premiumPlan.limit} total entries</span>
+										<span>Add up to {premiumPlan.limit} entries per account</span>
 									</span>
 									<span className="m-1 ml-0 flex items-center text-[15px]">
 										<svg
