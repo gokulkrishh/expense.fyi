@@ -5,11 +5,11 @@ import Script from 'next/script';
 import { useState } from 'react';
 
 import { format } from 'date-fns';
+import { toast } from 'sonner';
 
 import { useUser } from 'components/context/auth-provider';
 import { Button } from 'components/ui/button';
 import { Card, CardContent, CardHeader } from 'components/ui/card';
-import { useToast } from 'components/ui/use-toast';
 
 import { apiUrls } from 'lib/apiUrls';
 import { formatCurrency } from 'lib/formatter';
@@ -57,7 +57,6 @@ export default function Plans() {
 	const user = useUser();
 	const [loading, setLoading] = useState(false);
 	const { isPremium, isPremiumEnded } = user;
-	const { toast } = useToast();
 
 	const onSuccess = async ({ order }: { order: any }, close: any) => {
 		const { attributes } = order.data;
@@ -78,16 +77,16 @@ export default function Plans() {
 				const error = await res.json();
 				throw new Error(error.message || res.statusText);
 			} else {
-				toast({ description: messages.payments.success, variant: 'success' });
+				toast.success(messages.payments.success);
 				setTimeout(() => window.location.reload(), 6000);
 			}
 		} catch (error: any) {
-			toast({ description: error.message, variant: 'destructive' });
+			toast.error(error.message);
 		}
 	};
 
 	const onDismiss = () => {
-		toast({ description: messages.payments.dismissed });
+		toast.info(messages.payments.dismissed);
 	};
 
 	const eventHandler = async ({ event, data }: { event: any; data: any }) => {

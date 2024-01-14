@@ -10,7 +10,7 @@ import { SidebarContextProvider } from 'components/context/sidebar-provider';
 import { ThemeProvider } from 'components/context/theme-provider';
 import DashboardLayout from 'components/layout';
 import Sidebar from 'components/sidebar';
-import { Toaster } from 'components/ui/toaster';
+import { Toaster } from 'components/ui/sonner';
 
 import { apiUrls } from 'lib/apiUrls';
 import { Database } from 'lib/database.types';
@@ -71,7 +71,7 @@ export default async function Layout({ children }: any) {
 								</DashboardLayout>
 							</main>
 						</ThemeProvider>
-						<Toaster />
+						<Toaster closeButton position="top-right" theme="system" visibleToasts={3} richColors />
 					</AuthProvider>
 				</body>
 				<Script

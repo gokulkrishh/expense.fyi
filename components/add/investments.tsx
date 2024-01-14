@@ -6,6 +6,7 @@ import { incrementUsage } from 'app/dashboard/apis';
 import { addInvestment, editInvestment } from 'app/dashboard/investments/apis';
 import { format } from 'date-fns';
 import debounce from 'debounce';
+import { toast } from 'sonner';
 
 import AutoCompleteList from 'components/autocomplete-list';
 import { useUser } from 'components/context/auth-provider';
@@ -15,7 +16,6 @@ import { Button } from 'components/ui/button';
 import { Input } from 'components/ui/input';
 import { Label } from 'components/ui/label';
 import { Textarea } from 'components/ui/textarea';
-import { useToast } from 'components/ui/use-toast';
 
 import { getCurrencySymbol } from 'lib/formatter';
 
@@ -45,7 +45,6 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 	const todayDate = format(new Date(), dateFormat);
 	const [state, setState] = useState<any>({ ...initialState, date: todayDate });
 	const [loading, setLoading] = useState(false);
-	const { toast } = useToast();
 	const inputRef = useRef<any>(null);
 
 	useEffect(() => {
@@ -73,12 +72,12 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 			}
 			setLoading(false);
 			if (mutate) mutate();
-			toast({ description: `${isEditing ? messages.updated : messages.success}`, variant: 'success' });
+			toast.success(isEditing ? messages.updated : messages.success);
 			onHide();
 			setState({ ...initialState });
 		} catch {
 			setLoading(false);
-			toast({ description: messages.error, variant: 'destructive' });
+			toast.error(messages.error);
 		}
 	};
 

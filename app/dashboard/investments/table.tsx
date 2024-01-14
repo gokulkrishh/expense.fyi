@@ -2,11 +2,12 @@
 
 import { useCallback, useState } from 'react';
 
+import { toast } from 'sonner';
+
 import Add from 'components/add-button';
 import { useUser } from 'components/context/auth-provider';
 import { useData } from 'components/context/data-provider';
 import DataTable from 'components/table/data-table';
-import { useToast } from 'components/ui/use-toast';
 
 import { lookup } from 'lib/lookup';
 
@@ -27,19 +28,18 @@ export default function InvestmentsTable() {
 	const [selected, setSelected] = useState({});
 	const { data, loading, filter, mutate } = useData();
 	const user = useUser();
-	const { toast } = useToast();
 
 	const onDelete = useCallback(
 		async (id: string) => {
 			try {
 				await deleteInvestment(id);
-				toast({ description: messages.deleted, variant: 'success' });
+				toast.success(messages.deleted);
 				mutate();
 			} catch {
-				toast({ description: messages.error, variant: 'destructive' });
+				toast.error(messages.error);
 			}
 		},
-		[mutate, toast]
+		[mutate]
 	);
 
 	const onEdit = useCallback(async (data: InvestmentData | any) => {
