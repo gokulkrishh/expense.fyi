@@ -46,7 +46,6 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 	const todayDate = format(new Date(), dateFormat);
 	const [state, setState] = useState<any>({ ...initialState, date: todayDate });
 	const [loading, setLoading] = useState(false);
-	const { toast } = useToast();
 	const inputRef = useRef<any>(null);
 
 	useEffect(() => {
