@@ -17,7 +17,7 @@ interface ModalProps {
 }
 
 export default function Modal({ show, title, children, onHide, someRef }: ModalProps) {
-	const isDesktop = true; // useMediaQuery('(min-width: 768px)');
+	const isDesktop = useMediaQuery('(min-width: 768px)');
 
 	return (
 		<>
@@ -69,8 +69,8 @@ export default function Modal({ show, title, children, onHide, someRef }: ModalP
 			) : (
 				<Drawer open={show}>
 					<DrawerOverlay onClick={onHide} />
-					<DrawerContent className="text-primary">
-						<DrawerHeader className="text-left ">
+					<DrawerContent className="text-primary relative z-20">
+						<DrawerHeader className="text-left">
 							<DrawerTitle>{title}</DrawerTitle>
 						</DrawerHeader>
 						<div className="p-4 pt-0">{children}</div>
