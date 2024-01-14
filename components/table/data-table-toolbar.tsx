@@ -4,10 +4,10 @@ import { Cross2Icon } from '@radix-ui/react-icons';
 import { Table } from '@tanstack/react-table';
 import { format } from 'date-fns';
 import { Download } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { Button } from 'components/ui/button';
 import { Input } from 'components/ui/input';
-import { useToast } from 'components/ui/use-toast';
 
 import { exportTableToCsv } from 'lib/export';
 import { formatDate } from 'lib/formatter';
@@ -32,7 +32,6 @@ interface DataTableToolbarProps<TData> {
 
 export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TData>) {
 	const { table, className, loading, categories, filter, user, filename, hideViewOptions = false } = props;
-	const { toast } = useToast();
 	const isFiltered = table.getState().columnFilters.length > 0;
 
 	return (
@@ -75,7 +74,7 @@ export default function DataTableToolbar<TData>(props: DataTableToolbarProps<TDa
 					<Button
 						variant="outline"
 						onClick={() => {
-							toast({ description: messages.export, variant: 'info' });
+							toast.info(messages.export);
 							exportTableToCsv(
 								`${filename} ${formatDate({ date: format(new Date(), dateFormat), locale: user.locale })}.csv`
 							);

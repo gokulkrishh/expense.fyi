@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { PopoverContent, PopoverTrigger } from '@radix-ui/react-popover';
 import { CheckCircle2, MessageSquarePlus } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { Button } from 'components/ui/button';
 import { Popover } from 'components/ui/popover';
@@ -14,11 +15,8 @@ import { cn } from 'lib/utils';
 
 import messages, { emails } from 'constants/messages';
 
-import { useToast } from './ui/use-toast';
-
 export default function Feedback({ className, showDatePicker }: { className?: string; showDatePicker: boolean }) {
 	const [state, setState] = useState({ show: false, loading: false, message: '', sent: false });
-	const { toast } = useToast();
 
 	const onSubmit = async () => {
 		setState({ ...state, loading: true });
@@ -42,7 +40,7 @@ export default function Feedback({ className, showDatePicker }: { className?: st
 			}, 5000);
 		} catch (error: any) {
 			setState((prev) => ({ ...prev, loading: false }));
-			toast({ description: emails.feedback.failed, variant: 'destructive' });
+			toast.error(emails.feedback.failed);
 		}
 	};
 
