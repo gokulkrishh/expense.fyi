@@ -11,7 +11,7 @@ export default function Charts() {
 	const user = useUser();
 	return (
 		<>
-			<div className="mr-4 flex md:min-h-full w-full flex-col">
+			<div className="max-sm:mb-8 mr-4 flex md:min-h-full w-full flex-col">
 				<Card className="h-full">
 					<CardHeader>
 						<h3 className="font-medium">Expenses</h3>

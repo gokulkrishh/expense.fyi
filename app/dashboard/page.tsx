@@ -16,7 +16,7 @@ export default async function Page() {
 					<div className="p-4 pt-3">
 						<Summary />
 						<h2 className="mb-4 mt-4 font-semibold text-primary dark:text-white">Reports</h2>
-						<div className="mb-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
+						<div className="mb-8 grid grid-cols-1 gap-1 md:gap-8 lg:grid-cols-2">
 							<Charts />
 						</div>
 					</div>
