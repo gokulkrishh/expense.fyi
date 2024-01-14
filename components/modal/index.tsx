@@ -73,7 +73,7 @@ export default function Modal({ show, title, children, onHide, someRef }: ModalP
 						<DrawerHeader className="text-left">
 							<DrawerTitle>{title}</DrawerTitle>
 						</DrawerHeader>
-						<div className="p-4 pt-0">{children}</div>
+						<div className="p-4 pt-0 pb-8">{children}</div>
 					</DrawerContent>
 				</Drawer>
 			)}
