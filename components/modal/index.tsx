@@ -6,15 +6,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 import { X } from 'lucide-react';
 
-import {
-	Drawer,
-	DrawerClose,
-	DrawerContent,
-	DrawerFooter,
-	DrawerHeader,
-	DrawerOverlay,
-	DrawerTitle,
-} from 'components/ui/drawer';
+import { Drawer, DrawerContent, DrawerHeader, DrawerOverlay, DrawerTitle } from 'components/ui/drawer';
 
 interface ModalProps {
 	show: boolean;
