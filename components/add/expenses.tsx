@@ -6,6 +6,7 @@ import { incrementUsage } from 'app/dashboard/apis';
 import { addExpense, editExpense } from 'app/dashboard/expenses/apis';
 import { format } from 'date-fns';
 import debounce from 'debounce';
+import { toast } from 'sonner';
 
 import AutoCompleteList from 'components/autocomplete-list';
 import { useUser } from 'components/context/auth-provider';
@@ -81,13 +82,13 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 				incrementUsage();
 			}
 			setLoading(false);
-			toast({ description: `${isEditing ? messages.updated : messages.success}`, variant: 'success' });
+			toast.success(isEditing ? messages.updated : messages.success);
 			if (mutate) mutate();
 			onHide();
 			setState({ ...initialState });
 		} catch {
 			setLoading(false);
-			toast({ description: messages.error, variant: 'destructive' });
+			toast.error(messages.error);
 		}
 	};
 
