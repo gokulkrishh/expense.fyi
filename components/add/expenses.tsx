@@ -6,7 +6,6 @@ import { incrementUsage } from 'app/dashboard/apis';
 import { addExpense, editExpense } from 'app/dashboard/expenses/apis';
 import { format } from 'date-fns';
 import debounce from 'debounce';
-import { toast } from 'sonner';
 
 import AutoCompleteList from 'components/autocomplete-list';
 import { useUser } from 'components/context/auth-provider';
@@ -16,6 +15,7 @@ import { Button } from 'components/ui/button';
 import { Input } from 'components/ui/input';
 import { Label } from 'components/ui/label';
 import { Textarea } from 'components/ui/textarea';
+import { useToast } from 'components/ui/use-toast';
 
 import { getCurrencySymbol } from 'lib/formatter';
 
@@ -47,6 +47,7 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 	const todayDate = format(new Date(), dateFormat);
 	const [state, setState] = useState<any>({ ...initialState, date: todayDate });
 	const [loading, setLoading] = useState(false);
+	const { toast } = useToast();
 	const inputRef = useRef<any>(null);
 
 	useEffect(() => {
@@ -82,13 +83,13 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 				incrementUsage();
 			}
 			setLoading(false);
-			toast.success(isEditing ? messages.updated : messages.success);
+			toast({ description: `${isEditing ? messages.updated : messages.success}`, variant: 'success' });
 			if (mutate) mutate();
 			onHide();
 			setState({ ...initialState });
 		} catch {
 			setLoading(false);
-			toast.error(messages.error);
+			toast({ description: messages.error, variant: 'destructive' });
 		}
 	};
 
@@ -111,6 +112,8 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 							placeholder="Swiggy - Biriyani"
 							maxLength={30}
 							required
+							ref={inputRef}
+							autoFocus
 							autoComplete="off"
 							onChange={({ target }) => {
 								const { value } = target;
@@ -144,8 +147,6 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 								</span>
 							</Label>
 							<Input
-								ref={inputRef}
-								autoFocus
 								className="mt-1.5"
 								id="price"
 								type="number"
