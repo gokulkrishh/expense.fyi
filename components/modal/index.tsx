@@ -69,7 +69,7 @@ export default function Modal({ show, title, children, onHide, someRef }: ModalP
 			) : (
 				<Drawer open={show}>
 					<DrawerOverlay onClick={onHide} />
-					<DrawerContent className="text-primary relative z-20">
+					<DrawerContent className="text-primary">
 						<DrawerHeader className="text-left">
 							<DrawerTitle>{title}</DrawerTitle>
 						</DrawerHeader>
