@@ -83,7 +83,7 @@ export default function AddInvestments({ show, onHide, mutate, selected, lookup 
 
 	return (
 		<Modal someRef={inputRef} show={show} title={`${selected.id ? 'Edit' : 'Add'} Investment`} onHide={onHide}>
-			<div className="sm:flex sm:items-start">
+			<div className="sm:flex sm:items-start max-sm:pb-6">
 				<form
 					className="md:[420px] grid w-full grid-cols-1 items-center gap-3"
 					onSubmit={(event) => {
