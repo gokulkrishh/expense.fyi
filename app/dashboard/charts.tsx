@@ -11,7 +11,7 @@ export default function Charts() {
 	const user = useUser();
 	return (
 		<>
-			<div className="mr-4 flex min-h-full w-full flex-col">
+			<div className="mr-4 flex md:min-h-full w-full flex-col">
 				<Card className="h-full">
 					<CardHeader>
 						<h3 className="font-medium">Expenses</h3>
@@ -25,7 +25,7 @@ export default function Charts() {
 				</Card>
 			</div>
 
-			<div className="mb-8 flex min-h-full w-full flex-col md:mb-0 md:mt-0">
+			<div className="mb-8 flex md:min-h-full w-full flex-col md:mb-0 md:mt-0">
 				<Card className="h-full w-full">
 					<CardHeader>
 						<h3 className="font-medium">Subscriptions</h3>
@@ -40,7 +40,7 @@ export default function Charts() {
 			</div>
 			{user.isPremium ? (
 				<>
-					<div className="mb-8 flex min-h-full w-full flex-col md:mb-0 md:mt-0">
+					<div className="mb-8 flex md:min-h-full w-full flex-col md:mb-0 md:mt-0">
 						<Card className="h-full w-full">
 							<CardHeader>
 								<h3 className="pb-0 font-medium">Recent Activities</h3>
@@ -51,7 +51,7 @@ export default function Charts() {
 						</Card>
 					</div>
 
-					<div className="mb-8 flex min-h-full w-full flex-col md:mb-0 md:mt-0">
+					<div className="mb-8 flex md:min-h-full w-full flex-col md:mb-0 md:mt-0">
 						<Card className="h-full w-full">
 							<CardHeader>
 								<h3 className="pb-0 font-medium">Top Spent Expenses</h3>
