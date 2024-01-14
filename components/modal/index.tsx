@@ -17,7 +17,7 @@ interface ModalProps {
 }
 
 export default function Modal({ show, title, children, onHide, someRef }: ModalProps) {
-	const isDesktop = useMediaQuery('(min-width: 768px)');
+	const isDesktop = true; // useMediaQuery('(min-width: 768px)');
 
 	return (
 		<>

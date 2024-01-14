@@ -111,6 +111,8 @@ export default function AddExpense({ show, onHide, mutate, selected, lookup }: A
 							placeholder="Swiggy - Biriyani"
 							maxLength={30}
 							required
+							ref={inputRef}
+							autoFocus
 							autoComplete="off"
 							onChange={({ target }) => {
 								const { value } = target;
