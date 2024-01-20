@@ -145,7 +145,7 @@ export default function AddSubscriptions({ show, onHide, mutate, selected, looku
 							Website
 							{hasValidUrl && state.url ? (
 								<Image
-									src={`http://www.google.com/s2/favicons?domain=${state.url}&sz=125`}
+									src={`https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${state.url}&size=64`}
 									width={15}
 									height={15}
 									alt={state?.name}

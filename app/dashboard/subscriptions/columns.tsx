@@ -25,13 +25,13 @@ export const columns: ColumnDef<SubscriptionsData>[] = [
 			return (
 				<div className="relative flex items-center font-medium">
 					<Image
-						className="absolute inline-block text-transparent"
-						src={`https://www.google.com/s2/favicons?domain=${url}`}
-						width={14}
-						height={14}
+						className="absolute inline-block text-transparent rounded-full"
+						src={`https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=64`}
+						width={24}
+						height={24}
 						alt={name}
 					/>
-					<a target="_blank" className="ml-6 underline hover:opacity-80" href={url} rel="noreferrer">
+					<a target="_blank" className="ml-10 underline hover:opacity-80" href={url} rel="noreferrer">
 						{name}
 					</a>
 				</div>

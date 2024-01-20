@@ -2,7 +2,7 @@ const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
 	images: {
-		domains: ['www.google.com'],
+		domains: ['t0.gstatic.com'],
 	},
 	async headers() {
 		return [{ source: '/(.*)', headers: securityHeaders }];
