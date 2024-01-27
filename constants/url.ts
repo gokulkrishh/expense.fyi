@@ -3,7 +3,7 @@ import { views } from './table';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const domain = process.env.NEXT_PUBLIC_SITE_URL;
+const domain = 'gastos.site';
 const local = 'localhost:3000';
 const home = isProduction ? domain : local;
 
